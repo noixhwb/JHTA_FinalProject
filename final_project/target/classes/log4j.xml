@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.jhta.final">
+	<logger name="com.jhta.finalproject">
 		<level value="info" />
 	</logger>
 	
