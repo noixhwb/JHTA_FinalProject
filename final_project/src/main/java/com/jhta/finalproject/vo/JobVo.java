@@ -24,6 +24,4 @@ public class JobVo {
 	private int j_view; 		// 조회수
 	private String j_url;		// URL
 	private String j_img;		// 회사로고 이미지
-	
-	
 }
