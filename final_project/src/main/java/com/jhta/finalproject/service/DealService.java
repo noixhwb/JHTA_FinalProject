@@ -1,5 +1,8 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +16,11 @@ public class DealService {
 	
 	public int insert(DealVo vo) {
 		return mapper.insert(vo);
+	}
+	public List<DealVo> selectAll(HashMap<String, Object> map){
+		return mapper.selectAll(map);
+	}
+	public int count(String word) {
+		return mapper.count(word);
 	}
 }

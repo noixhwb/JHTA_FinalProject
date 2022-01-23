@@ -17,6 +17,7 @@ public class DealInsert {
 	}
 	@PostMapping("/deal/dealinsert")
 	public String insert(DealVo vo) {
-		return "home";
+		service.insert(vo);
+		return "redirect:deal/deallist";
 	}
 }
