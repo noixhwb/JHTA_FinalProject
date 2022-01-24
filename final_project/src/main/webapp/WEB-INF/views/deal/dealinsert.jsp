@@ -88,103 +88,37 @@
  
  
             <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
-                <div class="form-group">
-                    <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
-                    <div class="col-lg-10" id="provision">
-                        <textarea class="form-control" rows="8" style="resize:none">약관동의
-블라블라블라블라블라블라블라블라블라블라블라블라
-블라블라블라블라블라블라블라블라블라블라블라블라
-블라블라블라블라블라블라블라블라블라블라블라블라.................
-                        </textarea>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" id="provisionYn" name="provisionYn" value="Y" autofocus="autofocus" checked>
-                                동의합니다.
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" id="provisionYn" name="provisionYn" value="N">
-                                동의하지 않습니다.
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
-                    <div class="col-lg-10" id="memberInfo">
-                        <textarea class="form-control" rows="8" style="resize:none">개인정보의 항목 및 수집방법
-블라블라블라블라블라블라블라블라블라블라블라블라                        
-블라블라블라블라블라블라블라블라블라블라블라블라
-블라블라블라블라블라블라블라블라블라블라블라블라.................
-                        </textarea>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>
-                                동의합니다.
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">
-                                동의하지 않습니다.
-                            </label>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="form-group" id="divId">
-                    <label for="inputId" class="col-lg-2 control-label">아이디</label>
+                    <label for="inputId" class="col-lg-2 control-label">제품명</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                        <input type="text" class="form-control" id="id" data-rule-required="true" placeholder="제품명을 등록해주세요." maxlength="30">
                     </div>
                 </div>
                 <div class="form-group" id="divPassword">
-                    <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
+                    <label for="inputPassword" class="col-lg-2 control-label">가격</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                        <input type="number" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="0000" maxlength="30">
                     </div>
                 </div>
-                <div class="form-group" id="divPasswordCheck">
-                    <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
-                    <div class="col-lg-10">
-                        <input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
-                    </div>
-                </div>
-                <div class="form-group" id="divName">
-                    <label for="inputName" class="col-lg-2 control-label">이름</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
+  				<div class="form-group">
+                    <label for="memberInfo" class="col-lg-2 control-label">상품설명</label>
+                    <div class="col-lg-10" id="memberInfo">
+                        <textarea class="form-control" rows="11" style="resize:none">
+
+                        </textarea>
                     </div>
                 </div>
                 
-                <div class="form-group" id="divNickname">
-                    <label for="inputNickname" class="col-lg-2 control-label">별명</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="nickname" data-rule-required="true" placeholder="별명" maxlength="15">
-                    </div>
-                </div>
-                
-                <div class="form-group" id="divEmail">
-                    <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
-                    <div class="col-lg-10">
-                        <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
-                    </div>
-                </div>
                 <div class="form-group" id="divPhoneNumber">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
-                    <div class="col-lg-10">
-                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+                    <div class="col-lg-8">
+                        <input type="tel" class="form-control" name="rphone" id="phoneNumber" data-rule-required="true" placeholder="010-0000-0000" maxlength="13">
                     </div>
+                        <button type="button" class="col-lg-2 btn btn-default">인증번호발송</button>
+       					<span id="sendPhoneList"></span>
                 </div>
-                <div class="form-group">
-                    <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
-                    <div class="col-lg-10">
-                        <select class="form-control" id="gender">
-                            <option value="M">남</option>
-                            <option value="F">여</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label for="inputEmailReceiveYn" class="col-lg-2 control-label">이메일 수신여부</label>
                     <div class="col-lg-10">
@@ -207,9 +141,34 @@
                         </label>
                     </div>
                 </div>
+                                <div class="form-group">
+                    <label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
+                    <div class="col-lg-10" id="memberInfo">
+                        <textarea class="form-control" rows="4" style="resize:none" readonly="readonly">개인정보의 항목 및 수집방법
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        </textarea>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>
+                                동의합니다.
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">
+                                동의하지 않습니다.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        <button type="submit" class="btn btn-primary">등록</button>
                     </div>
                 </div>
             </form>
@@ -520,12 +479,7 @@
     
     
     
-    <form method="post" name="smsForm" action="${pageContext.request.contextPath}/deal/smssend">
-        
-        연락처<input type="text" name="rphone" value="011-111-1111">
-        <input type="submit" value="인증번호전송">
-        <span id="sendPhoneList"></span>
-    </form>
+
 </body>
 <APM_DO_NOT_TOUCH>
 <script type="text/javascript">
