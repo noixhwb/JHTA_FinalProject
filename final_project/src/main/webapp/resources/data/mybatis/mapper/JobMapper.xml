@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.TestMapper">
+	<!-- 추가 -->
+	<insert id="insert" parameterType="com.jhta.finalproject.vo.JobVo">
+		insert into jobinfo values(
+		jobinfo_seq.nextval,#{j_company},#{j_subject},
+		#{j_startdate},#{j_enddate},#{j_duty},#{j_region},
+		#{j_career},#{j_view},#{j_url},#{j_img})
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from jobinfo where j_num=#{j_num}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="update" parameterType="com.jhta.finalproject.vo.JobVo">
+		update jobinfo set j_company=#{j_company},j_subject=#{j_subject},
+		j_startdate=#{j_startdate},j_enddate=#{j_enddate},j_duty={#j_duty},
+		j_region=#{j_region},j_career=#{j_career},j_url=#{j_url},j_img=#{j_img} 
+		where j_num=#{j_num}
+	</update>
+	
+	<!-- 공고 목록 -->
+	<select id="list" resultType="com.jhta.finalproject.vo.JobVo">
+		select * from jobinfo
+	</select>
+</mapper>

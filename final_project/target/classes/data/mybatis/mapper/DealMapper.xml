@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="data.mybatis.mapper.DealMapper">
+	<insert id="insert" parameterType="com.jhta.finalproject.vo.DealVo">
+		insert into deal values(deal_seq.nextval,#{t_name},#{t_explanation},#{M_NUM},#{t_price},#{t_processing},sysdate)
+	</insert>
+	<select id="selectAll" resultType="com.jhta.finalproject.vo.DealVo" parameterType="hashmap">
+		SELECT * from
+		(
+		SELECT b.*,rownum rnum
+		from(
+		SELECT * FROM deal
+		ORDER BY num desc
+		) b
+		<if test="#{word} != null and #{word} != ''">
+			where t_name like '%'||#{word}||'%' or t_explanation '%'||#{word}||'%'
+		</if>
+		)
+		<![CDATA[ WHERE rnum>=#{startRow} AND rnum<=#{endRow}]]>
+	</select>
+		<select id="count" resultType="int">
+			select NVL(count(*),0) cnt from deal
+		<if test="#{word} != null and #{word} != ''">
+			where t_name like '%'||#{word}||'%' or t_explanation '%'||#{word}||'%'
+		</if>
+	</select>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
