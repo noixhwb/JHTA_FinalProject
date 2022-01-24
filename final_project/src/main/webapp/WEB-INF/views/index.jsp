@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
 <!DOCTYPE html>
 
 <head>
@@ -14,11 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-<<<<<<< HEAD
     <title>Final_3조</title>
-=======
-    <title>Final3조</title>
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
 
     <!-- Custom fonts for this template-->
     <link href="${ pageContext.request.contextPath }/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -61,12 +53,8 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-<<<<<<< HEAD
-            <div class="sidebar-heading">
-=======
             <div class="sidebar-heading"> 
             	<!-- 소제목 -->
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -114,17 +102,9 @@
                 <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-<<<<<<< HEAD
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-=======
                     	<a class="collapse-item" href="${ pageContext.request.contextPath }/deal/deallist">장터</a>
                         <a class="collapse-item" href="${ pageContext.request.contextPath }/deal/dealinsert">상품등록</a>
                         <a class="collapse-item" href="${ pageContext.request.contextPath }/deal/deallist">장터관리</a>
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
                     </div>
                 </div>
             </li>
@@ -134,10 +114,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-<<<<<<< HEAD
-=======
                 <!-- 소제목 -->
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -161,71 +138,6 @@
                 </div>
             </li>
             
-<<<<<<< HEAD
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>시간표</span>
-                </a>
-                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>게시요청</span>
-                </a>
-                <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>관리자페이지</span>
-                </a>
-                <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-            
-            <!-- Nav Item - Tables -->
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-=======
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
@@ -299,20 +211,10 @@
             <!-- Nav Item - Tables -->
              <!-- <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/deal/dealinsert">
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
                     <i class="fas fa-fw fa-table"></i>
                     <span>임시</span></a>
             </li> -->
-<<<<<<< HEAD
 
-            <!-- Nav Item - Charts -->
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>임시</span></a>
-            </li> -->
-=======
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -330,7 +232,7 @@
             </div>
 
         </ul>
-        <!-- End of Sidebar -->
+        <!-- ////////////////////End of Sidebar/////////////////////////// -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
