@@ -17,7 +17,7 @@ public class JoinController {
 		return "member/join";
 	}
 	@PostMapping("/member/join")
-	public String join(MemberVo vo) {  
+	public String join(MemberVo vo) {      
 		service.insert(vo);
 		return "member/success";
 		
