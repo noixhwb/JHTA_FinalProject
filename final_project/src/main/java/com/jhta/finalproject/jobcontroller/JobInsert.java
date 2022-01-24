@@ -11,16 +11,15 @@ import com.jhta.finalproject.service.JobService;
 import com.jhta.finalproject.vo.JobVo;
 
 @Controller
-@RequestMapping("/job")
 public class JobInsert {
 	@Autowired private JobService service;
 	
-	@GetMapping("/insertForm")
+	@GetMapping("/job/insertForm")
 	public String insertForm() {
 		return "job/insertForm";
 	}
 	
-	@PostMapping("/insert")
+	@PostMapping("/job/insert")
 	public String insert(JobVo vo,Model model) {
 		
 		service.insert(vo);

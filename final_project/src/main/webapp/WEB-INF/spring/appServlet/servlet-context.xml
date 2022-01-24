@@ -24,6 +24,7 @@
 	<context:component-scan base-package="com.jhta.finalproject.controller" />
 	<context:component-scan base-package="com.jhta.finalproject.dealcontroller" />
 	<context:component-scan base-package="com.jhta.finalproject.Joincontroller" />
+	<context:component-scan base-package="com.jhta.finalproject.jobcontroller" />
 	
 	
 	
