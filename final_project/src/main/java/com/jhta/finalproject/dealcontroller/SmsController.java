@@ -39,30 +39,26 @@ public class SmsController {
 	}
 
 	@PostMapping("/deal/smssend")
-	public String sendFrom(Model model, String action, String rphone, String sphone1, String sphone2,
-			String sphone3, String rdate, String rtime, String subject, String testflag,
-			String destination, String repeatFlag, String repeatNum, String repeatTime, String returnurl,
-			String nointeractive) {
+	public String sendFrom(Model model, String rphone) {
 		try {
 			String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; //필수
 			String user_id = base64Encode("lamgul"); //필수
 			String secure = base64Encode("6f15e3a9a71b3a4af0b5214088b8401d"); //필수
-			String msg = ""; //필수
-			rphone = "";  //필수
-			sphone1 = "010";  //필수
-			sphone2 = "8009";  //필수
-			sphone3 = "2767";  //필수
-			rdate = "";
-			rtime = "";
+			String msg = "1234"; //필수
+			//rphone 필수 보내줘야함
+			String sphone1 = "010";  //필수
+			String sphone2 = "8009";  //필수
+			String sphone3 = "2767";  //필수
+			String rdate = "";
+			String rtime = "";
 			String mode = base64Encode("1");
-			subject = "";
-			testflag = "";  //테스트 요청시 Y
-			destination = "";
-			repeatFlag = "";
-			repeatNum = "";
-			repeatTime = "";
-			returnurl = "";
-			nointeractive = base64Encode(nullcheck(nointeractive, ""));
+			String subject = "";
+			String testflag = "Y";  //테스트 요청시 Y
+			String destination = "";
+			String repeatFlag = "";
+			String repeatNum = "";
+			String repeatTime = "";
+			String returnurl = "";
 			String smsType = "S"; //필수
 			String[] host_info = sms_url.split("/");
 			String host = host_info[2];
@@ -157,7 +153,7 @@ public class SmsController {
 			} else {
 				alert = "[Error]" + Result;
 			}
-			System.out.println(nointeractive);
+			
 			System.out.println(alert);
 			System.out.println(returnurl);
 
