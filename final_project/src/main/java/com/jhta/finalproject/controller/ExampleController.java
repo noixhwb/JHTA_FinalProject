@@ -9,18 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class HomeController3 {
+public class ExampleController {
 	@Autowired ServletContext sc;
 	
-	@RequestMapping(value = "/home/home2", method = RequestMethod.GET)
-	public String home() {
+	@RequestMapping(value = "/example", method = RequestMethod.GET)
+	public String example() {
 		sc.setAttribute("cp",sc.getContextPath());
-		/*
-		 * model.addAttribute("header", sc.getContextPath()+"/home/header.jsp");
-		 * model.addAttribute("main", sc.getContextPath()+"/home/home2.jsp");
-		 * model.addAttribute("footer", sc.getContextPath()+"/home/footer.jsp");
-		 */
-		return "home/home2";
+		//필요하신 작업 진행후 작업하신 파일로 이동하시는것은 똑같습니다. 특이사항 없음
+		return "example";
 	}
 	
 }
