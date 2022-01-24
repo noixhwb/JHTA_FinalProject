@@ -49,6 +49,18 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>홈</span></a>
             </li>
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="${ pageContext.request.contextPath }/member/login">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>로그인</span></a>
+            </li>
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="${ pageContext.request.contextPath }/member/join">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>회원가입</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
