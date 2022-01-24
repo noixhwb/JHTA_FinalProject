@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/header.jsp" %>
 		
 <div>
-	동아리 목록
+	동아리 + 게시글 등록
 </div>        
         
 <%@ include file="/WEB-INF/views/footer.jsp" %>
