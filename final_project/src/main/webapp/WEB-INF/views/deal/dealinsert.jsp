@@ -113,7 +113,7 @@
             <option value="25">25</option>
         </select>분마다
         <br>
-        <input type="submit" value="전송">
+        <input type="submit" value="인증번호전송">
         <br/>이통사 정책에 따라 발신번호와 수신번호가 같은 경우 발송되지 않습니다.
     </form>
     </body>
