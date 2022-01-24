@@ -41,7 +41,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="${ cp }/home/home2">
+				href="${cp}/home/home2">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
