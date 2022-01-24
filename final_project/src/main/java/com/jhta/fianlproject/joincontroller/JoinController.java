@@ -14,6 +14,7 @@ public class JoinController {
 	
 	@GetMapping("/member/join")
 	public String joinForm() {
+		System.out.println("컨트롤러작동중");
 		return "member/join";
 	}
 	@PostMapping("/member/join")
