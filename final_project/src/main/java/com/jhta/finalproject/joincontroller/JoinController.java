@@ -1,4 +1,4 @@
-package com.jhta.fianlproject.joincontroller;
+package com.jhta.finalproject.joincontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
