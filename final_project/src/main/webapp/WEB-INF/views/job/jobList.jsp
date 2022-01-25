@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ include file="/WEB-INF/views/header.jsp" %>
-<table border="1" width="1000">
+
+<table border="1" width="1000px">
 	<tr>
 		<th>공고번호</th>
 		<th>회사명</th>

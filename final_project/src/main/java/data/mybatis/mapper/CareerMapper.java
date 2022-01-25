@@ -10,4 +10,5 @@ public interface CareerMapper {
 	int delete(int j_num);
 	int update(CareerVo vo);
 	List<CareerVo> list();
+	CareerVo selectOne(int j_num);
 }

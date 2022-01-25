@@ -25,4 +25,7 @@ public class ZoneService {
 	public List<ZoneVo> list(){
 		return mapper.list();
 	}
+	public ZoneVo selectOne(int j_num) {
+		return mapper.selectOne(j_num);
+	}
 }

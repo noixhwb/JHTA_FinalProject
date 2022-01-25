@@ -22,7 +22,12 @@
 	
 	<!-- 전체조회 -->
 	<select id="list" resultType="com.jhta.finalproject.jobvo.ZoneVo">
-		select * from jobinfo
+		select * from jobzone
+	</select>
+	
+	<!-- 선택조회 -->
+	<select id="selectOne" parameterType="int" resultType="com.jhta.finalproject.jobvo.DutyVo">
+		select * from jobzone where j_num=#{j_num}
 	</select>
  </mapper>
  

@@ -25,4 +25,7 @@ public class DutyService {
 	public List<DutyVo> list(){
 		return mapper.list();
 	}
+	public DutyVo selectOne(int j_num) {
+		return mapper.selectOne(j_num);
+	}
 }

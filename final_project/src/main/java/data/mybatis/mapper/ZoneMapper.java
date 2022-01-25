@@ -10,4 +10,5 @@ public interface ZoneMapper {
 	int delete(int j_num);
 	int update(ZoneVo vo);
 	List<ZoneVo> list();
+	ZoneVo selectOne(int j_num);
 }

@@ -24,6 +24,11 @@
 	<select id="list" resultType="com.jhta.finalproject.jobvo.CareerVo">
 		select * from jobcareer
 	</select>
+	
+	<!-- 선택조회 -->
+	<select id="selectOne" parameterType="int" resultType="com.jhta.finalproject.jobvo.JobVo">
+		select * from jobcareer where j_num=#{j_num}
+	</select>
  </mapper>
  
  

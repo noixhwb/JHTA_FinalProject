@@ -10,4 +10,5 @@ public interface DutyMapper {
 	int delete(int j_num);
 	int update(DutyVo vo);
 	List<DutyVo> list();
+	DutyVo selectOne(int j_num);
 }

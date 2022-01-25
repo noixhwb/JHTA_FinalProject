@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.jobvo.CareerVo;
-import com.jhta.finalproject.jobvo.DutyVo;
 
 import data.mybatis.mapper.CareerMapper;
 
@@ -25,5 +24,8 @@ public class CareerService {
 	}
 	public List<CareerVo> list(){
 		return mapper.list();
+	}
+	public CareerVo selectOne(int j_num) {
+		return mapper.selectOne(j_num);
 	}
 }
