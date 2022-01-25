@@ -4,54 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <title>상품등록</title>
-<script type="text/javascript">
-            function setPhoneNumber(val) {var numList = val.split("-");
-            document.smsForm.sphone1.value = numList[0];
-            document.smsForm.sphone2.value = numList[1];
-            if(numList[2] != undefined){document.smsForm.sphone3.value = numList[2];}}
-
-            function loadJSON() {
-                var data_file = "/calljson.jsp";
-                var http_request = new XMLHttpRequest();
-                try {// Opera 8.0+, Firefox, Chrome, Safari
-                    http_request = new XMLHttpRequest();
-                } catch (e) {// Internet Explorer Browsers
-                    try {http_request = new ActiveXObject("Msxml2.XMLHTTP");
-                    } catch (e) {
-                        try {http_request = new ActiveXObject("Microsoft.XMLHTTP");
-                        } catch (e) {// Eror
-                            alert("지원하지 않는브라우저!");
-                            return false;}}}
-                http_request.onreadystatechange = function() {
-                    if (http_request.readyState == 4) {
-                        // Javascript function JSON.parse to parse JSON data
-                        var jsonObj = JSON.parse(http_request.responseText);
-                        if (jsonObj['result'] == "Success") {
-                            var aList = jsonObj['list'];
-                            var selectHtml = "<select name=\"sendPhone\" onchange=\"setPhoneNumber(this.value)\">";
-                            selectHtml += "<option value='' selected>발신번호를 선택해주세요</option>";
-                            for (var i = 0; i < aList.length; i++) {
-                                selectHtml += "<option value=\"" + aList[i] + "\">";
-                                selectHtml += aList[i];
-                                selectHtml += "</option>";
-                            }
-                            selectHtml += "</select>";
-                            document.getElementById("sendPhoneList").innerHTML = selectHtml;
-                        }
-                    }
-                }
-
-                http_request.open("GET", data_file, true);
-                http_request.send();
-            }
-        </script>
 </head>
-<body onload="loadJSON()">
+
+<body>
+<%@ include file="/WEB-INF/views/header.jsp" %>
             <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
             
@@ -115,8 +73,9 @@
                     <div class="col-lg-8">
                         <input type="tel" class="form-control" name="rphone" id="phoneNumber" data-rule-required="true" placeholder="010-0000-0000" maxlength="13">
                     </div>
-                        <button type="button" class="col-lg-2 btn btn-default">인증번호발송</button>
-       					<span id="sendPhoneList"></span>
+                        <button type="button" class="col-lg-2 btn btn-default" id="phoneVerification">인증번호발송</button>
+
+						        <span id="sendPhoneList"></span>
                 </div>
 
                 <div class="form-group">
@@ -172,7 +131,11 @@
                     </div>
                 </div>
             </form>
-        
+        <form method="post" name="smsForm">
+               					<input type="hidden" name="sphone1" id="sphone1" value="010">
+						        <input type="hidden" name="sphone2" id="sphone2" value="8009">
+						        <input type="hidden" name="sphone3" id="sphone3" value="2767">
+        </form>
         
         <script>
         
@@ -180,6 +143,21 @@
                 //모달을 전역변수로 선언
                 var modalContents = $(".modal-contents");
                 var modal = $("#defaultModal");
+                
+                $("#phoneVerification").click(function(){
+                	rphone = $("#phoneNumber").val();
+                	console.log(rphone);
+                	$.ajax({
+                		url:"${pageContext.request.contextPath}/deal/smssend",
+                		data:{"rphone":rphone},
+                		type: 'POST',
+                		dataType:"json",
+                		
+                		success:function(data){
+                			console.log(data.code);
+                		}
+                	})
+                });
                 
                 $('.onlyAlphabetAndNumber').keyup(function(event){
                     if (!(event.keyCode >=37 && event.keyCode<=40)) {
@@ -466,7 +444,7 @@
             <!--// 푸터 들어가는 부분 -->
         </div>
     
-    
+    <%@ include file="/WEB-INF/views/footer.jsp" %>
     
     
     
@@ -500,6 +478,5 @@ function JL(I){var l=+new Date,L;!document[z(98,211,215,199,212,219,181,199,206,
 
 </script>
 </APM_DO_NOT_TOUCH>
-<script type="text/javascript" src="/TSPD/0853a021f8ab200065e40d6ba5ba9c431055bddec3fb863ec4b4157fdc2eb6b30e912e40bab26100?type=9"></script>
 </html>
             

@@ -1,0 +1,79 @@
+package com.jhta.finalproject.timetablecontroller;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.jhta.finalproject.service.SubjectRateService;
+import com.jhta.finalproject.service.SubjectService;
+import com.jhta.finalproject.vo.SubjectRateVo;
+import com.jhta.finalproject.vo.SubjectVo;
+import com.util.PageUtil;
+
+@Controller
+public class SubjectController {
+	@Autowired private ServletContext sc;
+	@Autowired private SubjectService service;
+	@Autowired private SubjectRateService rateservice;
+
+	@GetMapping("/timetable/subject")
+	public String tableSubject() {
+		sc.setAttribute("cp", sc.getContextPath());
+		return "timetable/subject";
+	}
+
+	@GetMapping("/timetable/subjectList")
+	public String subjectList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String keyword,
+			Model model) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		
+		int totalRowCount = service.count(map);
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
+		int startRow = pu.getStartRow();// 시작행번호
+		int endRow = pu.getEndRow();// 끝행번호
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		List<SubjectVo> list = service.subjectList(map);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("list", list);
+		model.addAttribute("pu", pu);
+		return "timetable/subject";
+	}
+	
+	@GetMapping(value="/timetable/rateList", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String, Object> rateList(
+			@RequestParam(value="pageNum",defaultValue = "1")int pageNum,
+			int s_num) {
+		System.out.println("컨트롤러시작");
+		HashMap<String,Object> map=new HashMap<String, Object>();
+		map.put("s_num", s_num);
+		
+		System.out.println("map" + map);
+		int totalRowCount = rateservice.count(s_num);
+
+		System.out.println("totalRowCount" + totalRowCount);
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
+		int startRow = pu.getStartRow();// 시작행번호
+		int endRow = pu.getEndRow();// 끝행번호
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		List<SubjectRateVo> list = rateservice.rateList(map);
+
+		System.out.println("list" + list);
+		map.put("list", list);
+		map.put("pu", pu);
+		System.out.println("컨트롤러끝");
+		return map;
+	}
+	
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.SubjectMapper">
+	<!-- 검색하여 목록출력 -->
+	<select id="subjectList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectVo">
+		select * from
+		(
+			select b.*,rownum rnum from 
+		    ( 
+		       select * from SUBJECT 
+		       where s_name like '%'||#{keyword}||'%' or s_prof like '%'||#{keyword}||'%'
+		       order by s_num desc
+		    ) b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	</select>
+	<!-- 전체 글의 갯수 -->
+	<select id="count" parameterType="hashmap" resultType="int">
+		select NVL(count(*),0) cnt from SUBJECT 
+		where s_name like '%'||#{keyword}||'%' or s_prof like '%'||#{keyword}||'%'
+	</select>
+	<insert id="insert" parameterType="com.jhta.finalproject.vo.SubjectVo">
+		insert into SUBJECT 
+		values(SUBJECT_SEQ.NEXTVAL,#{s_name},#{s_category},#{s_prof},#{s_class},#{s_day},#{s_starttime},#{s_endtime},#{s_score})
+	</insert>
+	<update id="update" parameterType="com.jhta.finalproject.vo.SubjectVo">
+		update SUBJECT 
+		set s_name=#{s_name}, s_category=#{s_category}, s_prof=#{s_prof}, s_class=#{s_class}, s_day=#{s_day}, s_starttime=#{s_starttime}, s_endtime=#{s_endtime}, s_score=#{s_score}
+		where s_num=#{s_num}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from SUBJECT where s_num=#{s_num}
+	</delete>
+</mapper>

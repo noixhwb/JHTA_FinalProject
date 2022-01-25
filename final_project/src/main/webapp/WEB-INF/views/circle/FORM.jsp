@@ -1,10 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<!-- 전체 동아리 목록 -->
+<!-- 폼 양식 -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
+<%--
+<!-- Custom fonts for this template-->
+<link href="${ pageContext.request.contextPath }/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="${ pageContext.request.contextPath }/resources/css/sb-admin-2.min.css" rel="stylesheet">
+    
+<!-- Bootstrap core JavaScript-->
+<script src="${ pageContext.request.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="${ pageContext.request.contextPath }/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="${ pageContext.request.contextPath }/resources/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="${ pageContext.request.contextPath }/resources/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="${ pageContext.request.contextPath }/resources/js/demo/chart-area-demo.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/demo/chart-pie-demo.js"></script>
+ --%>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
+
 
 <!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
@@ -87,7 +114,7 @@
 
 <!-- Page Heading -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800"> 전체 동아리 목록 </h1>
+				<h1 class="h3 mb-0 text-gray-800"> 폼 양식 </h1>
 					<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 						<div class="input-group">
 							<input type="text" class="form-control bg-light border-0 small"
@@ -111,28 +138,48 @@
 <!-- Approach -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary"> @@동아리명@@ </h6>
+						<h6 class="m-0 font-weight-bold text-primary"> 카드1 </h6>
 					</div>
 					
 					<div class="card-body">
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">@@아이콘+동아리명@@</h5>
-								<p class="card-text">@@글제목@@</p>
-								<p class="card-text">
-									<small class="text-muted">@@디데이+조회수+좋아요@@</small>
-								</p>
+						<div class="card mb-3" style="max-width: 540px;">
+							<div class="row g-0">
+								<div class="col-md-4">
+									<img src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg" 
+										 class="img-fluid rounded-start" alt="..." style="max-width: 50px;">
+								</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h5 class="card-title">제목1</h5>
+										<p class="card-text">텍스트1</p>
+										<p class="card-text">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</p>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<img src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg" 
-								 class="img-fluid rounded-start" alt="..." style="max-width: 100px;">
+						<div class="card mb-3" style="max-width: 540px;">
+							<div class="row g-0">
+								<div class="col-md-4">
+									<img src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg" 
+										 class="img-fluid rounded-start" alt="..." style="max-width: 50px;">
+								</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h5 class="card-title">제목2</h5>
+										<p class="card-text">텍스트2</p>
+										<p class="card-text">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>    
+				</div>
 
 <!-- Approach -->
-<!-- 
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary"> 카드2 </h6>
@@ -159,7 +206,7 @@
 					</div>
 				</div>
 			</div>
-			 -->	
+				
 <!-- Content Column -->
 			<div class="col-lg-6 mb-4">
 
@@ -232,8 +279,11 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
+				
 			</div>
+			
 		</div>
 <!-- /.container-fluid -->
 			
@@ -249,7 +299,7 @@
 
 	</div>
 <!-- End of Page Wrapper -->
-		</div>
+		
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 		
 <!-- 스크롤 -->		

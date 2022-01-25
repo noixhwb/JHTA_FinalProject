@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/header.jsp" %>
 		
 <div>
-	내 동아리
+	내 동아리 - 일반대학생
 </div>     
         
 <%@ include file="/WEB-INF/views/footer.jsp" %>

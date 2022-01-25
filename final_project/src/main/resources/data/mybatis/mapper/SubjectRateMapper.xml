@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.SubjectRateMapper">
+	
+	<!-- 과목으로 검색하여 목록출력 -->
+	<select id="rateList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectRateVo">
+		select * from
+		(
+			select b.*,rownum rnum from 
+		    ( 
+		       select * from SUBJECTRATE where s_num=#{s_num}
+		        order by sr_num desc
+		    ) b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	</select>
+	<!-- 과목별 전체 글의 갯수 -->
+	<select id="count" parameterType="int" resultType="int">
+		select NVL(count(*),0) cnt from SUBJECTRATE where s_num=#{s_num}
+	</select>
+	
+	<!-- 내글 검색하여 목록출력 -->
+	<select id="myrateList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectRateVo">
+		select * from
+		(
+			select b.*,rownum rnum from 
+		    ( 
+		       select * from SUBJECTRATE where m_num=#{m_num}
+		        order by sr_num desc
+		    ) b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	</select>
+	<!-- 내 전체 글의 갯수 -->
+	<select id="mycount" parameterType="int" resultType="int">
+		select NVL(count(*),0) cnt from SUBJECTRATE where m_num=#{m_num}
+	</select>
+	<insert id="insert" parameterType="com.jhta.finalproject.vo.SubjectRateVo">
+		insert into SUBJECTRATE 
+		values(SUBJECTRATE_SEQ.NEXTVAL,#{m_num},#{sr_content},sysdate,#{sr_recommend},#{s_num})
+	</insert>
+	<update id="update" parameterType="com.jhta.finalproject.vo.SubjectRateVo">
+		update SUBJECTRATE 
+		set sr_content=#{sr_content}, sr_recommend=#{sr_recommend}
+		where sr_num=#{sr_num}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from SUBJECTRATE where sr_num=#{sr_num}
+	</delete>
+</mapper>
