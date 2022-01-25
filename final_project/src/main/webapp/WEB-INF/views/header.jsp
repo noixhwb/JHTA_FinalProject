@@ -96,9 +96,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item" href="${cp}/circle/circlelist">전체 동아리</a>
-                        <a class="collapse-item" href="${cp}/circle/circlerank">동아리 랭킹</a>
-                        <a class="collapse-item" href="${cp}/circle/mycircle">MY 동아리</a>
+                        <a class="collapse-item" href="${cp}/circle/CircleList">전체 동아리</a>
+                        <a class="collapse-item" href="${cp}/circle/CircleRank">동아리 랭킹</a>
+                        <a class="collapse-item" href="${cp}/circle/MyCircle">MY 동아리</a>
                     </div>
                 </div>
             </li>
@@ -195,14 +195,10 @@
                 </a>
                 <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
+                        <!-- <h6 class="collapse-header">Login Screens:</h6>  -->
+                        <a class="collapse-item" href="${cp}/circle/CircleInsert">동아리 게시요청</a>
                         <a class="collapse-item" href="${cp }/job/insert">채용공고 게시요청</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <!-- <div class="collapse-divider"></div>  -->
                     </div>
                 </div>
             </li>
