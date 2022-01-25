@@ -13,6 +13,7 @@
 <!-- Main Content -->
 		<div id="content">
 
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
 <!-- Topbar -->
 		<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 		<h4>3조대학교 캠퍼스픽</h4>
@@ -89,10 +90,26 @@
 
 <!-- Page Heading -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800"> 동아리 및 게시글 등록 </h1>
+				<h1 class="h3 mb-0 text-gray-800"> 동아리 게시요청 </h1>
 					
 			</div>
 
+
+			<!-- 동아리 게시요청 주의사항 카드 -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h5 class="m-0 font-weight-bold text-danger"> 동아리 게시 유의사항 </h5>
+				</div>
+				
+				<div class="card-body">
+					<ul>
+						<li> 동아리 정보 및 모집 공고 게시는 무료로 진행되며, 
+							 3조픽 담당자의 검토 및 승인 절차를 거쳐 48시간 이내 게시됩니다 </li>
+						<li> 계정당 한 동아리만 등록 가능합니다 </li>
+						<li> 게시글 중복 방지를 위해 동아리당 한 게시글만 등록할 수 있습니다 </li>
+					</ul>	
+				</div>
+			</div>
 <!-- Content Row -->
 			<!-- <div class="row"> -->
 
@@ -103,7 +120,7 @@
 				<!-- 동아리 만들기 카드 -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h5 class="m-0 font-weight-bold text-primary"> 동아리 정보 등록 </h5>
+						<h5 class="m-0 font-weight-bold text-dark"> 동아리 정보 등록 </h5>
 					</div>
 					1. 동아리 검색
 					2. 분야 선택 (학술/취업/봉사/기타친목)
@@ -116,24 +133,14 @@
 						<div class="card mb-3">
 							<div class="col-md-8">
 								<div class="card-body">
-									<h6 class="card-title">동아리 검색</h6>
-									<!-- 검색 버튼 -->
-									<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-										<div class="input-group">
-											<input type="text" class="form-control bg-light border-0 small"
-												   placeholder="동아리를 검색하세요" aria-label="Search"
-											       aria-describedby="basic-addon2">
-											<div class="input-group-append">
-												<button class="btn btn-primary" type="button">
-													<i class="fas fa-search fa-sm"></i>
-												</button>
-											</div>
+									<h6 class="card-title font-weight-bold text-dark">동아리명</h6>
+									<p class="card-text">
+										<!-- 동아리명 입력 -->
+										<input type="text">
+										<!-- 동아리명 중복 or 사용가능 여부 메세지 -->
+										<div>
 										</div>
-									</form>
-									<!-- 검색 결과 -->
-									<div>
-									</div>
-									
+									</p>
 								</div>
 								
 							</div>
@@ -144,7 +151,7 @@
 							<div class="col-md-8">
 							
 								<div class="card-body">
-									<h6 class="card-title">동아리 분야</h6>
+									<h6 class="card-title font-weight-bold text-dark">동아리 분야</h6>
 									<p class="card-text">
 										<input type="radio" name="radioC1" value="학술">학술
 										<input type="radio" name="radioC1" value="취업">취업
@@ -161,7 +168,7 @@
 							<div class="col-md-8">
 							
 								<div class="card-body">
-									<h6 class="card-title">동아리 규모 (00명 이하)</h6>
+									<h6 class="card-title font-weight-bold text-dark">동아리 규모</h6>
 									<p class="card-text">
 										<input type="radio" name="radioC2" value="10">10명 이하
 										<input type="radio" name="radioC2" value="20">11명 ~ 20명 이하
@@ -177,7 +184,7 @@
 							<div class="col-md-8">
 							
 								<div class="card-body">
-									<h6 class="card-title">동아리 이미지 업로드</h6>
+									<h6 class="card-title font-weight-bold text-dark">동아리 이미지 업로드</h6>
 									<p class="card-text">
 									</p>
 								</div>
@@ -192,7 +199,7 @@
 <!-- Approach -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary"> 모집 공고 등록 </h6>
+						<h5 class="m-0 font-weight-bold text-dark"> 모집 공고 등록 </h5>
 					</div>
 					1. 글제목
 					2. 모집 기간
@@ -206,7 +213,7 @@
 							<div class="col-md-8">
 							
 								<div class="card-body">
-									<h6 class="card-title">글 제목</h6>
+									<h6 class="card-title font-weight-bold text-dark">글 제목</h6>
 									<p class="card-text">
 										<input type="text">
 									</p>
@@ -220,7 +227,7 @@
 							<div class="col-md-8">
 							
 								<div class="card-body">
-									<h6 class="card-title">모집 기간</h6>
+									<h6 class="card-title font-weight-bold text-dark">모집 기간</h6>
 									<p class="card-text">
 										<!-- 달력!!! 시작일, 마감일 -->
 									</p>
@@ -234,9 +241,9 @@
 							<div class="col-md-8">
 							
 								<div class="card-body">
-									<h6 class="card-title">상세 내용</h6>
+									<h6 class="card-title font-weight-bold text-dark">상세 내용</h6>
 									<p class="card-text">
-										<textarea rows="10" cols="20"></textarea>
+										<textarea rows="15" cols="100"></textarea> <!-- ??크기조절이... -->
 									</p>
 								</div>
 								
@@ -248,7 +255,7 @@
 							<div class="col-md-8">
 							
 								<div class="card-body">
-									<h6 class="card-title">이미지 첨부</h6>
+									<h6 class="card-title font-weight-bold text-dark">이미지 첨부</h6>
 									<p class="card-text">
 									</p>
 								</div>

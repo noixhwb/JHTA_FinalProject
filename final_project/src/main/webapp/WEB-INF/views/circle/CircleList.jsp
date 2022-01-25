@@ -111,48 +111,28 @@
 <!-- Approach -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary"> 카드1 </h6>
+						<h6 class="m-0 font-weight-bold text-primary"> @@동아리명@@ </h6>
 					</div>
 					
 					<div class="card-body">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg" 
-										 class="img-fluid rounded-start" alt="..." style="max-width: 50px;">
-								</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<h5 class="card-title">제목1</h5>
-										<p class="card-text">텍스트1</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
-									</div>
-								</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">@@아이콘+동아리명@@</h5>
+								<p class="card-text">@@글제목@@</p>
+								<p class="card-text">
+									<small class="text-muted">@@디데이+조회수+좋아요@@</small>
+								</p>
 							</div>
 						</div>
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg" 
-										 class="img-fluid rounded-start" alt="..." style="max-width: 50px;">
-								</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<h5 class="card-title">제목2</h5>
-										<p class="card-text">텍스트2</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
-									</div>
-								</div>
-							</div>
+						<div class="col-md-4">
+							<img src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg" 
+								 class="img-fluid rounded-start" alt="..." style="max-width: 100px;">
 						</div>
 					</div>
-				</div>
+				</div>    
 
 <!-- Approach -->
+<!-- 
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary"> 카드2 </h6>
@@ -179,7 +159,7 @@
 					</div>
 				</div>
 			</div>
-				
+			 -->	
 <!-- Content Column -->
 			<div class="col-lg-6 mb-4">
 
@@ -269,7 +249,7 @@
 
 	</div>
 <!-- End of Page Wrapper -->
-		
+		</div>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 		
 <!-- 스크롤 -->		
