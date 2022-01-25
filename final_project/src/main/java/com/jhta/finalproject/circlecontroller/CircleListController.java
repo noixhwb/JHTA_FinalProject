@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CircleListController {
-	//
+	//전체 동아리 페이지로 이동
+	//@Autowired private service;
 	
-	@GetMapping("/circle/circlelist")
+	@GetMapping("/circle/CircleList")
 	public String circlelist() {
-		return "circle/circlelist";
+		return "circle/CircleList";
 	}
 }
