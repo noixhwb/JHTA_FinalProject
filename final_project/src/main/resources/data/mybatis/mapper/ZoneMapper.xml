@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="data.mybatis.mapper.ZoneMapper">
+ 	<!-- 추가 -->
+	<insert id="insert" parameterType="com.jhta.finalproject.jobvo.ZoneVo">
+		insert into jobzone values 
+		(jobzone_seq.nextval,jobinfo_seq.currval,#{jz_zone})	
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from jobzone where j_num=#{j_num}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="update" parameterType="com.jhta.finalproject.jobvo.ZoneVo">
+		update jobzone set jz_zone=#{jz_zone}
+		where j_num=#{j_num}
+	</update>
+	
+	<!-- 전체조회 -->
+	<select id="list" resultType="com.jhta.finalproject.jobvo.ZoneVo">
+		select * from jobinfo
+	</select>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

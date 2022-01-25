@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="data.mybatis.mapper.DutyMapper">
+ 	<!-- 추가 -->
+	<insert id="insert" parameterType="com.jhta.finalproject.jobvo.DutyVo">
+		insert into jobduty values 
+		(jobduty_seq.nextval,jobinfo_seq.currval,#{jd_duty})	
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from jobduty where j_num=#{j_num}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="update" parameterType="com.jhta.finalproject.jobvo.DutyVo">
+		update jobduty set jd_duty=#{jd_duty}
+		where j_num=#{j_num}
+	</update>
+	
+	<!-- 전체조회 -->
+	<select id="list" resultType="com.jhta.finalproject.jobvo.DutyVo">
+		select * from jobduty
+	</select>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

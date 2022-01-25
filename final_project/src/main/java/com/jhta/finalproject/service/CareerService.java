@@ -5,29 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jhta.finalproject.jobvo.JobVo;
+import com.jhta.finalproject.jobvo.CareerVo;
+import com.jhta.finalproject.jobvo.DutyVo;
 
-import data.mybatis.mapper.JobMapper;
+import data.mybatis.mapper.CareerMapper;
 
 @Service
-public class JobService {
-	@Autowired private JobMapper mapper;
+public class CareerService {
+	@Autowired private CareerMapper mapper;
 	
-	public int insert(JobVo vo) {
+	public int insert(CareerVo vo) {
 		return mapper.insert(vo);
 	}
 	public int delete(int j_num) {
 		return mapper.delete(j_num);
 	}
-	public int update(JobVo vo) {
+	public int update(CareerVo vo) {
 		return mapper.update(vo);
 	}
-	public List<JobVo> list(){
+	public List<CareerVo> list(){
 		return mapper.list();
 	}
-	public JobVo selectOne(int j_num) {
-		return mapper.selectOne(j_num);
-	}
-	
-	
 }

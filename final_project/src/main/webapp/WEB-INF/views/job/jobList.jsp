@@ -1,22 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-${vo.j_num }
-${vo.j_company }
-${vo.j_startdate }
-${vo.j_enddate }
-${vo.j_duty }
-${vo.j_region }
-${vo.j_career }
-${vo.j_view }
-${vo.j_url }
-${vo.j_img }
-
-</body>
-</html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ include file="/WEB-INF/views/header.jsp" %>
+<table border="1" width="1000">
+	<tr>
+		<th>공고번호</th>
+		<th>회사명</th>
+		<th>공고제목</th>
+		<th>채용시작일</th>
+		<th>채용마감일</th>
+		<th>조회수</th>
+		<th>삭제</th>
+		<th>수정</th>
+	</tr>
+	<c:forEach var="vo" items="${list }">
+		<tr>
+			<td>${vo.j_num }</td>
+			<td>${vo.j_company }</td>
+			<td><a href="${cp}/job/detail?j_num=${vo.j_num}">${vo.j_subject }</a></td>
+			<td>${vo.j_startdate}</td>
+			<td>${vo.j_enddate }</td>
+			<td>${vo.j_view }</td>
+			<td><a href="${cp }/job/delete?j_num=${vo.j_num }">삭제</a></td>
+			<td><a href="${cp }/job/update?j_num=${vo.j_num }">수정</a></td>
+		</tr>
+	</c:forEach>
+</table>	
+ 
+<%@ include file="/WEB-INF/views/footer.jsp" %>
