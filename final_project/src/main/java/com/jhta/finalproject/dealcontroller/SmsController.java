@@ -1,16 +1,24 @@
 package com.jhta.finalproject.dealcontroller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
+import java.util.HashMap;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+
+@RestController
 public class SmsController {
 
 	public static String nullcheck(String str, String Defaultvalue) throws Exception {
@@ -37,14 +45,17 @@ public class SmsController {
 		String result = new String(decoder.decode(str.getBytes()));
 		return result;
 	}
-
-	@PostMapping("/deal/smssend")
-	public String sendFrom(Model model, String rphone) {
+	
+	@PostMapping(value="/deal/smssend",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public HashMap<String, Object> sendFrom(Model model, String rphone) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		System.out.println("작동");
 		try {
+			String code="1234";
 			String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; //필수
 			String user_id = base64Encode("lamgul"); //필수
 			String secure = base64Encode("6f15e3a9a71b3a4af0b5214088b8401d"); //필수
-			String msg = base64Encode("1234"); //필수
+			String msg = base64Encode(code); //필수
 			//rphone 필수 보내줘야함
 			String sphone1 = base64Encode("010");  //필수
 			String sphone2 = base64Encode("8009");  //필수
@@ -72,7 +83,7 @@ public class SmsController {
 			valKey[0] = user_id;
 			valKey[1] = secure;
 			valKey[2] = msg;
-			valKey[3] = rphone;
+			valKey[3] = base64Encode(rphone);
 			valKey[4] = sphone1;
 			valKey[5] = sphone2;
 			valKey[6] = sphone3;
@@ -109,7 +120,7 @@ public class SmsController {
 				data += "\r\n" + value + "\r\n";
 				data += "--" + boundary + "\r\n";
 			}
-			// out.println(data);
+			System.out.println(data);
 			java.net.InetAddress addr = java.net.InetAddress.getByName(host);
 			java.net.Socket socket = new java.net.Socket(host, port);
 			java.io.BufferedWriter wr = new java.io.BufferedWriter(
@@ -156,15 +167,60 @@ public class SmsController {
 			
 			System.out.println(alert);
 			System.out.println(returnurl);
-
+			
+			map.put("code",code);
 			
 		} catch (IOException ie) {
 			ie.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		return map;
+	}
+	
+	@PostMapping(value="/deal/calljson",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public String calljson(Model model) {
+		 try {
+	           String apiUrl =  "https://sslsms.cafe24.com/smsSenderPhone.php";
+	            String userAgent = "Mozilla/5.0";
+	            String postParams = "userId=lamgul&passwd=6f15e3a9a71b3a4af0b5214088b8401d";
+	            URL obj = new URL(apiUrl);
+	            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+	            con.setRequestMethod("POST");
+	            con.setRequestProperty("User-Agent", userAgent);
 
-		return "deal/smssend";
+	            // For POST only - START
+	            con.setDoOutput(true);
+	            OutputStream os = con.getOutputStream();
+	            os.write(postParams.getBytes());
+	            os.flush();
+	            os.close();
+	            // For POST only - END
+
+	            int responseCode = con.getResponseCode();
+	            System.out.println("POST Response Code :: " + responseCode);
+
+	            if (responseCode == HttpURLConnection.HTTP_OK) { //success
+	                BufferedReader in = new BufferedReader(new InputStreamReader(
+	                        con.getInputStream()));
+	                String inputLine;
+	                StringBuffer buf = new StringBuffer();
+
+	                while ((inputLine = in.readLine()) != null) {
+	                    buf.append(inputLine);
+	                }
+	                in.close();
+	                System.out.println(buf.toString());
+	                return buf.toString();
+	            } else {
+	            	System.out.println("POST request not worked");
+	            	return "POST request not worked";
+	            }
+	    } catch(IOException ex){
+	    	return "error";
+	    }
 	}
 
 }
