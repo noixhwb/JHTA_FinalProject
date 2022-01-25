@@ -5,7 +5,7 @@
 <mapper namespace="data.mybatis.mapper.SubjectRateMapper">
 	
 	<!-- 과목으로 검색하여 목록출력 -->
-	<select id="rateList" parameterType="hashmap" resultType="com.jhta.finalsong.vo.SubjectRateVo">
+	<select id="rateList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectRateVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
@@ -22,7 +22,7 @@
 	</select>
 	
 	<!-- 내글 검색하여 목록출력 -->
-	<select id="myrateList" parameterType="hashmap" resultType="com.jhta.finalsong.vo.SubjectRateVo">
+	<select id="myrateList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectRateVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
@@ -37,11 +37,11 @@
 	<select id="mycount" parameterType="int" resultType="int">
 		select NVL(count(*),0) cnt from SUBJECTRATE where m_num=#{m_num}
 	</select>
-	<insert id="insert" parameterType="com.jhta.finalsong.vo.SubjectRateVo">
+	<insert id="insert" parameterType="com.jhta.finalproject.vo.SubjectRateVo">
 		insert into SUBJECTRATE 
 		values(SUBJECTRATE_SEQ.NEXTVAL,#{m_num},#{sr_content},sysdate,#{sr_recommend},#{s_num})
 	</insert>
-	<update id="update" parameterType="com.jhta.finalsong.vo.SubjectRateVo">
+	<update id="update" parameterType="com.jhta.finalproject.vo.SubjectRateVo">
 		update SUBJECTRATE 
 		set sr_content=#{sr_content}, sr_recommend=#{sr_recommend}
 		where sr_num=#{sr_num}

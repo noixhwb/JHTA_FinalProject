@@ -3,30 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.SubjectMapper">
-	<!-- resultMap : select로 조회된 결과를 vo객체에 어떻게 담을 건지 정의 
-		column:select된 컬럼명 property:vo의 변수명 -->
-	<!--<resultMap type="com.jhta.finalsong.vo.RatesVo" id="RatesList">
-		<result column="mnum" property="mnum"/>
-		<result column="title" property="title"/>
-		<result column="content" property="content"/>
-		<result column="director" property="director"/>
-		<collection property="SubjectRateList" ofType="com.jhta.finalsong.vo.SubjectRateVo">
-			<result column="num" property="num"/>
-			<result column="mnum" property="mnum"/>
-			<result column="id" property="id"/>
-			<result column="comments" property="comments"/>
-		</collection>
-	</resultMap>-->
-	
-	<!-- 위에 정의한 resultMap의 아이디를 써야함 -->
-	<!--<select id="selectRatesList" resultMap="RatesList">
-		select m.mnum, m.title, m.content, m.director, c.num, c.id, c.comments
-		from movie m,comments c
-		where m.mnum=c.mnum
-	</select>-->
-	
 	<!-- 검색하여 목록출력 -->
-	<select id="subjectList" parameterType="hashmap" resultType="com.jhta.finalsong.vo.SubjectVo">
+	<select id="subjectList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
@@ -43,11 +21,11 @@
 		select NVL(count(*),0) cnt from SUBJECT 
 		where s_name like '%'||#{keyword}||'%' or s_prof like '%'||#{keyword}||'%'
 	</select>
-	<insert id="insert" parameterType="com.jhta.finalsong.vo.SubjectVo">
+	<insert id="insert" parameterType="com.jhta.finalproject.vo.SubjectVo">
 		insert into SUBJECT 
 		values(SUBJECT_SEQ.NEXTVAL,#{s_name},#{s_category},#{s_prof},#{s_class},#{s_day},#{s_starttime},#{s_endtime},#{s_score})
 	</insert>
-	<update id="update" parameterType="com.jhta.finalsong.vo.SubjectVo">
+	<update id="update" parameterType="com.jhta.finalproject.vo.SubjectVo">
 		update SUBJECT 
 		set s_name=#{s_name}, s_category=#{s_category}, s_prof=#{s_prof}, s_class=#{s_class}, s_day=#{s_day}, s_starttime=#{s_starttime}, s_endtime=#{s_endtime}, s_score=#{s_score}
 		where s_num=#{s_num}
