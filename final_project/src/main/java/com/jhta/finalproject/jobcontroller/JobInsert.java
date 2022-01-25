@@ -23,7 +23,7 @@ public class JobInsert {
 	@Autowired private ServletContext sc;
 	@Autowired private JobService service;
 	
-	@GetMapping("/job/insertForm")
+	@GetMapping("/job/insert")
 	public String insertForm() {
 		return "job/insertForm";
 	}
