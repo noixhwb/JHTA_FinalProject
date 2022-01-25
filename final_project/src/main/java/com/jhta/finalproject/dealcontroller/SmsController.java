@@ -64,7 +64,7 @@ public class SmsController {
 			String rtime = base64Encode("");
 			String mode = base64Encode("1");
 			String subject = base64Encode("");
-			String testflag = base64Encode("");  //테스트 요청시 Y
+			String testflag = base64Encode("Y");  //테스트 요청시 Y
 			String destination = base64Encode("");
 			String repeatFlag = base64Encode("");
 			String repeatNum = base64Encode("");
