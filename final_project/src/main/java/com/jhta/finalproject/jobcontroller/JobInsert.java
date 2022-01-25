@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jhta.finalproject.service.JobService;
@@ -30,7 +29,7 @@ public class JobInsert {
 	}
 	
 	@PostMapping("/job/insert")
-	public String insert(JobVo vo,MultipartFile file1,Model model) {
+	public String insert(JobVo vo, MultipartFile file1, MultipartFile file2, Model model) {
 		String path=sc.getRealPath("/resources/upload");
 		String orgfilname=file1.getOriginalFilename();
 		String savefilename=UUID.randomUUID() + "_" + orgfilname;
