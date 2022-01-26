@@ -54,14 +54,11 @@ public class SubjectController {
 	public @ResponseBody HashMap<String, Object> rateList(
 			@RequestParam(value="pageNum",defaultValue = "1")int pageNum,
 			int s_num) {
-		System.out.println("컨트롤러시작");
 		HashMap<String,Object> map=new HashMap<String, Object>();
 		map.put("s_num", s_num);
 		
-		System.out.println("map" + map);
 		int totalRowCount = rateservice.count(s_num);
 
-		System.out.println("totalRowCount" + totalRowCount);
 		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
 		int startRow = pu.getStartRow();// 시작행번호
 		int endRow = pu.getEndRow();// 끝행번호
@@ -69,11 +66,31 @@ public class SubjectController {
 		map.put("endRow", endRow);
 		List<SubjectRateVo> list = rateservice.rateList(map);
 
-		System.out.println("list" + list);
 		map.put("list", list);
 		map.put("pu", pu);
-		System.out.println("컨트롤러끝");
 		return map;
+	}
+	
+	@GetMapping("/timetable/mysubjectrate")
+	public String mysubjectrate(
+			@RequestParam(value="pageNum",defaultValue = "1")int pageNum,
+			int m_num,Model model) {
+		sc.setAttribute("cp", sc.getContextPath());
+		HashMap<String,Object> map=new HashMap<String, Object>();
+		map.put("m_num", m_num);
+		
+		int totalRowCount = rateservice.mycount(m_num);
+
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
+		int startRow = pu.getStartRow();// 시작행번호
+		int endRow = pu.getEndRow();// 끝행번호
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		List<SubjectRateVo> list = rateservice.myrateList(map);
+		model.addAttribute("m_num", m_num);
+		model.addAttribute("list", list);
+		model.addAttribute("pu", pu);
+		return "timetable/mysubjectrate";
 	}
 	
 }

@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/header.jsp"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- Main Content 이건 지우지 마세요-->
 <div id="content">
@@ -42,7 +43,8 @@
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <span
 					class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span> <img
-					class="img-profile rounded-circle" src="${cp}/resources/img/undraw_profile.svg">
+					class="img-profile rounded-circle"
+					src="${cp}/resources/img/undraw_profile.svg">
 			</a> <!-- Dropdown - User Information -->
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -73,121 +75,86 @@
 		<!-- ////작업공간//// -->
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800">강의평가</h1>
+			<h1 class="h3 mb-0 text-gray-800">내가 쓴 강의평가</h1>
 			<a href="${cp}/timetable/mysubjectrate?m_num=1"
 				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-				내가 쓴 강의평가
-			</a>
-			<a href="${cp}/timetable/mysubjectrate?m_num=1"
-				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-				내가 찜한 강의
-			</a>
+				내가 찜한 강의 </a>
 		</div>
 		<div>
 			<div>
 				<div id="subListBox">
-				<c:choose>
-					<c:when test="${!empty list }">
-						<div class="card shadow mb-4">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">"${keyword}"에
-									대한 검색결과</h6>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" id="dataTable" width="100%"
-										cellspacing="0">
-										<thead>
-											<tr>
-												<th>과목번호</th>
-												<th>과목명</th>
-												<th>교수명</th>
-												<th>구분</th>
-												<th>학점</th>
-												<th>강의평가보기</th>
-											</tr>
-										</thead>
-										<tfoot>
-											<tr>
-												<th>과목번호</th>
-												<th>과목명</th>
-												<th>교수명</th>
-												<th>구분</th>
-												<th>학점</th>
-												<th>강의평가보기</th>
-											</tr>
-										</tfoot>
-										<tbody>
-										<c:forEach var="vo" items="${list }">
-											<tr>
-												<td>${vo.s_num }</td>
-												<td>${vo.s_name }</td>
-												<td>${vo.s_prof }</td>
-												<td>${vo.s_category }</td>
-												<td>${vo.s_score }</td>
-												<td><a onclick="rateClick(${vo.s_num });">강의평가</a></td>
-											</tr>
+					<c:choose>
+						<c:when test="${!empty list }">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">내가 쓴 강의평가</h6>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th>과목번호</th>
+													<th>과목명</th>
+													<th>교수명</th>
+													<th>구분</th>
+													<th>학점</th>
+													<th>강의평가보기</th>
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+													<th>과목번호</th>
+													<th>과목명</th>
+													<th>교수명</th>
+													<th>구분</th>
+													<th>학점</th>
+													<th>강의평가보기</th>
+												</tr>
+											</tfoot>
+											<tbody>
+												<c:forEach var="vo" items="${list }">
+													<tr>
+														<td>${vo.sr_recommend }</td>
+														<td>${vo.sr_content }</td>
+														<td>${vo.sr_regdate }</td>
+														<td>${vo.sr_recommend }</td>
+														<td>${vo.sr_recommend }</td>
+														<td><a onclick="rateClick(${vo.s_num });">수정</a></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<c:forEach var="i" begin="${pu.startPageNum }"
+											end="${pu.endPageNum }">
+											<c:choose>
+												<c:when test="${i==param.pageNum }">
+													<a
+														href="${cp}/timetable/mysubjectrate?pageNum=${i}&keyword=${keyword}"><span
+														style="color: blue">${i }</span></a>
+												</c:when>
+												<c:otherwise>
+													<a
+														href="${cp}/timetable/mysubjectrate?pageNum=${i}&keyword=${keyword}"><span
+														style="color: gray">${i }</span></a>
+												</c:otherwise>
+											</c:choose>
 										</c:forEach>
-										</tbody>
-									</table>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div>
-							<c:forEach var="i" begin="${pu.startPageNum }"
-								end="${pu.endPageNum }">
-								<c:choose>
-									<c:when test="${i==param.pageNum }">
-										<a href="${cp}/timetable/subjectList?pageNum=${i}&keyword=${keyword}"><span
-											style="color: blue">${i }</span></a>
-									</c:when>
-									<c:otherwise>
-										<a href="${cp}/timetable/subjectList?pageNum=${i}&keyword=${keyword}"><span
-											style="color: gray">${i }</span></a>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="card shadow mb-4">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">"${keyword}"에
-									대한 검색결과 없습니다.</h6>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" id="dataTable" width="100%"
-										cellspacing="0">
-										<thead>
-											<tr>
-												<th>과목번호</th>
-												<th>과목명</th>
-												<th>교수명</th>
-												<th>구분</th>
-												<th>학점</th>
-												<th>강의평가보기</th>
-											</tr>
-										</thead>
-										<tfoot>
-											<tr>
-												<th>과목번호</th>
-												<th>과목명</th>
-												<th>교수명</th>
-												<th>구분</th>
-												<th>학점</th>
-												<th>강의평가보기</th>
-											</tr>
-										</tfoot>
-										<tbody>
-										</tbody>
-									</table>
+						</c:when>
+						<c:otherwise>
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">"${keyword}"에
+										대한 검색결과 없습니다.</h6>
 								</div>
 							</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-					
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 				<div id="rateListBox"></div>
 			</div>
