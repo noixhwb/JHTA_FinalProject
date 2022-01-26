@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class MyCommunityVo {
 	private int mcu_num;
 	private int cu_num;
-	private int m_num;
+	private int m_num;  
 	
 }
