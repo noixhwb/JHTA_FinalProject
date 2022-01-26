@@ -221,7 +221,7 @@
 								<div class="col-md-8">
 									<div class="card-body">
 										<h5 class="card-title">영화모임</h5>
-										<p class="card-text">영화 좋아하시는분</p>
+										<p class="card-text">영화 ㅇㅇ좋아하시는분</p>
 										<p class="card-text">
 											<small class="text-muted">Last updated 3 mins ago</small>
 										</p>
