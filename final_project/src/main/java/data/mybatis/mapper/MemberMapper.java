@@ -11,6 +11,8 @@ public interface MemberMapper {
 	
 	int addUser(MemberVo vo);
 	int addAuth(AuthoritiesVo auth);
+
+	int idchk(MemberVo vo);
 	
 	
 	

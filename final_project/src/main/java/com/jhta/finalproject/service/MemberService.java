@@ -42,7 +42,9 @@ public class MemberService {
 	  public int addAuth(AuthoritiesVo vo) {
 		  return mapper.addAuth(vo);
 	  }
-
+	  public int idchk(MemberVo vo) {
+		  return mapper.idchk(vo);
+	  }
 
 	}
 

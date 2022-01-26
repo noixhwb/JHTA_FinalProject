@@ -7,6 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function idcheck(){
+		let id=document.getElementById("m_id").value;
+		if(id=='') return;
+		let xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				let data=xhr.responseText;
+				let json=JSON.parse(data);
+				let span=document.getElementById("idcheck");
+				if(json.using==true){
+					span.innerHTML="사용중인 아이디입니다.";
+				}else{
+					span.innerHTML="사용가능한 입니다.";
+				}
+			}
+		}
+		xhr.open('get','/spring13/isMember?id=' + id,true);
+		xhr.send();
+	}
+</script>
 </head>
 
 <body>
