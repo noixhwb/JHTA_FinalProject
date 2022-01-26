@@ -26,7 +26,7 @@
 	</select>
 	
 	<!-- 선택조회 -->
-	<select id="selectOne" parameterType="int" resultType="com.jhta.finalproject.jobvo.DutyVo">
+	<select id="selectOne" parameterType="int" resultType="com.jhta.finalproject.jobvo.ZoneVo">
 		select * from jobzone where j_num=#{j_num}
 	</select>
  </mapper>
