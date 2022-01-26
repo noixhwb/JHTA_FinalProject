@@ -1,4 +1,4 @@
-package com.jhta.finalproject.vo;
+package com.jhta.finalproject.circlevo;
 
 import java.sql.Date;
 
@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class CricleVo { //CIRCLE테이블 VO
+public class CircleVo {
 	private int ci_num;
 	private String ci_name;
 	private String ci_category;

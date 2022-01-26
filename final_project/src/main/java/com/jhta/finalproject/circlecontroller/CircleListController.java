@@ -1,15 +1,24 @@
 package com.jhta.finalproject.circlecontroller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.jhta.finalproject.circlevo.CircleVo;
+import com.jhta.finalproject.service.CircleService;
 
 @Controller
 public class CircleListController {
 	//전체 동아리 페이지로 이동
-	//@Autowired private service;
+	@Autowired private CircleService service;
 	
 	@GetMapping("/circle/CircleList")
-	public String circlelist() {
+	public String circlelist(Model model) {
+		List<CircleVo> list = service.selectAll();
+		model.addAttribute("list", list);
 		return "circle/CircleList";
 	}
 }

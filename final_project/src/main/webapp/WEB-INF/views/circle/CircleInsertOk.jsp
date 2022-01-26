@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   
-<!-- 전체 동아리 목록 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- 동아리+게시글 등록 확인 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
+
 
 <!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
@@ -15,6 +16,7 @@
 <!-- Main Content -->
 		<div id="content">
 
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
 <!-- Topbar -->
 		<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 		<h4>3조대학교 캠퍼스픽</h4>
@@ -86,101 +88,93 @@
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Begin Page Content -->
+		<form action="${ cp }/home" style="margin: auto; text-align: center;" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 <!-- Page Heading -->
+			<!-- 
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800"> 전체 동아리 목록 </h1>
-				<!-- 동아리 검색 -->	
-				<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-					<div class="input-group">
-						<input type="text" class="form-control bg-light border-0 small"
-							   placeholder="Search for..." aria-label="Search"
-						       aria-describedby="basic-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-primary" type="button">
-								<i class="fas fa-search fa-sm"></i>
-							</button>
-						</div>
-					</div>
-				</form> <!-- 동아리 검색 끝 -->
+				<h1 class="h3 mb-0 text-gray-800"> 동아리 게시요청 </h1>
+					
 			</div>
-
-<!-- Content Row -->
-			<div class="row">
-
-<!-- Content Column -->
-			<c:forEach var="vo" items="${ list }">
-			<!-- 첫번째 Content Column -->
-			<div class="col-lg-6 mb-4">
-
-<!-- Approach -->
-				<!-- n번 동아리 -->
-				
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<div class="row g-0">
-							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
-								<img src="${ cp }/resources/images/circle/${ vo.ci_logofile }" 
-									 style="max-width: 50px;">
-								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.ci_name }</h6>
-							</div>
-							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
-								${ vo.ci_category }, ${ vo.ci_person } (더꾸미기..)
-							</div>
-						</div>
-					</div>
-					
-					<div class="card-body"> <!-- n번 동아리 body -->
-						<div class="row g-0">
-							<div class="col-md-8"> <!-- 카드본문 왼쪽 (정보) -->
-								<div class="card-body">
-									<h6 class="card-title"> ${ vo.ci_title },${vo.ci_logofile } </h6>
-									<p class="card-text">
-										
-											<div class="row g-0">
-												<div class="col-md-6">
-													<ul id="dot">
-														<!-- <li>모집기간 : ${ vo.ci_startdate } ~ ${ vo.ci_enddate }</li> -->
-														<li>디데이</li> <!-- 1번 -->
-														<li>모집중</li> <!-- 2번 -->
-													</ul>
-												</div>
-												<div class="col-md-6">
-													<ul id="dot">
-														<li>조회수 : ${ vo.ci_view }</li> <!-- 3번 -->
-														<li>좋아요수 : ${ vo.ci_recommend }</li> <!-- 4번 -->
-													</ul>
-												</div>
-											</div>
-											
-									</p>
-									<p class="card-text">
-											<small class="text-muted">직관적인구조를 고민중입니다..</small>
-										</p>
-								</div>
-							</div>
-							<div class="col-md-4"> <!-- 카드본문 오른쪽 (포스터) -->
-								<img src="${ cp }/resources/images/circle/${ vo.ci_imgfile }" 
-									 class="img-fluid rounded-start" alt="..." style="max-width: 150px;">
-							</div>
-						</div>
-					</div> <!-- n번 동아리 body 끝 -->
-					
-				</div> <!-- n번 동아리 끝 -->
-				
-
-			</div> <!-- 첫번쨰 Content Column 끝 -->
-			</c:forEach>
-
-
-		</div> <!-- Content Row 끝 -->
-
-		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
-<!-- /.container-fluid -->
 			
+
+			<!-- 게시요청 완료 카드 -->
+			<!-- 
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h5 class="m-0 font-weight-bold text-danger"> 동아리 게시 유의사항 </h5>
+				</div>
+				
+				<div class="card-body">
+					<ul>
+						<li> 동아리 정보 및 모집 공고 게시는 무료로 진행되며, 
+							 3조픽 담당자의 검토 및 승인 절차를 거쳐 48시간 이내 게시됩니다 </li>
+						<li> 계정당 한 동아리만 등록 가능합니다 </li>
+						<li> 게시글 중복 방지를 위해 동아리당 한 게시글만 등록할 수 있습니다 </li>
+					</ul>	
+				</div>
+			</div>  --><!-- 게시요청 완료 카드 끝 -->
+			 
+		<c:choose>
+			<c:when test="${ requestScope.result == 'success' }">
+				<div class="row">
+					<div class="col-6 offset-3">
+				<div class="card border-success bg-light mb-3" style="margin-top: 10%;">
+					<div class="card-header" style="text-align: left;">
+						<small class="text-muted"> 게시요청확인 </small> <br> 
+					</div>
+					<div class="card-body text-danger">
+						<img src="${cp}/resources/images/circle/checked.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
+						<h1 class="card-title"><strong>게시요청이 완료되었습니다</strong></h1>
+					</div>
+					<div class="card-footer">
+	      				<strong>@@동아리명@@</strong> <br>
+						<!--
+						<c:forEach var="list" items="${myorderlist}">
+								주문상세번호 : ${ list.odNum } <br>
+								@@상세내용@@
+						</c:forEach>
+						-->
+	    			</div>
+				</div>
+					</div>
+				</div>
+			</c:when>
+	
+			<c:otherwise>
+				<div class="row">
+					<div class="col-6 offset-3">
+				<div class="card shadow text-white bg-danger mb-4">
+					<div class="card-header py-3">
+						<small class="text-muted" style="text-align:left;"> 게시불가확인 </small> <br> 
+					</div>
+					<div class="card-body">
+						<img src="${cp}/resources/images/circle/sad-face.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
+						<h1 class="card-title"><strong>게시요청을 완료하지 못했습니다</strong></h1>
+					</div>
+					<div class="card-footer">
+						오류를 확인해주세요!
+					</div>
+				</div>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
+			
+		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
+<!-- /.container-fluid -->		
+		
+		<div class="container show-grid" style="margin:auto; text-align:center; margin-bottom:100px;">
+			<input type="submit" class="btn btn-dark" value="alert으로 할지.. 고민중..">
+		</div>
+
+
+		</form>
+		
 		</div> <!-- Main Content 끝 -->
-<!-- End of Main Content -->
+<!-- End of Main Content -->	
+
 			
 	</div> <!-- ContentWrapper 끝 -->
 <!-- End of Content Wrapper -->	
@@ -191,8 +185,9 @@
 <!-- End of Footer -->
 
 
-	<!-- </div>  -->
+<!-- </div>  -->
 <!-- End of Page Wrapper -->
+		
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 		
 <!-- 스크롤 -->		
@@ -227,9 +222,3 @@
 		</div>
 	</div>
 	
-<style>
-#dot{
-   list-style:none;
-   padding-left:5px;
-   }
-</style>       
