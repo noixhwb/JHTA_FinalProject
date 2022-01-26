@@ -19,7 +19,7 @@
 		</button>
 
 		<!-- ///////상단바에서 검색부분/////// -->
-		<form action="${cp}/timetable/subjectList" method="get"
+		<%-- <form action="${cp}/timetable/subjectList" method="get"
 			class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 			<div class="input-group">
 				<input type="text" name="keyword"
@@ -32,7 +32,7 @@
 					</button>
 				</div>
 			</div>
-		</form>
+		</form> --%>
 
 		<!-- Topbar Navbar -->
 		<ul class="navbar-nav ml-auto">
@@ -95,33 +95,33 @@
 											width="100%" cellspacing="0">
 											<thead>
 												<tr>
-													<th>과목번호</th>
 													<th>과목명</th>
-													<th>교수명</th>
-													<th>구분</th>
-													<th>학점</th>
-													<th>강의평가보기</th>
+													<th>별점</th>
+													<th>강의평</th>
+													<th>작성일</th>
+													<th>수정</th>
+													<th>삭제</th>
 												</tr>
 											</thead>
 											<tfoot>
 												<tr>
-													<th>과목번호</th>
 													<th>과목명</th>
-													<th>교수명</th>
-													<th>구분</th>
-													<th>학점</th>
-													<th>강의평가보기</th>
+													<th>별점</th>
+													<th>강의평</th>
+													<th>작성일</th>
+													<th>수정</th>
+													<th>삭제</th>
 												</tr>
 											</tfoot>
 											<tbody>
 												<c:forEach var="vo" items="${list }">
 													<tr>
 														<td>${vo.sr_recommend }</td>
+														<td>${vo.sr_recommend }</td>
 														<td>${vo.sr_content }</td>
 														<td>${vo.sr_regdate }</td>
-														<td>${vo.sr_recommend }</td>
-														<td>${vo.sr_recommend }</td>
-														<td><a onclick="rateClick(${vo.s_num });">수정</a></td>
+														<td><a onclick="rateClick(${vo.sr_num });">수정</a></td>
+														<td><a onclick="rateClick(${vo.sr_num });">삭제</a></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -131,12 +131,12 @@
 											<c:choose>
 												<c:when test="${i==param.pageNum }">
 													<a
-														href="${cp}/timetable/mysubjectrate?pageNum=${i}&keyword=${keyword}"><span
+														href="${cp}/timetable/mysubjectrate?pageNum=${i}&m_num=${m_num}"><span
 														style="color: blue">${i }</span></a>
 												</c:when>
 												<c:otherwise>
 													<a
-														href="${cp}/timetable/mysubjectrate?pageNum=${i}&keyword=${keyword}"><span
+														href="${cp}/timetable/mysubjectrate?pageNum=${i}&m_num=${m_num}"><span
 														style="color: gray">${i }</span></a>
 												</c:otherwise>
 											</c:choose>
@@ -148,8 +148,7 @@
 						<c:otherwise>
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">"${keyword}"에
-										대한 검색결과 없습니다.</h6>
+									<h6 class="m-0 font-weight-bold text-primary">작성하신 강의평이 없습니다.</h6>
 								</div>
 							</div>
 						</c:otherwise>
@@ -165,7 +164,7 @@
 		<script type="text/javascript">
 	
 	
-		function rateClick(s_num) {
+		/* function rateClick(s_num) {
 				$.ajax({
 					url:'${cp}/timetable/rateList',
 					data:{"s_num":s_num},
@@ -186,7 +185,7 @@
 						});
 					}
 				});
-		}
+		} */
 						
 						
 						

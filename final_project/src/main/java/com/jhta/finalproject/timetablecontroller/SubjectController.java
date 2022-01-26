@@ -76,20 +76,22 @@ public class SubjectController {
 			@RequestParam(value="pageNum",defaultValue = "1")int pageNum,
 			int m_num,Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
-		HashMap<String,Object> map=new HashMap<String, Object>();
-		map.put("m_num", m_num);
+		System.out.println("mnum"+m_num);
+		HashMap<String,Object> map1=new HashMap<String, Object>();
+		map1.put("m_num", m_num);
 		
 		int totalRowCount = rateservice.mycount(m_num);
-
-		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
-		int startRow = pu.getStartRow();// 시작행번호
-		int endRow = pu.getEndRow();// 끝행번호
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		List<SubjectRateVo> list = rateservice.myrateList(map);
+		System.out.println("totalRowCount"+totalRowCount);
+		PageUtil pu1 = new PageUtil(pageNum, 5, 5, totalRowCount);
+		int startRow = pu1.getStartRow();// 시작행번호
+		int endRow = pu1.getEndRow();// 끝행번호
+		map1.put("startRow", startRow);
+		map1.put("endRow", endRow);
+		List<SubjectRateVo> list = rateservice.myrateList(map1);
+		System.out.println("list"+list);
 		model.addAttribute("m_num", m_num);
 		model.addAttribute("list", list);
-		model.addAttribute("pu", pu);
+		model.addAttribute("pu", pu1);
 		return "timetable/mysubjectrate";
 	}
 	

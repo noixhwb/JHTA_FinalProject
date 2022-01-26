@@ -49,4 +49,5 @@
 	<delete id="delete" parameterType="int">
 		delete from SUBJECTRATE where sr_num=#{sr_num}
 	</delete>
+	
 </mapper>

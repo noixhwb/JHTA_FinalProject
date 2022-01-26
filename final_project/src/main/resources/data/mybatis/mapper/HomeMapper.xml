@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.HomeMapper">
+	<!-- 커뮤니티 추천순으로 목록출력 -->
+	<select id="communityList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.CommunityVo">
+		select * from
+		(
+			select b.*,rownum rnum from 
+		    ( 
+		       select * from COMMUNITY order by CU_RECOMMEND desc
+		    ) b
+		) 
+		<![CDATA[ where rnum>=1 and rnum<=5 ]]>
+	</select>
+	
+	<!-- 동아리 모집 시작일 최신순으로 목록출력 -->
+	<!--<select id="circleList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.CircleVo">
+		select * from
+		(
+			select b.*,rownum rnum from 
+		    ( 
+		       select * from CIRCLE order by CI_STARTDATE desc
+		    ) b
+		) 
+		<![CDATA[ where rnum>=1 and rnum<=5 ]]>
+	</select>-->
+	
+	<!-- 거래장터 글 등록 최신순으로 목록출력 -->
+	<select id="dealList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.DealVo">
+		select * from
+		(
+			select b.*,rownum rnum from 
+		    ( 
+		       select * from DEAL order by t_regdate desc
+		    ) b
+		) 
+		<![CDATA[ where rnum>=1 and rnum<=5 ]]>
+	</select>
+	
+	<!-- 취업정보 마감일 짧은 순으로 목록출력 -->
+	<select id="jobinfoList" parameterType="hashmap" resultType="com.jhta.finalproject.jobvo.JobVo">
+		select * from
+		(
+			select b.*,rownum rnum from 
+		    ( 
+		       select * from JOBINFO order by J_ENDDATE
+		    ) b
+		) 
+		<![CDATA[ where rnum>=1 and rnum<=5 ]]>
+	</select>
+</mapper>

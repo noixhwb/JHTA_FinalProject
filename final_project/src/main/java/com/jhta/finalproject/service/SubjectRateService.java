@@ -23,7 +23,7 @@ public class SubjectRateService {
 	}
 	
 	public List<SubjectRateVo> myrateList(HashMap<String, Object> map){
-		return mapper.rateList(map);
+		return mapper.myrateList(map);
 	}
 	
 	public int mycount(int m_num) {
