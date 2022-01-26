@@ -1,14 +1,18 @@
 package data.mybatis.mapper;
 
-import java.util.HashMap;
 
+
+import com.jhta.finalproject.security.CustomMemberDetail;
+import com.jhta.finalproject.vo.AuthoritiesVo;
 import com.jhta.finalproject.vo.MemberVo;
 
 public interface MemberMapper {
-
-	int memberInsert(MemberVo vo);
-	int authInsert(HashMap<String, String> map);
-		
+	CustomMemberDetail getAuths(String m_id);
+	
+	int addUser(MemberVo vo);
+	int addAuth(AuthoritiesVo auth);
+	
+	
 	
 
 }

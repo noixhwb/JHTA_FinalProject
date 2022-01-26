@@ -2,22 +2,22 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/header.jsp"%>
-
+<%@ include file="/WEB-INF/views/top.jsp"%>
 
 <!-- Main Content -->
 <div id="content">
 
 	<!-- Topbar -->
-	<nav
+	<!-- <nav
 		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 		<h4>3조대학교 캠퍼스픽</h4>
 
-		<!-- Topbar Navbar -->
+		Topbar Navbar
 		<ul class="navbar-nav ml-auto">
+ -->
 
-
-			<div class="topbar-divider d-none d-sm-block"></div>
+			<%-- <div class="topbar-divider d-none d-sm-block"></div>
 
 			<!-- Nav Item - User Information -->
 			<li class="nav-item dropdown no-arrow"><a
@@ -44,7 +44,7 @@
 						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 						로그아웃
 					</a>
-				</div></li>
+				</div></li> --%>
 
 		</ul>
 

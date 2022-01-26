@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 
 <head>
@@ -49,17 +50,40 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>홈</span></a>
             </li>
+            <sec:authorize access="isAnonymous()">
             <li class="nav-item active">
-                <a class="nav-link" href="${cp}/member/login">
+                <a class="nav-link" href="${cp}/login">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>로그인</span></a>
             </li>
-            
+            <li>
             <li class="nav-item active">
-                <a class="nav-link" href="${cp}/member/join">
+                <a class="nav-link" href="${cp}/join">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>회원가입</span></a>
             </li>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+			<%-- 
+			<li class="nav-item active">
+			
+			 &nbsp;&nbsp;&nbsp;<sec:authentication property="principal.username"/>님 반갑습니다 </li>
+		 --%>
+			<li class="nav-item active">
+			 <a class="nav-link" href="${cp }/logout">
+			
+			   <i class="fas fa-fw fa-tachometer-alt"></i>
+				<span>로그아웃</span></a>
+		
+		<li class="nav-item active">
+			 <a class="nav-link" href="${cp }/">
+			
+			   <i class="fas fa-fw fa-tachometer-alt"></i>
+				<span>내정보</span></a>
+		
+		
+	</sec:authorize>
+		
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -164,7 +188,7 @@
                     </div>
                 </div>
             </li>
-            
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
@@ -185,7 +209,7 @@
                     </div>
                 </div>
             </li>
-            
+            </sec:authorize>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"

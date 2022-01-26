@@ -3,15 +3,40 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="data.mybatis.mapper.MemberMapper">
-    <insert id="insertmember" parameterType="com.jhta.finalproject.vo.MemberVo"> 
-    insert into member values(member_seq.nextval,#{m_id},#{m_pwd},#{m_name},#{m_phone},#{m_email},#{m_address},#{m_nickname},#{m_birth},#{m_dept},#{m_univnum},1,1)
+ 	<resultMap type="com.jhta.finalproject.security.CustomMemberDetail" id="userDetail">
+ 		<id property="m_id" column="m_id"/>
+     	<result property="m_pwd" column="m_pwd"/>
+     	<result property="m_enabled" column="m_enabled"/>
+     	<collection property="authList" ofType="com.jhta.finalproject.vo.AuthoritiesVo">
+     		<result property="m_id" column="m_id"/>
+     		<result property="m_authority" column="authority"/>
+     	</collection>
+ 	</resultMap>
+ 	 <select id="getAuths" parameterType="String" resultMap="userDetail">
+     	select * from member m,authorities a
+     	where m.m_id=a.m_id and m.m_id=#{m_id}
+     </select>
+ 
+    <insert id="addUser" parameterType="com.jhta.finalproject.vo.MemberVo"> 
+    insert into member
+    (
+    m_num, m_id, m_pwd, m_name, m_phone, m_email,m_address,m_nickname,m_birth,m_univnum,m_dept
+    )
+    values
+    
+    (member_seq.nextval,#{m_id},#{m_pwd},#{m_name},#{m_phone},#{m_email},#{m_address},#{m_nickname},#{m_birth},#{m_univnum}
+    ,#{m_dept}
+  )
     	
     </insert>
-    <insert id="authInsert" parameterType="hashmap">
-    	insert into authorities values(#{m_num},#{authority})
+    <insert id="addAuth" parameterType="com.jhta.finalproject.vo.AuthoritiesVo">
+    	insert into authorities values((select m_num from member where m_id = #{m_id}),#{m_id},#{authority})
     </insert>
     
-    
+    <select id="idCheck" resultType="int">
+    	select count(*) from member
+    	where m_id = #{m_id}
+    </select>
  </mapper>
  
  
