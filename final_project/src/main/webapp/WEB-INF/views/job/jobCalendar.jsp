@@ -1,19 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <!-- jquery CDN -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- fullcalendar CDN -->
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+<link
+	href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css'
+	rel='stylesheet' />
+<script
+	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
 <!-- fullcalendar 언어 CDN -->
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+<script
+	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <style>
 /* body 스타일 */
 html, body {
-	overflow: hidden;
 	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-	font-size: 14px;
 }
 /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
 .fc-header-toolbar {
@@ -97,7 +102,6 @@ html, body {
 		<!-- End of Topbar -->
 
 		<!-- ---------------------------------------------------------------------------------------------------------------------- -->
-
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
 
@@ -106,16 +110,79 @@ html, body {
 				class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h3 mb-0 text-gray-800">채용 달력</h1>
 			</div>
+			<!-- Approach -->
+
 			<!-- calendar 태그 -->
-			<div id='calendar'>
-			</div>
+			<div id='calendar' style="width: 80%;"></div>
+		</div>
+	</div>
+</div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth'
-    });
-    calendar.render();
-  });
+	// j_num, j_company, j_startdate, j_enddate, j_url
+	document.addEventListener('DOMContentLoaded', function() {
+		var calendarEl = document.getElementById('calendar');
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			initialView : 'dayGridMonth',
+			expandRows : true,
+			navLinks : true,
+			dayMaxEvents : true,
+			locale : 'ko',
+			eventAdd : function(obj) { // 이벤트가 추가되면 발생하는 이벤트
+				console.log(obj);
+			},
+			eventChange : function(obj) { // 이벤트가 수정되면 발생하는 이벤트
+				console.log(obj);
+			},
+			eventRemove : function(obj) { // 이벤트가 삭제되면 발생하는 이벤트
+				console.log(obj);
+			},
+			events: [
+			    {
+			      title  : 'event1',
+			      start  : '2010-01-01'
+			    },
+			    {
+			      title  : 'event2',
+			      start  : '2010-01-05',
+			      end    : '2010-01-07'
+			    },
+			    {
+			      title  : 'event3',
+			      start  : '2010-01-09T12:30:00',
+			      allDay : false // will make the time show
+			    }
+			  ]
+		});
+		calendar.render();
+	});
+	$.ajax({
+		url: '/job/cal',
+		type: 'POST',
+		success: function(res){
+			var list = res;
+			console.log(list);
+			
+			
+ 			var calendarEl = document.getElementById('calendar');
+			
+			var events = list.map(function(item) {
+				return {
+					title : item.reservationTitle,
+					start : item.reservationDate + "T" + item.reservationTime
+				}
+			});
+			
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				events : events,
+				eventTimeFormat: { // like '14:30:00'
+				    hour: '2-digit',
+				    minute: '2-digit',
+				    hour12: false
+				  }
+			});
+			calendar.render();
+		},
+	});
+		  
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp"%>

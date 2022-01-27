@@ -2,7 +2,11 @@ package com.jhta.finalproject.jobcontroller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -72,6 +76,24 @@ public class JobInsert {
 			e.printStackTrace();
 			model.addAttribute("result","fail");
 		}
+//		try {
+//			URL url= new URL("https://gate.nicednb.com/nice/bizinfo/v1.0/enterprise/general/search");
+//			// HttpURLConnection : 서버와 클라를 연결해주는 역할
+//			HttpURLConnection 서버연결 = (HttpURLConnection) url.openConnection();
+//			서버연결.setRequestMethod("POST");
+//			서버연결.setRequestProperty("Authorization", "Bearer a73d1418-e9bc-4ef4-a60c-f59406413bf6");
+//			서버연결.setRequestProperty("Content-Type", "application/json");
+//			서버연결.setDoOutput(true);
+//			
+//		//	String 파라미터 = "searchName=CMP_NM&serarchValue="; ... 여기서부터 모르겠다아아
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		return "job/result";
 	}
 }
