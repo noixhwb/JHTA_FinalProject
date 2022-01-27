@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,157 +7,204 @@
 
 <title>상품등록</title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <body>
-<%@ include file="/WEB-INF/views/header.jsp" %>
-            <nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+	<%@ include file="/WEB-INF/views/header.jsp"%>
+	<nav
+		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-					<h4>3조대학교 캠퍼스픽</h4>
+		<h4>3조대학교 캠퍼스픽</h4>
 
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
+		<!-- Topbar Navbar -->
+		<ul class="navbar-nav ml-auto">
 
-						
-						<div class="topbar-divider d-none d-sm-block"></div>
 
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span> <img class="img-profile rounded-circle"
-								src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									수정
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									활동기록
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									로그아웃
-								</a>
-							</div></li>
+			<div class="topbar-divider d-none d-sm-block"></div>
 
-					</ul>
+			<!-- Nav Item - User Information -->
+			<li class="nav-item dropdown no-arrow"><a
+				class="nav-link dropdown-toggle" href="#" id="userDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <span
+					class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span> <img
+					class="img-profile rounded-circle"
+					src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg">
+			</a> <!-- Dropdown - User Information -->
+				<div
+					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#"> <i
+						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
+					</a> <a class="dropdown-item" href="#"> <i
+						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
+					</a> <a class="dropdown-item" href="#"> <i
+						class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
+					</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#" data-toggle="modal"
+						data-target="#logoutModal"> <i
+						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+						로그아웃
+					</a>
+				</div></li>
 
-				</nav>
- 
-            <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
+		</ul>
 
-                <div class="form-group" id="divId">
-                    <label for="inputId" class="col-lg-2 control-label">제품명</label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control" id="id" data-rule-required="true" placeholder="제품명을 등록해주세요." maxlength="30">
-                    </div>
-                </div>
-                <div class="form-group" id="divPassword">
-                    <label for="inputPassword" class="col-lg-2 control-label">가격</label>
-                    <div class="col-lg-8">
-                        <input type="number" class="form-control" id="password" name="price" data-rule-required="true" placeholder="0000" maxlength="30">
-                    </div>
-                </div>
-  				<div class="form-group">
-                    <label for="memberInfo" class="col-lg-2 control-label">상품설명</label>
-                    <div class="col-lg-8" id="memberInfo">
-                        <textarea class="form-control" rows="11" name="explain" style="resize:none">
+	</nav>
+	<div class="container">
 
-                        </textarea>
-                    </div>
-                </div>
-                
-                <div class="form-group" id="divPhoneNumber">
-                    <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
-                    <div class="col-lg-8">
-                        <input type="tel" class="form-control" name="rphone" id="phoneNumber" data-rule-required="true" placeholder="010-0000-0000" maxlength="13">
-                    	
-                    </div>
+		<div class="modal fade" id="defaultModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title">알림</h4>
+					</div>
+					<div class="modal-body">
+						<p class="modal-contents"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--// 모달창 -->
+		<hr />
 
-                    
-                </div>
-                <div class="form-group" id="check">
-                    <button type="button" class="btn btn-default" id="phoneVerification">인증번호발송</button>
-                    <div class="col-lg-8 has-error has-feedback">
-                        <input type="tel" class="form-control" name="code" id="code" aria-describedby="inputError2Status">
-                    </div>
-                </div>
-                
 
-                <div class="form-group">
-                    <label for="inputEmailReceiveYn" class="col-lg-2 control-label">이메일 수신여부</label>
-                    <div class="col-lg-8">
-                        <label class="radio-inline">
-                            <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="Y" checked> 동의합니다.
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="N"> 동의하지 않습니다.
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group" >
-                    <label for="inputPhoneNumber" class="col-lg-2 control-label">SMS 수신여부</label>
-                    <div class="col-lg-8">
-                        <label class="radio-inline">
-                            <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y" checked> 동의합니다.
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지 않습니다.
-                        </label>
-                    </div>
-                </div>
-                                <div class="form-group">
-                    <label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
-                    <div class="col-lg-8" id="memberInfo">
-                        <textarea class="form-control" rows="4" style="resize:none" readonly="readonly">개인정보의 항목 및 수집방법
+
+
+		<form class="form-horizontal" role="form" method="post"
+			action="${pageContext.request.contextPath }/deal/dealinsert"
+			enctype="multipart/form-data">
+
+			<div class="form-group" id="divId">
+				<label class="col-lg-2 control-label">제품명</label>
+				<div class="col-lg-8">
+					<input type="text" class="form-control" id="t_name" name="t_name"
+						data-rule-required="true" placeholder="제품명을 등록해주세요."
+						maxlength="30">
+				</div>
+			</div>
+			<div class="form-group" id="divPrice">
+				<label class="col-lg-2 control-label">가격</label>
+				<div class="col-lg-8">
+					<input type="number" class="form-control" id="t_price"
+						name="t_price" data-rule-required="true"
+						placeholder="1000원 단위로 입력" maxlength="30">
+				</div>
+			</div>
+			<div class="form-group" id="divExplaination">
+				<label class="col-lg-2 control-label">상품설명</label>
+				<div class="col-lg-8" id="memberInfo">
+					<textarea class="form-control" rows="11" name="t_explaination"
+						id="t_explaination" style="resize: none"></textarea>
+				</div>
+			</div>
+			<div class="form-group" id="divFile">
+				<label class="col-lg-2 control-label">이미지등록</label>
+				<div class="col-lg-8">
+				<input multiple="multiple" type="file" name="file" />
+				</div>
+			</div>
+			<div class="form-group" id="divEmail">
+				<label class="col-lg-2 control-label">이메일</label>
+				<div class="col-lg-8">
+					<input type="email" class="form-control" id="email" name="email"
+						data-rule-required="true" placeholder="이메일" maxlength="40">
+				</div>
+			</div>
+
+			<div class="form-group" id="divRphone">
+				<label class="col-lg-2 control-label">휴대폰 번호</label>
+				<div class="col-lg-8">
+					<input type="tel" class="form-control" name="rphone" id="rphone"
+						data-rule-required="true" placeholder="010-0000-0000"
+						maxlength="13">
+				</div>
+
+
+			</div>
+			<div class="form-group" id="check">
+				<button type="button" class="btn btn-default" id="phoneVerification">인증번호발송</button>
+				<div class="col-lg-8 has-error has-feedback">
+					<input type="tel" class="form-control" name="code" id="code"
+						aria-describedby="inputError2Status">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-lg-2 control-label">이메일 수신여부</label>
+				<div class="col-lg-8">
+					<label class="radio-inline"> <input type="radio"
+						id="emailReceiveYn" name="emailReceiveYn" value="Y" checked>
+						동의합니다.
+					</label> <label class="radio-inline"> <input type="radio"
+						id="emailReceiveYn" name="emailReceiveYn" value="N"> 동의하지
+						않습니다.
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">SMS 수신여부</label>
+				<div class="col-lg-8">
+					<label class="radio-inline"> <input type="radio"
+						id="smsReceiveYn" name="smsReceiveYn" value="Y" checked>
+						동의합니다.
+					</label> <label class="radio-inline"> <input type="radio"
+						id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지
+						않습니다.
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">개인정보취급방침</label>
+				<div class="col-lg-8" id="memberInfo">
+					<textarea class="form-control" rows="4" style="resize: none"
+						readonly="readonly">개인정보의 항목 및 수집방법
                         
                         </textarea>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>
-                                동의합니다.
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">
-                                동의하지 않습니다.
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">등록</button>
-                    </div>
-                </div>
-            </form>
-        <form method="post" name="smsForm">
-               					<input type="hidden" name="sphone1" id="sphone1" value="010">
-						        <input type="hidden" name="sphone2" id="sphone2" value="8009">
-						        <input type="hidden" name="sphone3" id="sphone3" value="2767">
-        </form>
-        
-        <script>
+					<div class="radio">
+						<label> <input type="radio" id="memberInfoYn"
+							name="memberInfoYn" value="Y" checked> 동의합니다.
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" id="memberInfoYn"
+							name="memberInfoYn" value="N"> 동의하지 않습니다.
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10">
+					<button type="submit" class="btn btn-primary">등록</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script>
         
             $(function(){
+                //모달을 전역변수로 선언
+                var modalContents = $(".modal-contents");
+                var modal = $("#defaultModal");
             	let code='1234';
                 $("#phoneVerification").click(function(){
                 	if($("#smsReceiveYn:checked").val()!='Y'){
                 		alert("SMS 수신여부를 동의해주세요");
                 	}else{
                 		
-                	rphone = $("#phoneNumber").val();
+                	rphone = $("#rphone").val();
                 	console.log(rphone);
                 	$.ajax({
                 		url:"${pageContext.request.contextPath}/deal/smssend",
@@ -170,44 +217,127 @@
                 		}
                 	})
                 	}
-                });
-
-                $('#id').keyup(function(event){
+                });                
+                //------- validation 검사
+                $( "form" ).submit(function( event ) {
                     
+                    var provision = $('#provision');
+                    var memberInfo = $('#memberInfo');
                     var divId = $('#divId');
+                    var divPassword = $('#divPassword');
+                    var divPasswordCheck = $('#divPasswordCheck');
+                    var divName = $('#divName');
+                    var divNickname = $('#divNickname');
+                    var divEmail = $('#divEmail');
+                    var divPhoneNumber = $('#divPhoneNumber');
                     
-                    if($('#id').val()==""){
+                    //개인정보취급방침
+                    if($('#memberInfoYn:checked').val()=="N"){
+                        modalContents.text("개인정보취급방침에 동의하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        memberInfo.removeClass("has-success");
+                        memberInfo.addClass("has-error");
+                        $('#memberInfoYn').focus();
+                        return false;
+                    }else{
+                        memberInfo.removeClass("has-error");
+                        memberInfo.addClass("has-success");
+                    }
+                    
+                    //상품명 검사
+                    if($('#t_name').val()==""){
+                        modalContents.text("상품명을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
                         divId.removeClass("has-success");
                         divId.addClass("has-error");
+                        $('#t_name').focus();
+                        return false;
                     }else{
                         divId.removeClass("has-error");
                         divId.addClass("has-success");
                     }
+                    
+                    
+                    //가격
+                    if($('#t_price').val()==""){
+                        modalContents.text("가격을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divPrice.removeClass("has-success");
+                        divPrice.addClass("has-error");
+                        $('#t_price').focus();
+                        return false;
+                    }else{
+                    	divPrice.removeClass("has-error");
+                    	divPrice.addClass("has-success");
+                    }
+                    
+                    //상품설명
+                    if($('#t_explaination').val()==""){
+                        modalContents.text("상품설명을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divExplaination.removeClass("has-success");
+                        divExplaination.addClass("has-error");
+                        $('#t_explaination').focus();
+                        return false;
+                    }else{
+                    	divExplaination.removeClass("has-error");
+                    	divExplaination.addClass("has-success");
+                    }
+                    
+                    //이메일
+                    if($('#email').val()==""){
+                        modalContents.text("이메일을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divEmail.removeClass("has-success");
+                        divEmail.addClass("has-error");
+                        $('#email').focus();
+                        return false;
+                    }else{
+                        divEmail.removeClass("has-error");
+                        divEmail.addClass("has-success");
+                    }
+                    
+                    //휴대폰 번호
+                    if($('#rphone').val()==""){
+                        modalContents.text("휴대폰 번호를 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divPhoneNumber.removeClass("has-success");
+                        divPhoneNumber.addClass("has-error");
+                        $('#rphone').focus();
+                        return false;
+                    }else{
+                        divPhoneNumber.removeClass("has-error");
+                        divPhoneNumber.addClass("has-success");
+                    }
+                    
+                
                 });
-            
+                
             });
-        </script>
+</script>
 
-            <hr/>
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 
 
-    <%@ include file="/WEB-INF/views/footer.jsp" %>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
 
 </body>
-<APM_DO_NOT_TOUCH>
-<script type="text/javascript">
+<APM_DO_NOT_TOUCH> <script type="text/javascript">
 (function(){
 window.rLI=!!window.rLI;try{(function(){(function JI(){var l=!1;function L(l){for(var L=0;l--;)L+=s(document.documentElement,null);return L}function s(l,L){var _="vi";L=L||new S;return LI(l,function(l){l.setAttribute("data-"+_,L.z2());return s(l,L)},null)}function S(){this.JZ=1;this.Oz=0;this.ol=this.JZ;this.jo=null;this.z2=function(){this.jo=this.Oz+this.ol;if(!isFinite(this.jo))return this.reset(),this.z2();this.Oz=this.ol;this.ol=this.jo;this.jo=null;return this.ol};this.reset=function(){this.JZ++;this.Oz=0;this.ol=this.JZ}}var _=!1;
 function II(l,L){var s=document.createElement(l);L=L||document.body;L.appendChild(s);s&&s.style&&(s.style.display="none")}function jI(L,s){s=s||L;var S="|";function II(l){l=l.split(S);var L=[];for(var s=0;s<l.length;++s){var _="",jI=l[s].split(",");for(var oI=0;oI<jI.length;++oI)_+=jI[oI][oI];L.push(_)}return L}var jI=0,LI="datalist,details,embed,figure,hrimg,strong,article,formaddress|audio,blockquote,area,source,input|canvas,form,link,tbase,option,details,article";LI.split(S);LI=II(LI);LI=new RegExp(LI.join(S),
@@ -223,7 +353,5 @@ function JL(I){var l=+new Date,L;!document[z(98,211,215,199,212,219,181,199,206,
 
 })();
 
-</script>
-</APM_DO_NOT_TOUCH>
+</script> </APM_DO_NOT_TOUCH>
 </html>
-            

@@ -23,4 +23,11 @@ public class DealService {
 	public int count(String word) {
 		return mapper.count(word);
 	}
+	
+	public int lastnum() {
+		return mapper.lastnum();
+	}
+	public int insertImg(HashMap<String, Object> map) {
+		return mapper.insertImg(map);
+	}
 }

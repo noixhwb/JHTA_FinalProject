@@ -9,4 +9,6 @@ public interface DealMapper {
 	int insert(DealVo vo);
 	List<DealVo> selectAll(HashMap<String, Object> map);
 	int count(String word);
+	int lastnum();
+	int insertImg(HashMap<String, Object> map);
 }
