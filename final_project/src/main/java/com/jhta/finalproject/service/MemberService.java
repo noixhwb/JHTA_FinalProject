@@ -42,11 +42,21 @@ public class MemberService {
 	  public int addAuth(AuthoritiesVo vo) {
 		  return mapper.addAuth(vo);
 	  }
-	  public int idchk(MemberVo vo) {
-		  return mapper.idchk(vo);
-	  }
 
+	public int idCheck(String id) {
+		return mapper.idCheck(id);
 	}
+	
+	public MemberVo isMember(String mid) {
+		return mapper.isMember(mid);
+	}
+
+	public MemberVo isNick(String mnick) {
+		return mapper.isNick(mnick);
+	}
+}
+
+	
 
 	
 	

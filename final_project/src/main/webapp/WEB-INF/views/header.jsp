@@ -76,7 +76,7 @@
 				<span>로그아웃</span></a>
 		
 		<li class="nav-item active">
-			 <a class="nav-link" href="${cp }/">
+			 <a class="nav-link" href="${cp }/member/mymember">
 			
 			   <i class="fas fa-fw fa-tachometer-alt"></i>
 				<span>내정보</span></a>
@@ -102,9 +102,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        
+                        <a class="collapse-item" href="buttons.html">커뮤니티</a>
+                        <a class="collapse-item" href="cards.html">MY 커뮤니티</a>
                     </div>
                 </div>
             </li>
