@@ -46,6 +46,10 @@
 	<insert id="insertImg" parameterType="hashmap">
 		insert into Goods_Image values(Goods_Image_seq.nextval, #{filename}, #{lastnum})
 	</insert>
+	
+	<select id="selectImg" parameterType="int" resultType="com.jhta.finalproject.vo.Goods_ImageVo">
+		select * from goods_image where t_num=#{t_num}
+	</select>
 </mapper>
  
  

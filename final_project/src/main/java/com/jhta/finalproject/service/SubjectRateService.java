@@ -6,7 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jhta.finalproject.vo.SubjectRateVo;
+import com.jhta.finalproject.timetablevo.MySubjectRateVo;
+import com.jhta.finalproject.timetablevo.SubjectRateVo;
 
 import data.mybatis.mapper.SubjectRateMapper;
 
@@ -22,7 +23,7 @@ public class SubjectRateService {
 		return mapper.count(s_num);
 	}
 	
-	public List<SubjectRateVo> myrateList(HashMap<String, Object> map){
+	public List<MySubjectRateVo> myrateList(HashMap<String, Object> map){
 		return mapper.myrateList(map);
 	}
 	

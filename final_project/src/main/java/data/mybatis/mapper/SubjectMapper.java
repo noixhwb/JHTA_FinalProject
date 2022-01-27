@@ -3,7 +3,7 @@ package data.mybatis.mapper;
 import java.util.HashMap;
 import java.util.List;
 
-import com.jhta.finalproject.vo.SubjectVo;
+import com.jhta.finalproject.timetablevo.SubjectVo;
 
 
 public interface SubjectMapper {

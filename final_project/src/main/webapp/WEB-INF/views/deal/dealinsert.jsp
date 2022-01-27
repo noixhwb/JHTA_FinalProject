@@ -81,9 +81,7 @@
 
 
 		<form class="form-horizontal" role="form" method="post"
-			action="${pageContext.request.contextPath }/deal/dealinsert"
-			enctype="multipart/form-data">
-
+			action="${pageContext.request.contextPath }/deal/dealinsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
 			<div class="form-group" id="divId">
 				<label class="col-lg-2 control-label">제품명</label>
 				<div class="col-lg-8">

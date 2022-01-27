@@ -1,4 +1,4 @@
-package com.jhta.finalproject.vo;
+package com.jhta.finalproject.timetablevo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
