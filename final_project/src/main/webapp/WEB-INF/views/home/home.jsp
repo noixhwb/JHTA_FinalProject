@@ -55,60 +55,27 @@
 						<h6 class="m-0 font-weight-bold text-primary">동아리</h6>
 					</div>
 					<div class="card-body">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="${cp}/resources/img/undraw_profile.svg"
-										class="img-fluid rounded-start" alt="..."
-										style="max-width: 50px;">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">영화모임</h5>
-										<p class="card-text">영화 좋아하시는분</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
+						<c:forEach var="vo" items="${circlelist }">
+							<div class="card mb-3" style="max-width: 540px;">
+								<div class="row g-0">
+									<div class="col-md-4">
+										<img src="${cp}/resources/images/circle/${vo.ci_logofile }"
+											class="img-fluid rounded-start" alt="..."
+											style="max-width: 50px;">
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">${vo.ci_name }</h5>
+											<p class="card-text">${vo.ci_recommend }&nbsp;${vo.ci_category }</p>
+											<p class="card-text">${vo.ci_title }</p>
+											<p class="card-text">
+												<small class="text-muted">${vo.ci_startdate }</small>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="${cp}/resources/img/undraw_profile.svg"
-										class="img-fluid rounded-start" alt="..."
-										style="max-width: 50px;">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">영화모임</h5>
-										<p class="card-text">영화 좋아하시는분</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="${cp}/resources/img/undraw_profile.svg"
-										class="img-fluid rounded-start" alt="..."
-										style="max-width: 50px;">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">영화모임</h5>
-										<p class="card-text">영화 좋아하시는분</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
@@ -183,11 +150,7 @@
 		</div>
 
 	</div>
-
-
-
-</div>
-<!-- /.container-fluid -->
+	<!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->
