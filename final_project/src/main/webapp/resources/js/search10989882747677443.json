@@ -1,0 +1,161 @@
+{
+	"swagger": "2.0",
+	"host": "gate.nicednb.com",
+	"schemes": [
+		"https"
+	],
+	"info": {
+		"description": "일반-기업검색",
+		"title": "일반-기업검색",
+		"version": "1"
+	},
+	"basePath": "/",
+	"paths": {
+		"/nice/bizinfo/v1.0/enterprise/general/search": {
+			"x-DNB-Name": "일반-기업검색",
+			"x-DNB-ID": "search",
+			"post": {
+				"description": "일반-기업검색",
+				"summary": "Endpoint",
+				"operationId": "search",
+				"tags": [
+					"일반-기업검색"
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"properties": {
+								"dataHeader": {
+									"type": "object",
+									"description": "The information used to process this request.",
+									"properties": {
+										"msgLen": {
+											"type": "number",
+											"example": 0
+										},
+										"guid": {
+											"type": "string",
+											"example": "20200907vm-dev-r12SS001234012300"
+										},
+										"msgReqDttm": {
+											"type": "string",
+											"example": "2020090713273100"
+										},
+										"msgResDttm": {
+											"type": "string",
+											"example": "2020090713273719"
+										},
+										"langCd": {
+											"type": "string",
+											"example": "ko"
+										},
+										"resCd": {
+											"type": "string",
+											"example": "0"
+										},
+										"msgCd": {
+											"type": "string",
+											"example": "null"
+										},
+										"msgCnt": {
+											"type": "number",
+											"example": 0
+										}
+									}
+								},
+								"dataBody": {
+									"type": "object",
+									"description": "The details of the input data provided.",
+									"properties": {
+										"totalCount": {
+											"type": "number",
+											"example": 3
+										},
+										"list01Cnt": {
+											"type": "number",
+											"example":3
+										},
+										"list01": {
+											"type": "array",
+											"items": {
+												"example":{
+													"bizNo": "9999999999",
+													"corpNo": "2839190000211",
+													"cmpNm": "나이스디앤비기업(주)",
+													"ceoNm": "홍길동",
+													"telNo": "02 1234 5678",
+													"faxTelNo": "02 1234 5678",
+													"zip":"02182",
+													"adr": "서울 마포구 올림픽로 1-1",
+													"dtlAdr": "(한화아크릴빌딩)",
+													"cmpTypNm": "일반",
+													"cmpSclNm": "일반기업",
+													"pbcoGbNm": "일반기업",
+													"indCd1": "18181",
+													"indNm": "신용조사 및 추심 대행업"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "Authorization",
+						"description": "나이스디앤비에서 발급받은 Access Token",
+						"required": true,
+						"type": "string",
+						"x-example": "Bearer a73d1418-e9bc-4ef4-a60c-f59406413bf6"
+					},
+					{
+						"in": "header",
+						"name": "Content-Type",
+						"description": "요청 및 응답 데이터의 컨텐츠 유형",
+						"required": true,
+						"type": "string",
+						"x-example": "application/json"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "요청할 데이터 값",
+						"required": true,
+						"schema": {
+							"properties": {
+								"searchName": {
+									"type": "string",
+									"example": "CMP_NM",
+									"description": "검색 KEY"
+								},
+								"searchValue": {
+									"type": "string",
+									"example": "나이스신용",
+									"description": "검색어"
+								},
+								"pageNum": {
+									"type": "number",
+									"example": 1,
+									"description": "PAGE 번호"
+								},
+								"pageCount": {
+									"type": "number",
+									"description": "PAGE ROW 수",
+									"example": 10
+								}
+							}
+						}
+					}
+				]
+			}
+		}
+	}
+}

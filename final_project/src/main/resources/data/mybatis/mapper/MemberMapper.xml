@@ -33,10 +33,21 @@
     	insert into authorities values((select m_num from member where m_id = #{m_id}),#{m_id},#{authority})
     </insert>
     
-    <select id="idCheck" resultType="int">
+    <select id="idCheck" resultType="int" parameterType="String">
     	select count(*) from member
-    	where m_id = #{m_id}
+    	where m_id = #{id}
     </select>
+    <select id="nickChk" resultType="int">
+    	select count(*) from member
+    	where m_nickname = #{m_nickname}
+    </select>
+    <select id="isMember" parameterType="string" resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from member where m_id=#{mid}
+	</select>
+	
+	 <select id="isNick" parameterType="string" resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from member where m_nickname=#{mnick}
+	</select>
  </mapper>
  
  

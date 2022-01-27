@@ -12,9 +12,15 @@ public interface MemberMapper {
 	int addUser(MemberVo vo);
 	int addAuth(AuthoritiesVo auth);
 
-	int idchk(MemberVo vo);
 	
+
+	int idChk(String vo);
+
+	int idCheck(String id);
+
+	MemberVo isMember(String mid);
 	
+	MemberVo isNick(String mnick);
 	
 
 }
