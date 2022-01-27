@@ -344,7 +344,7 @@
 
 	</div>
 	<!-- End of Main Content -->
-
+</div>
 
 
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
