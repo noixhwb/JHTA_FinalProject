@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.DealVo;
+import com.jhta.finalproject.vo.Goods_ImageVo;
 
 import data.mybatis.mapper.DealMapper;
 
@@ -29,5 +30,8 @@ public class DealService {
 	}
 	public int insertImg(HashMap<String, Object> map) {
 		return mapper.insertImg(map);
+	}
+	public List<Goods_ImageVo> selectImg(int t_num) {
+		return mapper.selectImg(t_num);
 	}
 }
