@@ -4,7 +4,22 @@
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+#myrateBox {
+	display: none;
+}
 
+.starR {
+	font-size: 30px;
+	cursor: pointer;
+	color: #c8c8c8;
+	cursor: pointer;
+}
+
+.starR.on {
+	color: blue;
+}
+</style>
 <!-- Main Content 이건 지우지 마세요-->
 <div id="content">
 
@@ -21,6 +36,7 @@
 		<!-- ///////상단바에서 검색부분/////// -->
 		<form action="${cp}/timetable/subjectList" method="get"
 			class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			<div class="input-group">
 				<input type="text" name="keyword"
 					class="form-control bg-light border-0 small"
@@ -94,8 +110,8 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive" id="timetableBox">
-										<table class="table table-bordered"
-											width="100%" cellspacing="0">
+										<table class="table table-bordered" width="100%"
+											cellspacing="0">
 											<thead>
 												<tr>
 													<th>과목번호</th>
@@ -104,6 +120,7 @@
 													<th>구분</th>
 													<th>학점</th>
 													<th>강의평가보기</th>
+													<th>강의평가하기</th>
 												</tr>
 											</thead>
 											<tfoot>
@@ -114,6 +131,7 @@
 													<th>구분</th>
 													<th>학점</th>
 													<th>강의평가보기</th>
+													<th>강의평가하기</th>
 												</tr>
 											</tfoot>
 											<tbody>
@@ -124,7 +142,8 @@
 														<td>${vo.s_prof }</td>
 														<td>${vo.s_category }</td>
 														<td>${vo.s_score }</td>
-														<td><a onclick="rateClick(${vo.s_num });">강의평가</a></td>
+														<td><button class="btn btn-primary" onclick="rateClick(${vo.s_num});">강의평가보기</button></td>
+														<td><button class="btn btn-primary" onclick="myrateForm(${vo.s_num});">강의평가하기</button></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -146,6 +165,30 @@
 												</c:choose>
 											</c:forEach>
 										</div>
+										<div class="form-group" id="myrateBox">
+											<form action="${cp}/timetable/myrateInsert" method="post"
+												id="myrateForm">
+												<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+												<input type="hidden" name="s_num" id="myrateS_num">
+												<input type="hidden" name="m_num" id="myrateM_num">
+												<label class="col-lg-2 control-label">별점</label>
+												<div class="starRev">
+													<span class="starR on" id="star1">★</span> <span
+														class="starR" id="star2">★</span> <span class="starR"
+														id="star3">★</span> <span class="starR" id="star4">★</span>
+													<span class="starR" id="star5">★</span>
+												</div>
+												<label class="col-lg-2 control-label">강의평</label>
+												<div class="col-lg-8">
+													<textarea class="form-control" rows="5"
+														name="t_explaination" style="resize: none"></textarea>
+												</div>
+												<div class="col-lg-offset-2 col-lg-10">
+													<button type="submit" class="btn btn-primary">등록</button>
+												</div>
+											</form>
+										</div>
+										<span id="myrateresult"></span>
 										<div id="rateListBox"></div>
 									</div>
 								</div>
@@ -178,47 +221,71 @@
 							</div>
 						</c:otherwise>
 					</c:choose>
-
 				</div>
-				
+
+
+
 			</div>
 		</div>
 		<!-- ////작업공간끝//// -->
 
 
-		<script type="text/javascript">
-	
-	
-		function rateClick(s_num) {
-				$.ajax({
-					url:'${cp}/timetable/rateList',
-					data:{"s_num":s_num},
-            		type: 'GET',
-					dataType:'json',
-					success:function(data) {
-						let html="<table class='table table-bordered' id='dataTable2' width='100%' cellspacing='0'>";
-						html += "<thead><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></thead>";
-						html += "<tfoot><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></tfoot>";
-						html += "<tbody>";
-						$(data.list).each(function(i,vo) {
-							let m_num=vo.m_num;
-							let sr_content=vo.sr_content;
-							let sr_regdate=vo.sr_regdate;
-							let sr_recommend=vo.sr_recommend;
-							html += "<tr><td>" + sr_recommend +"</td>";
-							html += "<td>" + sr_content +"</td>";
-							html += "<td>" + sr_regdate +"</td></tr>";
-						});
-						html += "</tbody></table>";
-						$("#rateListBox").html(html);
-					}
+<script type="text/javascript">
+	function rateClick(s_num) {
+		$.ajax({
+			url:'${cp}/timetable/rateList',
+			data:{"s_num":s_num},
+       		type: 'GET',
+			dataType:'json',
+			success:function(data) {
+				let html="<table class='table table-bordered' id='dataTable2' width='100%' cellspacing='0'>";
+				html += "<thead><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></thead>";
+				html += "<tfoot><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></tfoot>";
+				html += "<tbody>";
+				$(data.list).each(function(i,vo) {
+					let m_num=vo.m_num;
+					let sr_content=vo.sr_content;
+					let sr_regdate=vo.sr_regdate;
+					let sr_recommend=vo.sr_recommend;
+					html += "<tr><td>" + sr_recommend +"</td>";
+					html += "<td>" + sr_content +"</td>";
+					html += "<td>" + sr_regdate +"</td></tr>";
 				});
-		}
-						
+				html += "</tbody></table>";
+				$("#rateListBox").html(html);
+			}
+		});
+	}
 		
-		
+	function myrateForm(s_num) {
+		$("#myrateBox").css("display","block");
+		$("#myrateS_num").val(s_num);
+		$("#myrateM_num").val(1);
+	}
+
+	$('.starRev span').click(function(){
+		  $(this).parent().children('span').removeClass('on');
+		  $(this).addClass('on').prevAll('span').addClass('on');
+			return false;
+	});
 			
-					
+	$("#myrateForm").submit(function(e) {
+		e.preventDefault();
+		$.ajax({
+			url:'${cp}/timetable/myrateInsert?'+$("myrateForm").serialize(),
+			method:'post',
+			dataType:'json',
+			success:function(data) {
+				if(data.result) {
+					$("#myrateBox").css("display","none");
+					$("#myrateresult").html("강의평이 등록되었습니다.");
+				}else {
+					$("#myrateresult").html("강의평 등록에 실패하였습니다.");
+				}
+			}
+			
+		});
+	});				
 					
 				
 			
@@ -248,7 +315,7 @@
 		});*/
 
 		
-	</script>
+</script>
 		<!-- 이건 지우지마세요 -->
 	</div>
 </div>

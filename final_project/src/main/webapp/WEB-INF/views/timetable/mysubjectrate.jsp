@@ -96,6 +96,7 @@
 											<thead>
 												<tr>
 													<th>과목명</th>
+													<th>교수명</th>
 													<th>별점</th>
 													<th>강의평</th>
 													<th>작성일</th>
@@ -106,6 +107,7 @@
 											<tfoot>
 												<tr>
 													<th>과목명</th>
+													<th>교수명</th>
 													<th>별점</th>
 													<th>강의평</th>
 													<th>작성일</th>
@@ -116,7 +118,8 @@
 											<tbody>
 												<c:forEach var="vo" items="${list }">
 													<tr>
-														<td>${vo.sr_recommend }</td>
+														<td>${vo.s_name }</td>
+														<td>${vo.s_prof }</td>
 														<td>${vo.sr_recommend }</td>
 														<td>${vo.sr_content }</td>
 														<td>${vo.sr_regdate }</td>

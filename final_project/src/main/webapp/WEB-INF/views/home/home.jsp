@@ -18,7 +18,7 @@
 				<!-- Approach -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">커뮤니티</h6>
+						<h6 class="m-0 font-weight-bold text-primary">커뮤니티 랭킹</h6>
 					</div>
 					<div class="card-body">
 						<c:forEach var="vo" items="${communitylist }">
@@ -52,7 +52,7 @@
 				<!-- Approach -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">동아리</h6>
+						<h6 class="m-0 font-weight-bold text-primary">새로 모집하는 동아리</h6>
 					</div>
 					<div class="card-body">
 						<c:forEach var="vo" items="${circlelist }">
@@ -88,7 +88,7 @@
 				<!-- Approach -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">거래장터</h6>
+						<h6 class="m-0 font-weight-bold text-primary">거래장터 최신 물품</h6>
 					</div>
 					<div class="card-body">
 						<c:forEach var="vo" items="${deallist }">
@@ -103,7 +103,7 @@
 										<div class="card-body">
 											<h5 class="card-title">${vo.t_name }</h5>
 											<p class="card-text">${vo.m_num }&nbsp;${vo.t_price }</p>
-											<p class="card-text">${vo.t_explanation }</p>
+											<p class="card-text">${vo.t_explaination }</p>
 											<p class="card-text">
 												<small class="text-muted">${vo.t_regdate }</small>
 											</p>
@@ -120,7 +120,7 @@
 				<!-- Approach -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">취업정보</h6>
+						<h6 class="m-0 font-weight-bold text-primary">취업정보 마감일 순</h6>
 					</div>
 					<div class="card-body">
 						<c:forEach var="vo" items="${jobinfolist }">

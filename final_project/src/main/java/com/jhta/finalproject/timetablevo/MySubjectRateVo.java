@@ -1,4 +1,4 @@
-package com.jhta.finalproject.vo;
+package com.jhta.finalproject.timetablevo;
 
 import java.sql.Date;
 
@@ -11,11 +11,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class SubjectRateVo {
+public class MySubjectRateVo {
+	private int s_num;
+	private String s_name;
+	private String s_prof;
 	private int sr_num;
 	private int m_num;
 	private String sr_content;
-	private Date sr_regdate;
+	private String sr_regdate;
 	private int sr_recommend;
-	private int s_num;
+
 }

@@ -44,11 +44,11 @@
 						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 						로그아웃
 					</a>
-				</div></li> --%>
+				</div></li> 
 
 		</ul>
 
-	</nav>
+	</nav>--%> -->
 	<!-- End of Topbar -->
 
 	<!-- Begin Page Content -->

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jhta.finalproject.circlevo.CircleVo;
 import com.jhta.finalproject.jobvo.JobVo;
 import com.jhta.finalproject.service.HomeService;
+import com.jhta.finalproject.timetablevo.SubjectVo;
 import com.jhta.finalproject.vo.CommunityVo;
 import com.jhta.finalproject.vo.DealVo;
-import com.jhta.finalproject.vo.SubjectVo;
 import com.util.PageUtil;
 
 @Controller
