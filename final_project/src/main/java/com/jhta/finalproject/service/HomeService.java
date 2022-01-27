@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.circlevo.CircleVo;
 import com.jhta.finalproject.jobvo.JobVo;
 import com.jhta.finalproject.vo.CommunityVo;
 import com.jhta.finalproject.vo.DealVo;
@@ -18,10 +19,9 @@ public class HomeService {
 	public List<CommunityVo> communityList(){
 		return mapper.communityList();
 	}
-
-	/*
-	 * public List<Circlevo> circleList(){ return mapper.circleList(); }
-	 */
+	public List<CircleVo> circleList(){
+		return mapper.circleList(); 
+	}
 	public List<DealVo> dealList(){
 		return mapper.dealList();
 	}

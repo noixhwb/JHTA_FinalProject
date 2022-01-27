@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.HomeMapper">
 	<!-- 커뮤니티 추천순으로 목록출력 -->
-	<select id="communityList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.CommunityVo">
+	<select id="communityList" resultType="com.jhta.finalproject.vo.CommunityVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
@@ -16,7 +16,7 @@
 	</select>
 	
 	<!-- 동아리 모집 시작일 최신순으로 목록출력 -->
-	<!--<select id="circleList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.CircleVo">
+	<select id="circleList" resultType="com.jhta.finalproject.circlevo.CircleVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
@@ -25,10 +25,10 @@
 		    ) b
 		) 
 		<![CDATA[ where rnum>=1 and rnum<=5 ]]>
-	</select>-->
+	</select>
 	
 	<!-- 거래장터 글 등록 최신순으로 목록출력 -->
-	<select id="dealList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.DealVo">
+	<select id="dealList" resultType="com.jhta.finalproject.vo.DealVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
@@ -40,7 +40,7 @@
 	</select>
 	
 	<!-- 취업정보 마감일 짧은 순으로 목록출력 -->
-	<select id="jobinfoList" parameterType="hashmap" resultType="com.jhta.finalproject.jobvo.JobVo">
+	<select id="jobinfoList" resultType="com.jhta.finalproject.jobvo.JobVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
