@@ -55,7 +55,7 @@ public class JoinController {
 			map.put("using",true);
 		}else {
 			map.put("using",false);
-		}
+		} 
 		return map;
 }
 }

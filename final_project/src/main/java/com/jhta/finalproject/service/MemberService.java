@@ -1,9 +1,5 @@
 package com.jhta.finalproject.service;
 
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,9 +39,6 @@ public class MemberService {
 		  return mapper.addAuth(vo);
 	  }
 
-	public int idCheck(String id) {
-		return mapper.idCheck(id);
-	}
 	
 	public MemberVo isMember(String mid) {
 		return mapper.isMember(mid);

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+
 
 
 </head>
@@ -62,7 +62,7 @@
 <script type="text/javascript">
 $('.m_pwd').focusout(function(){
 	let pass1 = $("#passchk1").val();
-    let pass2 = $("#passchk2").val();
+    let pass2 = $("#pass2").val();
     
     if (pass1 != "" || pass2 != ""){
     	if (pass1 == pass2){
