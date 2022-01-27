@@ -85,7 +85,7 @@
 								<div class="col-md-8">
 									<div class="card-body">
 										<h5 class="card-title">영화모임1</h5>
-										<p class="card-text">푸쉬왜안됨?????</p>
+										<p class="card-text">푸쉬왜안됨!!?????</p>
 										<p class="card-text">
 											<small class="text-muted">Last updated 3 mins ago</small>
 										</p>
