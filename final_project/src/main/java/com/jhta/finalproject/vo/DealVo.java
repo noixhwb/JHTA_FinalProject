@@ -13,7 +13,7 @@ import lombok.ToString;
 public class DealVo {
 	private int t_num;
 	private String t_name;
-	private String t_explaination;
+	private String t_explanation;
 	private int m_num;
 	private int t_price;
 	private String t_processing;

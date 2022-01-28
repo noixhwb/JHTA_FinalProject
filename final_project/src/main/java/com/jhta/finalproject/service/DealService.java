@@ -21,8 +21,8 @@ public class DealService {
 	public List<DealVo> selectAll(HashMap<String, Object> map){
 		return mapper.selectAll(map);
 	}
-	public int count(String word) {
-		return mapper.count(word);
+	public int count(HashMap<String, Object> map) {
+		return mapper.count(map);
 	}
 	
 	public int lastnum() {
