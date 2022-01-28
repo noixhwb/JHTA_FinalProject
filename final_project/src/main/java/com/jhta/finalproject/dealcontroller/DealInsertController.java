@@ -51,6 +51,6 @@ public class DealInsertController {
             }
         }
 
-		return "result";
+		return "redirect:/deal/deallist";
 	}
 }
