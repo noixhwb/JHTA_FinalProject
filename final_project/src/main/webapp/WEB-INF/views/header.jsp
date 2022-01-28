@@ -161,7 +161,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${cp }/job/list">채용 공고</a>
+                        <a class="collapse-item" href="${cp }/job/jobList">채용 공고</a>
                         <a class="collapse-item" href="${cp }/job/cal">채용 달력</a>
                         <a class="collapse-item" href="${cp }/job/myScrap">스크랩</a>
                     </div>

@@ -5,27 +5,7 @@
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-	/*		let checkedCnt=0;
-			$("input[name='skill']").each(function() {
-				if($(this).prop("chekced")){
-					checkedCnt++;
-				}
-			}); */
-			let checkedCnt=$("input:checked").length; // 체크된 요소 갯수 구하기
-			if(checkedCnt<1){
-				alert("보유기술은 1개 이상 선택하시오");
-				return false;
-			};
-			
-			// 첫번째방식
-	/*		if(checkedCnt<1){
-				alert("보유기술은 1개 이상 선택하시오");
-				return false;
-			} */
-			e.preventDefault();
-		});
-	});
+	
 </script>
 <!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
@@ -100,7 +80,7 @@
 		</nav>
 <!-- End of Topbar -->
 <!-- Begin Page Content -->
-<form method="post" action="${cp}/job/insert" enctype="multipart/form-data">
+<form method="post" action="${cp}/job/insert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 <!-- Page Heading -->

@@ -14,6 +14,7 @@
 		<sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/deal/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/circle/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/job/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
 		<sec:form-login default-target-url="/home"/>
