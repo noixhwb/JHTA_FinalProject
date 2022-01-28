@@ -3,7 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.CircleMapper">
+	<insert id="insert" parameterType="com.jhta.finalproject.circlevo.CircleVo">
+		INSERT INTO CIRCLE VALUES(CIRCLE_SEQ.NEXTVAL,#{ci_name},#{ci_category},#{ci_person},#{ci_logofile},#{m_num},#{ci_ok}, 
+                CIRCLEBOARD_SEQ.NEXTVAL,#{ci_title},#{ci_content},#{ci_imgfile},#{ci_startdate},#{ci_enddate},#{ci_view},#{ci_recommend})
+	</insert>
+	<!-- <update id="update" parameterType="com.jhta.finalproject.circlevo.CircleVo">
+	
+	</update> -->
 	<select id="selectAll" resultType="com.jhta.finalproject.circlevo.CircleVo">
 		SELECT * FROM CIRCLE	
+	</select>
+	<select id="select" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleVo">
+		SELECT * FROM CIRCLE WHERE CI_NUM=#{ci_num}
+	</select>
+	
+	<!-- 해당페이지 user의 값들 가져오기 FROM MemberVo -->
+	<select id="selectM" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">
+		SELECT * FROM MEMBER WHERE M_ID=#{m_id}
 	</select>
 </mapper>

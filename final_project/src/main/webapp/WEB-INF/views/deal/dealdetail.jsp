@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>
-	
 	<nav
 		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -47,52 +48,10 @@
 						로그아웃
 					</a>
 				</div></li>
-
 		</ul>
-
 	</nav>
-	
-	
-	
-	
-	
-	<div class="container">
-		<div class="row">
-			<!-- 반복문 -->
-			<c:forEach var="vo" items="${list}" varStatus="status">
-				<div class="col-lg-4">
-				<a href="${pageContext.request.contextPath }/deal/dealdetail?t_num=${vo.t_num}">
-					<img src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(status.index).GI_FILENAME}" class="img-rounded"  width="300px" height="450px"><br> <span>${vo.t_name }</span><br>
-					<span>${vo.t_price}</span><br><br>
-				</a>
-				</div>
-			</c:forEach>
-		</div>
-		<div>
-			<c:forEach var="i" begin="${pu.startPageNum }"
-				end="${pu.endPageNum }">
-				<c:choose>
-					<c:when test="${i==pageNum }">
-						<a href="${cp}/deal/deallist?pageNum=${i}&word=${word}"> <span
-							style='color: blue'>${i }</span></a>
-					</c:when>
-					<c:otherwise>
-						<a href="${cp}/deal/deallist?pageNum=${i}&word=${word}"> <span
-							style='color: gray'>${i }</span></a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</div>
+${imglist.toString()}
 
-		<div>
-			<form action="${cp }/deal/deallist" method="get">
-				<input type="text" name="word" value="${word}"> <input
-					type="hidden" name="${_csrf.parameterName }"
-					value="${_csrf.token }"> <input type="submit" value=검색>
-			</form>
-
-		</div>
-	</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

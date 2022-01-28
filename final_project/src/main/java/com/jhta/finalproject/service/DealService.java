@@ -34,4 +34,7 @@ public class DealService {
 	public List<Goods_ImageVo> selectImg(int t_num) {
 		return mapper.selectImg(t_num);
 	}
+	public DealVo selectOne(int t_num) {
+		return mapper.selectOne(t_num);
+	}
 }

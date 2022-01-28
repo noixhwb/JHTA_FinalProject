@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- 동아리+게시글 등록 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
+<%@ include file="/WEB-INF/views/top.jsp"%>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
@@ -15,79 +17,11 @@
 <!-- Main Content -->
 		<div id="content">
 
-<!-- ---------------------------------------------------------------------------------------------------------------------- -->
-<!-- Topbar -->
-		<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-		<h4>3조대학교 캠퍼스픽</h4>
-
-
-<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-				class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-<!-- Topbar Search -->
-	<!-- 
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group">
-				<input type="text" class="form-control bg-light border-0 small"
-					   placeholder="Search for..." aria-label="Search"
-				       aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</div>
-		</form>
-	 -->
-	 
-<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-		<div class="topbar-divider d-none d-sm-block"></div>
-
-<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow">
-				<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				   role="button" data-toggle="dropdown" aria-haspopup="true"
-				   aria-expanded="false">
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span>
-					<img class="img-profile rounded-circle"
-						 src="${ cp }/resources/img/undraw_profile.svg">
-				</a>
-
-<!-- Dropdown - User Information -->
-				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					 aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-					</a>
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
-					</a>
-					<a class="dropdown-item" href="#"> 
-						<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-					</a>
-					
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-					   data-target="#logoutModal">
-						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
-					</a>
-				</div>
-			</li>
-
-		</ul>
-
-		</nav>
-<!-- End of Topbar -->
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Begin Page Content -->
-		<form action="${ cp }/circle/CircleInsertOk" enctype="multipart/form-data">
+		<form action="${ cp }/circle/CircleInsert?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 <!-- Page Heading -->
@@ -98,14 +32,14 @@
 
 
 			<!-- 1. 동아리 게시요청 주의사항 카드 -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
+			<div class="card shadow col-8 offset-2 mb-5 bg-white">
+				<div class="card-header py-3 bg-light" style="margin-left:0; margin-right:0">
 					<h5 class="m-0 font-weight-bold text-danger"> 동아리 게시 유의사항 </h5>
 				</div>
 				
 				<div class="card-body">
 					<ul>
-						<li> 동아리 정보 및 모집 공고 게시는 무료로 진행되며, 
+						<li> 동아리 정보 및 모집 공고 게시는 무료로 진행되며, <br>
 							 3조픽 담당자의 검토 및 승인 절차를 거쳐 48시간 이내 게시됩니다 </li>
 						<li> 계정당 한 동아리만 등록 가능합니다 </li>
 						<li> 게시글 중복 방지를 위해 동아리당 한 게시글만 등록할 수 있습니다 </li>
@@ -121,7 +55,7 @@
 <!-- Approach -->
 			
 			<!-- 2. 동아리 만들기 카드 -->
-			<div class="card shadow mb-4">
+			<div class="card shadow col-8 offset-2 mb-5">
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-dark"> 동아리 정보 등록 </h5>
 				</div>
@@ -140,7 +74,7 @@
 								<h6 class="card-title font-weight-bold text-dark">동아리명</h6>
 								<p class="card-text">
 									<!-- 동아리명 입력 -->
-									<input type="text" name="club_name" placeholder="동아리 이름 *" maxlength="30" autocomplete="off" class="text">
+									<input type="text" name="ci_name" placeholder="동아리 이름 *" maxlength="30" autocomplete="off" class="text">
 									<!-- 동아리명 사용가능 여부 메세지 -->
 									<div>
 									</div>
@@ -157,25 +91,11 @@
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">동아리 분야</h6>
 								<p class="card-text">
-									<input type="radio" name="radioC1" value="학술">학술
-									<input type="radio" name="radioC1" value="취업">취업
-									<input type="radio" name="radioC1" value="봉사">봉사
-									<input type="radio" name="radioC1" value="기타">기타		
+									<input type="radio" name="ci_category" value="학술">학술
+									<input type="radio" name="ci_category" value="취업">취업
+									<input type="radio" name="ci_category" value="봉사">봉사
+									<input type="radio" name="ci_category" value="기타">기타		
 								</p>
-								<label class="test_obj">
-								    <input type="radio" name="fruit" value="apple">
-								    <span>사과</span>
-								</label>
-								 
-								<label class="test_obj">
-								    <input type="radio" name="fruit" value="banana">
-								    <span>바나나</span>
-								</label>
-								 
-								<label class="test_obj">
-								    <input type="radio" name="fruit" value="lemon">
-								    <span>레몬</span>
-								</label>
 							</div>
 								
 						</div>
@@ -188,9 +108,9 @@
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">동아리 규모</h6>
 								<p class="card-text">
-									<input type="radio" name="radioC2" value="10">10명 이하
-									<input type="radio" name="radioC2" value="20">11명 ~ 20명 이하
-									<input type="radio" name="radioC2" value="30">21명 ~ 30명 이하
+									<input type="radio" name="ci_person" value="10">10명 이하
+									<input type="radio" name="ci_person" value="20">11명 ~ 20명 이하
+									<input type="radio" name="ci_person" value="30">21명 ~ 30명 이하
 								</p>
 							</div>
 								
@@ -205,7 +125,6 @@
 								<h6 class="card-title font-weight-bold text-dark">동아리 이미지 업로드</h6>
 								<p class="card-text">
 									<input type="file" name="file1"> <br>
-									<input type="text" name="attach_filename" placeholder="사진 (동아리 로고)" class="attachtext" readonly><input type="file" name="attach" class="attachfile"><input type="button" name="attach_button" value="파일 선택" class="attachbutton">
 								</p>
 							</div>
 								
@@ -216,7 +135,7 @@
 
 <!-- Approach -->
 			<!-- 3. 게시글 만들기 카드 -->
-			<div class="card shadow mb-4">
+			<div class="card shadow col-8 offset-2 mb-5">
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-dark"> 모집 공고 등록 </h5>
 				</div>
@@ -235,7 +154,7 @@
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">글 제목</h6>
 								<p class="card-text">
-									<input type="text" name="title" placeholder="제목 *" maxlength="40" autocomplete="off">
+									<input type="text" name="ci_title" placeholder="제목 *" maxlength="40" autocomplete="off">
 								</p>
 							</div>
 							
@@ -251,8 +170,8 @@
 								<p class="card-text">
 									<!-- 달력!!! 시작일, 마감일 -->
 									<p class="input small">
-										<input type="date" name="start_date" autocomplete="off" class="date"><span>부터</span>
-										<input type="date" name="end_date" autocomplete="off" class="date"><span>까지</span>
+										<input type="date" name="ci_startdate" autocomplete="off" class="date"><span>부터</span>
+										<input type="date" name="ci_enddate" autocomplete="off" class="date"><span>까지</span>
 									</p>
 								</p>
 							</div>
@@ -267,7 +186,8 @@
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">상세 내용</h6>
 								<div class="col-lg-8" id="memberInfo">
-                        			<textarea class="form-control" rows="11" name="explain" style="resize:none">
+                        			<textarea class="form-control" rows="11" name="ci_content" style="resize:none">
+                        				${ ci_content }
 			                        </textarea>
 			                    </div>
 							</div>
@@ -294,7 +214,7 @@
 			
 			
 			<!-- 4. 담당자 정보 카드 -->
-			<div class="card shadow mb-4">
+			<div class="card shadow col-8 offset-2 mb-5">
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-info"> 담당자 정보 </h5>
 				</div>
@@ -306,9 +226,17 @@
 						<div class="col-md-8">
 							
 							<div class="card-body">
-								<h6 class="card-title font-weight-bold text-dark">이름</h6>
+								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">아이디</h6>
 								<p class="card-text">
-									<input type="text" name="title" value="@@이름@@" maxlength="40" autocomplete="off" readonly="readonly">
+									<input type="text" name="title" value="<sec:authentication property="principal.username"/>" maxlength="40" autocomplete="off" readonly="readonly">
+								</p> <br>
+								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">이름</h6>
+								<p class="card-text">
+									<input type="text" name="title" value="${ userMname }" maxlength="40" autocomplete="off" readonly="readonly">
+								</p> <br>
+								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">닉네임</h6>
+								<p class="card-text">
+									<input type="text" name="title" value="${ userMnickname }" maxlength="40" autocomplete="off" readonly="readonly">
 								</p>
 							</div>
 							
@@ -342,7 +270,8 @@
 		<div class="container show-grid" style="margin:auto; text-align:center; margin-bottom:100px;">
 			<input type="submit" class="btn btn-dark" value="동아리 게시글 등록">
 		</div>
-
+		
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 
 		</form>
 		

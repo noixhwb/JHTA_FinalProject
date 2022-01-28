@@ -13,4 +13,5 @@ public interface DealMapper {
 	int lastnum();
 	int insertImg(HashMap<String, Object> map);
 	List<Goods_ImageVo> selectImg(int t_num);
+	DealVo selectOne(int t_num);
 }
