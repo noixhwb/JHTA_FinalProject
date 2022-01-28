@@ -166,25 +166,28 @@
 											</c:forEach>
 										</div>
 										<div class="form-group" id="myrateBox">
+											<label class="col-lg-2 control-label">별점</label>
+											<div class="starRev">
+												<span class="starR on" id="1">★</span> 
+												<span class="starR" id="2">★</span> 
+												<span class="starR" id="3">★</span> 
+												<span class="starR" id="4">★</span>
+												<span class="starR" id="5">★</span>
+											</div>
 											<form action="${cp}/timetable/myrateInsert" method="post"
 												id="myrateForm">
 												<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 												<input type="hidden" name="s_num" id="myrateS_num">
 												<input type="hidden" name="m_num" id="myrateM_num">
-												<label class="col-lg-2 control-label">별점</label>
-												<div class="starRev">
-													<span class="starR on" id="star1">★</span> <span
-														class="starR" id="star2">★</span> <span class="starR"
-														id="star3">★</span> <span class="starR" id="star4">★</span>
-													<span class="starR" id="star5">★</span>
-												</div>
+												<input type="hidden" name="sr_recommend" id="myrateRecommend">
 												<label class="col-lg-2 control-label">강의평</label>
 												<div class="col-lg-8">
 													<textarea class="form-control" rows="5"
-														name="t_explaination" style="resize: none"></textarea>
+														name="sr_content" style="resize: none"></textarea>
 												</div>
 												<div class="col-lg-offset-2 col-lg-10">
 													<button type="submit" class="btn btn-primary">등록</button>
+													<button type="reset" class="btn btn-primary" id="myrateCancle">취소</button>
 												</div>
 											</form>
 										</div>
@@ -264,26 +267,31 @@
 	}
 
 	$('.starRev span').click(function(){
-		  $(this).parent().children('span').removeClass('on');
-		  $(this).addClass('on').prevAll('span').addClass('on');
-			return false;
+		$(this).parent().children('span').removeClass('on');
+		$(this).addClass('on').prevAll('span').addClass('on');
+		/* return false; */
+		$("#myrateRecommend").val(parseInt($(this).prop("id")));
+	});
+	
+	$("#myrateCancle").click(function(){
+		$("#myrateBox").css("display","none");
 	});
 			
 	$("#myrateForm").submit(function(e) {
-		e.preventDefault();
 		$.ajax({
-			url:'${cp}/timetable/myrateInsert?'+$("myrateForm").serialize(),
+			url:'${cp}/timetable/myrateInsert?'+$("#myrateForm").serialize(),
 			method:'post',
 			dataType:'json',
+			let msg="";
 			success:function(data) {
-				if(data.result) {
+				if(data.result==true) {
 					$("#myrateBox").css("display","none");
-					$("#myrateresult").html("강의평이 등록되었습니다.");
+					msg="강의평이 등록되었습니다.";
 				}else {
-					$("#myrateresult").html("강의평 등록에 실패하였습니다.");
+					msg="강의평이 등록되었습니다.";
 				}
+				$("#myrateresult").html(msg);
 			}
-			
 		});
 	});				
 					
