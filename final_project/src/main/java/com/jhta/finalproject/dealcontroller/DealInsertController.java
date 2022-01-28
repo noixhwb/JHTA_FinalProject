@@ -24,12 +24,11 @@ public class DealInsertController {
 	}
 	
 	@PostMapping("/deal/dealinsert")
-	public String insert(MultipartHttpServletRequest mt, String t_name, String t_explaination, int t_price) {
+	public String insert(MultipartHttpServletRequest mt, String t_name, String t_explanation, int t_price) {
 		List<MultipartFile> fileList = mt.getFiles("file");     
         String path= mt.getRealPath("/resources/goodsimg");
-        System.out.println(path);
         
-        DealVo vo = new DealVo(0,t_name ,t_explaination ,1, t_price , null, null);
+        DealVo vo = new DealVo(0,t_name ,t_explanation ,1, t_price , null, null);
         
         service.insert(vo);
         int lastnum = service.lastnum();

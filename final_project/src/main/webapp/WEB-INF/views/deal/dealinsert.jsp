@@ -98,11 +98,11 @@
 						placeholder="1000원 단위로 입력" maxlength="30">
 				</div>
 			</div>
-			<div class="form-group" id="divExplaination">
+			<div class="form-group" id="divExplanation">
 				<label class="col-lg-2 control-label">상품설명</label>
 				<div class="col-lg-8" id="memberInfo">
-					<textarea class="form-control" rows="11" name="t_explaination"
-						id="t_explaination" style="resize: none"></textarea>
+					<textarea class="form-control" rows="11" name="t_explanation"
+						id="t_explanation" style="resize: none"></textarea>
 				</div>
 			</div>
 			<div class="form-group" id="divFile">
@@ -273,17 +273,17 @@
                     }
                     
                     //상품설명
-                    if($('#t_explaination').val()==""){
+                    if($('#t_explanation').val()==""){
                         modalContents.text("상품설명을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
-                        divExplaination.removeClass("has-success");
-                        divExplaination.addClass("has-error");
-                        $('#t_explaination').focus();
+                        divExplanation.removeClass("has-success");
+                        divExplanation.addClass("has-error");
+                        $('#t_explanation').focus();
                         return false;
                     }else{
-                    	divExplaination.removeClass("has-error");
-                    	divExplaination.addClass("has-success");
+                    	divExplanation.removeClass("has-error");
+                    	divExplanation.addClass("has-success");
                     }
                     
                     //이메일
