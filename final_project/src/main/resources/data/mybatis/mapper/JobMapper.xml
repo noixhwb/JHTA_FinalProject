@@ -24,6 +24,17 @@
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
  	
+ 	<!-- 선택조회 -->
+	<select id="selectOne" parameterType="int" resultType="com.jhta.finalproject.jobvo.JobVo">
+		select * from jobinfo where j_num=#{j_num}
+	</select>
+	
+	<!-- 전체 공고 -->
+	<select id="getCount" resultType="int"  parameterType="hashmap">
+     	select NVL(count(*),0) cnt from jobinfo   
+     	<include refid="search"/> 	
+    </select>
+    
  	<!-- 추가 -->
 	<insert id="insert" parameterType="com.jhta.finalproject.jobvo.JobVo">
 		insert into jobinfo values 
@@ -47,7 +58,6 @@
 		where j_num=#{j_num}
 	</update>
 	
-	
 	<!-- 가장최신 공고조회 -->
 	<select id="getNew" resultType="com.jhta.finalproject.jobvo.JobVo">
 		select * from
@@ -59,15 +69,10 @@
 		)where rnum=1;
 	</select>
 	
-	<!-- 선택조회 -->
-	<select id="selectOne" parameterType="int" resultType="com.jhta.finalproject.jobvo.JobVo">
-		select * from jobinfo where j_num=#{j_num}
-	</select>
-	
-	<select id="getCount" resultType="int"  parameterType="hashmap">
-     	select NVL(count(*),0) cnt from jobinfo   
-     	<include refid="search"/> 	
-    </select>
+	<!-- 조회수 올리기 -->
+	<update id="addHit" parameterType="int">
+		update jobinfo set j_view=j_view+1 where j_num=#{j_num}
+	</update>
 	
  </mapper>
  

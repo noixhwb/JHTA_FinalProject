@@ -32,5 +32,8 @@ public class JobService {
 	public int getCount(HashMap<String, Object> map) {
 		return mapper.getCount(map);
 	}
+	public int addHit(int j_num) {
+		return mapper.addHit(j_num);
+	}
 	
 }

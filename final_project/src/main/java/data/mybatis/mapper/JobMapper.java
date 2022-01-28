@@ -13,4 +13,5 @@ public interface JobMapper {
 	List<JobVo> list(HashMap<String, Object> map);
 	JobVo selectOne(int j_num);
 	int getCount(HashMap<String, Object> map);
+	int addHit(int j_num);
 }
