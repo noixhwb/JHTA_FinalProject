@@ -3,7 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.DealMapper">
-	
+	<select id="selectOne" resultType="com.jhta.finalproject.vo.DealVo">
+		select * from deal where t_num=#{t_num}
+	</select>
+
 	<insert id="insert"
 		parameterType="com.jhta.finalproject.vo.DealVo">
 		insert into deal
@@ -20,7 +23,7 @@
 		t_num desc
 		) b
 		<if test="word != null and word != ''">
-			where t_name like '%'||#{word, jdbcType=VARCHAR}||'%' or t_explanation '%'||#{word, jdbcType=VARCHAR}||'%'
+			where t_name like '%'||#{word, jdbcType=VARCHAR}||'%' or t_explanation like '%'||#{word, jdbcType=VARCHAR}||'%'
 		</if>
 		)
 		<![CDATA[ WHERE rnum>=#{startRow} AND rnum<=#{endRow}]]>
@@ -28,7 +31,7 @@
 	<select id="count" resultType="int" parameterType="hashmap">
 		select NVL(count(*),0) cnt from deal
 		<if test="word != null and word != ''">
-			where t_name like '%'||#{word, jdbcType=VARCHAR}||'%' or t_explanation '%'||#{word, jdbcType=VARCHAR}||'%'
+			where t_name like '%'||#{word}||'%' or t_explanation like '%'||#{word}||'%'
 		</if>
 	</select>
 

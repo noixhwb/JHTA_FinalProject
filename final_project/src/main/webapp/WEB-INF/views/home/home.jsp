@@ -103,7 +103,7 @@
 										<div class="card-body">
 											<h5 class="card-title">${vo.t_name }</h5>
 											<p class="card-text">${vo.m_num }&nbsp;${vo.t_price }</p>
-											<p class="card-text">${vo.t_explaination }</p>
+											<p class="card-text">${vo.t_explanation }</p>
 											<p class="card-text">
 												<small class="text-muted">${vo.t_regdate }</small>
 											</p>
