@@ -6,6 +6,7 @@
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
+<%@ include file="/WEB-INF/views/top.jsp"%>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
@@ -16,74 +17,6 @@
 <!-- Main Content -->
 		<div id="content">
 
-<!-- ---------------------------------------------------------------------------------------------------------------------- -->
-<!-- Topbar -->
-		<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-		<h4>3조대학교 캠퍼스픽</h4>
-
-
-<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-				class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-<!-- Topbar Search -->
-	<!-- 
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group">
-				<input type="text" class="form-control bg-light border-0 small"
-					   placeholder="Search for..." aria-label="Search"
-				       aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</div>
-		</form>
-	 -->
-	 
-<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-		<div class="topbar-divider d-none d-sm-block"></div>
-
-<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow">
-				<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				   role="button" data-toggle="dropdown" aria-haspopup="true"
-				   aria-expanded="false">
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span>
-					<img class="img-profile rounded-circle"
-						 src="${ cp }/resources/img/undraw_profile.svg">
-				</a>
-
-<!-- Dropdown - User Information -->
-				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					 aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-					</a>
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
-					</a>
-					<a class="dropdown-item" href="#"> 
-						<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-					</a>
-					
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-					   data-target="#logoutModal">
-						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
-					</a>
-				</div>
-			</li>
-
-		</ul>
-
-		</nav>
-<!-- End of Topbar -->
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
@@ -120,22 +53,16 @@
 			<c:when test="${ requestScope.result == 'success' }">
 				<div class="row">
 					<div class="col-6 offset-3">
-				<div class="card border-success bg-light mb-3" style="margin-top: 10%;">
-					<div class="card-header" style="text-align: left;">
-						<small class="text-muted"> 게시요청확인 </small> <br> 
+				<div class="card shadow bg-white mb-3" style="margin-top: 10%;">
+					<div class="card-header bg-secondary" style="text-align: left;">
+						<small class="text-muted" style="text-align:left;"> 게시요청확인 </small> <br> 
 					</div>
 					<div class="card-body text-danger">
 						<img src="${cp}/resources/images/circle/checked.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
 						<h1 class="card-title"><strong>게시요청이 완료되었습니다</strong></h1>
 					</div>
 					<div class="card-footer">
-	      				<strong>@@동아리명@@</strong> <br>
-						<!--
-						<c:forEach var="list" items="${myorderlist}">
-								주문상세번호 : ${ list.odNum } <br>
-								@@상세내용@@
-						</c:forEach>
-						-->
+	      				<strong>${ uservo }</strong> <br>
 	    			</div>
 				</div>
 					</div>
@@ -145,11 +72,11 @@
 			<c:otherwise>
 				<div class="row">
 					<div class="col-6 offset-3">
-				<div class="card shadow text-white bg-danger mb-4">
-					<div class="card-header py-3">
+				<div class="card shadow bg-white mb-3" style="margin-top: 10%;">
+					<div class="card-header bg-secondary">
 						<small class="text-muted" style="text-align:left;"> 게시불가확인 </small> <br> 
 					</div>
-					<div class="card-body">
+					<div class="card-body text-danger">
 						<img src="${cp}/resources/images/circle/sad-face.png" class="card-img-top" style="width: 300px; height: 300px; margin-top: 50px; margin-bottom: 50px;">
 						<h1 class="card-title"><strong>게시요청을 완료하지 못했습니다</strong></h1>
 					</div>
@@ -166,10 +93,11 @@
 <!-- /.container-fluid -->		
 		
 		<div class="container show-grid" style="margin:auto; text-align:center; margin-bottom:100px;">
-			<input type="submit" class="btn btn-dark" value="alert으로 할지.. 고민중..">
+			<input type="submit" class="btn btn-dark" value="alert으로 할지.. 고민중.. 아무튼 홈으로ㄱ">
 		</div>
 
-
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+		
 		</form>
 		
 		</div> <!-- Main Content 끝 -->

@@ -5,84 +5,18 @@
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
+<%@ include file="/WEB-INF/views/top.jsp"%>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-
+<style>
+$breadcrumb-divider: quote(">");
+</style>
 
 <!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 
 <!-- Main Content -->
 		<div id="content">
-
-<!-- ---------------------------------------------------------------------------------------------------------------------- -->
-<!-- Topbar -->
-		<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-		<h4>3조대학교 캠퍼스픽</h4>
-
-
-<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-				class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-<!-- Topbar Search -->
-	<!-- 
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group">
-				<input type="text" class="form-control bg-light border-0 small"
-					   placeholder="Search for..." aria-label="Search"
-				       aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</div>
-		</form>
-	 -->
-	 
-<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-		<div class="topbar-divider d-none d-sm-block"></div>
-
-<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow">
-				<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				   role="button" data-toggle="dropdown" aria-haspopup="true"
-				   aria-expanded="false">
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span>
-					<img class="img-profile rounded-circle"
-						 src="${ cp }/resources/img/undraw_profile.svg">
-				</a>
-
-<!-- Dropdown - User Information -->
-				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					 aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-					</a>
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
-					</a>
-					<a class="dropdown-item" href="#"> 
-						<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-					</a>
-					
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-					   data-target="#logoutModal">
-						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
-					</a>
-				</div>
-			</li>
-
-		</ul>
-
-		</nav>
-<!-- End of Topbar -->
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
@@ -99,37 +33,51 @@
 			 
 <!-- Approach -->
 			<!-- 동아리 상세정보 카드 -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h5 class="m-0 font-weight-bold text-dark"> @@동아리명+글제목 보이기@@ </h5>
-				</div>
-					
+			<div class="row">
+			<div class="card shadow mb-4 col-6 offset-3">
+
 				<div class="card-body">
-						
+					
+					<nav style="--bs-breadcrumb-divider: '>'; background-color:primary;" aria-label="breadcrumb">
+					  <ol class="breadcrumb">
+					    <li class="breadcrumb-item"><a href="${ cp }/circle/CircleList">동아리</a></li>
+					    <li class="breadcrumb-item active" aria-current="page">동아리 상세정보</li>
+					  </ol>
+					</nav>
+					
 					<!-- 1. 동아리 정보 -->
 					<div class="card mb-3">
 						<div class="row g-0">
-							<!-- (1) 포스터 -->
-							<div class="col-md-3">
-								<img src="${ cp }/resources/images/circle/1-1_bitamin.jpg" 
-									 class="img-fluid rounded-start" alt="..." style="max-width: 100px;">
-							</div> <!-- (1) 포스터 끝 -->
-							
-							<!-- (2) 동아리 정보 상세 -->
-							<div class="col-md-6">
+							<div class="col-sm-9">
 								<div class="card-body">
-									<h5 class="card-title">@@글제목@@</h5>
-									<p class="card-text">@@동아리 정보 상세@@</p>
+									<h5 class="card-title"> ${ sel.ci_title }</h5>
 									<p class="card-text">
-										<small class="text-muted">@@동아리명, 글제목, 아이콘, 모집기간, 좋아요, 조회수@@</small>
+									
+										<div class="row g-0">
+											<div class="col-md-6">
+												<ul id="dot">
+													<li>
+														<img src="${ cp }/resources/images/circle/${ sel.ci_logofile }" 
+															 style="max-width: 50px;">
+														<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ sel.ci_name }</h6>
+													</li>
+													<li>카테고리 : ${ sel.ci_category }</li>
+													<li>모집인원 : ${ sel.ci_person }</li> <!-- 2번 -->
+												</ul>
+											</div>
+											<div class="col-md-6">
+												<ul id="dot">
+													<li>모집기간 : ${ sel.ci_startdate } 에서 ${ sel.ci_enddate } 까지</li>
+													<li>조회수 : ${ sel.ci_view }</li> <!-- 3번 -->
+													<li>좋아요수 : ${ sel.ci_recommend }</li> <!-- 4번 -->
+												</ul>
+											</div>
+										</div>
+												
 									</p>
 								</div>
-							</div> <!-- (2) 동아리 정보 상세 끝 -->
-								
-							<!-- (3) 신청/신청취소 버튼 -->
-							<div class="col-md-3">
-								<input type="submit" value="신청하기">
-							</div> <!-- (3) 신청/신청취소 버튼 끝-->
+									
+							</div>
 						</div>
 					</div> <!-- 1. 동아리 정보 끝 -->
 						
@@ -139,18 +87,30 @@
 						<div class="col-md-8">
 							<div class="card-body">
 								<!-- (1) 포스터 -->
-								@@포스터@@ <br>
-								@@구분선@@ <br>
+								<div class="col-md-8 offset-md-2 b">
+									<img src="${ cp }/resources/images/circle/${ sel.ci_imgfile }"
+										 style="max-width: 100%">
+								</div>
+								@@구분선@@d <br>
 								<!-- (1) 포스터 끝 -->
 								
 								<!-- (2) 글내용 --> 
-								@@글내용@@ <br>
+								${ sel.ci_content } <br>
 								<!-- (2) 글내용 끝 --> 
 							</div>
 						</div>
 					</div> <!-- 2. 동아리 게시글 상세 끝 -->
+					
+					<!-- 3. 동아리 신청하기 -->
+					<div class="row g-0">
+						<div class="col-md-7 offset-md-5">
+							<input type="submit" value="신청하기">
+						</div>
+					</div>
+					<!-- 3. 동아리 신청하기 끝 -->
 						
 				</div> <!-- 동아리 상세정보 카드 body 끝-->
+			</div>
 			</div> <!-- 동아리 상세정보 카드 끝 -->
 
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝-->
@@ -205,3 +165,9 @@
 		</div>
 	</div>
 	
+<style>
+#dot{
+   list-style:none;
+   padding-left:5px;
+   }
+</style>   
