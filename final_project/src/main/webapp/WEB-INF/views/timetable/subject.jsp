@@ -288,7 +288,7 @@
 					$("#myrateBox").css("display","none");
 					msg="강의평이 등록되었습니다.";
 				}else {
-					msg="강의평이 등록되었습니다.";
+					msg="강의평이 등록에 실패하였습니다.";
 				}
 				$("#myrateresult").html(msg);
 			}
