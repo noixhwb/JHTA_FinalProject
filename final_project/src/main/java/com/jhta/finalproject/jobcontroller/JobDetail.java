@@ -30,6 +30,7 @@ public class JobDetail {
 		ZoneVo zv = Zservice.selectOne(j_num);
 		DutyVo dv = Dservice.selectOne(j_num);
 		CareerVo cv = Cservice.selectOne(j_num);
+		int n=Jservice.addHit(j_num);
 		
 		model.addAttribute("jv",jv);
 		model.addAttribute("zv",zv);
