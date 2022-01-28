@@ -24,11 +24,8 @@ public class JobList {
 	@Autowired private ServletContext sc;
 	@Autowired private JobService service;
 	
-	@GetMapping("/job/list")
-	public String list() {
-		return "job/jobList";
-	}
-	@PostMapping("/job/jobList")
+	
+	@RequestMapping("/job/jobList")
 	public String jobList(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
 					String keyword, Model model) {
 		

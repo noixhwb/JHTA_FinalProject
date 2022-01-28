@@ -17,7 +17,6 @@
 <!-- Page Heading -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h3 mb-0 text-gray-800">채용 공고</h1>
-				<!-- spring form태그 라이브러리를 사용하면 자동으로 토큰값이 전송됨 -->
 					<form method="post" action="${cp }/job/jobList" 
 					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 						<div class="input-group">
@@ -59,5 +58,18 @@
 	</c:forEach>
 </table>
 	</div>	
+</div>
+<!-- 페이징처리 -->
+<div>	
+	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+		<c:choose>
+			<c:when test="${i==param.pageNum }">
+				<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}"><span style="color:blue">${i }</span></a>
+			</c:when>
+			<c:otherwise>
+				<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}"><span style="color:gray">${i }</span></a>			
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
 </div>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
