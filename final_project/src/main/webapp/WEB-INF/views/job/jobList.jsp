@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> 
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript">
@@ -14,51 +12,6 @@
 	    $("#tabs").tabs();
 	 });
 </script>
-<style>
-	#mask {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 999;
-    background-color: #000000;
-    display: none; }
-
-.layerpop {
-    display: none;
-    z-index: 1000;
-    border: 2px solid #ccc;
-    background: #fff;
-    cursor: move; }
-
-.layerpop_area .title {
-    padding: 10px 10px 10px 10px;
-    border: 0px solid #aaaaaa;
-    background: #f1f1f1;
-    color: #3eb0ce;
-    font-size: 1.3em;
-    font-weight: bold;
-    line-height: 24px; }
-
-.layerpop_area .layerpop_close {
-    width: 25px;
-    height: 25px;
-    display: block;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent url('btn_exit_off.png') no-repeat; }
-
-.layerpop_area .layerpop_close:hover {
-    background: transparent url('btn_exit_on.png') no-repeat;
-    cursor: pointer; }
-
-.layerpop_area .content {
-    width: 96%;    
-    margin: 2%;
-    color: #828282; }
-
-	
-</style>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -78,7 +31,7 @@
 					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
 						<input type="text" name="keyword"
-							class="form-control bg-light border-0 small"
+							class="form-control bg-white border-secondary small"
 							placeholder="찾으시는 기업이 있나요?" aria-label="Search"
 							value="${keyword }" aria-describedby="basic-addon2">
 						<div class="input-group-append">
@@ -94,25 +47,58 @@
 			</div>
 			<!-- 검색값이 있을경우 생기게끔ㅎ ㅐ야한다 -->
 			<div class="result hidden">
-				<p>'<span></span>' 검색 결과</p><a class="reset">초기화</a>
+				<span>'<span></span>' 검색 결과     </span><a class="reset">초기화</a>
 			</div>
+			<a class="" href="{cp}/job/jobList" data-toggle="modal"
+						data-target="#searchfilter"> <i
+						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+						검색 필터
+			</a>
 			<!-- --------------------------- -->
-			<div class="filter">
-    				<a href="javascript:void(0)" id="filterr">
-						<span>직무:</span>
-						<span>전체</span>
-					</a>
-					
-					<a href="#" id="filterr"> 
-						<span>지역:</span> 
-						<span>전체</span>
-					</a> 
-					<a href="#" id="filterr"> 
-						<span>경력:</span> 
-						<span>전체</span>
-					</a>
-    			</div>
-    			
+			<!-- Logout Modal-->
+		    <div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		        aria-hidden="true">
+		        <div class="modal-dialog" role="document">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <h5 class="modal-title" id="exampleModalLabel">검색 필터</h5>
+		                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+		                        <span aria-hidden="true">×</span>
+		                    </button>
+		                </div>
+		                <div class="modal-body">
+		                	<h6>직무</h6>
+		                	<fieldset style="width:400px">
+								<c:forEach items="${fn:split('영업·영업관리|전략·기획|마케팅·광고·홍보|회계·재무|인사·노무|유통·물류|IT·SW|연구개발·설계|생산·생산관리|건축·인테리어|토목·환경|의료·보건|교육|미디어|디자인|기타','|') }"
+											var="duty">
+									<label><input type="checkbox" name="jd_duty" value="${duty }" >${duty }</label>
+								</c:forEach><br>
+							</fieldset>
+		                </div>
+		                <div class="modal-body">
+		                	<h6>지역</h6>
+		                	<fieldset style="width:400px">
+								<c:forEach items="${fn:split('서울|경기|광주|대구|대전|부산|세종|울산|인천|강원|경남|경북|전남|전북|충남|충북|제주|해외|기타','|') }"
+											var="zone">
+									<label><input type="checkbox" name="jd_zone" value="${zone }" >${zone }</label>
+								</c:forEach><br>
+							</fieldset>
+		                </div>
+		                <div class="modal-body">
+		                	<h6>경력</h6>
+		                	<fieldset style="width:400px">
+								<c:forEach items="${fn:split('신입|경력','|') }" var="career">
+									<label><input type="checkbox" name="jd_duty" value="${career }" >${career }</label>
+								</c:forEach><br>
+							</fieldset>
+		                </div>
+		                <div class="modal-footer">
+		                    <button class="btn btn-secondary" type="button" data-dismiss="modal">닫기</button>
+		                    <a class="btn btn-primary" href="jobList?jd_duty=${jd_duty }&jd_zone=${jd_zone}&jd_career=${jd_career}">적용하기</a>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
 
 		</div>
 		<table border="1" width="1000px">
