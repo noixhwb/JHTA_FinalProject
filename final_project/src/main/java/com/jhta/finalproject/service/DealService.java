@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.DealVo;
+import com.jhta.finalproject.vo.Goods_ImageVo;
 
 import data.mybatis.mapper.DealMapper;
 
@@ -20,8 +21,8 @@ public class DealService {
 	public List<DealVo> selectAll(HashMap<String, Object> map){
 		return mapper.selectAll(map);
 	}
-	public int count(String word) {
-		return mapper.count(word);
+	public int count(HashMap<String, Object> map) {
+		return mapper.count(map);
 	}
 	
 	public int lastnum() {
@@ -29,5 +30,8 @@ public class DealService {
 	}
 	public int insertImg(HashMap<String, Object> map) {
 		return mapper.insertImg(map);
+	}
+	public List<Goods_ImageVo> selectImg(int t_num) {
+		return mapper.selectImg(t_num);
 	}
 }

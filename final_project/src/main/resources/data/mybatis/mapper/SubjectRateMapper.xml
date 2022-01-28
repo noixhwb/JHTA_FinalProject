@@ -5,13 +5,13 @@
 <mapper namespace="data.mybatis.mapper.SubjectRateMapper">
 	
 	<!-- 과목으로 검색하여 목록출력 -->
-	<select id="rateList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectRateVo">
+	<select id="rateList" parameterType="hashmap" resultType="com.jhta.finalproject.timetablevo.SubjectRateVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
 		    ( 
-		       select * from SUBJECTRATE where s_num=#{s_num}
-		        order by sr_num desc
+		       select SR_NUM,M_NUM,SR_CONTENT,SR_RECOMMEND,S_NUM,to_char(SR_REGDATE,'YY-MM-DD') SR_REGDATE
+		       from SUBJECTRATE where s_num=#{s_num} order by sr_regdate desc
 		    ) b
 		) 
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
@@ -22,13 +22,13 @@
 	</select>
 	
 	<!-- 내글 검색하여 목록출력 -->
-	<select id="myrateList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.SubjectRateVo">
+	<select id="myrateList" parameterType="hashmap" resultType="com.jhta.finalproject.timetablevo.MySubjectRateVo">
 		select * from
 		(
 			select b.*,rownum rnum from 
 		    ( 
-		       select * from SUBJECTRATE where m_num=#{m_num}
-		        order by sr_num desc
+		       select s.S_NUM S_NUM,S_NAME,S_PROF,SR_NUM,M_NUM,SR_CONTENT,SR_RECOMMEND,to_char(SR_REGDATE,'YY-MM-DD') SR_REGDATE
+		       from SUBJECTRATE r,SUBJECT s where m_num=#{m_num} and r.s_num=s.s_num order by sr_regdate desc
 		    ) b
 		) 
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
@@ -37,11 +37,11 @@
 	<select id="mycount" parameterType="int" resultType="int">
 		select NVL(count(*),0) cnt from SUBJECTRATE where m_num=#{m_num}
 	</select>
-	<insert id="insert" parameterType="com.jhta.finalproject.vo.SubjectRateVo">
+	<insert id="insert" parameterType="com.jhta.finalproject.timetablevo.SubjectRateVo">
 		insert into SUBJECTRATE 
 		values(SUBJECTRATE_SEQ.NEXTVAL,#{m_num},#{sr_content},sysdate,#{sr_recommend},#{s_num})
 	</insert>
-	<update id="update" parameterType="com.jhta.finalproject.vo.SubjectRateVo">
+	<update id="update" parameterType="com.jhta.finalproject.timetablevo.SubjectRateVo">
 		update SUBJECTRATE 
 		set sr_content=#{sr_content}, sr_recommend=#{sr_recommend}
 		where sr_num=#{sr_num}

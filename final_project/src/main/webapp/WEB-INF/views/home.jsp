@@ -44,11 +44,11 @@
 						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 						로그아웃
 					</a>
-				</div></li> --%>
+				</div></li> 
 
 		</ul>
 
-	</nav>
+	</nav>--%> -->
 	<!-- End of Topbar -->
 
 	<!-- Begin Page Content -->
@@ -85,7 +85,7 @@
 								<div class="col-md-8">
 									<div class="card-body">
 										<h5 class="card-title">영화모임1</h5>
-										<p class="card-text">영화 좋아하시는분</p>
+										<p class="card-text">푸쉬왜안됨!!?????</p>
 										<p class="card-text">
 											<small class="text-muted">Last updated 3 mins ago</small>
 										</p>
@@ -344,7 +344,7 @@
 
 	</div>
 	<!-- End of Main Content -->
-
+</div>
 
 
 	<%@ include file="/WEB-INF/views/footer.jsp"%>

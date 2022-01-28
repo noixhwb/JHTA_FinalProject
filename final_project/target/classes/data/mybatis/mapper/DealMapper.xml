@@ -3,10 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.DealMapper">
+	
 	<insert id="insert"
 		parameterType="com.jhta.finalproject.vo.DealVo">
 		insert into deal
-		values(deal_seq.nextval,#{t_name},#{t_explaination},#{m_num},#{t_price},'판매중',sysdate)
+		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate)
 	</insert>
 	<select id="selectAll"
 		resultType="com.jhta.finalproject.vo.DealVo" parameterType="hashmap">
@@ -16,20 +17,18 @@
 		from(
 		SELECT * FROM deal
 		ORDER BY
-		num desc
+		t_num desc
 		) b
-		<if test="#{word} != null and #{word} != ''">
-			where t_name like '%'||#{word}||'%' or t_explanation
-			'%'||#{word}||'%'
+		<if test="word != null and word != ''">
+			where t_name like '%'||#{word, jdbcType=VARCHAR}||'%' or t_explanation '%'||#{word, jdbcType=VARCHAR}||'%'
 		</if>
 		)
 		<![CDATA[ WHERE rnum>=#{startRow} AND rnum<=#{endRow}]]>
 	</select>
-	<select id="count" resultType="int">
+	<select id="count" resultType="int" parameterType="hashmap">
 		select NVL(count(*),0) cnt from deal
-		<if test="#{word} != null and #{word} != ''">
-			where t_name like '%'||#{word}||'%' or t_explanation
-			'%'||#{word}||'%'
+		<if test="word != null and word != ''">
+			where t_name like '%'||#{word, jdbcType=VARCHAR}||'%' or t_explanation '%'||#{word, jdbcType=VARCHAR}||'%'
 		</if>
 	</select>
 
@@ -46,6 +45,10 @@
 	<insert id="insertImg" parameterType="hashmap">
 		insert into Goods_Image values(Goods_Image_seq.nextval, #{filename}, #{lastnum})
 	</insert>
+	
+	<select id="selectImg" parameterType="int" resultType="com.jhta.finalproject.vo.Goods_ImageVo">
+		select * from goods_image where t_num=#{t_num}
+	</select>
 </mapper>
  
  
