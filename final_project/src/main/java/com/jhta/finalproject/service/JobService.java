@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,17 @@ public class JobService {
 	public int update(JobVo vo) {
 		return mapper.update(vo);
 	}
-	public List<JobVo> list(){
-		return mapper.list();
+	public List<JobVo> list(HashMap<String, Object> map){
+		return mapper.list(map);
 	}
 	public JobVo selectOne(int j_num) {
 		return mapper.selectOne(j_num);
 	}
-	
+	public int getCount(HashMap<String, Object> map) {
+		return mapper.getCount(map);
+	}
+	public int addHit(int j_num) {
+		return mapper.addHit(j_num);
+	}
 	
 }

@@ -50,6 +50,9 @@ public class JobInsert {
 		System.out.println(path);
 		String logoImg=file1.getOriginalFilename(); // 전송된 기업로고 파일명
 		String infoImg=file1.getOriginalFilename(); // 전송된 채용공고 파일명
+		System.out.println(duty.getJd_duty());
+		System.out.println(career.getJc_career());
+		System.out.println(zone.getJz_zone());
 		try {
 			// 파일업로드 하기
 			InputStream is1=file1.getInputStream(); 
@@ -77,7 +80,7 @@ public class JobInsert {
 			model.addAttribute("result","fail");
 		}
 //		try {
-//			URL url= new URL("https://gate.nicednb.com/nice/bizinfo/v1.0/enterprise/general/search");
+//			URL url= new URL("https://gate.nicednb.com/nice/bizinfo/v1.0/enterprise/general/search?searchName=CMP_NM&serarchValue=");
 //			// HttpURLConnection : 서버와 클라를 연결해주는 역할
 //			HttpURLConnection 서버연결 = (HttpURLConnection) url.openConnection();
 //			서버연결.setRequestMethod("POST");
