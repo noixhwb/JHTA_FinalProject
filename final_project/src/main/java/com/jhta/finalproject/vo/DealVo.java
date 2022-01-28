@@ -18,4 +18,6 @@ public class DealVo {
 	private int t_price;
 	private String t_processing;
 	private Date t_regdate;
+	private String t_title;
+	private String m_id;
 }

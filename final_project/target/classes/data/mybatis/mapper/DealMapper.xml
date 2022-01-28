@@ -10,7 +10,7 @@
 	<insert id="insert"
 		parameterType="com.jhta.finalproject.vo.DealVo">
 		insert into deal
-		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate)
+		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate,#{t_title},#{m_id})
 	</insert>
 	<select id="selectAll"
 		resultType="com.jhta.finalproject.vo.DealVo" parameterType="hashmap">
@@ -51,6 +51,10 @@
 	
 	<select id="selectImg" parameterType="int" resultType="com.jhta.finalproject.vo.Goods_ImageVo">
 		select * from goods_image where t_num=#{t_num}
+	</select>
+	
+	<select id="selectMember" resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from member where m_id=#{m_id}
 	</select>
 </mapper>
  

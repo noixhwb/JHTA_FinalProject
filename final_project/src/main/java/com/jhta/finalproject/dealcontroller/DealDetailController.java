@@ -1,5 +1,6 @@
 package com.jhta.finalproject.dealcontroller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +11,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.jhta.finalproject.service.DealService;
 import com.jhta.finalproject.vo.DealVo;
 import com.jhta.finalproject.vo.Goods_ImageVo;
+import com.jhta.finalproject.vo.MemberVo;
 
 @Controller
 public class DealDetailController {
 	@Autowired private DealService service;
 	
 	@GetMapping("/deal/dealdetail")
-	public String detail(int t_num, Model model) {
+	public String detail(int t_num, Model model,Principal principal) {
 		//t_num//deal//dealimg//
-		DealVo vo = service.selectOne(t_num);
+		DealVo dealvo = service.selectOne(t_num);
 		List<Goods_ImageVo> imglist = service.selectImg(t_num);
+		String m_id = principal.getName();
+		MemberVo membervo= service.selectMember(m_id);
 		model.addAttribute("imglist",imglist);
-		model.addAttribute("vo",vo);
+		model.addAttribute("dealvo",dealvo);
+		model.addAttribute("membervo",membervo);
+
 		return "deal/dealdetail";
 		
 	}

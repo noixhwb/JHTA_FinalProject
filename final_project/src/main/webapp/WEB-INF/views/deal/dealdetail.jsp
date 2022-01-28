@@ -50,8 +50,21 @@
 				</div></li>
 		</ul>
 	</nav>
-${imglist.toString()}
-
+	<div class="container">
+<div class="row">
+	<div class="col-lg-6">
+	<!-- 이미지 보여주는 방식 수정 필요 -->
+	<img src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(0).GI_FILENAME}" class="img-rounded"  width="300px" height="450px">
+	</div>
+	<div class="col-lg-6">
+	<span>${dealvo.t_name}</span><br>
+	<span>${dealvo.t_price}</span><br>
+	<span>${membervo.m_phone}</span><br>
+	<span>${dealvo.t_explanation}</span><br>
+	<a href="">구매하기</a>
+	</div>
+</div>
+</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

@@ -82,6 +82,16 @@
 
 		<form class="form-horizontal" role="form" method="post"
 			action="${pageContext.request.contextPath }/deal/dealinsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+
+			<div class="form-group" id="divTitle">
+				<label class="col-lg-2 control-label">제목</label>
+				<div class="col-lg-8">
+					<input type="text" class="form-control" id="t_title" name="t_title"
+						data-rule-required="true" placeholder="제목을 등록해주세요."
+						maxlength="30">
+				</div>
+			</div>
+
 			<div class="form-group" id="divId">
 				<label class="col-lg-2 control-label">제품명</label>
 				<div class="col-lg-8">

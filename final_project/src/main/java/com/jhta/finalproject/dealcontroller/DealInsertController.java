@@ -2,6 +2,7 @@ package com.jhta.finalproject.dealcontroller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,11 +25,11 @@ public class DealInsertController {
 	}
 	
 	@PostMapping("/deal/dealinsert")
-	public String insert(MultipartHttpServletRequest mt, String t_name, String t_explanation, int t_price) {
+	public String insert(MultipartHttpServletRequest mt, String t_name, String t_explanation, int t_price, String t_title,Principal principal) {
 		List<MultipartFile> fileList = mt.getFiles("file");     
         String path= mt.getRealPath("/resources/goodsimg");
-        
-        DealVo vo = new DealVo(0,t_name ,t_explanation ,1, t_price , null, null);
+        String m_id = principal.getName();
+        DealVo vo = new DealVo(0,t_name ,t_explanation ,1, t_price , null, null,t_title,m_id);
         
         service.insert(vo);
         int lastnum = service.lastnum();

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.DealVo;
 import com.jhta.finalproject.vo.Goods_ImageVo;
+import com.jhta.finalproject.vo.MemberVo;
 
 import data.mybatis.mapper.DealMapper;
 
@@ -36,5 +37,8 @@ public class DealService {
 	}
 	public DealVo selectOne(int t_num) {
 		return mapper.selectOne(t_num);
+	}
+	public MemberVo selectMember(String m_id) {
+		return mapper.selectMember(m_id);
 	}
 }
