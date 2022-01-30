@@ -4,7 +4,12 @@
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<style>
+.starRate {
+	font-size: 20px;
+	color: blue;
+}
+</style>
 <!-- Main Content 이건 지우지 마세요-->
 <div id="content">
 
@@ -120,11 +125,15 @@
 													<tr>
 														<td>${vo.s_name }</td>
 														<td>${vo.s_prof }</td>
-														<td>${vo.sr_recommend }</td>
+														<c:if test="${vo.sr_recommend==1 }"><td><span class="starRate">★</span></td></c:if>
+														<c:if test="${vo.sr_recommend==2 }"><td><span class="starRate">★★</span></td></c:if>
+														<c:if test="${vo.sr_recommend==3 }"><td><span class="starRate">★★★</span></td></c:if>
+														<c:if test="${vo.sr_recommend==4 }"><td><span class="starRate">★★★★</span></td></c:if>
+														<c:if test="${vo.sr_recommend==5 }"><td><span class="starRate">★★★★★</span></td></c:if>
 														<td>${vo.sr_content }</td>
 														<td>${vo.sr_regdate }</td>
 														<td><a onclick="rateClick(${vo.sr_num });">수정</a></td>
-														<td><a onclick="rateClick(${vo.sr_num });">삭제</a></td>
+														<td><a onclick="myrateDelete(${vo.sr_num });">삭제</a></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -167,52 +176,22 @@
 		<script type="text/javascript">
 	
 	
-		/* function rateClick(s_num) {
-				$.ajax({
-					url:'${cp}/timetable/rateList',
-					data:{"s_num":s_num},
-            		type: 'GET',
-					dataType:'json',
-					success:function(data) {
-						$(data.list).each(function(i,vo) {
-							let m_num=vo.m_num;
-							let sr_content=vo.sr_content;
-							let sr_regdate=vo.sr_regdate;
-							let sr_recommend=vo.sr_recommend;
-							let html="<div class='ratebox' id='ratebox"+i+"'>" ;
-							html += "별점:" + sr_recommend +"<br>" ;
-							html += "내용:" + sr_content +"<br>" ;
-							html += "작성자:" + m_num +"<br>" ;
-							html += "작성일:" + sr_regdate +"<br>" ;
-							$("#rateListBox").append(html);
-						});
+		function myrateDelete(sr_num) {
+			$.ajax({
+				url:'${cp}/timetable/myrateDelete',
+				data:{"sr_num":sr_num},
+	       		type: 'GET',
+				dataType:'json',
+				success:function(data) {
+					if(data.result==true) {
+						alert("삭제성공");
+						location.reload();
+					}else {
+						alert("삭제실패");
 					}
-				});
-		} */
-						
-						
-						
-		/* let startPage=data.startPageNum;
-		let endPage=data.endPageNum;
-		let pageCount=data.pageCount;
-		let pageHTML="";
-		if(startPage>5) {
-			pageHTML +="<a href='javascript:list("+ (startPage-1) + ")'>[이전]</a>";
+				}
+			});
 		}
-		for(let i=startPage;i<=endPage;i++){
-			if(i==pageNum){
-				pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:blue'>["+ i +"]</span></a>";
-			}else{
-				pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:gray'>["+ i +"]</span></a>";
-			}
-		}
-		if(endPage<pageCount) {
-			pageHTML +="<a href='javascript:list("+ (endPage+1) + ")'>[다음]</a>";
-		}
-		$("#page").html(pageHTML); 
-		}
-		});
-		});*/
 
 		
 	</script>

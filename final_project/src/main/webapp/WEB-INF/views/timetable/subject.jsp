@@ -10,13 +10,18 @@
 }
 
 .starR {
-	font-size: 30px;
+	font-size: 20px;
 	cursor: pointer;
 	color: #c8c8c8;
-	cursor: pointer;
 }
 
 .starR.on {
+	color: blue;
+}
+
+.starRate {
+	font-size: 20px;
+	color: #c8c8c8;
 	color: blue;
 }
 </style>
@@ -192,7 +197,10 @@
 											</form>
 										</div>
 										<span id="myrateresult"></span>
-										<div id="rateListBox"></div>
+										<div>
+											<div id="rateListBox"></div>
+											<div id="rateListPageBox"></div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -234,10 +242,10 @@
 
 
 <script type="text/javascript">
-	function rateClick(s_num) {
+	function rateClick(s_num,pageNum) {
 		$.ajax({
 			url:'${cp}/timetable/rateList',
-			data:{"s_num":s_num},
+			data:{"pageNum":pageNum,"s_num":s_num},
        		type: 'GET',
 			dataType:'json',
 			success:function(data) {
@@ -250,12 +258,47 @@
 					let sr_content=vo.sr_content;
 					let sr_regdate=vo.sr_regdate;
 					let sr_recommend=vo.sr_recommend;
-					html += "<tr><td>" + sr_recommend +"</td>";
+					switch (sr_recommend) {
+					case 1:
+						html += "<tr><td><span class='starRate'>★</span></td>";
+						break;
+					case 2:
+						html += "<tr><td><span class='starRate'>★★</span></td>";
+						break;
+					case 3:
+						html += "<tr><td><span class='starRate'>★★★</span></td>";
+						break;
+					case 4:
+						html += "<tr><td><span class='starRate'>★★★★</span></td>";
+						break;
+					case 5:
+						html += "<tr><td><span class='starRate'>★★★★★</span></td>";
+						break;
+					}
 					html += "<td>" + sr_content +"</td>";
 					html += "<td>" + sr_regdate +"</td></tr>";
 				});
 				html += "</tbody></table>";
 				$("#rateListBox").html(html);
+				
+				let startPage=data.startPageNum;
+				let endPage=data.endPageNum;
+				let pageCount=data.pageCount;
+				let pageHTML="";
+				if(startPage>5) {
+					pageHTML +="<a href='javascript:rateClick("+ s_num +","+ (startPage-1) + ")'>이전</a>";
+				}
+				for(let i=startPage;i<=endPage;i++){
+					if(i==pageNum){
+						pageHTML +="<a href='javascript:rateClick("+ s_num +","+ i + ")'><span style='color:blue'>"+ i +"</span></a>";
+					}else{
+						pageHTML +="<a href='javascript:rateClick("+ s_num +","+ i + ")'><span style='color:gray'>"+ i +"</span></a>";
+					}
+				}
+				if(endPage<pageCount) {
+					pageHTML +="<a href='javascript:rateClick("+ s_num +","+  (endPage+1) + ")'>다음</a>";
+				}
+				$("#rateListPageBox").html(pageHTML);
 			}
 		});
 	}
@@ -278,17 +321,18 @@
 	});
 			
 	$("#myrateForm").submit(function(e) {
+		let msg="";
 		$.ajax({
 			url:'${cp}/timetable/myrateInsert?'+$("#myrateForm").serialize(),
 			method:'post',
 			dataType:'json',
-			let msg="";
 			success:function(data) {
 				if(data.result==true) {
 					$("#myrateBox").css("display","none");
 					msg="강의평이 등록되었습니다.";
+					rateClick($("#myrateS_num").val());
 				}else {
-					msg="강의평이 등록에 실패하였습니다.";
+					msg="강의평 등록에 실패하였습니다.";
 				}
 				$("#myrateresult").html(msg);
 			}
@@ -300,27 +344,47 @@
 		
 						
 						
-		/* let startPage=data.startPageNum;
-		let endPage=data.endPageNum;
-		let pageCount=data.pageCount;
-		let pageHTML="";
-		if(startPage>5) {
-			pageHTML +="<a href='javascript:list("+ (startPage-1) + ")'>[이전]</a>";
+		/* 
+		function list(pageNum) {
+			$("#commList").empty();
+			$.ajax({
+				url:'/spring13/list',
+				data:{"pageNum":pageNum,"mnum":${vo.mnum }},
+				dataType:'json',
+				success:function(data) {
+					$(data.list).each(function(i,d) {
+						let id=d.id;
+						let comments=d.comments;
+						let num=d.num;
+						let html="<div class='comm1' id='commBox"+i+"'>" ;
+						html += "아이디:" + id +"<br>" ;
+						html += "영화평:" + comments +"<br>";
+						html +="<input type='button' value='수정' onclick='updateForm("+i+","+num+","+d.id+","+comments+")'>";
+						html +="<input type='button' value='삭제' onclick='removeComm("+num+")'></div>";
+						$("#commList").append(html);
+					});
+					let startPage=data.startPageNum;
+					let endPage=data.endPageNum;
+					let pageCount=data.pageCount;
+					let pageHTML="";
+					if(startPage>5) {
+						pageHTML +="<a href='javascript:list("+ (startPage-1) + ")'>[이전]</a>";
+					}
+					for(let i=startPage;i<=endPage;i++){
+						if(i==pageNum){
+							pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:blue'>["+ i +"]</span></a>";
+						}else{
+							pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:gray'>["+ i +"]</span></a>";
+						}
+					}
+					if(endPage<pageCount) {
+						pageHTML +="<a href='javascript:list("+ (endPage+1) + ")'>[다음]</a>";
+					}
+					$("#page").html(pageHTML);
+				}
+			}); 
 		}
-		for(let i=startPage;i<=endPage;i++){
-			if(i==pageNum){
-				pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:blue'>["+ i +"]</span></a>";
-			}else{
-				pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:gray'>["+ i +"]</span></a>";
-			}
-		}
-		if(endPage<pageCount) {
-			pageHTML +="<a href='javascript:list("+ (endPage+1) + ")'>[다음]</a>";
-		}
-		$("#page").html(pageHTML); 
-		}
-		});
-		});*/
+		*/
 
 		
 </script>
