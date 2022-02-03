@@ -61,7 +61,7 @@
 	<span>${dealvo.t_price}</span><br>
 	<span>${membervo.m_phone}</span><br>
 	<span>${dealvo.t_explanation}</span><br>
-	<a href="">구매하기</a>
+	<a href="${pageContext.request.contextPath }/deal/dealpurchase?t_num=${dealvo.t_num}&m_id=${dealvo.m_id}">구매하기</a>
 	</div>
 </div>
 </div>

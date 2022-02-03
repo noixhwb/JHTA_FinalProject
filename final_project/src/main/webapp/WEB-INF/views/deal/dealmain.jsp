@@ -62,7 +62,7 @@
 			<c:forEach var="vo" items="${list}" varStatus="status">
 				<div class="col-lg-4">
 				<a href="${pageContext.request.contextPath }/deal/dealdetail?t_num=${vo.t_num}">
-					<img src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(status.index).GI_FILENAME}" class="img-rounded"  width="300px" height="450px"><br> <span>${vo.t_name }</span><br>
+					<img src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(status.index).GI_FILENAME}" class="img-rounded"  width="300px" height="450px"><br> <span>${vo.t_title }</span><br>
 					<span>${vo.t_price}</span><br><br>
 				</a>
 				</div>
