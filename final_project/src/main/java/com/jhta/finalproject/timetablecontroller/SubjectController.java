@@ -25,12 +25,14 @@ public class SubjectController {
 	@Autowired private SubjectService service;
 	@Autowired private SubjectRateService rateservice;
 
+	//강의평가 페이지로 이동
 	@GetMapping("/timetable/subject")
 	public String tableSubject() {
 		sc.setAttribute("cp", sc.getContextPath());
 		return "timetable/subject";
 	}
 
+	//강의평가 페이지에서 키워드로 검색후 리스트 출력
 	@GetMapping("/timetable/subjectList")
 	public String subjectList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String keyword,
 			Model model) {
@@ -39,8 +41,8 @@ public class SubjectController {
 		
 		int totalRowCount = service.count(map);
 		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
-		int startRow = pu.getStartRow();// 시작행번호
-		int endRow = pu.getEndRow();// 끝행번호
+		int startRow = pu.getStartRow();
+		int endRow = pu.getEndRow();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		List<SubjectVo> list = service.subjectList(map);
@@ -50,6 +52,7 @@ public class SubjectController {
 		return "timetable/subject";
 	}
 	
+	//강의평가 페이지에서 강의평가리스트 출력
 	@GetMapping(value="/timetable/rateList", produces={MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String, Object> rateList(
 			@RequestParam(value="pageNum",defaultValue = "1")int pageNum,
@@ -59,9 +62,9 @@ public class SubjectController {
 		
 		int totalRowCount = rateservice.count(s_num);
 
-		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
-		int startRow = pu.getStartRow();// 시작행번호
-		int endRow = pu.getEndRow();// 끝행번호
+		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
+		int startRow = pu.getStartRow();
+		int endRow = pu.getEndRow();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		List<SubjectRateVo> list = rateservice.rateList(map);

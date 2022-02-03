@@ -126,6 +126,7 @@
 													<th>학점</th>
 													<th>강의평가보기</th>
 													<th>강의평가하기</th>
+													<th>찜하기</th>
 												</tr>
 											</thead>
 											<tfoot>
@@ -137,6 +138,7 @@
 													<th>학점</th>
 													<th>강의평가보기</th>
 													<th>강의평가하기</th>
+													<th>찜하기</th>
 												</tr>
 											</tfoot>
 											<tbody>
@@ -147,8 +149,9 @@
 														<td>${vo.s_prof }</td>
 														<td>${vo.s_category }</td>
 														<td>${vo.s_score }</td>
-														<td><button class="btn btn-primary" onclick="rateClick(${vo.s_num});">강의평가보기</button></td>
+														<td><button class="btn btn-primary" onclick="rateList(${vo.s_num});">강의평가보기</button></td>
 														<td><button class="btn btn-primary" onclick="myrateForm(${vo.s_num});">강의평가하기</button></td>
+														<td><button class="btn btn-primary" onclick="mySubjectInsert(${vo.s_num});">찜하기</button></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -242,7 +245,9 @@
 
 
 <script type="text/javascript">
-	function rateClick(s_num,pageNum) {
+
+	/* 강의평가보기 버튼클릭시 강의평가리스트 출력 */
+	function rateList(s_num,pageNum) {
 		$.ajax({
 			url:'${cp}/timetable/rateList',
 			data:{"pageNum":pageNum,"s_num":s_num},
@@ -286,65 +291,89 @@
 				let pageCount=data.pageCount;
 				let pageHTML="";
 				if(startPage>5) {
-					pageHTML +="<a href='javascript:rateClick("+ s_num +","+ (startPage-1) + ")'>이전</a>";
+					pageHTML +="<a href='javascript:rateList("+ s_num +","+ (startPage-1) + ")'>이전</a>";
 				}
 				for(let i=startPage;i<=endPage;i++){
 					if(i==pageNum){
-						pageHTML +="<a href='javascript:rateClick("+ s_num +","+ i + ")'><span style='color:blue'>"+ i +"</span></a>";
+						pageHTML +="<a href='javascript:rateList("+ s_num +","+ i + ")'><span style='color:blue'>"+ i +"</span></a>";
 					}else{
-						pageHTML +="<a href='javascript:rateClick("+ s_num +","+ i + ")'><span style='color:gray'>"+ i +"</span></a>";
+						pageHTML +="<a href='javascript:rateList("+ s_num +","+ i + ")'><span style='color:gray'>"+ i +"</span></a>";
 					}
 				}
 				if(endPage<pageCount) {
-					pageHTML +="<a href='javascript:rateClick("+ s_num +","+  (endPage+1) + ")'>다음</a>";
+					pageHTML +="<a href='javascript:rateList("+ s_num +","+  (endPage+1) + ")'>다음</a>";
 				}
 				$("#rateListPageBox").html(pageHTML);
 			}
 		});
 	}
-		
+
+	/* 강의평가하기 버튼클릭시 강의평가폼 보이기 */
 	function myrateForm(s_num) {
 		$("#myrateBox").css("display","block");
 		$("#myrateS_num").val(s_num);
-		$("#myrateM_num").val(1);
+		$("#myrateM_num").val(1); /*******m_num받아오기 수정해야함!!!!!!!!!******/
 	}
 
+	/* 별 클릭시 별css변하고 점수값 value에 등록 */
 	$('.starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
 		$(this).addClass('on').prevAll('span').addClass('on');
 		/* return false; */
 		$("#myrateRecommend").val(parseInt($(this).prop("id")));
 	});
-	
+
+	/* 강의평가취소 버튼클릭시 강의평가폼 안보이기 */
 	$("#myrateCancle").click(function(){
 		$("#myrateBox").css("display","none");
 	});
-			
+
+	/* 강의평가등록 버튼클릭시 등록후 폼 안보이기 및 강의평가리스트 새로고침 */
 	$("#myrateForm").submit(function(e) {
+		e.preventDefault();
 		let msg="";
 		$.ajax({
-			url:'${cp}/timetable/myrateInsert?'+$("#myrateForm").serialize(),
-			method:'post',
+			url:'${cp}/timetable/myrateInsert',
+			data:$("#myrateForm").serialize(),
+			method:'POST',
 			dataType:'json',
 			success:function(data) {
 				if(data.result==true) {
 					$("#myrateBox").css("display","none");
 					msg="강의평이 등록되었습니다.";
-					rateClick($("#myrateS_num").val());
+					rateList($("#myrateS_num").val());
 				}else {
 					msg="강의평 등록에 실패하였습니다.";
 				}
 				$("#myrateresult").html(msg);
 			}
 		});
-	});				
+	});
 					
-				
+	function mySubjectInsert(s_num) {
+		let msg="";
+		$.ajax({
+			url:'${cp}/timetable/myrateInsert',
+			data:$("#myrateForm").serialize(),
+			method:'POST',
+			dataType:'json',
+			success:function(data) {
+				if(data.result==true) {
+					$("#myrateBox").css("display","none");
+					msg="강의평이 등록되었습니다.";
+					rateList($("#myrateS_num").val());
+				}else {
+					msg="강의평 등록에 실패하였습니다.";
+				}
+				$("#myrateresult").html(msg);
+			}
+		});
+	}			
 			
 		
 						
 						
-		/* 
+		/* 페이징처리 예시
 		function list(pageNum) {
 			$("#commList").empty();
 			$.ajax({

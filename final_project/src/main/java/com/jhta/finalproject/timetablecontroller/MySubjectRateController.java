@@ -58,6 +58,19 @@ public class MySubjectRateController {
 		return "timetable/mysubjectrate";
 	}
 	
+	@PostMapping(value="/timetable/myrateUpdate", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String, Object> myrateUpdate(SubjectRateVo vo) {
+		HashMap<String,Object> map=new HashMap<String, Object>();
+		rateservice.update(vo);
+		try {
+			map.put("result", true);
+		}catch (Exception e) {
+			e.printStackTrace();
+			map.put("result", false);
+		}
+		return map;
+	}
+	
 	@GetMapping(value="/timetable/myrateDelete", produces={MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String, Object> myrateDelete(int sr_num) {
 		HashMap<String,Object> map=new HashMap<String, Object>();

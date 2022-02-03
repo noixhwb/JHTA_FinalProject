@@ -8,7 +8,7 @@
 	<div class="container-fluid">
 
 		<h1>시간표 어렵다</h1>
-		<table border="1">
+		<table width="1000px" border="1">
 			<tr>
 				<th>시간</th>
 				<th>월</th>
