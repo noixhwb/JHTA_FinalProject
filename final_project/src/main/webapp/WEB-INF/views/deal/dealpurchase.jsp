@@ -61,8 +61,12 @@
 			<div class="media-body">
 				<h5 class="mt-0">${dvo.t_title }</h5>
 				<p>${dvo.t_explanation }</p>
-
 			</div>
+		</div>
+		
+		
+		<div>
+
 		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
