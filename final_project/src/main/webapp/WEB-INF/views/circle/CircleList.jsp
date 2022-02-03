@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
    
 <!-- 전체 동아리 목록 -->
 <!-- Header -->
@@ -50,13 +50,13 @@
 
 <!-- Approach -->
 				<!-- n번 동아리 -->
-				
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
 								<img src="${ cp }/resources/images/circle/${ vo.ci_logofile }" 
-									 style="max-width: 50px;">
+									 style="width:50px; height:50px;">
+								&nbsp;&nbsp;&nbsp;
 								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.ci_name }</h6>
 							</div>
 							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
@@ -99,7 +99,7 @@
 							</div>
 							<div class="col-md-4"> <!-- 카드본문 오른쪽 (포스터) -->
 								<img src="${ cp }/resources/images/circle/${ vo.ci_imgfile }" 
-									 class="img-fluid rounded-start" alt="..." style="max-width: 150px;">
+									 class="img-fluid rounded-start" alt="..." style="width:150px;">
 							</div>
 						</div>
 					</div> <!-- n번 동아리 body 끝 -->

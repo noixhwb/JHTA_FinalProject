@@ -34,7 +34,6 @@ public class CircleInsertController {
 	@GetMapping("/circle/CircleInsert")
 	public String circleinsert(Model model, Principal principal) {
 		MemberVo uservo = service.selectM(principal.getName());
-		System.out.println("@@@"+uservo);
 		int userMnum = uservo.getM_num();
 		String userMname = uservo.getM_name();
 		String userMnickname = uservo.getM_nickname();
@@ -48,9 +47,7 @@ public class CircleInsertController {
 	
 	@PostMapping("/circle/CircleInsert")
 	public String circleinsertok(CircleVo vo, MultipartFile file1, MultipartFile file2, Model model, Principal principal) {
-		System.out.println("@");
 		String path = sc.getRealPath("/resources/upload");
-		System.out.println("@@");
 		System.out.println(path);
 		String ci_logofile = file1.getOriginalFilename(); 
 		String ci_imgfile = file2.getOriginalFilename(); 
@@ -71,7 +68,6 @@ public class CircleInsertController {
 			fos2.close();
 
 			MemberVo uservo = service.selectM(principal.getName());
-			System.out.println("@@@"+uservo);
 			int userMnum = uservo.getM_num();
 			model.addAttribute("uservo", uservo);
 			model.addAttribute("userMnum", userMnum);

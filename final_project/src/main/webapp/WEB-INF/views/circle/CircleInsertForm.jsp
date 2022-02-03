@@ -32,7 +32,9 @@
 
 
 			<!-- 1. 동아리 게시요청 주의사항 카드 -->
-			<div class="card shadow col-8 offset-2 mb-5 bg-white">
+			<div class="row">
+				<div class="col-8 offset-2">
+			<div class="card shadow mb-5 bg-white">
 				<div class="card-header py-3 bg-light" style="margin-left:0; margin-right:0">
 					<h5 class="m-0 font-weight-bold text-danger"> 동아리 게시 유의사항 </h5>
 				</div>
@@ -45,6 +47,8 @@
 						<li> 게시글 중복 방지를 위해 동아리당 한 게시글만 등록할 수 있습니다 </li>
 					</ul>	
 				</div>
+			</div>
+				</div>
 			</div> <!-- 1. 동아리 게시요청 주의사항 카드 끝 -->
 <!-- Content Row -->
 			<!-- <div class="row"> -->
@@ -55,7 +59,9 @@
 <!-- Approach -->
 			
 			<!-- 2. 동아리 만들기 카드 -->
-			<div class="card shadow col-8 offset-2 mb-5">
+			<div class="row">
+				<div class="col-8 offset-2">
+			<div class="card shadow mb-5">
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-dark"> 동아리 정보 등록 </h5>
 				</div>
@@ -69,7 +75,7 @@
 						
 					<!-- (1) 동아리명 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">동아리명</h6>
 								<p class="card-text">
@@ -86,7 +92,7 @@
 						
 					<!-- (2) 분야 선택 (학술/취업/봉사/기타) -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">동아리 분야</h6>
@@ -103,7 +109,7 @@
 						
 					<!-- (3) 규모 (10/20/30명 이하) -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">동아리 규모</h6>
@@ -119,7 +125,7 @@
 						
 					<!-- (4) 사진 업로드 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">동아리 이미지 업로드</h6>
@@ -131,11 +137,15 @@
 						</div>
 					</div> <!-- (4) 사진업로드 끝 -->
 				</div> <!-- 동아리카드의 body 끝 -->
+			</div>
+				</div>
 			</div> <!-- 2. 동아리카드 끝 -->
 
 <!-- Approach -->
 			<!-- 3. 게시글 만들기 카드 -->
-			<div class="card shadow col-8 offset-2 mb-5">
+			<div class="row">
+				<div class="col-8 offset-2">
+			<div class="card shadow mb-5">
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-dark"> 모집 공고 등록 </h5>
 				</div>
@@ -149,7 +159,7 @@
 				
 					<!-- (1) 게시글 제목 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">글 제목</h6>
@@ -163,14 +173,14 @@
 						
 					<!-- (2) 모집 기간 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 						
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">모집 기간</h6>
 								<p class="card-text">
 									<!-- 달력!!! 시작일, 마감일 -->
 									<p class="input small">
-										<input type="date" name="ci_startdate" autocomplete="off" class="date"><span>부터</span>
+										<input type="date" name="ci_startdate" autocomplete="off" class="date"><span>부터</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<input type="date" name="ci_enddate" autocomplete="off" class="date"><span>까지</span>
 									</p>
 								</p>
@@ -181,12 +191,12 @@
 						
 					<!-- (3) 상세 내용 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 						
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">상세 내용</h6>
-								<div class="col-lg-8" id="memberInfo">
-                        			<textarea class="form-control" rows="11" name="ci_content" style="resize:none">
+								<div id="memberInfo">
+                        			<textarea class="form-control" rows="11" name="ci_content" style="resize:none; width:100%;">
                         				${ ci_content }
 			                        </textarea>
 			                    </div>
@@ -197,7 +207,7 @@
 						
 					<!-- (4) 이미지 첨부 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 						
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">이미지 첨부</h6>
@@ -210,11 +220,15 @@
 					</div> <!-- (4) 이미지 첨부 끝-->
 						
 				</div> <!-- 게시글카드의 body 끝 -->
+			</div>
+				</div>
 			</div> <!-- 3. 게시글카드 끝 -->
 			
 			
 			<!-- 4. 담당자 정보 카드 -->
-			<div class="card shadow col-8 offset-2 mb-5">
+			<div class="row">
+				<div class="col-8 offset-2">
+			<div class="card shadow mb-5">
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-info"> 담당자 정보 </h5>
 				</div>
@@ -223,21 +237,20 @@
 				
 					<!-- (1) 담당자 이름 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">아이디</h6>
-								<p class="card-text">
-									<input type="text" name="title" value="<sec:authentication property="principal.username"/>" maxlength="40" autocomplete="off" readonly="readonly">
-								</p> <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="text" name="title" value="<sec:authentication property="principal.username"/>" maxlength="40" autocomplete="off" readonly="readonly">
+								<br>
 								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">이름</h6>
-								<p class="card-text">
-									<input type="text" name="title" value="${ userMname }" maxlength="40" autocomplete="off" readonly="readonly">
-								</p> <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="text" name="title" value="${ userMname }" maxlength="40" autocomplete="off" readonly="readonly">
+								<br>
 								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">닉네임</h6>
-								<p class="card-text">
-									<input type="text" name="title" value="${ userMnickname }" maxlength="40" autocomplete="off" readonly="readonly">
-								</p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="text" name="title" value="${ userMnickname }" maxlength="40" autocomplete="off" readonly="readonly">
 							</div>
 							
 						</div>
@@ -245,7 +258,7 @@
 					
 					<!-- (2) 권한 -->
 					<div class="card mb-3">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">권한</h6>
@@ -261,6 +274,8 @@
 					</div> <!-- (2) 권한 끝-->
 					
 				</div> <!-- 4. 담당자 정보 카드 body 끝 -->
+			</div>
+				</div>
 			</div> <!-- 4. 담당자 정보 카드 끝 -->
 			
 			

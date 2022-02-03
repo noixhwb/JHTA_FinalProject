@@ -54,7 +54,7 @@
 				<div class="row">
 					<div class="col-6 offset-3">
 				<div class="card shadow bg-white mb-3" style="margin-top: 10%;">
-					<div class="card-header bg-secondary" style="text-align: left;">
+					<div class="card-header bg-secondary text-white" style="text-align: left;">
 						<small class="text-muted" style="text-align:left;"> 게시요청확인 </small> <br> 
 					</div>
 					<div class="card-body text-danger">
@@ -73,7 +73,7 @@
 				<div class="row">
 					<div class="col-6 offset-3">
 				<div class="card shadow bg-white mb-3" style="margin-top: 10%;">
-					<div class="card-header bg-secondary">
+					<div class="card-header bg-secondary text-white">
 						<small class="text-muted" style="text-align:left;"> 게시불가확인 </small> <br> 
 					</div>
 					<div class="card-body text-danger">
