@@ -2,6 +2,8 @@ package data.mybatis.mapper;
 
 
 
+import java.util.List;
+
 import com.jhta.finalproject.security.CustomMemberDetail;
 import com.jhta.finalproject.vo.AuthoritiesVo;
 import com.jhta.finalproject.vo.MemberVo;
@@ -22,5 +24,5 @@ public interface MemberMapper {
 	
 	MemberVo isNick(String mnick);
 	
-
+	List<MemberVo> selectAll();
 }

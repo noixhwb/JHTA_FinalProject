@@ -1,5 +1,7 @@
 package com.jhta.finalproject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -46,6 +48,10 @@ public class MemberService {
 
 	public MemberVo isNick(String mnick) {
 		return mapper.isNick(mnick);
+	}
+	
+	public List<MemberVo> selectAll(){
+		return mapper.selectAll();
 	}
 }
 

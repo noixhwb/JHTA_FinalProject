@@ -48,6 +48,11 @@
 	 <select id="isNick" parameterType="string" resultType="com.jhta.finalproject.vo.MemberVo">
 		select * from member where m_nickname=#{mnick}
 	</select>
+	
+	<select id="selectAll" resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from member
+	</select>
+	
  </mapper>
  
  

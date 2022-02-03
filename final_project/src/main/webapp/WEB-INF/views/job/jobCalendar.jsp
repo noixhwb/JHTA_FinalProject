@@ -4,17 +4,14 @@
 <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <!-- jquery CDN -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- fullcalendar CDN -->
 <link
 	href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css'
 	rel='stylesheet' />
-<script
-	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
-<!-- fullcalendar 언어 CDN -->
-<script
-	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+<!-- ful	lcalendar 언어 CDN -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <style>
 /* body 스타일 */
 html, body {
@@ -29,6 +26,7 @@ html, body {
 </style>
 
 <%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -121,6 +119,8 @@ html, body {
 	// j_num, j_company, j_startdate, j_enddate, j_url
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
+		
+		// new FullCalendar.Calendar(대상 DOM객체, {속성:속성값, 속성2:속성값2..})
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView : 'dayGridMonth',
 			expandRows : true,
@@ -136,30 +136,18 @@ html, body {
 			eventRemove : function(obj) { // 이벤트가 삭제되면 발생하는 이벤트
 				console.log(obj);
 			},
-			events: [
-			    {
-			      title  : 'event1',
-			      start  : '2010-01-01'
-			    },
-			    {
-			      title  : 'event2',
-			      start  : '2010-01-05',
-			      end    : '2010-01-07'
-			    },
-			    {
-			      title  : 'event3',
-			      start  : '2010-01-09T12:30:00',
-			      allDay : false // will make the time show
-			    }
-			  ]
+			
+			
+			
 		});
 		calendar.render();
 	});
+//	> ajax통신을 통해 데이터 전달, 달력에 출력
 	$.ajax({
-		url: '/job/cal',
-		type: 'POST',
-		success: function(res){
-			var list = res;
+		url: '${cp}/job/calan',
+		type: 'GET',
+		success: function(data){
+			var list = data;
 			console.log(list);
 			
 			
@@ -167,22 +155,15 @@ html, body {
 			
 			var events = list.map(function(item) {
 				return {
-					title : item.reservationTitle,
-					start : item.reservationDate + "T" + item.reservationTime
+					title : item.j_subject,
+					start : item.j_startdate + "T" + item.j_enddate
 				}
 			});
 			
-			var calendar = new FullCalendar.Calendar(calendarEl, {
-				events : events,
-				eventTimeFormat: { // like '14:30:00'
-				    hour: '2-digit',
-				    minute: '2-digit',
-				    hour12: false
-				  }
-			});
 			calendar.render();
 		},
 	});
+
 		  
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp"%>

@@ -198,14 +198,12 @@
                 </a>
                 <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <a class="collapse-item" href="${cp }/admin/memberList">회원관리</a>
+                        <a class="collapse-item" href="${cp }/admin/commConfirm">커뮤니티 승인요청 페이지</a>
+                        <a class="collapse-item" href="${cp }/admin/circleConfirm">동아리 승인요청 페이지</a>
+                        <a class="collapse-item" href="${cp }/admin/jobConfirm">채용공고 승인요청 페이지</a>
+						<!-- <div class="collapse-divider"></div>  -->                       
+                        <!-- <h6 class="collapse-header">Other Pages:</h6>-->   
                     </div>
                 </div>
             </li>
