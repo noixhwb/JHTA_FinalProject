@@ -17,8 +17,9 @@
 		<sec:intercept-url pattern="/job/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
-		<sec:form-login default-target-url="/home"/>
-		<sec:logout logout-url="/logout" logout-success-url="/"/>
+		<sec:form-login username-parameter="m_id" password-parameter="m_pwd" 
+		login-page="/login" default-target-url="/home"/>
+		<sec:logout logout-url="/logout" logout-success-url="/home"/>
 	</sec:http>
 	
 	<!-- 인증매니져 설정 -->

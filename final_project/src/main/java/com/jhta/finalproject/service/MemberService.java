@@ -23,6 +23,7 @@ public class MemberService {
 	
 	  public int addUser(MemberVo vo) { 
 		 String pwd=vo.getM_pwd();
+		 
 		 vo.setM_pwd(passwordEncoder.encode(pwd));
 		 mapper.addUser(vo); 
 		 AuthoritiesVo auth=new AuthoritiesVo();
