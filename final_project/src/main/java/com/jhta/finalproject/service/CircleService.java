@@ -30,7 +30,12 @@ public class CircleService {
 		return mapper.select(ci_num);
 	}
 
+	public List<CircleVo> selectMyCircle(int m_num) {
+		return mapper.selectMyCircle(m_num);
+	}
+	
 	public MemberVo selectM(String m_id) {
 		return mapper.selectM(m_id);
 	}
+	
 }

@@ -33,7 +33,7 @@ public class MyCircleJoinController {
 		
 		mservice.insert(new MyCircleVo(0, ci_num, userMnum));
 		
-		return "circle/MyCircle";
+		return "redirect:/circle/MyCircleList";
 	}
 	
 	//동아리 신청 취소하기
@@ -47,6 +47,6 @@ public class MyCircleJoinController {
 		map.put("ci_num", ci_num);
 		map.put("m_num", userMnum);
 		mservice.delete(map);
-		return "circle/MyCircle";
+		return "redirect:/circle/MyCircleList";
 	}
 }

@@ -9,9 +9,10 @@
 	<delete id="delete" parameterType="hashmap">
 		DELETE FROM MYCIRCLE WHERE CI_NUM=#{ci_num} AND M_NUM=#{m_num}
 	</delete>
+	<!-- 내가 신청한 동아리 목록 -->
 	<select id="selectAllMyJoin" parameterType="int" resultType="com.jhta.finalproject.circlevo.MyCircleJoinVo">
 		SELECT C.CI_NUM, C.CI_NAME, C.CI_LOGOFILE, M.M_NUM, C.CI_TITLE, C.CI_IMGFILE 
 		FROM CIRCLE C, MYCIRCLE M 
-		WHERE C.M_NUM=M.M_NUM AND M.M_NUM=#{m_num}
+		WHERE C.CI_NUM=M.CI_NUM AND M.M_NUM=#{m_num}
 	</select>
 </mapper>

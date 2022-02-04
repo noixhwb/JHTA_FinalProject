@@ -196,9 +196,9 @@
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">상세 내용</h6>
 								<div id="memberInfo">
-                        			<textarea class="form-control" rows="11" name="ci_content" style="resize:none; width:100%;">
-                        				${ ci_content }
-			                        </textarea>
+			                        <textarea class="form-control" id="ci_content" rows="5">
+				                    	${ ci_content }
+				                    </textarea>
 			                    </div>
 							</div>
 								

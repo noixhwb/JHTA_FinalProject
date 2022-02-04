@@ -10,11 +10,17 @@
 	<!-- <update id="update" parameterType="com.jhta.finalproject.circlevo.CircleVo">
 	
 	</update> -->
+	<!-- 모든 동아리 목록 (승인된것만) -->
 	<select id="selectAll" resultType="com.jhta.finalproject.circlevo.CircleVo">
 		SELECT * FROM CIRCLE	
 	</select>
+	<!-- 동아리 상세 페이지 -->
 	<select id="select" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleVo">
 		SELECT * FROM CIRCLE WHERE CI_NUM=#{ci_num}
+	</select>
+	<!-- 내가 만든 동아리 -->
+	<select id="selectMyCircle" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleVo">
+		SELECT * FROM CIRCLE WHERE M_NUM=#{m_num}
 	</select>
 	
 	<!-- 해당페이지 user의 값들 가져오기 FROM MemberVo -->

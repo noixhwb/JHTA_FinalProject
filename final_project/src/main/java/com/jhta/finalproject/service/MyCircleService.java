@@ -26,4 +26,5 @@ public class MyCircleService {
 	public List<MyCircleJoinVo> selectAllMyJoin(int m_num) {
 		return mapper.selectAllMyJoin(m_num);
 	}
+	
 }
