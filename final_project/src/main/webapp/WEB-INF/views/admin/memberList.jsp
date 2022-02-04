@@ -48,44 +48,41 @@
 			<div class="col-lg-6 mb-4">
 
 <!-- Approach -->
-				<!-- n번 동아리 -->
+				<!-- 동아리 -->
 				
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
-								<img src="${ cp }/resources/images/circle/${ vo.m_num }" 
-									 style="max-width: 50px;">
-								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.m_name }</h6>
+								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.m_num }</h6>
 							</div>
 							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
-								${ vo.m_num }, ${ vo.m_num } (더꾸미기..)
 							</div>
 						</div>
 					</div>
 					
-					<div class="card-body"> <!-- n번 동아리 body -->
+					<div class="card-body"> <!-- body -->
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드본문 왼쪽 (정보) -->
 								<div class="card-body">
 									<h6 class="card-title"> 
-										<a href="${ cp }/circle/CircleDetail?m_num=${ vo.m_num }">									
-										${ vo.m_num }</a> 
+										<!--  --> 
 									</h6>
 									<p class="card-text">
 										
 											<div class="row g-0">
 												<div class="col-md-6">
 													<ul id="dot">
-														<!-- <li>모집기간 : ${ vo.m_startdate } ~ ${ vo.m_enddate }</li> -->
-														<li>디데이</li> <!-- 1번 -->
-														<li>모집중</li> <!-- 2번 -->
+														<li>회원번호 : ${vo.m_num }</li> <!-- 1번 -->
+														<li>아이디 : ${vo.m_id }</li> <!-- 2번 --><br>
+														<a href="${ cp }/circle/CircleDetail?m_num=${ vo.m_num }">
+														상세보기</a>
 													</ul>
 												</div>
 												<div class="col-md-6">
 													<ul id="dot">
-														<li>조회수 : ${ vo.m_num }</li> <!-- 3번 -->
-														<li>좋아요수 : ${ vo.m_num }</li> <!-- 4번 -->
+														<li>연락처 : ${vo.m_phone }</li> <!-- 3번 -->
+														<li>계정권한 : ${vo.m_enabled }</li> <!-- 4번 -->
 													</ul>
 												</div>
 											</div>
@@ -97,13 +94,13 @@
 								</div>
 							</div>
 							<div class="col-md-4"> <!-- 카드본문 오른쪽 (포스터) -->
-								<img src="${ cp }/resources/images/circle/${ vo.m_num }" 
+								<img src="${ cp }/resources/images/circle/${ vo.m_profile }" 
 									 class="img-fluid rounded-start" alt="..." style="max-width: 150px;">
 							</div>
 						</div>
-					</div> <!-- n번 동아리 body 끝 -->
+					</div> <!-- body 끝 -->
 					
-				</div> <!-- n번 동아리 끝 -->
+				</div> <!-- 끝 -->
 				
 
 			</div> <!-- 첫번쨰 Content Column 끝 -->

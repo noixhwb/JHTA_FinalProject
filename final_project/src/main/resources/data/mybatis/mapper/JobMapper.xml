@@ -74,6 +74,7 @@
 		update jobinfo set j_view=j_view+1 where j_num=#{j_num}
 	</update>
 	
+	
  </mapper>
  
  

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.List"%>
+<%@page import="com.jhta.finalproject.jobvo.JobVo"%>
 <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <!-- jquery CDN -->
@@ -33,11 +35,6 @@ html, body {
 	<!-- Main Content -->
 	<div id="content">
 
-		<!-- Topbar -->
-		<nav
-			class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-			<h4>3조대학교 캠퍼스픽</h4>
-
 
 			<!-- Sidebar Toggle (Topbar) -->
 			<button id="sidebarToggleTop"
@@ -67,32 +64,7 @@ html, body {
 				<div class="topbar-divider d-none d-sm-block"></div>
 
 				<!-- Nav Item - User Information -->
-				<li class="nav-item dropdown no-arrow"><a
-					class="nav-link dropdown-toggle" href="#" id="userDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <span
-						class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span> <img
-						class="img-profile rounded-circle"
-						src="${ pageContext.request.contextPath }/resources/img/undraw_profile.svg">
-				</a> <!-- Dropdown - User Information -->
-					<div
-						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-						aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="#"> <i
-							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-						</a> <a class="dropdown-item" href="#"> <i
-							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
-						</a> <a class="dropdown-item" href="#"> <i
-							class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-						</a>
-
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" data-toggle="modal"
-							data-target="#logoutModal"> <i
-							class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-							로그아웃
-						</a>
-					</div></li>
+				
 
 			</ul>
 
@@ -111,58 +83,40 @@ html, body {
 			<!-- Approach -->
 
 			<!-- calendar 태그 -->
-			<div id='calendar' style="width: 80%;"></div>
+			<div id='calendar' style="width: 90%;"></div>
 		</div>
 	</div>
 </div>
 <script>
 	// j_num, j_company, j_startdate, j_enddate, j_url
 	document.addEventListener('DOMContentLoaded', function() {
-		var calendarEl = document.getElementById('calendar');
+	var calendarEl = document.getElementById('calendar');
+	var calendar = new FullCalendar.Calendar(calendarEl, {
+		initialView : 'dayGridMonth',
+		locale : 'ko', // 한국어 설정
 		
-		// new FullCalendar.Calendar(대상 DOM객체, {속성:속성값, 속성2:속성값2..})
-		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView : 'dayGridMonth',
-			expandRows : true,
-			navLinks : true,
-			dayMaxEvents : true,
-			locale : 'ko',
-			eventAdd : function(obj) { // 이벤트가 추가되면 발생하는 이벤트
-				console.log(obj);
-			},
-			eventChange : function(obj) { // 이벤트가 수정되면 발생하는 이벤트
-				console.log(obj);
-			},
-			eventRemove : function(obj) { // 이벤트가 삭제되면 발생하는 이벤트
-				console.log(obj);
-			},
-			
-			
-			
-		});
-		calendar.render();
-	});
-//	> ajax통신을 통해 데이터 전달, 달력에 출력
-	$.ajax({
-		url: '${cp}/job/calan',
-		type: 'GET',
-		success: function(data){
-			var list = data;
-			console.log(list);
-			
-			
- 			var calendarEl = document.getElementById('calendar');
-			
-			var events = list.map(function(item) {
-				return {
-					title : item.j_subject,
-					start : item.j_startdate + "T" + item.j_enddate
-				}
+	selectable : true,
+	droppable : true,
+	editable : true,
+	events : [ 
+    	    <%List<JobVo> calendarList = (List<JobVo>)request.getAttribute("calendarList");%>
+            <%if (calendarList != null) {%>
+            <%for (JobVo vo : calendarList) {%>
+            {
+            	title : '<%=vo.getJ_company()%>',
+                start : '<%=vo.getJ_startdate()%>',
+                end : '<%=vo.getJ_enddate()%>',
+                color : '#' + Math.round(Math.random() * 0xffffff).toString(16)
+             },
+             
+	<%}
+}%>
+				],
+				
+				
 			});
-			
 			calendar.render();
-		},
-	});
+		});
 
 		  
 </script>
