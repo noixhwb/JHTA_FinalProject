@@ -99,9 +99,7 @@
 			<h1 class="h3 mb-0 text-gray-800">강의평가</h1>
 			<a href="${cp}/timetable/mysubjectrate?m_num=1"
 				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-				내가 쓴 강의평가 </a> <a href="${cp}/timetable/mysubjectrate?m_num=1"
-				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-				내가 찜한 강의 </a>
+				내가 쓴 강의평가</a>
 		</div>
 		<div>
 			<div>

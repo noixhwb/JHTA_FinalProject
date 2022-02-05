@@ -22,6 +22,11 @@
     <!-- Custom styles for this template-->
     <link href="${cp}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
+<style type="text/css">
+#jhta_logo{
+	width: 50px;
+}
+</style>
 </head>
 
 
@@ -249,7 +254,7 @@
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="${cp}/resources/img/jhta_logo.png" alt="학원로고">
+                <img class="sidebar-card-illustration mb-2" id="jhta_logo" src="${cp}/resources/img/jhta_logo.png" alt="학원로고">
                 <p class="text-center mb-2"><strong>중앙HTA</strong> 홈페이지</p>
                 <a class="btn btn-success btn-sm" href="http://www.jhta.co.kr/main">이동하기!</a>
             </div>

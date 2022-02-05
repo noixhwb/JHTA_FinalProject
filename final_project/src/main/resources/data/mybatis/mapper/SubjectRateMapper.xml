@@ -37,15 +37,18 @@
 	<select id="mycount" parameterType="int" resultType="int">
 		select NVL(count(*),0) cnt from SUBJECTRATE where m_num=#{m_num}
 	</select>
+	<!-- 강의평가 입력 -->
 	<insert id="insert" parameterType="com.jhta.finalproject.timetablevo.SubjectRateVo">
 		insert into SUBJECTRATE 
 		values(SUBJECTRATE_SEQ.NEXTVAL,#{m_num},#{sr_content},sysdate,#{sr_recommend},#{s_num})
 	</insert>
+	<!-- 강의평가 수정 -->
 	<update id="update" parameterType="com.jhta.finalproject.timetablevo.SubjectRateVo">
 		update SUBJECTRATE 
 		set sr_content=#{sr_content}, sr_recommend=#{sr_recommend}
 		where sr_num=#{sr_num}
 	</update>
+	<!-- 강의평가 삭제 -->
 	<delete id="delete" parameterType="int">
 		delete from SUBJECTRATE where sr_num=#{sr_num}
 	</delete>
