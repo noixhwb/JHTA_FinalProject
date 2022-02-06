@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PurchaseController {
-	@PostMapping(value="/deal/purchase",produces = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(value="/deal/purchase1",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> kakaopay() {
+		System.out.println("ajax작동");
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		try {	
+		try {
 			URL addr = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection con = (HttpURLConnection)addr.openConnection();
 			con.setRequestMethod("POST");
@@ -42,7 +43,7 @@ public class PurchaseController {
 			InputStreamReader isr = new InputStreamReader(ips);
 			BufferedReader bfr = new BufferedReader(isr);
 			System.out.println(bfr.readLine());
-			map.put("result","success");
+			map.put("data","success");
 			return map;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -51,7 +52,7 @@ public class PurchaseController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		map.put("result","error");
+		map.put("data","error");
 		return map;
 	}
 }

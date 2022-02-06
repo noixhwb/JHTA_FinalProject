@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -50,25 +51,143 @@
 						로그아웃
 					</a>
 				</div></li>
-
 		</ul>
 		<!-- pvo구매자 정보 svo판매자 정보 dvo상품정보 imglist이미지 정보 -->
 	</nav>
 	<div class="container">
-		<div class="media">
-			<img class="align-self-center mr-3"
-				src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(0).GI_FILENAME}" width="125px" width="125px">
-			<div class="media-body">
-				<h5 class="mt-0">${dvo.t_title }</h5>
-				<p>${dvo.t_explanation }</p>
-			</div>
-		</div>
-		
-		
+		<label class="control-label">제품정보</label>
 		<div>
-
+			<table class="table table-hover" id="dealtb">
+				<!-- On rows -->
+				<tr class="active">
+					<th style="width: 25%">상품이미지</th>
+					<th style="width: 30%">상품명</th>
+					<th style="width: 15%">판매자</th>
+					<th style="width: 15%">배송비</th>
+					<th style="width: 15%">상품금액</th>
+				</tr>
+				<tr class="info">
+					<td class="align-middle">
+						<div class="media">
+							<img class="align-self-center mr-3"
+								src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(0).GI_FILENAME}"
+								width="125px" width="125px">
+						</div>
+					</td>
+					<td class="align-middle">${dvo.t_name }</td>
+					<td class="align-middle">${svo.m_nickname }</td>
+					<td class="align-middle"><div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle"
+								data-toggle="dropdown" id="bs_button" aria-expanded="false">선택</button>
+							<ul class="dropdown-menu" role="menu" id="bs_list">
+								<li><a href="#">착불</a></li>
+								<li><a href="#">선불</a></li>
+							</ul>
+						</div></td>
+					<td class="align-middle">${dvo.t_price}원</td>
+				</tr>
+			</table>
 		</div>
+		<hr style="border: dashed 1px #D5D5D5;">
+		<label class="control-label">배송지 정보</label>
+		<div class="checkbox float-right">
+			<label> <input type="checkbox" id="addinfo"> 주문자와 일치
+			</label>
+		</div>
+		<div>
+			<form action="aaa.jsp" method="post">
+				<div class="form-group">
+					<label for="name">수령인</label> <input type="text"
+						class="form-control" id="name" name="pi_name"
+						placeholder="받으시는 분의 이름을 입력하세요">
+				</div>
+				<div class="form-group">
+					<label for="phone">연락처</label> <input type="text"
+						class="form-control" id="phone" name="pi_phone"
+						placeholder="연락처을 입력하세요">
+				</div>
+				<div class="form-group">
+					<label for="addr">주소</label> <input type="text"
+						class="form-control" id="addr" name="pi_address"
+						placeholder="주소을 입력하세요">
+				</div>
+				<div class="form-group">
+					<label for="t_explanation">요청사항</label>
+					<textarea class="form-control" rows="5" name="t_explanation"
+						id="t_explanation" style="resize: none" placeholder="요청사항을 입력하세요"></textarea>
+				</div>
+				<input type="hidden" value="${dvo.t_num }" name="t_num"> <input
+					type="hidden" value="${pvo.m_num }" name="m_num"> <input
+					type="hidden" value="" name="dfee" id="dfee">
+				<button type="submit" class="btn btn-primary btn-lg ">결제하기</button>
+			</form>
+		</div>
+		<button type="button" id="kakaoapi" class="btn btn-primary">카카오api</button>
 	</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
+	<script type="text/javascript">
+		$(function() {
+			//배송비 선택
+			$("#bs_list li").on("click", function() {
+				$("#bs_button").html($(this).text());
+				$("#dfee").val($(this).text());
+			})
+			//주문자와 일치
+			$("#addinfo").on("click", function() {
+				var checked = $("#addinfo").is(':checked');
+				if (checked) {
+					$("#name").val("${pvo.m_name }");
+					$("#addr").val("${pvo.m_address }");
+					$("#phone").val("${pvo.m_phone }");
+				} else {
+					$("#name").val("");
+					$("#addr").val("");
+					$("#phone").val("");
+				}
+			})
+			$("form").submit(function(event) {
+
+				if ($("#bs_button").html() == "선택") {
+					alert("배송비 지불 방법을 선택해주세요");
+					$('#bs_button').focus();
+					return false;
+				}
+
+				if ($("#name").val() == "") {
+					alert("수령인을 입력해주세요");
+					$('#name').focus();
+					return false;
+				}
+
+				if ($("#phone").val() == "") {
+					alert("연락처을 입력해주세요");
+					$('#phone').focus();
+					return false;
+				}
+
+				if ($("#addr").val() == "") {
+					alert("주소을 입력해주세요");
+					$('#addr').focus();
+					return false;
+				}
+
+			})
+			$("#kakaoapi").on("click", function() {
+
+				$.ajax({
+					url : "${pageContext.request.contextPath}/deal/purchase1",
+					type : 'POST',
+					dataType : "json",
+					beforeSend : function(xhr) {
+						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+					},
+					success : function(data) {
+						code = data.code;
+					}
+				})
+			})
+
+		})
+	</script>
 </body>
 </html>
