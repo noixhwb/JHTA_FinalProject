@@ -119,10 +119,12 @@
 				<input type="hidden" value="${dvo.t_num }" name="t_num"> <input
 					type="hidden" value="${pvo.m_num }" name="m_num"> <input
 					type="hidden" value="" name="dfee" id="dfee">
-				<button type="submit" class="btn btn-primary btn-lg ">결제하기</button>
+				<button type="submit" class="btn btn-primary btn-lg ">구매요청</button>
+				
 			</form>
+			<button type="submit" id="kakaoapi" class="btn btn-primary btn-lg ">즉시결제</button>
 		</div>
-		<button type="button" id="kakaoapi" class="btn btn-primary">카카오api</button>
+
 	</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 	<script type="text/javascript">
@@ -173,7 +175,6 @@
 
 			})
 			$("#kakaoapi").on("click", function() {
-
 				$.ajax({
 					url : "${pageContext.request.contextPath}/deal/purchase1",
 					type : 'POST',
@@ -182,7 +183,11 @@
 						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 					},
 					success : function(data) {
-						code = data.code;
+						window.open(data.next_redirect_pc_url);
+					},
+					error:function(request,status,error){
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
 					}
 				})
 			})
