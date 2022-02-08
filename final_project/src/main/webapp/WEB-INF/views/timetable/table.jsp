@@ -90,92 +90,92 @@
 					</tr>
 					<tr>
 						<td class="tableTime">오전 9시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon9"></td>
+						<td id="tue9"></td>
+						<td id="wed9"></td>
+						<td id="thu9"></td>
+						<td id="fri9"></td>
 						<td class="tableTime">오전 9시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오전 10시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon10"></td>
+						<td id="tue10"></td>
+						<td id="wed10"></td>
+						<td id="thu10"></td>
+						<td id="fri10"></td>
 						<td class="tableTime">오전 10시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오전 11시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon11"></td>
+						<td id="tue11"></td>
+						<td id="wed11"></td>
+						<td id="thu11"></td>
+						<td id="fri11"></td>
 						<td class="tableTime">오전 11시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오후 12시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon12"></td>
+						<td id="tue12"></td>
+						<td id="wed12"></td>
+						<td id="thu12"></td>
+						<td id="fri12"></td>
 						<td class="tableTime">오후 12시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오후 1시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon13"></td>
+						<td id="tue13"></td>
+						<td id="wed13"></td>
+						<td id="thu13"></td>
+						<td id="fri13"></td>
 						<td class="tableTime">오후 1시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오후 2시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon14"></td>
+						<td id="tue14"></td>
+						<td id="wed14"></td>
+						<td id="thu14"></td>
+						<td id="fri14"></td>
 						<td class="tableTime">오후 2시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오후 3시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon15"></td>
+						<td id="tue15"></td>
+						<td id="wed15"></td>
+						<td id="thu15"></td>
+						<td id="fri15"></td>
 						<td class="tableTime">오후 3시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오후 4시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon16"></td>
+						<td id="tue16"></td>
+						<td id="wed16"></td>
+						<td id="thu16"></td>
+						<td id="fri16"></td>
 						<td class="tableTime">오후 4시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오후 5시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon17"></td>
+						<td id="tue17"></td>
+						<td id="wed17"></td>
+						<td id="thu17"></td>
+						<td id="fri17"></td>
 						<td class="tableTime">오후 5시</td>
 					</tr>
 					<tr>
 						<td class="tableTime">오후 6시</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td id="mon18"></td>
+						<td id="tue18"></td>
+						<td id="wed18"></td>
+						<td id="thu18"></td>
+						<td id="fri18"></td>
 						<td class="tableTime">오후 6시</td>
 					</tr>
 				</table>
