@@ -1,0 +1,162 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
+<!-- 회원관리 -->
+<!-- Header -->
+<%@ include file="/WEB-INF/views/header.jsp" %>
+<!-- End of Header -->
+<%@ include file="/WEB-INF/views/top.jsp"%>
+
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+
+<!-- Main Content -->
+		<div id="content">
+
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+<!-- Page Heading -->
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 class="h3 mb-0 text-gray-800">채용 공고</h1>
+				<form method="post" action="${cp }/job/jobList"
+					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+					<div class="input-group">
+						<input type="text" name="keyword"
+							class="form-control bg-white border-secondary small"
+							placeholder="찾으시는 기업이 있나요?" aria-label="Search"
+							value="${keyword }" aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="button">
+								<i class="fas fa-search fa-sm"></i>
+							</button>
+							<a class="" href="{cp}/job/jobList" data-toggle="modal"
+								data-target="#searchfilter"> 
+								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								필터 검색
+							</a>
+						</div>
+					</div>
+					<input type="hidden" name="${_csrf.parameterName }"
+						value="${_csrf.token }">
+				</form>
+			</div>
+			<div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		        aria-hidden="true">
+		        <div class="modal-dialog" role="document">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <h5 class="modal-title" id="exampleModalLabel">필터 검색</h5>
+		                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+		                        <span aria-hidden="true">×</span>
+		                    </button>
+		                </div>
+		                <div class="modal-body">
+		                	<h6>직무</h6>
+		                	<fieldset style="width:400px">
+								<c:forEach items="${fn:split('영업·영업관리|전략·기획|마케팅·광고·홍보|회계·재무|인사·노무|유통·물류|IT·SW|연구개발·설계|생산·생산관리|건축·인테리어|토목·환경|의료·보건|교육|미디어|디자인|기타','|') }"
+											var="duty">
+									<label><input type="checkbox" name="jd_duty" value="${duty }" >${duty }</label>
+								</c:forEach><br>
+							</fieldset>
+		                </div>
+		                <div class="modal-body">
+		                	<h6>지역</h6>
+		                	<fieldset style="width:400px">
+								<c:forEach items="${fn:split('서울|경기|광주|대구|대전|부산|세종|울산|인천|강원|경남|경북|전남|전북|충남|충북|제주|해외|기타','|') }"
+											var="zone">
+									<label><input type="checkbox" name="jd_zone" value="${zone }" >${zone }</label>
+								</c:forEach><br>
+							</fieldset>
+		                </div>
+		                <div class="modal-body">
+		                	<h6>경력</h6>
+		                	<fieldset style="width:400px">
+								<c:forEach items="${fn:split('신입|경력','|') }" var="career">
+									<label><input type="checkbox" name="jd_duty" value="${career }" >${career }</label>
+								</c:forEach><br>
+							</fieldset>
+		                </div>
+		                <div class="modal-footer">
+		                    <button class="btn btn-secondary" type="button" data-dismiss="modal">닫기</button>
+		                    <a class="btn btn-primary" href="jobList?jd_duty=${jd_duty }&jd_zone=${jd_zone}&jd_career=${jd_career}">적용하기</a>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+
+		</div>
+<!-- Content Row -->
+			<div class="row">
+
+<!-- Content Column -->
+			<c:forEach var="vo" items="${ list }">
+			<!-- 첫번째 Content Column -->
+			<div class="col-lg-6 mb-4">
+
+<!-- Approach -->
+				<!-- 채용공고 -->
+				
+				<div class="card shadow mb-4" style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';" >
+					<div class="card-body"> <!-- body -->
+						<div class="row g-0">
+							<div class="col-md-8"> <!-- 카드본문 왼쪽 (정보) -->
+								<div class="card-body">
+									<h6 class="card-title"> 
+										<!--  --> 
+									</h6>
+									<p class="card-text">
+										
+											<div class="row g-0" >
+												<div class="col-md-8" >
+													<ul style="list-style:none; padding-left:0;">
+														<li>${vo.j_company }</li> 
+														<li>${vo.j_subject}</li> 
+													</ul>
+												</div>
+												<div class="col-md-8">
+													<ul style="list-style:none; padding-left:0;">
+														<li>${vo.j_startdate} ~ ${vo.j_enddate}</li> 
+														<li>${vo.j_view}
+													</ul>
+												</div>
+											</div>
+										<p class="card-text">
+											<small class="text-muted"></small>
+										</p>
+									</p>	
+								</div>
+							</div>
+							<div class="col-md-4"> 
+								<img src="${cp }/resources/upload/${vo.j_img }" 
+									 class="img-fluid rounded-start" alt="..." style="max-width: 200px;">
+							</div>
+						</div>
+					</div> <!-- body 끝 -->
+					
+				</div> <!-- 끝 -->
+				
+
+			</div> <!-- 첫번쨰 Content Column 끝 -->
+			</c:forEach>
+
+
+		</div> <!-- Content Row 끝 -->
+
+		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
+<!-- /.container-fluid -->
+			
+		</div> <!-- Main Content 끝 -->
+<!-- End of Main Content -->
+			
+<!-- End of Content Wrapper -->	
+
+
+<!-- Footer -->
+<%@ include file="/WEB-INF/views/footer.jsp" %>

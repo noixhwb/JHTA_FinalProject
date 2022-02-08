@@ -18,7 +18,6 @@ import com.jhta.finalproject.service.ZoneService;
 
 @Controller
 public class JobDetail {
-	@Autowired private ServletContext sc;
 	@Autowired private JobService Jservice;
 	@Autowired private ZoneService Zservice;
 	@Autowired private DutyService Dservice;

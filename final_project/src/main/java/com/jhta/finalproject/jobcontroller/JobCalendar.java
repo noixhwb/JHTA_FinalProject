@@ -31,7 +31,7 @@ public class JobCalendar {
 			map.put("endRow", 5);
 			
 			List<JobVo> list=Jservice.list(map);
-			request.setAttribute("calendarList", list);
+			request.setAttribute("list", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

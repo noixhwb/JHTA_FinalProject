@@ -7,11 +7,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<script type="text/javascript">
-	$( function() {
-	    $("#tabs").tabs();
-	 });
-</script>
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -38,24 +33,24 @@
 							<button class="btn btn-primary" type="button">
 								<i class="fas fa-search fa-sm"></i>
 							</button>
+							<a class="" href="{cp}/job/jobList" data-toggle="modal"
+								data-target="#searchfilter"> 
+								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								검색 필터
+							</a>
 						</div>
 					</div>
 					<input type="hidden" name="${_csrf.parameterName }"
 						value="${_csrf.token }">
 				</form>
-				
 			</div>
-			<!-- 검색값이 있을경우 생기게끔ㅎ ㅐ야한다 -->
+			<!-- 검색값이 있을경우 생기게끔ㅎ ㅐ야한다 
 			<div class="result hidden">
 				<span>'<span></span>' 검색 결과     </span><a class="reset">초기화</a>
-			</div>
-			<a class="" href="{cp}/job/jobList" data-toggle="modal"
-						data-target="#searchfilter"> <i
-						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-						검색 필터
-			</a>
+			</div>-->
+			
 			<!-- --------------------------- -->
-			<!-- Logout Modal-->
+			<!-- 검색 필터 모달 -->
 		    <div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		        aria-hidden="true">
 		        <div class="modal-dialog" role="document">
@@ -127,7 +122,7 @@
 		</table>
 	</div>
 </div>
-<!-- 페이징처리 -->
+<!-- @@@@@@ 페이징처리 @@@@@@-->
 <div>
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 		<c:choose>

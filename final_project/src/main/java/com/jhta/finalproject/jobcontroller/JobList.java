@@ -43,6 +43,6 @@ public class JobList {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);
 		model.addAttribute("list",list);
-		return "job/jobList";
+		return "job/jobListt";
 	}
 }

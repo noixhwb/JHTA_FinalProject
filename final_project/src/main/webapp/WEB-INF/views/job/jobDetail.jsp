@@ -26,17 +26,17 @@
 			<!-- 1. 카드 -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h5 class="m-0 font-weight-bold text-danger"> ${jv.j_company }</h5>
+					<h5 class="m-0 font-weight-bold text-danger"> 기업명 : ${jv.j_company } //크기줄이고 세로형태로 만들고싶다</h5>
 				</div>
-				<div>
+				<div  style="float: left";>
 					<img src="${cp }/resources/upload/${jv.j_img }">
-				</div>
-				<div class="card-body" style="float: left;">
 					<ul style="list-style-type:none;">
-						<li> ${jv.j_subject }</li>
-						<li> ${jv.j_view }</li>
-					</ul>	
+						<li>공고제목 조회수는 사진옆에다가 놔두고싶다.</li>
+						<li> 공고제목 : ${jv.j_subject }</li>
+						<li> 조회수 : ${jv.j_view }</li>
+					</ul>
 				</div>
+				
 			</div> <!-- 1.  카드 끝 -->
 
 <!-- Approach -->
