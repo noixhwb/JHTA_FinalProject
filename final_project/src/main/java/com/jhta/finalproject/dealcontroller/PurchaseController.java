@@ -9,8 +9,13 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Principal;
 
-import org.json.JSONObject;
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +32,7 @@ public class PurchaseController {
 
 
 	@PostMapping(value = "/deal/purchase1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public String kakaopay() {
-		JSONObject json = new JSONObject();
+	public String kakaopay(HttpServletRequest request) {
 
 		// HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -54,6 +58,9 @@ public class PurchaseController {
 			BufferedReader bfr = new BufferedReader(isr);
 			String result1 = bfr.readLine();
 			System.out.println(result1);
+			JSONParser jsonpaser = new JSONParser();
+			JSONObject json2= (JSONObject)jsonpaser.parse(result1);
+			request.getSession().setAttribute("tid", json2.get("tid"));
 			return result1;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -65,6 +72,24 @@ public class PurchaseController {
 			e.printStackTrace();
 			System.out.println("에러");
 			return "";
+			
+		}catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "";
 		}
+	}
+	
+	@PostMapping("/deal/regist")
+	public String regist(HttpServletRequest request, String pi_address, String pi_phone, String pi_name, String request1) {
+		//pi_address 배송지
+		request.getSession().setAttribute("pi_address", pi_address);
+		//pi_phone 연락처
+		request.getSession().setAttribute("pi_phone", pi_phone);
+		//pi_name 수령인
+		request.getSession().setAttribute("pi_name", pi_name);
+		//request 요청사항
+		request.getSession().setAttribute("request1", request1);
+		return "";
 	}
 }

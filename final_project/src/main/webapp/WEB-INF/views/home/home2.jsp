@@ -112,7 +112,7 @@
 						<a class="collapse-item"
 							href="${ pageContext.request.contextPath }/deal/dealinsert">상품등록</a>
 						<a class="collapse-item"
-							href="${ pageContext.request.contextPath }/deal/deallist">장터관리</a>
+							href="${ pageContext.request.contextPath }/deal/management">장터관리</a>
 					</div>
 				</div></li>
 

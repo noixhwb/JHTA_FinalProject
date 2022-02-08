@@ -56,6 +56,19 @@
 	<select id="selectMember" resultType="com.jhta.finalproject.vo.MemberVo">
 		select * from member where m_id=#{m_id}
 	</select>
+	
+	<insert id="insert_pr" parameterType="com.jhta.finalproject.vo.ParchaseresultVo">
+	insert into parchaseresult values(#{aid},#{tid},#{cid},#{t_num})
+	</insert>
+	<insert id="insert_pi" parameterType="com.jhta.finalproject.vo.Purchase_infoVo">
+	insert into purchase_info values(purchase_info_seq.nextval,#{pi_address},#{pi_phone},#{pi_phone},#{t_num},#{m_num},#{request})
+	</insert>
+	<select id="select_pr" parameterType="int" resultType="com.jhta.finalproject.vo.ParchaseresultVo">
+	select * from parchaseresult where t_num=#{t_num};
+	</select>
+	<delete id="delete_pr" parameterType="int">
+	delete from parchaseresult where t_num=#{t_num};
+	</delete>
 </mapper>
  
  

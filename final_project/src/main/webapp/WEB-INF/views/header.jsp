@@ -144,7 +144,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                     	<a class="collapse-item" href="${cp}/deal/deallist">장터</a>
                         <a class="collapse-item" href="${cp}/deal/dealinsert">상품등록</a>
-                        <a class="collapse-item" href="${cp}/deal/deallist">장터관리</a>
+                        <a class="collapse-item" href="${cp}/deal/management">장터관리</a>
                     </div>
                 </div>
             </li>

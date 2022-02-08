@@ -95,7 +95,7 @@
 			</label>
 		</div>
 		<div>
-			<form action="aaa.jsp" method="post">
+			
 				<div class="form-group">
 					<label for="name">수령인</label> <input type="text"
 						class="form-control" id="name" name="pi_name"
@@ -112,28 +112,25 @@
 						placeholder="주소을 입력하세요">
 				</div>
 				<div class="form-group">
-					<label for="t_explanation">요청사항</label>
-					<textarea class="form-control" rows="5" name="t_explanation"
-						id="t_explanation" style="resize: none" placeholder="요청사항을 입력하세요"></textarea>
+					<label for="request">요청사항</label>
+					<textarea class="form-control" rows="5" name="request"
+						id="request1" style="resize: none" placeholder="요청사항을 입력하세요"></textarea>
 				</div>
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+				
 				<input type="hidden" value="${dvo.t_num }" name="t_num"> <input
 					type="hidden" value="${pvo.m_num }" name="m_num"> <input
 					type="hidden" value="" name="dfee" id="dfee">
-				<button type="submit" class="btn btn-primary btn-lg ">구매요청</button>
+				<button type="button" id="kakaoapi" class="btn btn-primary btn-lg ">즉시결제</button>
 				
-			</form>
-			<button type="submit" id="kakaoapi" class="btn btn-primary btn-lg ">즉시결제</button>
+			
+			
 		</div>
 
 	</div>
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 	<script type="text/javascript">
 		$(function() {
-			//배송비 선택
-			$("#bs_list li").on("click", function() {
-				$("#bs_button").html($(this).text());
-				$("#dfee").val($(this).text());
-			})
 			//주문자와 일치
 			$("#addinfo").on("click", function() {
 				var checked = $("#addinfo").is(':checked');
@@ -147,34 +144,37 @@
 					$("#phone").val("");
 				}
 			})
-			$("form").submit(function(event) {
-
-				if ($("#bs_button").html() == "선택") {
-					alert("배송비 지불 방법을 선택해주세요");
-					$('#bs_button').focus();
-					return false;
-				}
-
-				if ($("#name").val() == "") {
-					alert("수령인을 입력해주세요");
-					$('#name').focus();
-					return false;
-				}
-
-				if ($("#phone").val() == "") {
-					alert("연락처을 입력해주세요");
-					$('#phone').focus();
-					return false;
-				}
-
-				if ($("#addr").val() == "") {
-					alert("주소을 입력해주세요");
-					$('#addr').focus();
-					return false;
-				}
-
+			//배송비 선택
+			$("#bs_list li").on("click", function() {
+				$("#bs_button").html($(this).text());
+				$("#dfee").val($(this).text());
 			})
+			
 			$("#kakaoapi").on("click", function() {
+					if ($("#bs_button").html() == "선택") {
+						alert("배송비 지불 방법을 선택해주세요");
+						$('#bs_button').focus();
+						return false;
+					}
+
+					if ($("#name").val() == "") {
+						alert("수령인을 입력해주세요");
+						$('#name').focus();
+						return false;
+					}
+
+					if ($("#phone").val() == "") {
+						alert("연락처을 입력해주세요");
+						$('#phone').focus();
+						return false;
+					}
+
+					if ($("#addr").val() == "") {
+						alert("주소을 입력해주세요");
+						$('#addr').focus();
+						return false;
+					}
+					
 				$.ajax({
 					url : "${pageContext.request.contextPath}/deal/purchase1",
 					type : 'POST',
@@ -183,11 +183,21 @@
 						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 					},
 					success : function(data) {
+						
+						$.ajax({
+							url : "${pageContext.request.contextPath}/deal/regist",
+							type : 'POST',
+							dataType : "json",
+							data:{pi_address:$("#addr").val(),pi_phone:$('#phone').val(),pi_name:$("#name").val(),request1:$("#request1").text()},
+							beforeSend : function(xhr) {
+								xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+							}
+						})
+						
 						window.open(data.next_redirect_pc_url);
 					},
 					error:function(request,status,error){
 						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
 					}
 				})
 			})
