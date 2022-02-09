@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+   
 <!-- 회원관리 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
@@ -38,7 +39,7 @@
 							</button>
 							<a class="" href="{cp}/job/jobList" data-toggle="modal"
 								data-target="#searchfilter"> 
-								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								<i class="fa-solid fa-bars-staggered"></i>
 								필터 검색
 							</a>
 						</div>
@@ -122,8 +123,10 @@
 												</div>
 												<div class="col-md-8">
 													<ul style="list-style:none; padding-left:0;">
-														<li>${vo.j_startdate} ~ ${vo.j_enddate}</li> 
-														<li>${vo.j_view}
+														<li style="color:#4e73df;">디데이 계산 : ${vo.j_startdate} ~ ${vo.j_enddate}</li> 
+														<li><i class="fa-solid fa-eye text-gray-400"></i>
+															${vo.j_view}
+														</li>
 													</ul>
 												</div>
 											</div>

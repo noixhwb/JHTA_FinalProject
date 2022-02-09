@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
+
 <style>
 	img{width:200px; height: 200px;}
 </style>
@@ -86,7 +87,7 @@
 							
 							<div class="card-body">
 								<div class="bottombar">
-									<a href="${jv.j_url }"><span>채용사이트 바로가기</span></a>  
+									<i class="fa-solid fa-browser"></i><a href="${jv.j_url }"><span>채용사이트 바로가기</span></a>  
 									<a class="share">공유</a>
 								</div>
 							</div>

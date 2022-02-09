@@ -21,7 +21,8 @@
 
     <!-- Custom styles for this template-->
     <link href="${cp}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-
+	<!-- 폰트어썸 CDN -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style type="text/css">
 #jhta_logo{
 	width: 50px;
