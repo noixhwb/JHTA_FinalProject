@@ -87,8 +87,9 @@
 							
 							<div class="card-body">
 								<div class="bottombar">
-									<i class="fa-solid fa-browser"></i><a href="${jv.j_url }"><span>채용사이트 바로가기</span></a>  
-									<a class="share">공유</a>
+									<a href="${jv.j_url }"><i class="fa-regular fa-window-restore"></i>
+										<span>채용사이트 바로가기</span>
+									</a>
 								</div>
 							</div>
 								

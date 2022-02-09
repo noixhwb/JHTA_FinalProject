@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- 디데이 계산을 위한 import -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
    
 <!-- 회원관리 -->
 <!-- Header -->
@@ -123,10 +125,30 @@
 												</div>
 												<div class="col-md-8">
 													<ul style="list-style:none; padding-left:0;">
-														<li style="color:#4e73df;">디데이 계산 : ${vo.j_startdate} ~ ${vo.j_enddate}</li> 
-														<li><i class="fa-solid fa-eye text-gray-400"></i>
+														<li style="color:#4e73df;">
+														<!-- 현재날짜 -->
+														<c:set var="today" value="<%=new java.util.Date()%>" />
+														<c:set var="end" value="${vo.j_enddate}" />
+														<!-- Date format 'yyyy/MM/dd' -->
+														<c:set var="date">
+															<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" />
+														</c:set>
+														<c:set var="enddate">
+															<fmt:formatDate value="${end}" pattern="yyyy-MM-dd" />
+														</c:set>
+														
+														<!-- String >> Date 형 변환 -->
+														<fmt:parseDate var="endPlanDate" value="${enddate }" pattern="yyyy-MM-dd" />
+																														
+														<!-- 숫자로 변환 -->
+														<fmt:parseNumber var="today" value="${today.time / (1000*60*60*24)}" integerOnly="true" />
+														<fmt:parseNumber var="endTime" value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true"/>
+															D${endTime - today } 
+														<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>
 															${vo.j_view}
-														</li>
+														</span>
+														</li> 
+														
 													</ul>
 												</div>
 											</div>
