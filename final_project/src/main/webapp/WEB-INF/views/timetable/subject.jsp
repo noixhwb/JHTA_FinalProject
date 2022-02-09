@@ -124,7 +124,6 @@
 													<th>학점</th>
 													<th>강의평가보기</th>
 													<th>강의평가하기</th>
-													<th>찜하기</th>
 												</tr>
 											</thead>
 											<tfoot>
@@ -136,7 +135,6 @@
 													<th>학점</th>
 													<th>강의평가보기</th>
 													<th>강의평가하기</th>
-													<th>찜하기</th>
 												</tr>
 											</tfoot>
 											<tbody>
@@ -149,7 +147,6 @@
 														<td>${vo.s_score }</td>
 														<td><button class="btn btn-primary" onclick="rateList(${vo.s_num});">강의평가보기</button></td>
 														<td><button class="btn btn-primary" onclick="myrateForm(${vo.s_num});">강의평가하기</button></td>
-														<td><button class="btn btn-primary" onclick="mySubjectInsert(${vo.s_num});">찜하기</button></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -348,28 +345,6 @@
 		});
 	});
 					
-	function mySubjectInsert(s_num) {
-		let msg="";
-		$.ajax({
-			url:'${cp}/timetable/myrateInsert',
-			data:$("#myrateForm").serialize(),
-			method:'POST',
-			dataType:'json',
-			success:function(data) {
-				if(data.result==true) {
-					$("#myrateBox").css("display","none");
-					msg="강의평이 등록되었습니다.";
-					rateList($("#myrateS_num").val());
-				}else {
-					msg="강의평 등록에 실패하였습니다.";
-				}
-				$("#myrateresult").html(msg);
-			}
-		});
-	}			
-			
-		
-						
 						
 		/* 페이징처리 예시
 		function list(pageNum) {

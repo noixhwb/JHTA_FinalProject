@@ -8,28 +8,58 @@
 #table_container {
 	margin-bottom: 300px;
 }
+
 #mytable {
 	text-align: center;
 }
+
 #mytable th {
 	background-color: #f2f2f2;
 }
+
 #mytable td {
 	height: 55px;
 	vertical-align: middle;
 }
+
 .tableTime {
 	font-size: 13px;
 }
+
 #subList_wrapper {
 	display: none;
 	position: fixed;
 	z-index: 999;
 	width: 100%;
 	height: 300px;
-	bottom:0;
+	bottom: 0;
 	background-color: white;
 	height: 300px;
+	overflow-y: auto;
+}
+
+.tableSubBox {
+	position: absolute;
+	margin-top: -28px;
+	margin-left: -13px;
+	width: 218.33px;
+}
+
+.tableSubBox p {
+	vertical-align: middle;
+	color: black;
+}
+
+.s_height1 {
+	height: 110px;
+}
+
+.s_height2 {
+	height: 165px;
+}
+
+.s_height3 {
+	height: 220px;
 }
 </style>
 
@@ -53,7 +83,7 @@
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<td>${vo.s_num }</td>
-						<td>${vo.s_name }</td>
+						<td><a href="javascript:ontable(${vo.s_num})">${vo.s_name }</a></td>
 						<td>${vo.s_prof }</td>
 						<td>${vo.s_category }</td>
 						<td>${vo.s_score }점</td>
@@ -65,10 +95,10 @@
 			</tbody>
 		</table>
 	</div>
+
 	<!-- Begin Page Content 이건 지우지마세요 -->
 	<div class="container-fluid" id="table_container">
 		<!-- Page Heading -->
-
 		<div id="mytable_wrapper1">
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -189,6 +219,58 @@
 <script type="text/javascript">
 	function subjectlist() {
 		$("#subList_wrapper").toggle();
+	}
+	
+	let numList="";
+	function ontable(s_num) {
+		let divId = "";
+		$.ajax({
+					url : '${cp}/timetable/selectOne',
+					data : {
+						"s_num" : s_num
+					},
+					dataType : 'json',
+					success : function(data) {
+						let num = data.vo.s_num;
+						let name = data.vo.s_name;
+						let prof = data.vo.s_prof;
+						let sclass = data.vo.s_class;
+						let day = data.vo.s_day;
+						let starttime = data.vo.s_starttime;
+						let endtime = data.vo.s_endtime;
+						let b_color = "#"
+								+ (parseInt(Math.random() * 0xffffff))
+										.toString(16);
+						switch (day) {
+						case '월':
+							divId = "mon";
+							break;
+						case '화':
+							divId = "tue";
+							break;
+						case '수':
+							divId = "wed";
+							break;
+						case '목':
+							divId = "thu";
+							break;
+						case '금':
+							divId = "fri";
+							break;
+						}
+						for (let j = 9; j <= 18; j++) {
+							if (starttime == j) {
+								divId += j;
+							}
+						}
+						let s_height = parseInt(endtime) - parseInt(starttime);
+						let html = "<div class='tableSubBox s_height"+s_height+"' style='background-color:"+b_color+"'>";
+						html += "<p>" + name + "<br>" + prof + "<br>" + sclass
+								+ "<br></p>";
+						$("#" + divId).append(html);
+						numList+=num;
+					}
+				});
 	}
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp"%>

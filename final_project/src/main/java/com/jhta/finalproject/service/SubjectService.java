@@ -22,6 +22,10 @@ public class SubjectService {
 		return mapper.count(map);
 	}
 	
+	public SubjectVo selectOne(int s_num) {
+		return mapper.selectOne(s_num);
+	}
+	
 	public int insert(SubjectVo vo) {
 		return mapper.insert(vo);
 	}
