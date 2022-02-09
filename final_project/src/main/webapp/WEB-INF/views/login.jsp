@@ -31,10 +31,10 @@ display: grid;
     <form method="post" action="${cp}/login">
       <input type="text" name="m_id" placeholder="아이디입력" required="required" style="width: 200pt; height:25pt; border-left: none; border-right: none; border-top: none;  font-size: 17px; border-color: #4e73df "/><br><br>
         <input type="password" name="m_pwd" placeholder="비밀번호입력" required="required" style="width: 200pt; height:25pt;border-left: none; border-right: none; border-top: none; font-size: 17px; border-color: #4e73df" /><br><br><br>
-        <button type="submit"  style="width: 205pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 20px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;">로그인</button><br>
+        <button type="submit"  style="width: 205pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;">로그인</button><br>
         <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"><br>
-        <a style="font-size: 14px;" href="#">아이디찾기</a> &nbsp
-        <a style="font-size: 14px;" href="#">비밀번호찾기</a> &nbsp <br><br>
+        <a style="font-size: 14px;" href="${cp }/member/findIdView">아이디찾기</a> &nbsp
+        <a style="font-size: 14px;" href="${cp }/member/findpwd">비밀번호찾기</a> &nbsp <br><br>
         <a style= "font-size: 16px; font-weight: bold ;" href="${cp}/join">캠퍼스픽 회원이 아니신가요?  회원가입</a>
     </form>
 </div>

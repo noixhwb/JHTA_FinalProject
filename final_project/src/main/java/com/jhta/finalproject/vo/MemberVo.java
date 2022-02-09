@@ -21,4 +21,7 @@ public class MemberVo {
 	private String m_dept;
 	private String m_profile;
 	private String m_enabled;
+	
+	
+	
 }

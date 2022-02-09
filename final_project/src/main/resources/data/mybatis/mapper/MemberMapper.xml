@@ -33,14 +33,8 @@
     	insert into authorities values((select m_num from member where m_id = #{m_id}),#{m_id},#{authority})
     </insert>
     
-    <select id="idCheck" resultType="int" parameterType="String">
-    	select count(*) from member
-    	where m_id = #{id}
-    </select>
-    <select id="nickChk" resultType="int">
-    	select count(*) from member
-    	where m_nickname = #{m_nickname}
-    </select>
+   
+  
     <select id="isMember" parameterType="string" resultType="com.jhta.finalproject.vo.MemberVo">
 		select * from member where m_id=#{mid}
 	</select>
@@ -53,6 +47,33 @@
 		select * from member
 	</select>
 	
+	
+	 <select id="isId" parameterType="string" resultType="com.jhta.finalproject.vo.MemberVo">
+		select m_id from member where m_email = #{memail}
+	</select>
+	
+	<select id="findPassword" parameterType="string" resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from member where m_email = #{m_email} and m_id = #{m_id} 
+	</select>
+	
+	<update id="updatePassword" parameterType="com.jhta.finalproject.vo.MemberVo">
+		update member set m_pwd=#{m_pwd} where m_id=#{m_id}
+	</update>
+	
+	<select id="selectMember" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">
+	select * from member  where m_email = #{email}
+	</select>
+	
+	<select id="selectUser" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">
+     	select * from member where m_id=#{m_id}
+     </select>
+     
+     <select id="findPwdChk" parameterType="String" resultType="String">
+		select m_pwd from member where m_id=#{m_id} and m_email=#{m_email}
+	</select>
+	<update id="findPwd" parameterType="com.jhta.finalproject.vo.MemberVo">
+		update member set m_pwd=#{m_pwd} where m_id=#{m_id} and m_email=#{m_email}
+	</update>
  </mapper>
  
  

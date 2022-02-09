@@ -4,9 +4,14 @@ package data.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+
 import com.jhta.finalproject.security.CustomMemberDetail;
 import com.jhta.finalproject.vo.AuthoritiesVo;
 import com.jhta.finalproject.vo.MemberVo;
+
+
 
 public interface MemberMapper {
 	CustomMemberDetail getAuths(String m_id);
@@ -16,13 +21,23 @@ public interface MemberMapper {
 
 	
 
-	int idChk(String vo);
-
-	int idCheck(String id);
+	
 
 	MemberVo isMember(String mid);
 	
 	MemberVo isNick(String mnick);
 	
 	List<MemberVo> selectAll();
+	
+	
+	MemberVo isId(String memail);
+
+	MemberVo findPassword(MemberVo vo);
+	MemberVo updatePassword(MemberVo vo);
+	
+	MemberVo selectUser(String m_id);
+
+	String findPwdChk(@Param("m_id") String m_id, @Param("m_email") String m_email);
+
+	int findPwd(MemberVo vo);
 }

@@ -75,11 +75,15 @@
 			
 			 &nbsp;&nbsp;&nbsp;<sec:authentication property="principal.username"/>님 반갑습니다 </li>
 		 --%>
-			<li class="nav-item active">
-			 <a class="nav-link" href="${cp }/logout">
+		<li class="nav-item active">
+			 <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
 			
 			   <i class="fas fa-fw fa-tachometer-alt"></i>
 				<span>로그아웃</span></a>
+				<form id="logout" action="${cp }/logout">
+				
+				<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+				</form>
 		
 		<li class="nav-item active">
 			 <a class="nav-link" href="${cp }/member/mymember">

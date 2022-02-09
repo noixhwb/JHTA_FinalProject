@@ -12,6 +12,7 @@
 	<!-- 요청에 따른 권한 설정 -->
 	<sec:http>
 		<sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/member/**" access="permitAll"/>
 		<sec:intercept-url pattern="/deal/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/circle/**" access="hasRole('ROLE_MEMBER')"/>
 		<sec:intercept-url pattern="/job/**" access="hasRole('ROLE_MEMBER')"/>
