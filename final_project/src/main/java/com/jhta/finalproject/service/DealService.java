@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.jhta.finalproject.vo.DealVo;
 import com.jhta.finalproject.vo.Goods_ImageVo;
 import com.jhta.finalproject.vo.MemberVo;
-import com.jhta.finalproject.vo.ParchaseresultVo;
 import com.jhta.finalproject.vo.Purchase_infoVo;
 
 import data.mybatis.mapper.DealMapper;
@@ -43,16 +42,24 @@ public class DealService {
 	public MemberVo selectMember(String m_id) {
 		return mapper.selectMember(m_id);
 	}
-	public int insert_pr(ParchaseresultVo vo) {
-		return mapper.insert_pr(vo);
-	}
+
 	public int insert_pi(Purchase_infoVo vo) {
 		return mapper.insert_pi(vo);
 	}
-	public ParchaseresultVo select_pr(int t_num) {
-		return mapper.select_pr(t_num);
-	}
+
 	public int delete_pr(int t_num) {
 		return mapper.delete_pr(t_num);
+	}
+	public List<Purchase_infoVo> select_pi(int m_num) {
+		return mapper.select_pi(m_num);
+	}
+	public List<DealVo> select_dl(int m_num) {
+		return mapper.select_dl(m_num);
+	}
+	public Purchase_infoVo select_pi2(int t_num) {
+		return mapper.select_pi2(t_num);
+	}
+	public int update_deal(int t_num) {
+		return mapper.update_deal(t_num);
 	}
 }

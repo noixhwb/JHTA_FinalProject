@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jhta.finalproject.service.DealService;
-import com.jhta.finalproject.vo.ParchaseresultVo;
 import com.jhta.finalproject.vo.Purchase_infoVo;
 
 @Controller
@@ -88,12 +87,12 @@ public class DealPurchaseController {
 			String request1 = (String) request.getSession().getAttribute("request1");
 			System.out.println("request" + request1);
 			System.out.println("phone" + pi_phone);
-			ParchaseresultVo vo = new ParchaseresultVo(aid, tid, cid, t_num);
-			service.insert_pr(vo);
 
 			Purchase_infoVo vo2 = new Purchase_infoVo(0, pi_address, pi_phone, pi_name, t_num,
-					service.selectMember(principal.getName()).getM_num(), request1);
+					service.selectMember(principal.getName()).getM_num(), request1,aid,tid,cid);
 			service.insert_pi(vo2);
+			service.update_deal(t_num);
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,8 +110,7 @@ public class DealPurchaseController {
 	@GetMapping("/deal/refund")
 	public String refund(int t_num) {
 		try {
-			ParchaseresultVo vo = service.select_pr(t_num);
-
+			Purchase_infoVo vo= service.select_pi2(t_num);
 			URL addr;
 
 			addr = new URL("https://kapi.kakao.com/v1/payment/cancel");

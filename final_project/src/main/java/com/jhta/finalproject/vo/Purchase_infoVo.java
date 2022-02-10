@@ -17,4 +17,7 @@ public class Purchase_infoVo {
 	private int t_num;
 	private int m_num;
 	private String request;
+	private String aid;
+	private String tid;
+	private String cid;
 }

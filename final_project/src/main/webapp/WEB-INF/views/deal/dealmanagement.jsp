@@ -50,6 +50,47 @@
 		</ul>
 	</nav>
 
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">판매</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">구매</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+		<label class="control-label">제품정보</label>
+		<div>
+			<table class="table table-hover" id="dealtb">
+				<!-- On rows -->
+				<tr class="active">
+					<th style="width: 55%">제목</th>
+					<th style="width: 15%">거래단계</th>
+					<th style="width: 15%">수정</th>
+					<th style="width: 15%">삭제</th>
+				</tr>
+				<tr class="info">
+					<td class="align-middle"></td>
+					<td class="align-middle"></td>
+					<td class="align-middle"></td>
+					<td class="align-middle"></td>
+				</tr>
+			</table>
+		</div>
+</div>
+
+
+
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
