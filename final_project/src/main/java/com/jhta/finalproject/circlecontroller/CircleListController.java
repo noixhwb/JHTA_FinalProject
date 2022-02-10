@@ -1,5 +1,8 @@
 package com.jhta.finalproject.circlecontroller;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,8 @@ public class CircleListController {
 	public String circlelist(Model model) {
 		List<CircleVo> list = service.selectAll();
 		model.addAttribute("list", list);
+		
+		System.out.println("전체 동아리 페이지로 이동");
 		return "circle/CircleList";
 	}
 }

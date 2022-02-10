@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,13 @@ public class CircleService {
 		return mapper.insert(vo);
 	}
 	
-	//public int update(CircleVo vo) {
-	//	return mapper.update(vo);
-	//}
+	public int updateC(HashMap<String, Object> map) {
+		return mapper.updateC(map);
+	}
+	
+	public int updateB(HashMap<String, Object> map) {
+		return mapper.updateB(map);
+	}
 	
 	public List<CircleVo> selectAll() {
 		return mapper.selectAll();
@@ -32,6 +37,18 @@ public class CircleService {
 
 	public List<CircleVo> selectMyCircle(int m_num) {
 		return mapper.selectMyCircle(m_num);
+	}
+	
+	public int selectPerson(int ci_num) {
+		return mapper.selectPerson(ci_num);
+	}
+	
+	public int selectMeRegister(HashMap<String, Integer> map) {
+		return mapper.selectMeRegister(map);
+	}
+	
+	public int addHit(int ci_num) {
+		return mapper.addHit(ci_num);
 	}
 	
 	public MemberVo selectM(String m_id) {

@@ -68,7 +68,7 @@
 								<div class="card-body">
 									<h6 class="card-title"> 
 										<a href="${ cp }/circle/CircleDetail?ci_num=${ vo.ci_num }">									
-										${ vo.ci_title }</a> 
+												 ${ vo.ci_title }</a> 
 									</h6>
 									<p class="card-text">
 										<img src="${ cp }/resources/images/circle/${ vo.ci_logofile }" 

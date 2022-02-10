@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.circlevo.MyCircleJoinVo;
+import com.jhta.finalproject.circlevo.MyCircleListVo;
 import com.jhta.finalproject.circlevo.MyCircleVo;
 
 import data.mybatis.mapper.MyCircleMapper;
@@ -27,4 +28,7 @@ public class MyCircleService {
 		return mapper.selectAllMyJoin(m_num);
 	}
 	
+	public List<MyCircleListVo> selectMyList(int ci_num) {
+		return mapper.selectMyList(ci_num);
+	}
 }

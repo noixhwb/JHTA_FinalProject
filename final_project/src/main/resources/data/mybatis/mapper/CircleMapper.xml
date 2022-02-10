@@ -3,17 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.CircleMapper">
+	<!-- 동아리 및 게시글 등록 -->
 	<insert id="insert" parameterType="com.jhta.finalproject.circlevo.CircleVo">
 		INSERT INTO CIRCLE VALUES(CIRCLE_SEQ.NEXTVAL,#{ci_name},#{ci_category},#{ci_person},#{ci_logofile},#{m_num},#{ci_ok}, 
                 CIRCLEBOARD_SEQ.NEXTVAL,#{ci_title},#{ci_content},#{ci_imgfile},#{ci_startdate},#{ci_enddate},#{ci_view},#{ci_recommend})
 	</insert>
-	<!-- <update id="update" parameterType="com.jhta.finalproject.circlevo.CircleVo">
+
+	<!-- 동아리 정보 수정 -->
+	<update id="updateC" parameterType="hashmap">
+		UPDATE CIRCLE SET 
+		CI_NAME=#{ci_name}, CI_CATEGORY=#{ci_category}, CI_PERSON=#{ci_person}, CI_LOGOFILE=#{ci_logofile} 
+		WHERE M_NUM=#{m_num}
+	</update>
+	<!-- 게시글 수정 -->
+	<update id="updateB" parameterType="hashmap">
+		UPDATE CIRCLE SET
+		CI_TITLE=#{ci_title}, CI_CONTENT=#{ci_content}, CI_IMGFILE=#{ci_imgfile}, 
+		CI_STARTDATE=#{ci_startdate}, CI_ENDDATE=#{ci_enddate} 
+		WHERE M_NUM=#{m_num}
+	</update>
 	
-	</update> -->
 	<!-- 모든 동아리 목록 (승인된것만) -->
 	<select id="selectAll" resultType="com.jhta.finalproject.circlevo.CircleVo">
-		SELECT * FROM CIRCLE	
+		SELECT * FROM CIRCLE WHERE CI_OK=1
 	</select>
+	
 	<!-- 동아리 상세 페이지 -->
 	<select id="select" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleVo">
 		SELECT * FROM CIRCLE WHERE CI_NUM=#{ci_num}
@@ -22,6 +36,23 @@
 	<select id="selectMyCircle" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleVo">
 		SELECT * FROM CIRCLE WHERE M_NUM=#{m_num}
 	</select>
+	
+	<!-- 동아리 신청 인원 구하기 -->
+	<select id="selectPerson" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM MYCIRCLE WHERE CI_NUM=#{ci_num}
+	</select>
+	
+	<!-- 내가 동아리 신청했나? -->
+	<select id="selectMeRegister" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*)  
+		FROM MYCIRCLE 
+		WHERE M_NUM=#{m_num} AND CI_NUM=#{ci_num}
+	</select>
+	 
+	<!-- 조회수 올리기 -->
+	<update id="addHit" parameterType="int">
+		UPDATE CIRCLE SET CI_VIEW = CI_VIEW+1 WHERE CI_NUM=#{ci_num}
+	</update>
 	
 	<!-- 해당페이지 user의 값들 가져오기 FROM MemberVo -->
 	<select id="selectM" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">

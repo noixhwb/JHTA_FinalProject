@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 동아리 상세 보기 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
@@ -60,7 +60,7 @@
 														<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ sel.ci_name }</h6>
 													</li>
 													<li>카테고리 : ${ sel.ci_category }</li>
-													<li>모집인원 : @@신청인원@@ / ${ sel.ci_person }</li> <!-- 2번 -->
+													<li>모집인원 : ${ selectedPerson } / ${ sel.ci_person }</li> <!-- 2번 -->
 												</ul>
 											</div>
 											<div class="col-md-6">
@@ -99,6 +99,8 @@
 						</div>
 					</div> <!-- 2. 동아리 게시글 상세 끝 -->
 					
+					<c:choose>	
+					<c:when test="${ map } != 0">				
 					<!-- 3. 동아리 신청하기 -->
 					<div class="row g-0">
 						<div class="col text-center">
@@ -106,7 +108,8 @@
 						</div>
 					</div>
 					<!-- 3. 동아리 신청하기 끝 -->
-					
+					</c:when>
+					<c:otherwise>
 					<!-- 4. 동아리 신청 취소하기 -->
 					<div class="row g-0">
 						<div class="col text-center">
@@ -114,7 +117,8 @@
 						</div>
 					</div>
 					<!-- 4. 동아리 신청취소하기 끝 -->
-						
+					</c:otherwise>
+					</c:choose>
 				</div> <!-- 동아리 상세정보 카드 body 끝-->
 			</div>
 				</div>

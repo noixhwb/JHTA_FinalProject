@@ -41,7 +41,7 @@ public class CircleInsertController {
 		model.addAttribute("userMnum", userMnum);
 		model.addAttribute("userMname", userMname);
 		model.addAttribute("userMnickname", userMnickname);
-		
+		System.out.println("동아리+게시글 등록 페이지로 이동");
 		return "circle/CircleInsertForm";
 	}
 	
@@ -76,9 +76,11 @@ public class CircleInsertController {
 							0, vo.getCi_title(), vo.getCi_content(), ci_imgfile,
 							vo.getCi_startdate(), vo.getCi_enddate(), vo.getCi_view(), vo.getCi_recommend()));
 			model.addAttribute("result","success");
+			System.out.println("동아리+게시글 등록 완료!");
 		}catch(Exception e) {
 			e.printStackTrace();
 			model.addAttribute("result","fail");
+			System.out.println("동아리+게시글 등록 실패!");
 		}
 		return "circle/CircleInsertOk";
 	}

@@ -33,6 +33,7 @@ public class MyCircleJoinController {
 		
 		mservice.insert(new MyCircleVo(0, ci_num, userMnum));
 		
+		System.out.println("동아리 신청 완료!");
 		return "redirect:/circle/MyCircleList";
 	}
 	
@@ -47,6 +48,8 @@ public class MyCircleJoinController {
 		map.put("ci_num", ci_num);
 		map.put("m_num", userMnum);
 		mservice.delete(map);
+		
+		System.out.println("동아리 신청 취소 완료!");
 		return "redirect:/circle/MyCircleList";
 	}
 }

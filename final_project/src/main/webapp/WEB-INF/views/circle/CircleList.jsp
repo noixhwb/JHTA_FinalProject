@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!-- 전체 동아리 목록 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
@@ -75,26 +76,68 @@
 									</h6>
 									<p class="card-text">
 										
-											<div class="row g-0">
-												<div class="col-md-6">
-													<ul id="dot">
-														<!-- <li>모집기간 : ${ vo.ci_startdate } ~ ${ vo.ci_enddate }</li> -->
-														<li>디데이</li> <!-- 1번 -->
-														<li>모집중</li> <!-- 2번 -->
-													</ul>
-												</div>
-												<div class="col-md-6">
-													<ul id="dot">
-														<li>조회수 : ${ vo.ci_view }</li> <!-- 3번 -->
-														<li>좋아요수 : ${ vo.ci_recommend }</li> <!-- 4번 -->
-													</ul>
-												</div>
+										<div class="row g-0">
+											<div class="col-md-6">
+												<ul id="dot">
+													<!-- <li>모집기간 : ${ vo.ci_startdate } ~ ${ vo.ci_enddate }</li>  -->
+													<li>
+														<!-- 디데이 -->
+														<!-- 현재날짜 -->
+														<c:set var="today" value="<%=new java.util.Date()%>" />
+														<c:set var="end" value="${vo.ci_enddate}" />
+														<!-- Date format 'yyyy/MM/dd' -->
+														<c:set var="date">
+															<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" />
+														</c:set>
+														<c:set var="enddate">
+															<fmt:formatDate value="${end}" pattern="yyyy-MM-dd" />
+														</c:set>
+															
+														<!-- String >> Date 형 변환 -->
+														<fmt:parseDate var="endPlanDate" value="${enddate}" pattern="yyyy-MM-dd" />
+																														
+														<!-- 숫자로 변환 -->
+														<fmt:parseNumber var="today" value="${today.time / (1000*60*60*24)}" integerOnly="true" />
+														<fmt:parseNumber var="endTime" value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true"/>
+														<c:choose>
+															<c:when test="${ (endTime-today) == 0 }">
+																D-DAY
+															</c:when>
+															<c:when test="${ (endTime-today) < 0 }">
+																모집기간종료
+															</c:when>
+															<c:otherwise>
+																D-${endTime - today} 
+															</c:otherwise>
+														</c:choose>														</li>
+													<li>
+														<c:choose>
+															<c:when test="${ (endTime-today) < 0 }">
+															</c:when>
+															<%-- 인원마감될때
+															<c:when test="${ }">
+																모집마감
+															</c:when>
+															 --%>
+															<c:otherwise>
+																모집중
+															</c:otherwise>
+														</c:choose>
+													</li> <!-- 2번 -->
+												</ul>
 											</div>
+											<div class="col-md-6">
+												<ul id="dot">
+													<li>조회수 : ${ vo.ci_view }</li> <!-- 3번 -->
+													<li>좋아요수 : ${ vo.ci_recommend }</li> <!-- 4번 -->
+												</ul>
+											</div>
+										</div>
 											
 									</p>
 									<p class="card-text">
 											<small class="text-muted">....</small>
-										</p>
+									</p>
 								</div>
 							</div>
 							<div class="col-md-4"> <!-- 카드본문 오른쪽 (포스터) -->

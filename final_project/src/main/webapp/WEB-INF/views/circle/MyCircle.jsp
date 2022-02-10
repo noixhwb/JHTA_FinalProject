@@ -58,13 +58,14 @@
 						<br> <hr width="100%" color="#C0C0C0" noshade /> <br> <!-- 구분선 -->
 						${ myvo.ci_title } <br>
 						${ myvo.ci_startdate }~${ myvo.ci_enddate } <br>
-						${ myvo.ci_content }
+						${ myvo.ci_content } <br>
+						${ myvo.ci_num }
 						
 						<br>
-<!-- Button trigger modal -->
-						<button class="btn btn-secondary" data-target="#circleInfoModal" data-toggle="modal">동아리 정보 수정하기</button>
 <!-- 동아리 정보 수정하기 모달 -->
+						<button class="btn btn-secondary" data-target="#circleInfoModal" data-toggle="modal">동아리 정보 수정하기</button>
 <!-- Modal -->
+<form action="${ cp }/circle/MyCircleUpdate1?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="circleInfoModal" tabindex="-1" role="dialog"
 		 aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -105,6 +106,12 @@
 								<input type="radio" name="ci_person" value="30">21명 ~ 30명 이하
 							</p>
 						</li>
+						<li>
+							<h6 class="card-title font-weight-bold text-dark">동아리 이미지 업로드</h6>
+							<p class="card-text">
+								<input type="file" name="file1"> <br>
+							</p>
+						</li>
 					</ul>
 				</div>
 					
@@ -112,16 +119,18 @@
 					<button class="btn btn-secondary" type="button"
 							data-dismiss="modal">취소
 					</button>
-					<a class="btn btn-primary" href="${ cp }/circle/MyCircleUpdate1">수정</a>
+					<input type="submit" class="btn btn-primary" value="수정">
 				</div>
 			</div>
 		</div>
 	</div>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
 
-<!-- Button trigger modal -->
-						<button class="btn btn-secondary" data-target="#circleBoardModal" data-toggle="modal">게시글 수정하기</button>
 <!-- 게시글 정보 수정하기 모달 -->
+						<button class="btn btn-secondary" data-target="#circleBoardModal" data-toggle="modal">게시글 수정하기</button>
 <!-- Modal -->
+<form action="${ cp }/circle/MyCircleUpdate2?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="circleBoardModal" tabindex="-1" role="dialog"
 		 aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -155,7 +164,7 @@
 						<li>
 							<h6 class="card-title font-weight-bold text-dark">상세 내용</h6>
 							<div id="memberInfo">
-			                    <textarea class="form-control" id="ci_content" rows="5">
+			                    <textarea class="form-control" id="ci_content" name="ci_content" rows="5">
 			                    	${ myvo.ci_content }
 			                    </textarea>
 			                </div>
@@ -174,11 +183,52 @@
 					<button class="btn btn-secondary" type="button"
 							data-dismiss="modal">취소
 					</button>
-					<a class="btn btn-primary" href="${ cp }/circle/MyCircleUpdate2">수정</a>
+					<input type="submit" class="btn btn-primary" value="수정">
 				</div>
 			</div>
 		</div>
-	</div>	            	
+	</div>	
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>            	
+
+<!-- 신청한 학생 목록 보이기 모달 -->
+						<a href="${ cp }/circle/CircleStudentList?ci_num=${myvo.ci_num}" data-target="#circleStudentList" data-toggle="modal">신청한 학생 목록</a>
+						<button class="btn btn-secondary" data-target="#circleStudentList" data-toggle="modal">신청한 학생 목록</button>
+<!-- Modal -->
+	<div class="modal fade" id="circleStudentList" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">신청 학생 목록</h5>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				
+				<div class="modal-body">
+				히히
+				<c:forEach var="slist" items="${ studentlist }">
+					<ul id="dot">
+						<li>${ ci_num }</li>
+						<li>${slist.m_num }</li>
+						<li>${slist.m_id }</li>
+					</ul>
+				</c:forEach>
+				</div>
+				
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<input type="submit" class="btn btn-primary" value="확인">
+				</div>
+			</div>
+		</div>
+	</div>	
+</form>
 	
 						</c:forEach>	
 					</div> <!-- 0. MY  동아리 카드 body 끝 -->

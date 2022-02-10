@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/* MyCircle테이블 */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
