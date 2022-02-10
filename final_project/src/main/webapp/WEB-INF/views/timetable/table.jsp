@@ -30,7 +30,7 @@
 	display: none;
 	position: fixed;
 	z-index: 999;
-	width: 100%;
+	width: 90%;
 	height: 300px;
 	bottom: 0;
 	background-color: white;
@@ -217,11 +217,12 @@
 <!-- 이건 지우지마세요 -->
 
 <script type="text/javascript">
+	let numList="";
+
 	function subjectlist() {
 		$("#subList_wrapper").toggle();
 	}
 	
-	let numList="";
 	function ontable(s_num) {
 		let divId = "";
 		$.ajax({
@@ -239,8 +240,7 @@
 						let starttime = data.vo.s_starttime;
 						let endtime = data.vo.s_endtime;
 						let b_color = "#"
-								+ (parseInt(Math.random() * 0xffffff))
-										.toString(16);
+								+ (parseInt(Math.random() * 0xfffff9)).toString(16);
 						switch (day) {
 						case '월':
 							divId = "mon";
@@ -258,19 +258,28 @@
 							divId = "fri";
 							break;
 						}
-						for (let j = 9; j <= 18; j++) {
-							if (starttime == j) {
-								divId += j;
+						for (let i = 9; i <= 18; i++) {
+							if (starttime == i) {
+								divId += i;
 							}
 						}
 						let s_height = parseInt(endtime) - parseInt(starttime);
-						let html = "<div class='tableSubBox s_height"+s_height+"' style='background-color:"+b_color+"'>";
+						let html = "<div onclick='removeBox(this,"+num+")' class='tableSubBox s_height"+s_height+"' style='background-color:"+b_color+"'>";
 						html += "<p>" + name + "<br>" + prof + "<br>" + sclass
 								+ "<br></p>";
-						$("#" + divId).append(html);
-						numList+=num;
+						$("#" + divId).html(html);
+						numList+=num.toString();
+						alert(num+"번 강의 담김"+numList);
 					}
 				});
 	}
+	
+	function removeBox(e,num) {
+		$(e).remove();
+		let reN=num.toString();
+		numList=numList.replace(reN,"");
+		alert(num+"번 강의 빠짐"+numList);
+	}
+	
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
