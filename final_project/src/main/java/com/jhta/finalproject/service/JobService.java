@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class JobService {
 	}
 	public JobVo selectOne(int j_num) {
 		return mapper.selectOne(j_num);
+	}
+	public JobVo selectEvent(Date j_eventDate) {
+		return mapper.selectEvent(j_eventDate);
 	}
 	public int getCount(HashMap<String, Object> map) {
 		return mapper.getCount(map);

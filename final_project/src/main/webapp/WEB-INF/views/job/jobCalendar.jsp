@@ -100,24 +100,21 @@ html, body {
 
 			<!-- calendar 태그 -->
 			<div id='calendar' style="width: 75%;"></div>
+			
+			<!-- 이벤트 클릭 시 나오는 모달 창 -->
 			<div id="calendarModal" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h6 class="modal-title" id="modalTitle">클릭하면 날짜받아서 select하는법
-								모르겠다.</h6>
+							<h6 class="modal-title" id="modalTitle"></h6>
 							<button class="close" type="button" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>
 						</div>
 						<div id="modalBody" class="modal-body" style="cursor: pointer;"
-							onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
+							onclick="location.href='${cp}/job/detail?j_num=${jv.j_num}';">
 							<ul style="list-style: none; padding-left: 0;">
-								<li>기업명 :</li>
-								<li>공고제목 :</li>
-								<li>디데이 :</li>
-								<li>조회수 :</li>
 							</ul>
 						</div>
 					</div>
@@ -134,49 +131,70 @@ html, body {
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		initialView : 'dayGridMonth',
 		locale : 'ko', // 한국어 설정
-		// 이벤트 클릭시 모달 생성
+		// 이벤트 클릭시 기능
 		eventClick:  function(info) {
+			// 모달생성
 	        $('#modalTitle').html(event.title);
 	        $('#modalBody').html(event.description);
 	        $('#eventUrl').attr('href',event.url);
 	        $('#calendarModal').modal();
-	    	// 이벤트 클릭시 해달이벤트 날짜 GET
-            var eventObj = info.event;
+	        
+	        var eventObj = info.event; 			// 이벤트 클릭시 해당이벤트 날짜 GET
+            var StringJ_num = eventObj.id;		// string형태의 j_num GET
+            var j_numm = parseInt(StringJ_num); // string j_num -> int로 형변환 잘찍히는중
+            
 	        if (eventObj.start) {
 	        	var j_date = eventObj.start;// Tue Feb 01 2022 00:00:00 GMT+0900 (한국 표준시)
-	        	console.log(j_date);
+	        	
+	        	// Date format
+	        	const offset = j_date.getTimezoneOffset()
+	        	j_date = new Date(j_date.getTime() - (offset*60*1000))
+				
+	        	// console.log(getEventDate); // yyyy-mm-dd
+	        	var getEventDate = j_date.toISOString().split('T')[0];
+	        	
+	        	let xhr=new XMLHttpRequest();
+	    		xhr.onreadystatechange=function(){
+	    			if(xhr.readyState==4 && xhr.status==200){
+	    				let data=xhr.responseText;
+	    				let json=JSON.parse(data);
+	    				let head=getEventDate;
+	    				let detail=json.j_company+ "<br>" + json.j_subject;
+						let title=document.getElementById("modalTitle");
+						let body=document.getElementById("modalBody");
+						title.innerHTML=head;
+						body.innerHTML=detail;
+	    			}
+	    		}
+	    		xhr.open('get','${cp}/job/eventSelect?j_num=' + j_numm ,true);
+	    		xhr.send();
+		
 	        	}
 	    	},
-	    // 날짜 클릭시 모달
-//	    dateClick: function () {
-//		 	$("#calendarModal").modal();
-//		},
 			selectable : true,
 			droppable : true,
 			editable : true,
 			events : [
-				
     			<%List<JobVo> calendarList = (List<JobVo>) request.getAttribute("list");%>
             	<%if (calendarList != null) {%>
             	<%for (JobVo vo : calendarList) {%>
             	//시작날짜
             	{
+            		id : '<%=vo.getJ_num()%>',
 	            	title : '<%=vo.getJ_company()%>',
 	                start : '<%=vo.getJ_startdate()%>',
 	                color : '#1cc88a'
-	             },
+	            },
 	             //마감날짜
-	             {
+	            {
+	            	id : '<%=vo.getJ_num()%>',
 	             	title : '<%=vo.getJ_company()%>',
-	                 start : '<%=vo.getJ_enddate()%>',
-	                 color : '#e74a3b'
-	              },
-             
+	                start : '<%=vo.getJ_enddate()%>',
+	                color : '#e74a3b'
+	            },
 		<%}
 	}%>
 					],
-					
-					
 				});
 				calendar.render();
 			});

@@ -1,5 +1,6 @@
 package data.mybatis.mapper;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public interface JobMapper {
 	int update(JobVo vo);
 	List<JobVo> list(HashMap<String, Object> map);
 	JobVo selectOne(int j_num);
+	JobVo selectEvent(Date j_eventDate);
 	int getCount(HashMap<String, Object> map);
 	int addHit(int j_num);
 }

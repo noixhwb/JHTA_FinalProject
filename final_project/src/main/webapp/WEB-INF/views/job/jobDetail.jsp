@@ -81,6 +81,64 @@
 						</div>
 					</div> <!-- (2) 모집 부문 끝 -->
 						
+					<!-- 다른 채용 공고 
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">다른 채용 공고</h6>
+						</div>
+						<div class="card-body">
+							<div class="card mb-3" style="max-width: 540px;">
+								<div class="row g-0">
+									<div class="col-md-4">
+										<img
+											src="${cp}/resources/img/undraw_profile.svg"
+											class="img-fluid rounded-start" alt="..."
+											style="max-width: 50px;">
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">영화모임1</h5>
+											<p class="card-text">푸쉬왜안됨!!?????</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card mb-3" style="max-width: 540px;">
+								<div class="row g-0">
+									<div class="col-md-4">
+										<img
+											src="${cp}/resources/img/undraw_profile.svg"
+											class="img-fluid rounded-start" alt="..."
+											style="max-width: 50px;">
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">영화모임</h5>
+											<p class="card-text">영화 좋아하시는분</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card mb-3" style="max-width: 540px;">
+								<div class="row g-0">
+									<div class="col-md-4">
+										<img
+											src="${cp}/resources/img/undraw_profile.svg"
+											class="img-fluid rounded-start" alt="..."
+											style="max-width: 50px;">
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">영화모임</h5>
+											<p class="card-text">영화 좋아하시는분</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	-->
+					
+						
 					<!-- (3) 근무지역 -->
 					<div class="card mb-3">
 						<div class="col-md-8">

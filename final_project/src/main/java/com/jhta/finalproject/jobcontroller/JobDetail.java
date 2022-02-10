@@ -1,11 +1,14 @@
 package com.jhta.finalproject.jobcontroller;
 
-import javax.servlet.ServletContext;
+import java.sql.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.jobvo.CareerVo;
 import com.jhta.finalproject.jobvo.DutyVo;
@@ -38,4 +41,20 @@ public class JobDetail {
 		
 		return "job/jobDetail";
 	}
+	
+	@GetMapping(value="/job/eventSelect",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody JobVo select(int j_num, Model model) {
+		JobVo jv = Jservice.selectOne(j_num);
+		return jv;
+	}
+	
+//	@GetMapping("/job/eventDetail")
+//	public String eventDetail(Date j_eventDate, Model model) {
+//		JobVo eventModal = Jservice.selectEvent(j_eventDate);
+//		int n=Jservice.addHit(eventModal.getJ_num());
+		
+//		model.addAttribute("eventModal",eventModal);
+		
+//		return "job/jobDetail";
+//	}
 }
