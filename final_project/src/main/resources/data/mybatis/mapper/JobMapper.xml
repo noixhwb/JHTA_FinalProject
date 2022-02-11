@@ -79,6 +79,10 @@
 		update jobinfo set j_view=j_view+1 where j_num=#{j_num}
 	</update>
 	
+	<!-- Get user -->
+	<select id="selectUser" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">
+		SELECT * FROM MEMBER WHERE M_ID=#{m_id}
+	</select>
 	
  </mapper>
  

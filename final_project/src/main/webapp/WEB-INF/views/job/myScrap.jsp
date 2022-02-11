@@ -100,7 +100,11 @@
 															<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>
 																${vo.j_view}
 															</span>
-														</p> 
+														</p>
+														<!-- 북마크 하면 이거 -->
+														<a onclick="bookMark(${vo.j_num})"><i style="color:blue;" class="fa-solid fa-bookmark"></i></a>
+														<!-- 평소 -->
+														<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a>
 												</div>
 											</div>
 										<p class="card-text">

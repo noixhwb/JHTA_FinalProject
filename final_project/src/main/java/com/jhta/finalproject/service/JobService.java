@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.jobvo.JobVo;
+import com.jhta.finalproject.vo.MemberVo;
 
 import data.mybatis.mapper.JobMapper;
 
@@ -38,6 +39,10 @@ public class JobService {
 	}
 	public int addHit(int j_num) {
 		return mapper.addHit(j_num);
+	}
+	
+	public MemberVo selectUser(String m_id) {
+		return mapper.selectUser(m_id);
 	}
 	
 }

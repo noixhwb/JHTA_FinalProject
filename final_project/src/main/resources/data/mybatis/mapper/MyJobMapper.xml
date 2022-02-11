@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.MyJobMapper">
+	<insert id="insert" parameterType="com.jhta.finalproject.jobvo.MyJobVo">
+		INSERT INTO MYJOBINFO VALUES(myjobinfo_SEQ.NEXTVAL,#{j_num},#{m_num})
+	</insert>
+	<delete id="delete" parameterType="hashmap">
+		DELETE FROM MYJOBINFO WHERE J_NUM=#{j_num} AND M_NUM=#{m_num}
+	</delete>
+	
+	<select id="myScrap" parameterType="int" resultType="com.jhta.finalproject.jobvo.JobVo">
+		SELECT DISTINCT J.J_COMPANY, J.J_SUBJECT, J.J_STARTDATE, J.J_ENDDATE,
+				J.J_VIEW,J.J_SUBJECT,J.J_IMG
+				FROM JOBINFO J, MYJOBINFO M 
+				WHERE J.J_NUM=M.J_NUM AND M.M_NUM=#{m_num}
+	</select>
+		
+</mapper>

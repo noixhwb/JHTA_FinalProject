@@ -11,13 +11,50 @@
 <!-- End of Header -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script>
+	function bookMark(num) {
+		var j_num=num;
+		let xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				let data=xhr.responseText;
+				let json=JSON.parse(data);
+				if(json.result==true) {
+					alert("성공");
+				}else {
+					alert("실패");
+				}
+			}
+		}
+		xhr.open('get','${cp}/job/scrapInsert?j_num=' + j_num ,true);
+		xhr.send();
+	}
+/*	$(function() {
+		$("#scrap").click(function(num) {
+			console.log(num);
+			$.ajax({
+				url:'${cp}/job/scrapInsert',
+				data:num,
+				method:'GET',
+				dataType:'json',
+				success:function(data){
+					if(data.result==true) {
+						alert("스크랩 성공");
+					}else {
+						alert("스크랩 성공");
+					}
+				}
+			})			
+		});
+	};n
+
+/*	$(function(){ 
 	function bookMark() {
 		 if (confirm("로그인 후 스크랩할 수 있습니다.") == true){    //확인
 			 location.href='${cp}/login';
 		 }else{   //취소
 		     return false;
 		 }
-	}
+	}*/
 </script>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
@@ -154,11 +191,14 @@
 																${vo.j_view}
 															</span>
 														</p>
+														
 														<!-- 비로그인 북마크 클릭 : alert(로그인후 스크랩 할 수 있습니다) -->
 														<!-- 확인 누르면 로그인페이지, 취소누르면 그대로 -->
 														
-														<!-- 로그인 후 공고리스트 접속 : bookmark 파랑색처리 -->
-														<a onclick="bookMark()"><i class="fa-solid fa-bookmark"></i></a> 
+														<!-- 북마크 하면 이거 -->
+														<a onclick="bookMark(${vo.j_num})"><i style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
+														<!-- 평소 -->
+														<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a> 
 												</div>
 											</div>
 									</p>	
