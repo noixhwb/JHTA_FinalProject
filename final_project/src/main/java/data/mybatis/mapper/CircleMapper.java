@@ -16,6 +16,8 @@ public interface CircleMapper {
 	List<CircleVo> selectMyCircle(int m_num);
 	//Date selectToday();
 	int selectPerson(int ci_num);
+	
+	int selectMyCircleCount(HashMap<String, Integer> map);
 	int selectMeRegister(HashMap<String, Integer> map);
 	int addHit(int ci_num);
 	MemberVo selectM(String m_id); //해당페이지의 user 정보들 가져오기

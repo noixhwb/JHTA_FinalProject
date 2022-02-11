@@ -43,6 +43,10 @@ public class CircleService {
 		return mapper.selectPerson(ci_num);
 	}
 	
+	public int selectMyCircleCount(HashMap<String, Integer> map) {
+		return mapper.selectMyCircleCount(map);
+	}
+	
 	public int selectMeRegister(HashMap<String, Integer> map) {
 		return mapper.selectMeRegister(map);
 	}

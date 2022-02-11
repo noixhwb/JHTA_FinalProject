@@ -13,11 +13,6 @@ import lombok.ToString;
 @Data
 @ToString
 public class CircleVo {
-	public CircleVo(int ci_num, String ci_name, String ci_category, 
-					int ci_person, String ci_logofile, int userMnum) {
-		// TODO Auto-generated constructor stub
-	}
-	
 	private int ci_num; //동아리번호 (SEQ)
 	private String ci_name; //동아리이름
 	private String ci_category; //카테고리

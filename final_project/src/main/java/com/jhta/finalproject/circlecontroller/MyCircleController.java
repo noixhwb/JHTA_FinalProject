@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,12 +18,16 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jhta.finalproject.circlevo.CircleVo;
+import com.jhta.finalproject.circlevo.LikeCircleJoinVo;
+import com.jhta.finalproject.circlevo.LikeCircleVo;
 import com.jhta.finalproject.circlevo.MyCircleJoinVo;
 import com.jhta.finalproject.circlevo.MyCircleListVo;
 import com.jhta.finalproject.service.CircleService;
+import com.jhta.finalproject.service.LikeCircleService;
 import com.jhta.finalproject.service.MyCircleService;
 import com.jhta.finalproject.vo.MemberVo;
 
@@ -31,6 +36,7 @@ public class MyCircleController {
 	//내 동아리 페이지로 이동
 	@Autowired private MyCircleService mservice;
 	@Autowired private CircleService cservice;
+	@Autowired private LikeCircleService lservice;
 	@Autowired private ServletContext sc;
 	
 	//동아리 관리 페이지로 이동
@@ -64,10 +70,9 @@ public class MyCircleController {
 	public String mycirclelike(Model model, Principal principal) {
 		MemberVo uservo = cservice.selectM(principal.getName());
 		int userMnum = uservo.getM_num();
-		List<MyCircleJoinVo> list = mservice.selectAllMyJoin(userMnum); //신청한동아리
-		List<CircleVo> mylist = cservice.selectMyCircle(userMnum);//내가만든동아리
-		model.addAttribute("list", list);
-		model.addAttribute("mylist", mylist);
+		
+		List<LikeCircleJoinVo> mylikelist = lservice.selectMyLikeList(userMnum);
+		model.addAttribute("mylikelist", mylikelist);
 		
 		return "circle/MyCircleLike";
 	}
@@ -158,21 +163,11 @@ public class MyCircleController {
 	
 	//동아리 관리 페이지 - 신청한 학생 목록 보기
 	@GetMapping("/circle/CircleStudentList")
-	public void circlestudentlist(int ci_num, Model model, Principal principal, HttpServletRequest request) {
-		MemberVo uservo = cservice.selectM(principal.getName());
-		
-		int userMnum = uservo.getM_num();
-		List<MyCircleJoinVo> list = mservice.selectAllMyJoin(userMnum); //신청한동아리
-		List<CircleVo> mylist = cservice.selectMyCircle(userMnum);//내가만든동아리
+	public @ResponseBody List<MyCircleListVo> circlestudentlist(int ci_num, Model model, Principal principal, HttpServletRequest request) {
 		List<MyCircleListVo> studentlist = mservice.selectMyList(ci_num);
 		
-		//ci_num을 세션에 저장
-		request.getSession().setAttribute("ci_num", ci_num);
-		System.out.println("컨트롤러"+ci_num);
-		
-		model.addAttribute("list", list);
-		model.addAttribute("mylist", mylist);
-		model.addAttribute("studentlist", studentlist);
+		System.out.println("동아리 신청한 학생 목록 불러오기 완료!");
+		return studentlist;
 		
 	}
 }

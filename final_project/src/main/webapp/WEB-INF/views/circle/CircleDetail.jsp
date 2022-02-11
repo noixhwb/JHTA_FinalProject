@@ -39,6 +39,7 @@
 					<nav style="--bs-breadcrumb-divider: '>'; background-color:primary;" aria-label="breadcrumb">
 					  <ol class="breadcrumb">
 					    <li class="breadcrumb-item"><a href="${ cp }/circle/CircleList">동아리</a></li>
+					    <li>&nbsp;&nbsp;>&nbsp;&nbsp;</li>
 					    <li class="breadcrumb-item active" aria-current="page">동아리 상세정보</li>
 					  </ol>
 					</nav>
@@ -67,7 +68,23 @@
 												<ul id="dot">
 													<li>모집기간 : ${ sel.ci_startdate } 에서 ${ sel.ci_enddate } 까지</li>
 													<li>조회수 : ${ sel.ci_view }</li> <!-- 3번 -->
-													<li>좋아요수 : ${ sel.ci_recommend }</li> <!-- 4번 -->
+													<li>좋아요수 : ${ likePerson }</li> <!-- 4번 -->
+													<c:choose>
+													<c:when test="${ nmaplike eq 0 }">
+														<li>
+															<!-- 좋아요 버튼 -->
+															<input type="button" value="좋아요등록" id="btnLike">
+															<div id="likehere"></div>
+														</li>
+													</c:when>
+													<c:otherwise>
+														<li>
+															<!-- 좋아요 취소 버튼 -->
+															<input type="button" value="좋아요취소" id="btnLikeNo">
+															<div id="notlikehere"></div>
+														</li>
+													</c:otherwise>
+													</c:choose>
 												</ul>
 											</div>
 										</div>
@@ -100,23 +117,25 @@
 					</div> <!-- 2. 동아리 게시글 상세 끝 -->
 					
 					<c:choose>	
-					<c:when test="${ map } != 0">				
-					<!-- 3. 동아리 신청하기 -->
-					<div class="row g-0">
-						<div class="col text-center">
-							<button class="btn btn-secondary" data-target="#joinModal" data-toggle="modal">신청하기</button>
+					<c:when test="${ nmymap ne 0 }">
+					</c:when>
+					<c:when test="${ nmap eq 0 }">				
+						<!-- 3. 동아리 신청하기 -->
+						<div class="row g-0">
+							<div class="col text-center">
+								<button class="btn btn-secondary" data-target="#joinModal" data-toggle="modal">신청하기</button>
+							</div>
 						</div>
-					</div>
-					<!-- 3. 동아리 신청하기 끝 -->
+						<!-- 3. 동아리 신청하기 끝 -->
 					</c:when>
 					<c:otherwise>
-					<!-- 4. 동아리 신청 취소하기 -->
-					<div class="row g-0">
-						<div class="col text-center">
-							<button class="btn btn-secondary" data-target="#joinCancelModal" data-toggle="modal">신청취소하기</button>
+						<!-- 4. 동아리 신청 취소하기 -->
+						<div class="row g-0">
+							<div class="col text-center">
+								<button class="btn btn-secondary" data-target="#joinCancelModal" data-toggle="modal">신청취소하기</button>
+							</div>
 						</div>
-					</div>
-					<!-- 4. 동아리 신청취소하기 끝 -->
+						<!-- 4. 동아리 신청취소하기 끝 -->
 					</c:otherwise>
 					</c:choose>
 				</div> <!-- 동아리 상세정보 카드 body 끝-->
@@ -215,3 +234,36 @@
    	}
 	$breadcrumb-divider: quote(">");
 </style>   
+<script>
+//좋아요 누르기
+$(function(){
+	$("#btnLike").click(function(){
+		$.ajax({
+			url:'${cp}/circle/LikeCircleInsert',
+			data:{"ci_num":${ci_num},"m_num":${m_num}},
+			dataType:'json',
+			success:function(data){
+				if(data.result == 'success'){
+					alert('등록 성공!');
+				}else{
+					alert('등록 실패!');
+				}
+			}
+		});
+	});
+});
+
+//좋아요 누르기 취소
+$(function(){
+	$("#btnLikeNo").click(function(){
+		$.ajax({
+			url:'${cp}/circle/LikeCircleDelete',
+			data:{"ci_num":${ci_num},"m_num":${m_num}},
+			dataType:'json',
+			success:function(data){
+				alert('삭제 성공!');
+			}
+		});
+	});
+});
+</script>

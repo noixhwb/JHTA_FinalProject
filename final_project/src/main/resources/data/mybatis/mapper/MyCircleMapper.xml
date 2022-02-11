@@ -17,7 +17,7 @@
 	</select>
 	<!-- 동아리 신청한 학생 목록 -->
 	<select id="selectMyList" parameterType="int" resultType="com.jhta.finalproject.circlevo.MyCircleListVo">
-		SELECT M.M_NUM, M.M_ID, M.M_NAME, M.M_PHONE, M.EMAIL, M.NICKNAME, M.M_DEPT, M.M_UNIVNUM, M.PROFILE, MC.CI_NUM 
+		SELECT M.M_NUM, M.M_ID, M.M_NAME, M.M_PHONE, M.M_EMAIL, M.M_NICKNAME, M.M_DEPT, M.M_UNIVNUM, M.M_PROFILE, MC.CI_NUM 
 		FROM MEMBER M, MYCIRCLE MC 
 		WHERE M.M_NUM=MC.M_NUM AND CI_NUM=#{ci_num}
 	</select>

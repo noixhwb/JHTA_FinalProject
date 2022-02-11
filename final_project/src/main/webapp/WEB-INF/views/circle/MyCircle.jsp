@@ -192,44 +192,14 @@
 </form>            	
 
 <!-- 신청한 학생 목록 보이기 모달 -->
-						<a href="${ cp }/circle/CircleStudentList?ci_num=${myvo.ci_num}" data-target="#circleStudentList" data-toggle="modal">신청한 학생 목록</a>
-						<button class="btn btn-secondary" data-target="#circleStudentList" data-toggle="modal">신청한 학생 목록</button>
-<!-- Modal -->
-	<div class="modal fade" id="circleStudentList" tabindex="-1" role="dialog"
-		 aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">신청 학생 목록</h5>
-					<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				
-				
-				<div class="modal-body">
-				히히
-				<c:forEach var="slist" items="${ studentlist }">
-					<ul id="dot">
-						<li>${ ci_num }</li>
-						<li>${slist.m_num }</li>
-						<li>${slist.m_id }</li>
-					</ul>
-				</c:forEach>
-				</div>
-				
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">취소
-					</button>
-					<input type="submit" class="btn btn-primary" value="확인">
-				</div>
-			</div>
-		</div>
-	</div>	
-</form>
-	
+						<%--
+						<a href="${ cp }/circle/CircleStudentList?ci_num=${myvo.ci_num}" id="btnList" data-target="#btnList" data-toggle="modal">신청한 학생 목록</a>
+						<button class="btn btn-secondary" data-target="#btnList" data-toggle="modal">신청한 학생 목록</button>
+						 --%>
+						<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
+						<input type="button" value="리스트1" id="btnList">
+						<div id="here1"></div>
+
 						</c:forEach>	
 					</div> <!-- 0. MY  동아리 카드 body 끝 -->
 				</div>
@@ -305,3 +275,33 @@
 		padding-left:5px;
    	}
 </style>   
+<script>
+
+//신청한 학생 목록 보여지기 버튼
+$(function() {
+	$("#btnList").click(function() {
+		let ci_num = $(this).prev().val();
+		$.ajax({
+			url:'${cp}/circle/CircleStudentList',
+			data:{"ci_num":ci_num},
+			dataType:'json',
+			success:function(list) {
+				$(list).each(function(i, d) {
+					let html = "<div class='list'>";
+					html += "<<학생>> <br>";
+					html += "학생 이름 : "+d.m_name+"<br>";
+					html += "학생 아이디 : "+d.m_id+"<br>";
+					html += "닉네임 : "+d.m_nickname+"<br>";
+					html += "학과 : "+d.m_delp+"<br>";
+					html += "학번 : "+d.m_univnum+"<br>";
+					html += "핸드폰번호 : "+d.m_phone+"<br>";
+					html += "이메일 : "+d.m_email+"<br>";
+					html += "</div>";
+					$("#here1").append(html);
+				});
+			}
+		});
+	});
+});
+
+</script>	

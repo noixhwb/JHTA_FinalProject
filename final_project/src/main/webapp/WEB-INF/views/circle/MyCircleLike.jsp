@@ -45,8 +45,8 @@
 			<div class="row">
 						
 			<c:choose>
-			<c:when test="${ not empty list }">
-			<c:forEach var="vo" items="${ list }">
+			<c:when test="${ not empty mylikelist }">
+			<c:forEach var="vo" items="${ mylikelist }">
 				<div class="col-lg-4 mt-4 mb-4">
 			<!-- n번 동아리 목록 -->
 			<div class="card shadow mb-3">

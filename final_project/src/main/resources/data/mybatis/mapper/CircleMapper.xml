@@ -42,6 +42,12 @@
 		SELECT COUNT(*) FROM MYCIRCLE WHERE CI_NUM=#{ci_num}
 	</select>
 	
+	<!-- 내가 만든 동아리인가? -->
+	<select id="selectMyCircleCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) 
+		FROM CIRCLE 
+		WHERE M_NUM=#{m_num} AND CI_NUM=#{ci_num}
+	</select>
 	<!-- 내가 동아리 신청했나? -->
 	<select id="selectMeRegister" parameterType="hashmap" resultType="int">
 		SELECT COUNT(*)  
