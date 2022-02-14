@@ -27,19 +27,4 @@
 		select * from SUBJECT where s_num=#{s_num}
 	</select>
 	
-	<!-- 강의추가(구현미정) 
-	<insert id="insert" parameterType="com.jhta.finalproject.timetablevo.SubjectVo">
-		insert into SUBJECT 
-		values(SUBJECT_SEQ.NEXTVAL,#{s_name},#{s_category},#{s_prof},#{s_class},#{s_day},#{s_starttime},#{s_endtime},#{s_score})
-	</insert>-->
-	<!-- 강의수정(구현미정) 
-	<update id="update" parameterType="com.jhta.finalproject.timetablevo.SubjectVo">
-		update SUBJECT 
-		set s_name=#{s_name}, s_category=#{s_category}, s_prof=#{s_prof}, s_class=#{s_class}, s_day=#{s_day}, s_starttime=#{s_starttime}, s_endtime=#{s_endtime}, s_score=#{s_score}
-		where s_num=#{s_num}
-	</update>-->
-	<!-- 강의삭제(구현미정) 
-	<delete id="delete" parameterType="int">
-		delete from SUBJECT where s_num=#{s_num}
-	</delete>-->
 </mapper>

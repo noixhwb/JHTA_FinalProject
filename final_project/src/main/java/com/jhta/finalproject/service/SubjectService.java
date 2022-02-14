@@ -25,16 +25,4 @@ public class SubjectService {
 	public SubjectVo selectOne(int s_num) {
 		return mapper.selectOne(s_num);
 	}
-	
-	public int insert(SubjectVo vo) {
-		return mapper.insert(vo);
-	}
-	
-	public int update(SubjectVo vo) {
-		return mapper.update(vo);
-	}
-	
-	public int delete(int s_num) {
-		return mapper.delete(s_num);
-	}
 }

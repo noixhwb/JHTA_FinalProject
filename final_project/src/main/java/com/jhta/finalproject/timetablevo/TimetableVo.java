@@ -10,7 +10,8 @@ import lombok.ToString;
 @ToString
 @Data
 public class TimetableVo {
-	private int t_num;
+	private int tt_num;
 	private int m_num;
 	private int s_num;
+	private String tt_name;
 }

@@ -3,22 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.TimetableMapper">
+	<!-- 학생번호로 시간표 목록 검색 -->
+	<select id="tableList" parameterType="int" resultType="com.jhta.finalproject.timetablevo.TimetableVo">
+		select * from TIMETABLE where m_num=#{m_num}
+	</select>
 	
-	
-	<!-- 학생번호,시간표이름으로 검색 -->
-	<select id="selectOne" parameterType="hashmap" resultType="com.jhta.finalproject.timetablevo.TimetableVo">
-		select * from TIMETABLE where s_num=#{s_num} and m_num=#{m_num}
+	<!-- 학생번호,시간표이름으로 신청과목검색 -->
+	<select id="tableDetail" parameterType="hashmap" resultType="com.jhta.finalproject.timetablevo.TimetableVo">
+		select * from TIMETABLE where m_num=#{m_num} and tt_name=#{tt_name}
 	</select>
 	
 	<insert id="insert" parameterType="com.jhta.finalproject.timetablevo.TimetableVo">
 		insert into TIMETABLE 
-		values(TIMETABLE_seq.NEXTVAL,#{s_num},#{m_num},#{t_name})
+		values(TIMETABLE_seq.NEXTVAL,#{m_num},#{s_num},#{tt_name})
 	</insert>
+	
+	<!-- 수정? 삭제하고 새로 insert?
 	<update id="update" parameterType="com.jhta.finalproject.timetablevo.TimetableVo">
 		update TIMETABLE 
-		set s_num=#{s_num} where t_num=#{t_num} and t_name=#{t_name}
+		set s_num=#{s_num} where tt_num=#{tt_num} and tt_name=#{tt_name}
 	</update>
-	<delete id="delete" parameterType="int">
-		delete from TIMETABLE where t_num=#{t_num}
-	</delete>
+	
+	<delete id=""></delete>-->
 </mapper>

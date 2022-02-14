@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.service.SubjectService;
+import com.jhta.finalproject.service.TimetableService;
 import com.jhta.finalproject.timetablevo.SubjectRateVo;
 import com.jhta.finalproject.timetablevo.SubjectVo;
 import com.util.PageUtil;
@@ -23,6 +24,7 @@ import com.util.PageUtil;
 public class TableController {
 	@Autowired private ServletContext sc;
 	@Autowired private SubjectService service;
+	@Autowired private TimetableService t_service;
 
 	//시간표 페이지로 이동 + 과목목록출력
 	@GetMapping("/timetable/table")
@@ -53,13 +55,16 @@ public class TableController {
 		return map;
 	}
 	
-	/*@PostMapping(value="/timetable/tableInsert", produces={MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody HashMap<String, Object> insert(String numList) {
-		//배열 받아오기 
+	//과목 리스트랑 시간표 이름 받아와서 insert하기
+	@PostMapping(value="/timetable/tableInsert", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String, Object> insert(String tt_name, String numList) {
+		System.out.println("tt_name "+tt_name);
+		System.out.println("numList "+numList);
 		HashMap<String,Object> map=new HashMap<String, Object>();
-		SubjectVo vo = service.insert();
+		/*for(int i=0;i<=)
+		int n= t_service.insert();*/
 		map.put("result", true);
 		System.out.println("컨트롤러다녀감");
 		return map;
-	}*/
+	}
 }
