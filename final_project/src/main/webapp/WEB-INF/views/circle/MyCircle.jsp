@@ -197,7 +197,7 @@
 						<button class="btn btn-secondary" data-target="#btnList" data-toggle="modal">신청한 학생 목록</button>
 						 --%>
 						<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
-						<input type="button" value="리스트1" id="btnList">
+						<input type="button" value="학생목록" id="btnList">
 						<div id="here1"></div>
 
 						</c:forEach>	
