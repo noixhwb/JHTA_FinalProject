@@ -10,7 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+	
     <title>Final 3조</title>
 
     <!-- Custom fonts for this template-->
@@ -83,7 +85,7 @@
 		<li class="nav-item active">
 			 <a class="nav-link" href="${cp }/member/mymember">
 			
-			   <i class="fa-solid fa-square-user"></i>
+			   <i class="fa-solid fa-circle-user"></i>
 				<span>내정보</span></a></li>
 		
 		

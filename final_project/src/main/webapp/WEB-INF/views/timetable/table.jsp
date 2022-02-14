@@ -108,7 +108,7 @@
 					강의목록</a>
 				<div class="row g-0">
 					<div class="col text-center">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tableNameModal" data-whatever="tableSave">시간표저장</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tableSaveModal" data-whatever="tableSave">시간표저장</button>
 					</div>
 				</div>
 				<!-- <a href="javascript:tableInsert()"
@@ -219,19 +219,19 @@
 				</table>
 			</div>
 		</div>
-		<div id="modalmoya">ㄹㄹㄹ</div>
+		<div id="modalmoya"></div>
 		<!-- 이건 지우지마세요 -->
 	</div>
 </div>
 <!-- 이건 지우지마세요 -->
 
 <!-- 시간표저장하기 modal -->
-<div class="modal fade" id="tableNameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="tableSaveModal" tabindex="-1" role="dialog" aria-labelledby="tableSaveModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="tableNameModalLabel" style="margin:auto; text-align:center;">시간표저장하기</h4>
+                    <h4 class="modal-title" id="tableSaveModalLabel" style="margin:auto; text-align:center;">시간표저장하기</h4>
                 </div>
                  <div class="modal-body">
         <form>
@@ -243,7 +243,7 @@
       </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary" onclick="tableNameSave()">저장하기</a>
+                    <a class="btn btn-primary" onclick="tableSave()">저장하기</a>
                 </div>
             </div>
         </div>
@@ -326,10 +326,10 @@
 		//alert(s_num+"번 강의 제거 "+numList);
 	}
 	
-	function tableNameSave() {
+	function tableSave() {
 		$.ajax({
 			url:'${cp}/timetable/tableInsert',
-			data:{"numList":numList},
+			data:{"tt_name":$("#table-name").val(),"numList":numList},
 			method:'POST',
 			dataType:'json',
 			success:function(data) {
@@ -341,7 +341,6 @@
 			}
 		});
 		$("#tableNameModal").modal('hide');
-		$("#modalmoya").html("시간표이름: "+$("#table-name").val());
 	}
 	
 	
