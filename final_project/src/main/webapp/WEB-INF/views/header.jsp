@@ -83,7 +83,7 @@
 		<li class="nav-item active">
 			 <a class="nav-link" href="${cp }/member/mymember">
 			
-			   <i class="fa-solid fa-square-user"></i>
+			   <i class="fa-solid fa-circle-user"></i>
 				<span>내정보</span></a></li>
 		
 		

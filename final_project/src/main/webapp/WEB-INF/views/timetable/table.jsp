@@ -219,7 +219,7 @@
 				</table>
 			</div>
 		</div>
-		<div id="modalmoya">ㅡㅡㅡㅡㅡ</div>
+		<div id="modalmoya">ㅎㄹㄹㄹㄹㄹㄹ</div>
 		<!-- 이건 지우지마세요 -->
 	</div>
 </div>
