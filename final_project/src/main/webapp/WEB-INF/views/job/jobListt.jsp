@@ -194,7 +194,7 @@
 																	<span style="color:#4e73df;">마감</span>
 																</c:when>
 																<c:otherwise>
-																	<span style="color:#4e73df;">D ${endTime - today } qweqwewqe</span>
+																	<span style="color:#4e73df;">D ${endTime - today } qweqwewqeqweqweqweqweqew</span>
 																</c:otherwise>
 															</c:choose>
 															<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>
