@@ -219,7 +219,7 @@
 				</table>
 			</div>
 		</div>
-		<div id="modalmoya"></div>
+		<div id="modalmoya">d</div>
 		<!-- 이건 지우지마세요 -->
 	</div>
 </div>
