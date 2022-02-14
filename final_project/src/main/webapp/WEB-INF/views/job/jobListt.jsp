@@ -164,10 +164,10 @@
 										
 											<div class="row g-0" >
 												<div class="col-md-8" style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
-														<h5 style="font-weight: bold" color="black">${vo.j_company }</h5>
+														<h5 style="font-weight: bold">${vo.j_company }</h5>
 														<p>${vo.j_subject}</p> 
 												</div>
-												<div class="col-md-8" ">
+												<div class="col-md-8">
 														<!-- 현재날짜 -->
 														<c:set var="today" value="<%=new java.util.Date()%>" />
 														<c:set var="end" value="${vo.j_enddate}" />
