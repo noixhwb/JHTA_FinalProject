@@ -69,22 +69,26 @@
 													<li>모집기간 : ${ sel.ci_startdate } 에서 ${ sel.ci_enddate } 까지</li>
 													<li>조회수 : ${ sel.ci_view }</li> <!-- 3번 -->
 													<li>좋아요수 : ${ likePerson }</li> <!-- 4번 -->
+													<input type="input" value="${ likePerson }" id="likePerson">
 													<c:choose>
 													<c:when test="${ nmaplike eq 0 }">
 														<li>
 															<!-- 좋아요 버튼 -->
-															<input type="button" value="좋아요등록" id="btnLike">
-															<div id="likehere"></div>
+															<input type="button" value="좋아요등록-" id="btnLike">
+															<span id="likehere">♡</span>
 														</li>
 													</c:when>
 													<c:otherwise>
 														<li>
 															<!-- 좋아요 취소 버튼 -->
 															<input type="button" value="좋아요취소" id="btnLikeNo">
-															<div id="notlikehere"></div>
+															<span id="notlikehere">♥</span>
 														</li>
 													</c:otherwise>
 													</c:choose>
+													<li><span id="heart"></span></li>
+
+
 												</ul>
 											</div>
 										</div>
@@ -237,6 +241,7 @@
 <script>
 //좋아요 누르기
 $(function(){
+	var likePerson = document.querySelector("#btnLike");
 	$("#btnLike").click(function(){
 		$.ajax({
 			url:'${cp}/circle/LikeCircleInsert',
@@ -245,6 +250,9 @@ $(function(){
 			success:function(data){
 				if(data.result == 'success'){
 					alert('등록 성공!');
+					let html = "♥";
+					$("#heart").append(html);
+					
 				}else{
 					alert('등록 실패!');
 				}
@@ -253,6 +261,38 @@ $(function(){
 	});
 });
 
+<%--
+$.post(
+		"/favorite"
+		, {"articleId" : "${article.articleId}"}	
+		, function(data){
+									
+			var jsonData3 = {};
+			try {
+				jsonData3 = JSON.parse(data);
+			}catch(e) {
+				jsonData3.result = false;
+			}
+			console.log(jsonData3);
+			
+			if ( jsonData3.result ){
+				var text = $("#favorite").text();
+				if (jsonData3.isFavorite){
+					$("#favorite").text("♥");
+				}
+				else if (text == "♥"){
+						$("#favorite").text("♡");
+				} 
+			}
+			else {
+				/* alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+				location.href = "/"; */
+			}
+		}
+);
+});
+
+--%>
 //좋아요 누르기 취소
 $(function(){
 	$("#btnLikeNo").click(function(){
@@ -262,6 +302,8 @@ $(function(){
 			dataType:'json',
 			success:function(data){
 				alert('삭제 성공!');
+				let html = "♡";
+				$("#heart").append(html);
 			}
 		});
 	});
