@@ -51,21 +51,16 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="${cp}/home">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>홈</span></a>
-            </li>
             <sec:authorize access="isAnonymous()">
             <li class="nav-item active">
                 <a class="nav-link" href="${cp}/login">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa-solid fa-right-to-bracket"></i>
                     <span>로그인</span></a>
             </li>
             <li>
             <li class="nav-item active">
                 <a class="nav-link" href="${cp}/join">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa-solid fa-user-plus"></i>
                     <span>회원가입</span></a>
             </li>
 			</sec:authorize>
@@ -78,7 +73,7 @@
 		<li class="nav-item active">
 			 <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
 			
-			   <i class="fas fa-fw fa-tachometer-alt"></i>
+			   <i class="fa-solid fa-right-from-bracket"></i>
 				<span>로그아웃</span></a>
 				<form id="logout" action="${cp }/logout">
 				
@@ -107,7 +102,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fa-solid fa-comments"></i>
                     <span>커뮤니티</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -123,7 +118,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fa-solid fa-users"></i>
                     <span>동아리</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
@@ -141,7 +136,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fa-solid fa-store"></i>
                     <span>거래장터</span>
                 </a>
                 <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
@@ -166,7 +161,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fa-solid fa-bullhorn"></i>
                     <span>취업정보</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -182,7 +177,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fa-solid fa-calendar-days"></i>
                     <span>시간표</span>
                 </a>
                 <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -203,7 +198,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fa-solid fa-wrench"></i>
                     <span>관리자게시판</span>
                 </a>
                 <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -222,7 +217,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fa-solid fa-file-arrow-up"></i>
                     <span>게시요청</span>
                 </a>
                 <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">

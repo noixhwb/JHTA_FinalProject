@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -49,7 +50,16 @@ public class TableController {
 		HashMap<String,Object> map=new HashMap<String, Object>();
 		SubjectVo vo = service.selectOne(s_num);
 		map.put("vo", vo);
-		System.out.println("컨트롤러다녀감");
 		return map;
 	}
+	
+	/*@PostMapping(value="/timetable/tableInsert", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String, Object> insert(String numList) {
+		//배열 받아오기 
+		HashMap<String,Object> map=new HashMap<String, Object>();
+		SubjectVo vo = service.insert();
+		map.put("result", true);
+		System.out.println("컨트롤러다녀감");
+		return map;
+	}*/
 }

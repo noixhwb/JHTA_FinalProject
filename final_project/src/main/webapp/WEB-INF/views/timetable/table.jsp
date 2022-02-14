@@ -106,6 +106,14 @@
 				<a href="javascript:subjectlist()"
 					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
 					강의목록</a>
+				<div class="row g-0">
+					<div class="col text-center">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tableNameModal" data-whatever="tableSave">시간표저장</button>
+					</div>
+				</div>
+				<!-- <a href="javascript:tableInsert()"
+					class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+					시간표저장</a> -->
 			</div>
 			<div id="mytable_wrapper2">
 				<table id="mytable" class="table table-bordered" width="100%">
@@ -211,19 +219,54 @@
 				</table>
 			</div>
 		</div>
+		<div id="modalmoya"></div>
 		<!-- 이건 지우지마세요 -->
 	</div>
 </div>
 <!-- 이건 지우지마세요 -->
 
+<!-- 시간표저장하기 modal -->
+<div class="modal fade" id="tableNameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="tableNameModalLabel" style="margin:auto; text-align:center;">시간표저장하기</h4>
+                </div>
+                 <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="table-name" class="col-form-label">시간표 이름</label>
+            <input type="text" class="form-control" id="table-name">
+          </div>
+        </form>
+      </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" onclick="tableNameSave()">저장하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
 <script type="text/javascript">
-	let numList="";
+	const numList = [];
 
 	function subjectlist() {
 		$("#subList_wrapper").toggle();
 	}
 	
 	function ontable(s_num) {
+		for (let i = 0; i < numList.length; i++) {
+			if(numList[i]==s_num) {
+			alert("이미 추가한 강의입니다.");
+			return;
+			}
+		}
 		let divId = "";
 		$.ajax({
 					url : '${cp}/timetable/selectOne',
@@ -232,7 +275,6 @@
 					},
 					dataType : 'json',
 					success : function(data) {
-						let num = data.vo.s_num;
 						let name = data.vo.s_name;
 						let prof = data.vo.s_prof;
 						let sclass = data.vo.s_class;
@@ -264,22 +306,46 @@
 							}
 						}
 						let s_height = parseInt(endtime) - parseInt(starttime);
-						let html = "<div onclick='removeBox(this,"+num+")' class='tableSubBox s_height"+s_height+"' style='background-color:"+b_color+"'>";
+						let html = "<div onclick='removeBox(this,"+s_num+")' class='tableSubBox s_height"+s_height+"' style='background-color:"+b_color+"'>";
 						html += "<p>" + name + "<br>" + prof + "<br>" + sclass
 								+ "<br></p>";
 						$("#" + divId).html(html);
-						numList+=num.toString();
-						alert(num+"번 강의 담김"+numList);
+						numList.push(s_num);
+						//alert(s_num+"번 강의 추가 "+numList);
 					}
 				});
 	}
 	
-	function removeBox(e,num) {
+	function removeBox(e,s_num) {
 		$(e).remove();
-		let reN=num.toString();
-		numList=numList.replace(reN,"");
-		alert(num+"번 강의 빠짐"+numList);
+		for (let i = 0; i < numList.length; i++) {
+			if(numList[i]==s_num) {
+			numList[i] = "";
+			}
+		}
+		//alert(s_num+"번 강의 제거 "+numList);
 	}
+	
+	function tableNameSave() {
+		$.ajax({
+			url:'${cp}/timetable/tableInsert',
+			data:{"numList":numList},
+			method:'POST',
+			dataType:'json',
+			success:function(data) {
+				if(data.result==true) {
+					alert("저장성공");
+				}else {
+					alert("저장실패");
+				}
+			}
+		});
+		$("#tableNameModal").modal('hide');
+		$("#modalmoya").html("시간표이름: "+$("#table-name").val());
+	}
+	
+	
+	
 	
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
