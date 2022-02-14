@@ -83,7 +83,7 @@
 		<li class="nav-item active">
 			 <a class="nav-link" href="${cp }/member/mymember">
 			
-			   <i class="fas fa-fw fa-tachometer-alt"></i>
+			   <i class="fa-solid fa-square-user"></i>
 				<span>내정보</span></a>
 		
 		
