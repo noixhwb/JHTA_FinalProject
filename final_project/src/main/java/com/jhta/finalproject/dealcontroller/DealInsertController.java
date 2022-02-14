@@ -29,7 +29,8 @@ public class DealInsertController {
 		List<MultipartFile> fileList = mt.getFiles("file");     
         String path= mt.getRealPath("/resources/goodsimg");
         String m_id = principal.getName();
-        DealVo vo = new DealVo(0,t_name ,t_explanation ,1, t_price , null, null,t_title,m_id);
+        
+        DealVo vo = new DealVo(0,t_name ,t_explanation ,service.selectMember(m_id).getM_num(), t_price , null, null,t_title,m_id,null,null);
         
         service.insert(vo);
         int lastnum = service.lastnum();

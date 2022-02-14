@@ -20,7 +20,6 @@ public class DealManagementController {
 	public String move(Principal principal,Model model) {
 		String m_id = principal.getName();
 		int m_num= service.selectMember(m_id).getM_num();
-		
 		List<Purchase_infoVo> pvo = service.select_pi(m_num);
 		List<DealVo> dvo = service.select_dl(m_num);
 		model.addAttribute("dvo",dvo);
