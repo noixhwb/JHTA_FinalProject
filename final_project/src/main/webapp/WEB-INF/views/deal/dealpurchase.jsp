@@ -179,6 +179,7 @@
 					url : "${pageContext.request.contextPath}/deal/purchase1",
 					type : 'POST',
 					dataType : "json",
+
 					beforeSend : function(xhr) {
 						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 					},
@@ -194,7 +195,7 @@
 							}
 						})
 						
-						window.open(data.next_redirect_pc_url);
+						location.href= data.next_redirect_pc_url;
 					},
 					error:function(request,status,error){
 						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

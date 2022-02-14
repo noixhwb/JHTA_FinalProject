@@ -20,4 +20,6 @@ public class DealVo {
 	private Date t_regdate;
 	private String t_title;
 	private String m_id;
+	private String t_invoice;
+	private String t_shipping;
 }
