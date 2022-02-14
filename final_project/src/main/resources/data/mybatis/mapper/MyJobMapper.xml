@@ -12,9 +12,8 @@
 	
 	<select id="myScrap" parameterType="int" resultType="com.jhta.finalproject.jobvo.JobVo">
 		SELECT DISTINCT J.J_COMPANY, J.J_SUBJECT, J.J_STARTDATE, J.J_ENDDATE,
-				J.J_VIEW,J.J_SUBJECT,J.J_IMG
+				J.J_VIEW,J.J_SUBJECT,J.J_IMG, J.J_NUM
 				FROM JOBINFO J, MYJOBINFO M 
 				WHERE J.J_NUM=M.J_NUM AND M.M_NUM=#{m_num}
 	</select>
-		
 </mapper>

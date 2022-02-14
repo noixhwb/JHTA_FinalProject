@@ -186,17 +186,15 @@
 														<fmt:parseNumber var="today" value="${today.time / (1000*60*60*24)}" integerOnly="true" />
 														<fmt:parseNumber var="endTime" value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true"/>
 														<p style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
-															<c:choose>
-																<c:when test="${endTime eq today }">
+																<c:if test="${endTime eq today }">
 																	<span style="color:#4e73df;">D -DAY</span>
-																</c:when>
-																<c:when test="gt ${endTime gt today }">
-																	<span style="color:#4e73df;">마감</span>
-																</c:when>
-																<c:otherwise>
-																	<span style="color:#4e73df;">D ${endTime - today } qweqwewqeqweqweqweqweqweqew</span>
-																</c:otherwise>
-															</c:choose>
+																</c:if>
+																<c:if test="${today gt endTime }">
+																	<span>마감</span>
+																</c:if>
+																<c:if test="${today lt endTime }">
+																	<span style="color:#4e73df;">D ${endTime - today }</span>
+																</c:if>
 															<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>
 																${vo.j_view}
 															</span>
@@ -204,11 +202,18 @@
 														
 														<!-- 비로그인 북마크 클릭 : alert(로그인후 스크랩 할 수 있습니다) -->
 														<!-- 확인 누르면 로그인페이지, 취소누르면 그대로 -->
-														
-														<!-- 북마크 하면 이거 -->
-														<a onclick="bookMark(${vo.j_num})"><i style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
-														<!-- 평소 -->
-														<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a> 
+														<c:forEach var="bookMark" items="${myBookMarkList }">
+															<c:choose>
+																<c:when test="${bookMark.j_num eq vo.j_num}">
+																	<!-- 북마크 -->
+																	<a onclick="bookMark(${vo.j_num})"><i style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
+																</c:when>	
+																<c:otherwise>
+																	<!-- 평소 -->
+																	<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>	
 												</div>
 											</div>
 									</p>	

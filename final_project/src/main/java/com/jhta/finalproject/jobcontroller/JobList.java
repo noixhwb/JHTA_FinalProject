@@ -1,5 +1,6 @@
 package com.jhta.finalproject.jobcontroller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jhta.finalproject.jobvo.DutyVo;
 import com.jhta.finalproject.jobvo.JobVo;
+import com.jhta.finalproject.jobvo.MyJobVo;
 import com.jhta.finalproject.service.DutyService;
 import com.jhta.finalproject.service.JobService;
+import com.jhta.finalproject.service.MyJobService;
+import com.jhta.finalproject.vo.MemberVo;
 import com.util.PageUtil;
 
 
@@ -25,11 +29,12 @@ import com.util.PageUtil;
 public class JobList {
 	@Autowired private JobService Jservice;
 	@Autowired private DutyService Dservice;
+	@Autowired private MyJobService MJservice;
 	
 	
 	@RequestMapping("/job/jobList")
 	public String jobList(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
-					String keyword, Model model) {
+					String keyword, Model model, Principal principal) {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
@@ -40,6 +45,13 @@ public class JobList {
 		int endRow=pu.getEndRow(); 
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
+		
+		MemberVo uservo = Jservice.selectUser(principal.getName());
+		int userNum = uservo.getM_num();
+		List<MyJobVo> myBookMarkList = MJservice.myScrap(userNum);
+		model.addAttribute("myBookMarkList",myBookMarkList);
+
+		
 		
 		List<JobVo> list = Jservice.list(map);
 		List<DutyVo> dutyList = Dservice.list();

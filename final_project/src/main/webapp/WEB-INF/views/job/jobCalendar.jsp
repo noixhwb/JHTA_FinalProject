@@ -112,8 +112,7 @@ html, body {
 								<span aria-hidden="true">×</span>
 							</button>
 						</div>
-						<div id="modalBody" class="modal-body" style="cursor: pointer;"
-							onclick="location.href='${cp}/job/detail?j_num=${jv.j_num}';">
+						<div id="modalBody" class="modal-body" style=" cursor: pointer;" >
 							<ul style="list-style: none; padding-left: 0;">
 							</ul>
 						</div>
@@ -143,6 +142,7 @@ html, body {
             var StringJ_num = eventObj.id;		// string형태의 j_num GET
             var j_numm = parseInt(StringJ_num); // string j_num -> int로 형변환 잘찍히는중
             
+            
 	        if (eventObj.start) {
 	        	var j_date = eventObj.start;// Tue Feb 01 2022 00:00:00 GMT+0900 (한국 표준시)
 	        	
@@ -164,6 +164,10 @@ html, body {
 						let body=document.getElementById("modalBody");
 						title.innerHTML=head;
 						body.innerHTML=detail;
+						
+						$("#modalBody").click(function() {
+							location.href="${cp}/job/detail?j_num=" + json.j_num; })
+
 	    			}
 	    		}
 	    		xhr.open('get','${cp}/job/eventSelect?j_num=' + j_numm ,true);
@@ -173,7 +177,7 @@ html, body {
 	    	},
 			selectable : true,
 			droppable : true,
-			editable : true,
+			editable : false, // 드래그 수정
 			events : [
     			<%List<JobVo> calendarList = (List<JobVo>) request.getAttribute("list");%>
             	<%if (calendarList != null) {%>
