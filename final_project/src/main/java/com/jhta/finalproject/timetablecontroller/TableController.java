@@ -1,5 +1,6 @@
 package com.jhta.finalproject.timetablecontroller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jhta.finalproject.service.MemberService;
 import com.jhta.finalproject.service.SubjectService;
 import com.jhta.finalproject.service.TimetableService;
 import com.jhta.finalproject.timetablevo.SubjectRateVo;
 import com.jhta.finalproject.timetablevo.SubjectVo;
+import com.jhta.finalproject.timetablevo.TimetableVo;
 import com.util.PageUtil;
 
 @Controller
@@ -25,6 +28,7 @@ public class TableController {
 	@Autowired private ServletContext sc;
 	@Autowired private SubjectService service;
 	@Autowired private TimetableService t_service;
+	@Autowired private MemberService m_service;
 
 	//시간표 페이지로 이동 + 과목목록출력
 	@GetMapping("/timetable/table")
@@ -56,14 +60,21 @@ public class TableController {
 	}
 	
 	//과목 리스트랑 시간표 이름 받아와서 insert하기
-	@PostMapping(value="/timetable/tableInsert", produces={MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody HashMap<String, Object> insert(String tt_name, String numList) {
-		System.out.println("tt_name "+tt_name);
-		System.out.println("numList "+numList);
+	@GetMapping(value="/timetable/tableInsert", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String, Object> insert(String tt_name, String numList, Principal principal) {
+		String m_id= principal.getName();
+		int m_num=m_service.isMember(m_id).getM_num();
+		String[] numArray = numList.split("&");
+		int n=0;
+		for(int i=0;i<numArray.length;i++) {
+			n=t_service.insert(new TimetableVo(0, m_num, Integer.parseInt(numArray[i]), tt_name));
+		}
 		HashMap<String,Object> map=new HashMap<String, Object>();
-		/*for(int i=0;i<=)
-		int n= t_service.insert();*/
-		map.put("result", true);
+		if(n!=0) {
+			map.put("result", true);
+		}else {
+			map.put("result", false);
+		}
 		System.out.println("컨트롤러다녀감");
 		return map;
 	}

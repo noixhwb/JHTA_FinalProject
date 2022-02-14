@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<%-- <meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/> --%>
 	
     <title>Final 3조</title>
 
