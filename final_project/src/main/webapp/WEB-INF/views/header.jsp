@@ -78,13 +78,13 @@
 				<form id="logout" action="${cp }/logout">
 				
 				<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
-				</form>
+				</form></li>
 		
 		<li class="nav-item active">
 			 <a class="nav-link" href="${cp }/member/mymember">
 			
 			   <i class="fa-solid fa-square-user"></i>
-				<span>내정보</span></a>
+				<span>내정보</span></a></li>
 		
 		
 	</sec:authorize>
