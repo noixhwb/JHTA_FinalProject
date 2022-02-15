@@ -75,7 +75,6 @@ public class TableController {
 		}else {
 			map.put("result", false);
 		}
-		System.out.println("컨트롤러다녀감");
 		return map;
 	}
 }

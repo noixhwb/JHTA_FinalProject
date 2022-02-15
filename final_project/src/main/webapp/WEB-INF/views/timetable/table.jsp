@@ -348,7 +348,6 @@
 			}
 		});
 		$("#tableSaveModal").modal('hide');
-		$("#modalmoya").html(numListParam);
 	}
 	
 	
