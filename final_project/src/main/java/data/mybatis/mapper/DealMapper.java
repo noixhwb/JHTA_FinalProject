@@ -23,4 +23,9 @@ public interface DealMapper {
 	List<DealVo> select_dl(int m_num);
 	Purchase_infoVo select_pi2(int t_num);
 	int update_deal(int t_num);
+	int update_ship(HashMap<String, Object> map);
+	List<DealVo> select_dp(int m_num);
+	List<DealVo> select_all();
+	int update_tp(HashMap<String, Object> map);
+	
 }

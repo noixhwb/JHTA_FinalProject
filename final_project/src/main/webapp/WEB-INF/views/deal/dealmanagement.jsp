@@ -65,48 +65,48 @@
 	</nav>
 
 	<div class="container">
-		
+
 		<div>
-		<label class="control-label">판매정보</label>
 			<table class="table table-hover" id="dealtb">
 				<!-- On rows -->
 				<tr class="active">
 					<th style="width: 55%">제목</th>
 					<th style="width: 15%">거래단계</th>
 					<th style="width: 15%">배송등록</th>
-					<th style="width: 15%">삭제</th>
+					<th style="width: 15%">환불승인</th>
 				</tr>
 
-				<c:forEach var="deal" items="${dvo }">
+				<c:forEach var="dv" items="${dvo }">
 					<tr class="info">
-						<td class="align-middle">${deal.t_title}</td>
-						<td class="align-middle">${deal.t_processing }</td>
-						<td class="align-middle"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">배송정보등록
-</button></td>
-						
-						<td class="align-middle"><a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">aa</td>
+						<td class="align-middle">${dv.t_title}</td>
+						<td class="align-middle">${dv.t_processing }</td>
+						<td class="align-middle"><button type="button"
+								class="btn btn-primary btn-sm" data-toggle="modal"
+								data-target="#myModal" data-tnum=${dv.t_num }>배송정보등록</button></td>
+
+						<td class="align-middle"></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
 
-		<div style="display:none">
-		<label class="control-label">구매정보</label>
-			<table class="table table-hover d-none" id="purchasetb" >
+		<div>
+			<table class="table table-hover d-none" id="purchasetb">
 				<!-- On rows -->
 				<tr class="active">
 					<th style="width: 55%">제목</th>
 					<th style="width: 15%">거래단계</th>
 					<th style="width: 15%">배송조회</th>
-					<th style="width: 15%">삭제</th>
+					<th style="width: 15%">환불요청</th>
 				</tr>
 
-				<c:forEach var="deal" items="${dvo }">
+				<c:forEach var="pv" items="${pvo }">
 					<tr class="info">
-						<td class="align-middle">${deal.t_title}</td>
-						<td class="align-middle">${deal.t_processing }</td>
-						<td class="align-middle"><a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a></td>
-						<td class="align-middle">삭제</td>
+						<td class="align-middle">${pv.t_title}</td>
+						<td class="align-middle">${pv.t_processing }</td>
+						<td class="align-middle"><a
+							href="https://tracker.delivery/#/${pv.t_shipping }/${pv.t_invoice}"	target="_blank">배송조회</a></td>
+						<td class="align-middle">환불요청</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -114,37 +114,107 @@
 	</div>
 
 
-<!-- Button trigger modal -->
+	<!-- Button trigger modal -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">저장</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-body">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+							택배사선택</button>
+						<ul class="dropdown-menu" role="menu" id="menu1"
+							aria-labelledby="dropdownMenu1">
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">천일택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">CJ대한통운</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">CU편의점택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">대신택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">우체국택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">한진택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">일양로지스</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">경동택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">로젠택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">롯데택배</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">GSPostbox택배</a></li>
+						</ul>
+						<input type="text" class="form-control" id="shipping_num"
+							placeholder="송장번호을 입력하세요">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="closeship">닫기</button>
+					<button type="button" class="btn btn-primary" id="saveship">저장</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 	<script type="text/javascript">
-		$("#psul li a").click(function(){
-			if($(this).text()=="구매"){
-				$("#purchasetb").attr("class","table table-hover");
-				$("#dealtb").attr("class","table table-hover d-none");
-			}else{
-				$("#purchasetb").attr("class","table table-hover d-none");
-				$("#dealtb").attr("class","table table-hover");
+		var t_num = "";
+		var t_shipping = "";
+
+		$('#myModal').on('show.bs.modal', function(event) {
+			t_num = $(event.relatedTarget).data('tnum');
+		});
+
+		$("#menu1 li").on("click", function() {
+			$("#dropdownMenu1").text($(this).text());
+			t_shipping = $(this).text();
+		})
+
+		$("#saveship").on("click", function() {
+			$("#dropdownMenu1").text("");
+		})
+
+		$("#saveship").click(
+				function() {
+					alert(t_shipping);
+					$.ajax({
+						url : "${pageContext.request.contextPath}/deal/ship",
+						type : 'POST',
+						data : {
+							"t_shipping" : t_shipping,
+							"t_invoice" : $("#shipping_num").val(),
+							"t_num" : t_num
+						},
+						dataType : "json",
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader("${_csrf.headerName}",
+									"${_csrf.token}");
+						},
+						success : function() {
+
+						}
+					})
+					$('#myModal').modal("hide");
+				})
+
+		$("#psul li a").click(function() {
+			if ($(this).text() == "구매") {
+				$("#purchasetb").attr("class", "table table-hover");
+				$("#dealtb").attr("class", "table table-hover d-none");
+			} else {
+				$("#purchasetb").attr("class", "table table-hover d-none");
+				$("#dealtb").attr("class", "table table-hover");
 			}
 		});
 	</script>

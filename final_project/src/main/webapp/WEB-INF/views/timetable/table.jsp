@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <%@ include file="/WEB-INF/views/top.jsp"%>
-
 <style>
 #table_container {
 	margin-bottom: 300px;
@@ -326,12 +325,20 @@
 		//alert(s_num+"번 강의 제거 "+numList);
 	}
 	
+	/* var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+	var csrfToken = $("meta[name='_csrf']").attr("content"); */
+	
 	function tableSave() {
+		let tt_name=$("#table-name").val();
+		let numListParam=numList.join('&');
 		$.ajax({
 			url:'${cp}/timetable/tableInsert',
-			data:{"tt_name":$("#table-name").val(),"numList":numList},
-			method:'POST',
+			data:{"tt_name":tt_name,"numList":numListParam},
+			method:'GET',
 			dataType:'json',
+			/* beforeSend : function(xhr){
+				xhr.setRequestHeader(csrfHeader, csrfToken);
+			}, */
 			success:function(data) {
 				if(data.result==true) {
 					alert("저장성공");
@@ -340,7 +347,8 @@
 				}
 			}
 		});
-		$("#tableNameModal").modal('hide');
+		$("#tableSaveModal").modal('hide');
+		$("#modalmoya").html(numListParam);
 	}
 	
 	

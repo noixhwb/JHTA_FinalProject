@@ -82,6 +82,10 @@
 														<li>
 															<!-- 좋아요 취소 버튼 -->
 															<input type="button" value="좋아요취소" id="btnLike">
+<<<<<<< HEAD
+=======
+															<span id="likehere">♥</span>
+>>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
 														</li>
 													</c:otherwise>
 													</c:choose>

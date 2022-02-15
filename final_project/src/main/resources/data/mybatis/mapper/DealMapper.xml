@@ -80,14 +80,33 @@
 		resultType="com.jhta.finalproject.vo.DealVo">
 		select * from deal where m_num = #{m_num}
 	</select>
-	
-	
+
+
 	<select id="select_pi2"
 		resultType="com.jhta.finalproject.vo.Purchase_infoVo">
 		select * from purchase_info where t_num = #{t_num}
 	</select>
 	<update id="update_deal" parameterType="int">
-	UPDATE deal SET t_processing = '결제완료' WHERE t_num = #{t_num}
+		UPDATE deal SET t_processing = '결제완료' WHERE t_num = #{t_num}
+	</update>
+	<update id="update_ship" parameterType="hashmap">
+		UPDATE deal SET t_processing=#{t_processing}, t_shipping = #{t_shipping}, t_invoice=#{t_invoice} WHERE
+		t_num = #{t_num}
+	</update>
+	<select id="select_dp"
+		resultType="com.jhta.finalproject.vo.DealVo" parameterType="int">
+		SELECT deal.* FROM deal,PURCHASE_INFO
+		WHERE deal.T_NUM = PURCHASE_INFO.T_NUM
+		and PURCHASE_INFO.M_NUM = #{m_num}
+	</select>
+	
+	<!-- deal전체 조회 -->
+	<select id="select_all" resultType="com.jhta.finalproject.vo.DealVo">
+	select * from deal
+	</select>
+	<!-- deal배송상태 업데이트 -->
+	<update id="update_tp" parameterType="hashmap">
+	UPDATE deal SET t_processing=#{t_processing} WHERE	t_num = #{t_num}
 	</update>
 </mapper>
  
