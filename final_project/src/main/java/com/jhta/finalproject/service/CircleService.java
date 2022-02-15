@@ -31,6 +31,10 @@ public class CircleService {
 		return mapper.selectAll();
 	}
 	
+	public List<CircleVo> selectCat(String ci_category) {
+		return mapper.selectCat(ci_category);
+	}
+	
 	public CircleVo select(int ci_num) {
 		return mapper.select(ci_num);
 	}

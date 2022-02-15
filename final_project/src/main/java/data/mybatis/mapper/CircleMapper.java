@@ -12,6 +12,7 @@ public interface CircleMapper {
 	int updateB(HashMap<String, Object> map);
 	
 	List<CircleVo> selectAll();
+	List<CircleVo> selectCat(String ci_category);
 	CircleVo select(int ci_num);
 	List<CircleVo> selectMyCircle(int m_num);
 	//Date selectToday();

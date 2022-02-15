@@ -17,13 +17,13 @@
 	</select>
 	<!-- 동아리 찜한 사람 명수 -->
 	<select id="selectLikeCircle" parameterType="int" resultType="int">
-		SELECT COUNT(*)  
+		SELECT NVL(COUNT(*),0)   
 		FROM LIKECIRCLE 
 		WHERE CI_NUM=#{ci_num}
 	</select>
 	<!-- 내가 동아리 찜했나? -->
 	<select id="selectMeLikeCircle" parameterType="hashmap" resultType="int">
-		SELECT COUNT(*)  
+		SELECT NVL(COUNT(*),0)   
 		FROM LIKECIRCLE 
 		WHERE M_NUM=#{m_num} AND CI_NUM=#{ci_num}
 	</select>

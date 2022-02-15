@@ -50,6 +50,8 @@ public class CircleDetailController {
 			maplike.put("ci_num", ci_num);
 			int nmaplike = lservice.selectMeLikeCircle(maplike);
 			
+			int viewnumber =service.addHit(ci_num);
+			model.addAttribute("viewnumber", viewnumber);
 			model.addAttribute("nmymap", nmymap);
 			model.addAttribute("nmaplike", nmaplike);
 			model.addAttribute("nmap", nmap);

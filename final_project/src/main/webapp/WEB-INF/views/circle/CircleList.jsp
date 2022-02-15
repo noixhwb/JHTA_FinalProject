@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- 전체 동아리 목록 -->
@@ -24,6 +24,7 @@
 		<div class="container-fluid">
 
 <!-- Page Heading -->
+<%--
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h3 mb-0 text-gray-800"> 전체 동아리 목록 </h1>
 				<!-- 동아리 검색 -->	
@@ -40,6 +41,97 @@
 					</div>
 				</form> <!-- 동아리 검색 끝 -->
 			</div>
+ --%>
+<!-- ---------------------------------------------------------------------------------- -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light color-white">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" >동아리 목록</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="${ cp }/circle/CircleList">전체</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${ cp }/circle/CircleList?category=학술"><span id="circle_category_study">학술</span></a>
+        	<input type="hidden" value="학술" id="circle_category_study">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${ cp }/circle/CircleList?category=취업" id="circle_category_career">취업</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${ cp }/circle/CircleList?category=봉사" id="circle_category_serve">봉사</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${ cp }/circle/CircleList?category=기타" id="circle_category_etc">기타</a>
+        </li>
+        <li class="nav-item dropdown ml-auto">
+            <!-- Nav Item - User Information -->
+			<li class="nav-item dropdown no-arrow">
+				<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
+				   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span> 
+					인기순
+				</a> 
+			<!-- Dropdown - User Information -->
+				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+					 aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#">
+						인기순
+					</a> 
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#"> 
+						조회수순
+					</a>
+				</div>
+			</li>
+        </li>
+        <li>
+        	<!-- 동아리 검색 -->	
+			<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<div class="input-group">
+					<input type="text" class="form-control bg-white border-secondary small"
+						   placeholder="동아리 검색" aria-label="Search"
+						   aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-secondary" type="submit">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+				</div>
+			</form> <!-- 동아리 검색 끝 -->
+        </li>
+      </ul>
+      
+      
+    </div>
+  </div>
+  
+  
+</nav>
+<%--
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+	<ul class="nav nav-pills nav-fill" >
+	  <li class="nav-item">
+	    <a class="nav-link active" aria-current="page" href="#">학술</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">취업</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Link</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link disabled">Disabled</a>
+	  </li>
+	  </ul>
+	 </div>
+</nav>
+ --%>
+<!-- ---------------------------------------------------------------------------------- -->
 
 <!-- Content Row -->
 			<div class="row">
@@ -63,6 +155,7 @@
 							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
 								${ vo.ci_category }, ${ vo.ci_person }
 							</div>
+							<input type="hidden" value="${ vo.ci_category }" id="catvalue">
 						</div>
 					</div>
 					
@@ -109,7 +202,8 @@
 															<c:otherwise>
 																D-${endTime - today} 
 															</c:otherwise>
-														</c:choose>														</li>
+														</c:choose>
+													</li>
 													<li>
 														<c:choose>
 															<c:when test="${ (endTime-today) < 0 }">
@@ -136,7 +230,7 @@
 											
 									</p>
 									<p class="card-text">
-											<small class="text-muted">....</small>
+										<small class="text-muted">....</small>
 									</p>
 								</div>
 							</div>
@@ -208,8 +302,38 @@
 	</div>
 	
 <style>
-#dot{
-   list-style:none;
-   padding-left:5px;
-   }
-</style>       
+	#dot{
+	   list-style:none;
+	   padding-left:5px;
+	  }
+</style>  
+<script>
+	$(document).ready(function() {
+	    $(".dropdown-toggle").dropdown();
+	});
+	
+	$(function(){
+		let here = $("#here").prev().val();
+		var categ = $("#circle_category_study").val();
+		$("#circle_category_study").click(function(){
+			alert("확인!");
+			alert(categ);
+			alert(here);			
+		});
+	});
+	<%--
+	$(function () { 
+		// actvie 활성화 
+		$(".nav-item > .active").css("color", "red"); 
+		$('.nav-link').click(function () { 
+			// .nav-link 클릭시 이전의 active 값 해제 후, 
+			$(".nav-item > .active").css("color", "#007bff"); 
+			$('.nav-link').removeClass('active'); 
+			// 클릭한 위치 active 적용 $(this).addClass('active'); 
+			$(".nav-item > .active").css("color", "red"); 
+		}); 
+	});
+	--%>
+</script>     
+
+

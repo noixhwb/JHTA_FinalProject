@@ -67,22 +67,21 @@
 											<div class="col-md-6">
 												<ul id="dot">
 													<li>모집기간 : ${ sel.ci_startdate } 에서 ${ sel.ci_enddate } 까지</li>
-													<li>조회수 : ${ sel.ci_view }</li> <!-- 3번 -->
-													<li>좋아요수 : ${ likePerson }</li> <!-- 4번 -->
-													<input type="input" value="${ likePerson }" id="likePerson">
+													<li>조회수 : ${ sel.ci_view+viewnumber }</li> <!-- 3번 -->
+													<li>좋아요수 : <input type="input" value="${ likePerson }" id="likepersoncount"></li> <!-- 4번 -->
+													<input type="hidden" value="${ nmaplike }" id="count">
+													
 													<c:choose>
 													<c:when test="${ nmaplike eq 0 }">
 														<li>
 															<!-- 좋아요 버튼 -->
-															<input type="button" value="좋아요등록-" id="btnLike">
-															<span id="likehere">♡</span>
+															<input type="button" value="좋아요등록" id="btnLike">
 														</li>
 													</c:when>
 													<c:otherwise>
 														<li>
 															<!-- 좋아요 취소 버튼 -->
-															<input type="button" value="좋아요취소" id="btnLikeNo">
-															<span id="notlikehere">♥</span>
+															<input type="button" value="좋아요취소" id="btnLike">
 														</li>
 													</c:otherwise>
 													</c:choose>
@@ -241,71 +240,41 @@
 <script>
 //좋아요 누르기
 $(function(){
-	var likePerson = document.querySelector("#btnLike");
+	var count = parseInt($("#count").val());
+	var btnLike = $("#btnLike").val();
+	var likepersoncount = parseInt($("#likepersoncount").val());
 	$("#btnLike").click(function(){
-		$.ajax({
-			url:'${cp}/circle/LikeCircleInsert',
-			data:{"ci_num":${ci_num},"m_num":${m_num}},
-			dataType:'json',
-			success:function(data){
-				if(data.result == 'success'){
-					alert('등록 성공!');
-					let html = "♥";
-					$("#heart").append(html);
-					
-				}else{
-					alert('등록 실패!');
+		if ((count+2)%2 == 0) {
+			$.ajax({
+				url:'${cp}/circle/LikeCircleInsert',
+				data:{"ci_num":${ci_num},"m_num":${m_num}},
+				dataType:'json',
+				success:function(data){
+					if(data.result == 'success'){
+						count++;
+						likepersoncount++;
+						$('input[id=btnLike]').attr('value','좋아요취소');
+						$('input[id=likepersoncount]').attr('value', likepersoncount);
+						alert('등록 성공!');
+					}else{
+						alert('등록 실패!');
+					}
 				}
-			}
-		});
-	});
-});
-
-<%--
-$.post(
-		"/favorite"
-		, {"articleId" : "${article.articleId}"}	
-		, function(data){
-									
-			var jsonData3 = {};
-			try {
-				jsonData3 = JSON.parse(data);
-			}catch(e) {
-				jsonData3.result = false;
-			}
-			console.log(jsonData3);
-			
-			if ( jsonData3.result ){
-				var text = $("#favorite").text();
-				if (jsonData3.isFavorite){
-					$("#favorite").text("♥");
+			});
+		} else {
+			$.ajax({
+				url:'${cp}/circle/LikeCircleDelete',
+				data:{"ci_num":${ci_num},"m_num":${m_num}},
+				dataType:'json',
+				success:function(data){
+					count++;
+					likepersoncount--;
+					$('input[id=btnLike]').attr('value','좋아요등록');
+					$('input[id=likepersoncount]').attr('value', likepersoncount);
+					alert('삭제 성공!');
 				}
-				else if (text == "♥"){
-						$("#favorite").text("♡");
-				} 
-			}
-			else {
-				/* alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-				location.href = "/"; */
-			}
+			});
 		}
-);
-});
-
---%>
-//좋아요 누르기 취소
-$(function(){
-	$("#btnLikeNo").click(function(){
-		$.ajax({
-			url:'${cp}/circle/LikeCircleDelete',
-			data:{"ci_num":${ci_num},"m_num":${m_num}},
-			dataType:'json',
-			success:function(data){
-				alert('삭제 성공!');
-				let html = "♡";
-				$("#heart").append(html);
-			}
-		});
 	});
 });
 </script>

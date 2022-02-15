@@ -28,6 +28,11 @@
 		SELECT * FROM CIRCLE WHERE CI_OK=1
 	</select>
 	
+	<!-- 카테고리별 동아리 목록 -->
+	<select id="selectCat" parameterType="String" resultType="com.jhta.finalproject.circlevo.CircleVo">
+		SELECT * FROM CIRCLE WHERE CI_OK=1 AND CI_CATEGORY=#{ci_category}
+	</select>
+	
 	<!-- 동아리 상세 페이지 -->
 	<select id="select" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleVo">
 		SELECT * FROM CIRCLE WHERE CI_NUM=#{ci_num}
@@ -39,18 +44,18 @@
 	
 	<!-- 동아리 신청 인원 구하기 -->
 	<select id="selectPerson" parameterType="int" resultType="int">
-		SELECT COUNT(*) FROM MYCIRCLE WHERE CI_NUM=#{ci_num}
+		SELECT NVL(COUNT(*),0) FROM MYCIRCLE WHERE CI_NUM=#{ci_num}
 	</select>
 	
 	<!-- 내가 만든 동아리인가? -->
 	<select id="selectMyCircleCount" parameterType="hashmap" resultType="int">
-		SELECT COUNT(*) 
+		SELECT NVL(COUNT(*),0)  
 		FROM CIRCLE 
 		WHERE M_NUM=#{m_num} AND CI_NUM=#{ci_num}
 	</select>
 	<!-- 내가 동아리 신청했나? -->
 	<select id="selectMeRegister" parameterType="hashmap" resultType="int">
-		SELECT COUNT(*)  
+		SELECT NVL(COUNT(*),0)   
 		FROM MYCIRCLE 
 		WHERE M_NUM=#{m_num} AND CI_NUM=#{ci_num}
 	</select>
