@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
@@ -26,68 +27,6 @@
 </style>
 <!-- Main Content 이건 지우지 마세요-->
 <div id="content">
-
-	<!-- ///////상단바부분 시작 필요없으면 지워도됨/////// -->
-	<nav
-		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-		<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-			class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-		<!-- ///////상단바에서 검색부분/////// -->
-		<%-- <form action="${cp}/timetable/subjectList" method="get"
-			class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group">
-				<input type="text" name="keyword"
-					class="form-control bg-light border-0 small"
-					placeholder="과목명 혹은 교수명으로 검색하세요" aria-label="Search"
-					aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="submit">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</div>
-		</form> --%>
-
-		<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-			<!-- ///////상단바에서 프로필부분-승한님 수정부분/////// -->
-			<li class="nav-item dropdown no-arrow"><a
-				class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <span
-					class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span> <img
-					class="img-profile rounded-circle"
-					src="${cp}/resources/img/undraw_profile.svg">
-			</a> <!-- Dropdown - User Information -->
-				<div
-					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-					</a> <a class="dropdown-item" href="#"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
-					</a> <a class="dropdown-item" href="#"> <i
-						class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-						data-target="#logoutModal"> <i
-						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-						로그아웃
-					</a>
-				</div></li>
-
-		</ul>
-
-	</nav>
-	<!-- ///////상단바부분 끝 필요없으면 여기까지 지우면됨/////// -->
-
 	<!-- Begin Page Content 이건 지우지마세요 -->
 	<div class="container-fluid">
 
@@ -102,9 +41,6 @@
 					<c:choose>
 						<c:when test="${!empty list }">
 							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">내가 쓴 강의평가</h6>
-								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
