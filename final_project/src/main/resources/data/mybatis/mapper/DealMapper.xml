@@ -11,7 +11,7 @@
 	<insert id="insert"
 		parameterType="com.jhta.finalproject.vo.DealVo">
 		insert into deal
-		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate,#{t_title},#{m_id})
+		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate,#{t_title},#{m_id},#{t_invoice, jdbcType=VARCHAR},#{t_shipping, jdbcType=VARCHAR})
 	</insert>
 	<select id="selectAll"
 		resultType="com.jhta.finalproject.vo.DealVo" parameterType="hashmap">
@@ -24,7 +24,7 @@
 		t_num desc
 		) b
 		<if test="word != null and word != ''">
-			where t_name like '%'||#{word, jdbcType=VARCHAR}||'%' or
+			where t_title like '%'||#{word, jdbcType=VARCHAR}||'%' or
 			t_explanation like '%'||#{word, jdbcType=VARCHAR}||'%'
 		</if>
 		)
@@ -42,7 +42,7 @@
 		SELECT T_NUM
 		FROM(
 		SELECT
-		*
+		T_NUM
 		FROM
 		DEAL
 		ORDER BY ROWNUM DESC)
@@ -102,11 +102,11 @@
 	
 	<!-- deal전체 조회 -->
 	<select id="select_all" resultType="com.jhta.finalproject.vo.DealVo">
-	select * from deal
+		select * from deal
 	</select>
 	<!-- deal배송상태 업데이트 -->
 	<update id="update_tp" parameterType="hashmap">
-	UPDATE deal SET t_processing=#{t_processing} WHERE	t_num = #{t_num}
+		UPDATE deal SET t_processing=#{t_processing} WHERE	t_num = #{t_num}
 	</update>
 </mapper>
  

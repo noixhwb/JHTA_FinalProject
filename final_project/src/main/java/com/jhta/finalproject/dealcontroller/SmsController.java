@@ -49,9 +49,9 @@ public class SmsController {
 	@PostMapping(value="/deal/smssend",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> sendFrom(Model model, String rphone) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		System.out.println("작동");
+
 		try {
-			String code="화이팅";
+			String code=Integer.toString((int)(Math.random()*10000));
 			String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; //필수
 			String user_id = base64Encode("lamgul"); //필수
 			String secure = base64Encode("6f15e3a9a71b3a4af0b5214088b8401d"); //필수

@@ -142,7 +142,7 @@
 			<div class="form-group" id="check">
 				<button type="button" class="btn btn-default" id="phoneVerification">인증번호발송</button>
 				<div class="col-lg-8 has-error has-feedback">
-					<input type="tel" class="form-control" name="code" id="code"
+					<input type="number" class="form-control" name="code1" id="code1"
 						aria-describedby="inputError2Status">
 				</div>
 			</div>
@@ -201,12 +201,12 @@
 	</div>
 
 	<script>
-        
+	var code="1234";
             $(function(){
                 //모달을 전역변수로 선언
                 var modalContents = $(".modal-contents");
                 var modal = $("#defaultModal");
-            	let code='1234';
+            	
                 $("#phoneVerification").click(function(){
                 	if($("#smsReceiveYn:checked").val()!='Y'){
                 		alert("SMS 수신여부를 동의해주세요");
@@ -325,6 +325,19 @@
                     }else{
                         divPhoneNumber.removeClass("has-error");
                         divPhoneNumber.addClass("has-success");
+                    }
+                    
+                    if($('#code1').val()==code){
+                        divPhoneNumber.removeClass("has-error");
+                        divPhoneNumber.addClass("has-success");
+                    }else{
+                        modalContents.text("인증번호를 확인하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        
+                        divPhoneNumber.removeClass("has-success");
+                        divPhoneNumber.addClass("has-error");
+                        $('#code1').focus();
+                        return false;
                     }
                     
                 
