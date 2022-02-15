@@ -62,4 +62,16 @@ public class DealService {
 	public int update_deal(int t_num) {
 		return mapper.update_deal(t_num);
 	}
+	public int update_ship(HashMap<String, Object> map) {
+		return mapper.update_ship(map);
+	}
+	public List<DealVo> select_dp(int m_num){
+		return mapper.select_dp(m_num);
+	}
+	public List<DealVo> select_all(){
+		return mapper.select_all();
+	}
+	public int update_tp(HashMap<String, Object> map) {
+		return mapper.update_tp(map);
+	}
 }

@@ -81,8 +81,8 @@
 													<c:otherwise>
 														<li>
 															<!-- 좋아요 취소 버튼 -->
-															<input type="button" value="좋아요취소" id="btnLikeNo">
-															<span id="notlikehere">♥</span>
+															<input type="button" value="좋아요취소" id="btnLike">
+															<span id="likehere">♥</span>
 														</li>
 													</c:otherwise>
 													</c:choose>
