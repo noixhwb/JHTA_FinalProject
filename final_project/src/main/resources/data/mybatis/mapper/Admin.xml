@@ -3,44 +3,104 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="data.mybatis.mapper.AdminMapper">
- 	
- 	<sql id="search">
-	    <if test="keyword!=null and keyword!=''">
-		   where j_company like '%'||#{keyword}||'%' and j_status=0
-		</if>
-    </sql>
- 	
- 	<!--  채용공고 승인 리스트 -->
+ 	<!-- @@@@@@@@@@@@@@@@   채용공고    @@@@@@@@@@@@@@@@@@@@-->
+ 	<!--  채용공고 개시요청 리스트 -->
  	<select id="appliedJobList" parameterType="hashmap" resultType="com.jhta.finalproject.jobvo.JobVo">
 		select * from
 		(
 		   select b.*,rownum rnum
 		   from (
-		      select * from jobinfo      
-		      <include refid="search"/>
+		      select * from jobinfo   
+		      where j_status=0 
 		      order by j_num desc
 		    )b
 		) 
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
  	
-	<!-- 삭제 -->
-	<delete id="delete" parameterType="int">
-		delete from jobinfo where j_num=#{j_num}
-	</delete>
-	
-	<!-- 공고승인 -->
-	<update id="doConfirm" parameterType="com.jhta.finalproject.jobvo.JobVo">
+	<!-- 채용공고 승인 -->
+	<update id="confirmJob" parameterType="com.jhta.finalproject.jobvo.JobVo">
 		update jobinfo set j_status=1 
 		where j_num=#{j_num}
 	</update>
 	
-	<!-- 승인요청 갯수 -->
-	<select id="getCount" resultType="int"  parameterType="hashmap">
+	<!-- 채용공고 거절-->
+	<delete id="rejectJob" parameterType="int">
+		delete from jobinfo where j_num=#{j_num}
+	</delete>
+	
+	<!-- 채용공고 개시요청 갯수 -->
+	<select id="getJobCount" resultType="int">
      	select NVL(count(*),0) cnt from jobinfo where j_status=0
-     	<include refid="search"/> 	
+    </select>
+	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+	
+	<!-- @@@@@@@@@@@@@@@@   동아리    @@@@@@@@@@@@@@@@@@@@-->
+	
+	<!-- 동아리 개시요청 리스트 -->
+	<select id="appliedCircleList" parameterType="hashmap" resultType="com.jhta.finalproject.circlevo.CircleVo">
+		select * from
+		(
+		   select b.*,rownum rnum
+		   from (
+		      select * from circle      
+		      where ci_ok=0 
+		      order by ci_num desc
+		    )b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	</select>
+	
+	<!-- 동아리 승인 -->
+	<update id="confirmCircle" parameterType="com.jhta.finalproject.circlevo.CircleVo">
+		update circle set ci_ok=1 
+		where ci_num=#{ci_num}
+	</update>
+	
+	<!-- 동아리 거절-->
+	<delete id="rejectCircle" parameterType="int">
+		delete from circle where ci_num=#{ci_num}
+	</delete>
+	
+	<!-- 동아리 개시요청 갯수 -->
+	<select id="getCircleCount" resultType="int">
+     	select NVL(count(*),0) cnt from circle where ci_ok=0
     </select>
 	
+	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+	
+	<!-- @@@@@@@@@@@@@@@@   커뮤니티   @@@@@@@@@@@@@@@@@@@@-->
+	<!-- 커뮤니티 개시요청 리스트 -->
+	<select id="appliedCommuList" parameterType="hashmap" resultType="com.jhta.finalproject.circlevo.CircleVo">
+		select * from
+		(
+		   select b.*,rownum rnum
+		   from (
+		      select * from COMMUNITY      
+		      where cu_status=0 
+		      order by cu_num desc
+		    )b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	</select>
+	
+	<!-- 커뮤니티 승인 -->
+	<update id="confirmCommu" parameterType="com.jhta.finalproject.vo.CommunityVo">
+		update COMMUNITY set cu_status=1 
+		where cu_num=#{cu_num}
+	</update>
+	
+	<!-- 커뮤니티 거절-->
+	<delete id="rejectCommu" parameterType="int">
+		delete from COMMUNITY where cu_num=#{cu_num}
+	</delete>
+	
+	<!-- 커뮤니티 개시요청 갯수 -->
+	<select id="getCommuCount" resultType="int">
+     	select NVL(count(*),0) cnt from COMMUNITY where cu_status=0
+    </select>
+	
+	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
  </mapper>
  
  

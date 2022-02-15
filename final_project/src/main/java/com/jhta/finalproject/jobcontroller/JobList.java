@@ -50,10 +50,10 @@ public class JobList {
 		int userNum = uservo.getM_num();
 		List<MyJobVo> myBookMarkList = MJservice.myScrap(userNum);
 		model.addAttribute("myBookMarkList",myBookMarkList);
-
 		
 		
 		List<JobVo> list = Jservice.list(map);
+		System.out.println(list);
 		List<DutyVo> dutyList = Dservice.list();
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);

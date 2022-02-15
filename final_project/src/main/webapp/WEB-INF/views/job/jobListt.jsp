@@ -204,16 +204,22 @@
 														<!-- 확인 누르면 로그인페이지, 취소누르면 그대로 -->
 														<c:forEach var="bookMark" items="${myBookMarkList }">
 															<c:choose>
-																<c:when test="${bookMark.j_num eq vo.j_num}">
+																<c:when test="${bookMark.j_num eq vo.j_num}" >
 																	<!-- 북마크 -->
-																	<a onclick="bookMark(${vo.j_num})"><i style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
+																	<c:set var="ox" value="o"></c:set>
 																</c:when>	
 																<c:otherwise>
-																	<!-- 평소 -->
-																	<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a>
+																	<c:set var="ox" value="x"></c:set>
 																</c:otherwise>
 															</c:choose>
-														</c:forEach>	
+														</c:forEach>
+														<c:if test="${ox eq 'o'}">
+															<!-- 북마크 -->
+															<a onclick="bookMark(${vo.j_num})"><i style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
+														</c:if>	
+														<c:if test="${ox eq 'x'}">
+															<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a>
+														</c:if >
 												</div>
 											</div>
 									</p>	
@@ -242,7 +248,21 @@
 <!-- End of Main Content -->
 			
 <!-- End of Content Wrapper -->	
-
+<!-- @@@@@@ 페이징처리 @@@@@@-->
+<div>
+	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+		<c:choose>
+			<c:when test="${i==param.pageNum }">
+				<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}"><span
+					style="color: blue">${i }</span></a>
+			</c:when>
+			<c:otherwise>
+				<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}"><span
+					style="color: gray">${i }</span></a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+</div>	
 
 <!-- Footer -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>

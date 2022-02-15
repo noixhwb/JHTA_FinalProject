@@ -17,7 +17,7 @@ import com.jhta.finalproject.service.MyJobService;
 import com.jhta.finalproject.vo.MemberVo;
 
 @Controller
-public class MyScrap {
+public class MyJob {
 	@Autowired MyJobService MJservice;
 	@Autowired JobService Jservice;
 	

@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.circlevo.CircleVo;
 import com.jhta.finalproject.jobvo.JobVo;
+import com.jhta.finalproject.vo.CommunityVo;
 
 import data.mybatis.mapper.AdminMapper;
 
@@ -14,24 +16,45 @@ import data.mybatis.mapper.AdminMapper;
 public class AdminService {
 	@Autowired AdminMapper mapper;
 	
-	// 채용공고 승인 리스트 불러오기
+	// 채용공고 
 	public List<JobVo> appliedJobList(HashMap<String, Object> map) {
 		return mapper.appliedJobList(map);
 	}
-	
-	// 승인
-	public int jobConfirm(int j_num) {
-		return mapper.doConfirm(j_num);
+	public int confirmJob(int j_num) {
+		return mapper.confirmJob(j_num);
+	}
+	public int rejectJob(int j_num) { 
+		return mapper.rejectJob(j_num);
+	}
+	public int getJobCount() {
+		return mapper.getJobCount();
 	}
 	
-	// 거절
-	public int delete(int j_num) { 
-		return mapper.delete(j_num);
+	// 동아리 
+	public List<CircleVo> appliedCircleList(HashMap<String, Object> map) {
+		return mapper.appliedCircleList(map);
+	}
+	public int confirmCircle(int ci_num) {
+		return mapper.confirmCircle(ci_num);
+	}
+	public int rejectCircle(int ci_num) { 
+		return mapper.rejectCircle(ci_num);
+	}
+	public int getCircleCount() {
+		return mapper.getCircleCount();
 	}
 	
-	// 갯수
-	public int getCount(HashMap<String, Object> map) {
-		return mapper.getCount(map);
+	// 커뮤니티 
+	public List<CommunityVo> appliedCommuList(HashMap<String, Object> map) {
+		return mapper.appliedCommuList(map);
 	}
-	
+	public int confirmCommu(int cu_num) {
+		return mapper.confirmCommu(cu_num);
+	}
+	public int rejectCommu(int cu_num) { 
+		return mapper.rejectCommu(cu_num);
+	}
+	public int getCommuCount() {
+		return mapper.getCommuCount();
+	}
 }

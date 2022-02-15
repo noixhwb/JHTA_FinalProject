@@ -206,9 +206,9 @@
                 <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="${cp }/admin/memberList">회원관리</a>
-                        <a class="collapse-item" href="${cp }/admin/commConfirm">커뮤니티 승인요청 페이지</a>
-                        <a class="collapse-item" href="${cp }/admin/circleConfirm">동아리 승인요청 페이지</a>
-                        <a class="collapse-item" href="${cp }/admin/jobConfirm">채용공고 승인요청 페이지</a>
+                        <a class="collapse-item" href="${cp }/admin/appliedCommuList">커뮤니티 승인요청 페이지</a>
+                        <a class="collapse-item" href="${cp }/admin/appliedCircleList">동아리 승인요청 페이지</a>
+                        <a class="collapse-item" href="${cp }/admin/appliedJobList">채용공고 승인요청 페이지</a>
 						<!-- <div class="collapse-divider"></div>  -->                       
                         <!-- <h6 class="collapse-header">Other Pages:</h6>-->   
                     </div>

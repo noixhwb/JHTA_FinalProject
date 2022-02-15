@@ -1,6 +1,5 @@
 package com.jhta.finalproject.jobcontroller;
 
-import java.sql.Date;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

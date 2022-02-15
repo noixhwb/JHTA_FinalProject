@@ -21,7 +21,7 @@
 		      order by j_num desc
 		    )b
 		) 
-		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} and j_status=1 ]]>
 	</select>
  	
  	<!-- 선택조회 -->
@@ -31,12 +31,12 @@
 	
 	<!-- 이벤트 조회 -->
 	<select id="selectEvent" parameterType="date" resultType="com.jhta.finalproject.jobvo.JobVo">
-		select * from jobinfo where j_startdate=#{j_eventDate} or j_enddate=#{j_eventDate} and j_status=1
+		select * from jobinfo where j_status=1 andj_startdate=#{j_eventDate} or j_enddate=#{j_eventDate}
 	</select>
 	
 	<!-- 전체 공고 -->
 	<select id="getCount" resultType="int"  parameterType="hashmap">
-     	select NVL(count(*),0) cnt from jobinfo where j_status=1
+     	select NVL(count(*),0) cnt from jobinfo
      	<include refid="search"/> 	
     </select>
     
