@@ -5,7 +5,7 @@
 <!-- 디데이 계산을 위한 import -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
    
-<!-- 채용공고리스트 -->
+<!-- 회원관리 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
@@ -83,7 +83,6 @@ function bookMark() {
 	 }
 }*/
 </script>
-
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
@@ -122,8 +121,7 @@ function bookMark() {
 						value="${_csrf.token }">
 				</form>
 			</div>
-			
-			<!-- 필터검색 모달 -->
+				<!-- 필터검색 모달 -->
 		<form action="${ cp }/job/detailSearch" method="post">	
 			<div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		        aria-hidden="true">
@@ -170,7 +168,7 @@ function bookMark() {
 		    </div>
 		    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 		 </form>
-		
+			
 <!-- Content Row -->
 			<div class="row">
 
@@ -180,13 +178,13 @@ function bookMark() {
 			<div class="col-lg-6 mb-4">
 
 <!-- Approach -->
-				<!-- 채용공고 -->
-			<!-- 	style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';"  -->
-				<div class="card shadow mb-4"  >
+				<!-- 동아리 -->
+				
+				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
-								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.j_num }</h6>
+								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.j_company }</h6>
 							</div>
 							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
 							</div>
@@ -255,11 +253,9 @@ function bookMark() {
 														<c:if test="${a==1 }">
 															<a onclick="cancelMark(${vo.j_num})" ><i id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
 														</c:if>
-														
-														
 												</div>
 											</div>
-									</p>	
+									</p>
 								</div>
 							</div>
 							<div class="col-md-4" style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';"> 
@@ -267,7 +263,6 @@ function bookMark() {
 									 class="img-fluid rounded-start" alt="..." style="max-width: 200px;">
 							</div>
 						</div>
-						
 					</div> <!-- body 끝 -->
 					
 				</div> <!-- 끝 -->
@@ -276,15 +271,17 @@ function bookMark() {
 			</div> <!-- 첫번쨰 Content Column 끝 -->
 			</c:forEach>
 
+
 		</div> <!-- Content Row 끝 -->
-		
+
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
 			
 		</div> <!-- Main Content 끝 -->
 <!-- End of Main Content -->
 			
-	</div><!-- End of Content Wrapper -->	
+	</div> <!-- ContentWrapper 끝 -->
+<!-- End of Content Wrapper -->	
 <!-- @@@@@@ 페이징처리 @@@@@@-->
 <div>
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
@@ -303,3 +300,15 @@ function bookMark() {
 
 <!-- Footer -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>
+<!-- End of Footer -->
+
+
+	<!-- </div>  -->
+<!-- End of Page Wrapper -->
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+<style>
+#dot{
+   list-style:none;
+   padding-left:5px;
+   }
+</style>       

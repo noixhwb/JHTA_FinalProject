@@ -29,11 +29,18 @@ html, body {
 }
 
 .chips {
-	list-style: none;
+	
 	width: 13px;
 	height: 9px;
 	margin: 4px 2px 2px 0px;
 	border: 1px solid #ddd;
+	display: inline-block;
+}
+#chip{
+	position:absolute;
+	margin-top:17px;
+	margin-left:150px;
+	z-index: 999;
 }
 </style>
 
@@ -90,10 +97,10 @@ html, body {
 				class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h3 mb-0 text-gray-800">채용 달력</h1>
 			</div>
-			<div>
-				<ul>
-					<li style="background-color: #1cc88a" class="chips">시작</li>
-					<li style="background-color: #e74a3b" class="chips">마감</li>
+			<div id="chip">
+				<ul style="list-style: none">
+					<li ><div style="background-color: #1cc88a" class="chips"></div>시작</li>
+					<li ><div style="background-color: #e74a3b" class="chips"></div>마감</li>
 				</ul>
 			</div>
 			<!-- Approach -->

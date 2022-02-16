@@ -31,7 +31,7 @@ public class MyJob {
 	}
 	
 	@GetMapping(value="/job/scrapInsert",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody HashMap<String, Object> scrapInsert(int j_num, Model model, Principal principal) {
+	public @ResponseBody HashMap<String, Object> scrapInsert(int j_num, Principal principal) {
 		
 		HashMap<String,Object> map=new HashMap<String, Object>();
 		
@@ -50,20 +50,23 @@ public class MyJob {
 	}
 	
 	@GetMapping(value="/job/scrapDelete",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Model scrapDelete(int j_num, Model model, Principal principal) {
+	public @ResponseBody HashMap<String, Object> scrapDelete(int j_num, Principal principal) {
+		HashMap<String, Object> map1 = new HashMap<String, Object>();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		MemberVo uservo = Jservice.selectUser(principal.getName());
 		int userNum = uservo.getM_num();
 		map.put("j_num", j_num);
 		map.put("m_num", userNum);
 		
+		
 		try {
 			MJservice.delete(map);
-			return model.addAttribute("result","true");
+			map1.put("result", true);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return model.addAttribute("result","false");
+			map1.put("result", false);
 		}
+		return map1;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.jhta.finalproject.jobcontroller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class JobList {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		
+		//페이징
 		int totalRowCount = Jservice.getCount(map);
 		PageUtil pu=new PageUtil(pageNum, 6, 5, totalRowCount);
 		int startRow=pu.getStartRow();
@@ -60,21 +62,35 @@ public class JobList {
 		model.addAttribute("pu", pu);
 		model.addAttribute("list",list);
 		model.addAttribute("dutyList",dutyList);
-		return "job/jobListt";
+		return "job/jobListtt";
 	}
 
 	@PostMapping("/job/detailSearch")
 	public String detailSearch(@RequestParam(value="pageNum",defaultValue = "1") int pageNum, Model model,
 				DutyVo dVo, ZoneVo zVo, CareerVo cVo){
-		DutyVo duty = dVo;
-		ZoneVo zone = zVo;
-		CareerVo career = cVo;
-		System.out.println(duty.getJd_duty());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int totalRowCount = Jservice.getCount(map);
+		PageUtil pu=new PageUtil(pageNum, 6, 5, totalRowCount);
+		int startRow=pu.getStartRow();
+		int endRow=pu.getEndRow(); 
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		
+//		ZoneVo zone = zVo;
+//		CareerVo career = cVo;
+		DutyVo duty = dVo; // 객체 생성
+		System.out.println(duty.getJd_duty()); // 넘어온 직무 
 		String[] array = duty.getJd_duty().split(","); 
 		for(int i=0;i<array.length;i++) {
 			System.out.println(array[i]);
 			}
-		return "job/jobListt";
+		List<DutyVo> list = Dservice.list();	// 전체 공고 직무
+		ArrayList<Object> arrayList = new ArrayList<Object>();
+		for (DutyVo vo :list) {
+			System.out.println(vo.getJd_duty());
+		}
+		
+		return "job/jobListtt";
 	}
 	
 }
