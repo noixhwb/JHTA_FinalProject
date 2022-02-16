@@ -68,12 +68,33 @@
      	select * from member where m_id=#{m_id}
      </select>
      
-     <select id="findPwdChk" parameterType="String" resultType="String">
-		select m_pwd from member where m_id=#{m_id} and m_email=#{m_email}
+     <select id="findPwdChk" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from member where m_id=#{m_id} and m_email=#{m_email}
 	</select>
 	<update id="findPwd" parameterType="com.jhta.finalproject.vo.MemberVo">
 		update member set m_pwd=#{m_pwd} where m_id=#{m_id} and m_email=#{m_email}
 	</update>
+	
+	<update id="addrupdate" parameterType="com.jhta.finalproject.vo.MemberVo">
+		update member set m_address=#{m_address} where m_num=#{m_num} 
+	</update>
+	
+	<update id="allupdate" parameterType="com.jhta.finalproject.vo.MemberVo">
+		update member set m_nickname=#{m_nickname} where m_num=#{m_num} 
+	</update>
+	
+	<update id="deptupdate" parameterType="com.jhta.finalproject.vo.MemberVo">
+		update member set m_dept=#{m_dept} where m_num=#{m_num} 
+	</update>
+	
+	<update id="pwdupdate" parameterType="com.jhta.finalproject.vo.MemberVo">
+		update member set m_pwd=#{m_pwd} where m_id=#{m_id} 
+	</update>
+	<update id="profileupdate" parameterType="com.jhta.finalproject.vo.MemberVo">
+		update member set m_profile=#{m_profile} where m_id=#{m_id} 
+	</update>
+	
+	
  </mapper>
  
  

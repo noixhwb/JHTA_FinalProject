@@ -2,12 +2,14 @@ package com.jhta.finalproject.service;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.javassist.bytecode.analysis.MultiArrayType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,11 @@ public class MemberService {
 	
 	  public int addUser(MemberVo vo) { 
 		 String pwd=vo.getM_pwd();
+		 String img=vo.getM_profile();
+		 
+		 vo.setM_profile("${cp}/resources/img/undraw_rocket.svg");
+		
+		 
 		 
 		 vo.setM_pwd(passwordEncoder.encode(pwd));
 		 int result = mapper.addUser(vo);
@@ -79,7 +86,7 @@ public class MemberService {
 	public void updatePassword(MemberVo vo) {
 	 String pwd=vo.getM_pwd();
 	 vo.setM_pwd(passwordEncoder.encode(pwd));{
-		
+		System.out.println(pwd);
 		 mapper.updatePassword(vo);
 	}
 	 
@@ -90,7 +97,7 @@ public class MemberService {
 		return mapper.selectUser(m_id);
 	}
 
-	public String findPwdChk(String m_id, String m_email) {
+	public MemberVo findPwdChk(String m_id, String m_email) {
 		return mapper.findPwdChk(m_id, m_email);
 		
 	}
@@ -100,7 +107,44 @@ public class MemberService {
 		
 	}
 	
+	public int addrupdate(MemberVo vo) {
+		return mapper.addrupdate(vo);
+	}
 
+	public int allupdate(MemberVo vo) {
+		return mapper.allupdate(vo);
+		
+	}
+
+	public int deptupdate(MemberVo vo) {
+		return mapper.deptupdate(vo);
+		
+	}
+
+	public int pwdupdate(MemberVo vo) {
+		String m_pwd=vo.getM_pwd();
+		 vo.setM_pwd(passwordEncoder.encode(m_pwd));
+		 
+			System.out.println(vo);
+			
+		return  mapper.pwdupdate(vo);
+		
+	 
+		}
+
+	public List<MemberVo> selectMyprofile(String m_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+
+	
+	
+
+	
+	
 	
 	
 	}

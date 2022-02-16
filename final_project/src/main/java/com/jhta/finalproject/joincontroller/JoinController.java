@@ -76,8 +76,8 @@ public class JoinController {
 
 	@RequestMapping(value="/mailCheck", method=RequestMethod.GET)
     @ResponseBody
-    public void mailCheckGET(String email) throws Exception{
-		System.out.println("컨트롤러작동중5");
+    public String mailCheckGET(String email) throws Exception{
+		
 		log.info("이메일데이터 전송확인");
 		log.info(email);
 		
@@ -109,7 +109,8 @@ public class JoinController {
 	        }catch(Exception e) {
 	            e.printStackTrace();
 	        }
-		
+		String num = Integer.toString(checkNum);
+		return num;
     }
 	
 }

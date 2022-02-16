@@ -23,5 +23,7 @@ public class MemberVo {
 	private String m_enabled;
 	
 	
+
+	
 	
 }

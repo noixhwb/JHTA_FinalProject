@@ -7,21 +7,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+    body {display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh; background: #4e73df;
+  font-style: normal;}
+.findid1 {background: white;
+text-align: center;
+
+  padding: 4rem;
+  border-radius: 1rem;}
+   a { text-decoration: none; text-shadow: 0 0 24px; color: #4e73df; font-size: 15px;}
+   input:focus {outline:none;}
+</style>
+
+
 </head>
 <body>
-<h1>비밀번호 찾기</h1>
-<form:form method="post" action="${pageContext.request.contextPath }/member/findPwd">
-	아이디<br>
-	<input type="text" name="m_id" ><br>
-	이메일<br>
-	<input type="text" name="m_email"><br>	
-	<div> ${resultMsg} </div>
-	<input type="submit" value="비밀번호 찾기">
+<script type="text/javascript">
+
+</script>
+<div class="findid1">
+<h2 style="color: #4e73df ">회원비밀번호 찾기</h2><br>
+ <form:form method="post" action="${pageContext.request.contextPath }/member/findPwd">
+	<br>
+	<input type="text" name="m_id"  placeholder="아이디 입력"   style="width: 200pt; height:25pt; border-left: none; border-right: none; border-top: none;  font-size: 17px; border-color: #4e73df "><br>
+	<br>
+	<input type="text" name="m_email" placeholder="이메일 입력"  style="width: 200pt; height:25pt; border-left: none; border-right: none; border-top: none;  font-size: 17px; border-color: #4e73df "><br>	
+	<br><span style="color: red; font-size: 14px;"> ${resultMsg} </span><br><br>
+	<input type="submit" value="비밀번호 찾기" style="width: 205pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;">
+	<br><br><a style= "font-size: 16px; font-weight: bold ;" href="${cp}/home">홈으로</a>
 </form:form>
-
-
-
-
+</div>
+ 
 
 
 

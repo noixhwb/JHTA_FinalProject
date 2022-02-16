@@ -8,7 +8,7 @@
 		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 		<h4>3조대학교 캠퍼스픽</h4>
-
+ 
 		<!-- Topbar Navbar -->
 		<ul class="navbar-nav ml-auto">
 
@@ -22,22 +22,16 @@
             </li>
           
 			</sec:authorize>
-			<sec:authorize access="isAuthenticated()">
-			
-			<li class="nav-item active">
-			<br>
-			 &nbsp;&nbsp;&nbsp;<sec:authentication property="principal.username"/>님 반갑습니다 </li>
-		 
-		 </sec:authorize>
+		
 <sec:authorize access="isAuthenticated()">
 			<!-- Nav Item - User Information -->
+				
 			<li class="nav-item dropdown no-arrow"><a
 				class="nav-link dropdown-toggle" href="#" id="userDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <span
-					class="mr-2 d-none d-lg-inline text-gray-600 small"></span> <img
-					class="img-profile rounded-circle"
-					src="${cp}/resources/img/undraw_profile.svg">
+					class="mr-2 d-none d-lg-inline text-gray-600 small"><sec:authentication property="principal.username"/>님 반갑습니다 ⬇ </span> 
+			
 			</a> <!-- Dropdown - User Information -->
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -88,4 +82,3 @@
 			</div>
 		</div>
 	</div>
-	

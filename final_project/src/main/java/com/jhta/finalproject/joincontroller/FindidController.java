@@ -39,20 +39,7 @@ public class FindidController {
 		return "member/findIdView";
 	}
 
-//	@GetMapping(value="/member/isId",produces = {MediaType.APPLICATION_JSON_VALUE})
-//	public @ResponseBody JSONObject isId(String memail){
-//		MemberVo vo=service.isId(memail);
-//		log.info("넘어왓냐");
-//		JSONObject json=new JSONObject();
-//		if(vo!=null) {
-//			json.put("using",true);
-//			
-//		}else {
-//			json.put("using",false);
-//		}
-//		return null;
-//		
-//	}
+
 	@GetMapping(value="/member/isId",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String,Object> isId(String memail){
 		MemberVo vo=service.isId(memail);
