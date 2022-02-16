@@ -25,6 +25,10 @@
     <link href="${cp}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<!-- 폰트어썸 CDN -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<!-- 이미지 슬라이드 용 css -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+
 <style type="text/css">
 #jhta_logo{
 	width: 50px;

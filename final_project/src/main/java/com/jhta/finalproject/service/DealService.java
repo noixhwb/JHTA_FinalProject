@@ -74,4 +74,7 @@ public class DealService {
 	public int update_tp(HashMap<String, Object> map) {
 		return mapper.update_tp(map);
 	}
+	public int update_tps(int t_num) {
+		return mapper.update_tps(t_num);
+	}
 }

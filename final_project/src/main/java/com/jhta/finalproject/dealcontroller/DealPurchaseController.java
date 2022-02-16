@@ -109,6 +109,7 @@ public class DealPurchaseController {
 
 	@GetMapping("/deal/refund")
 	public String refund(int t_num) {
+		System.out.println(t_num);
 		try {
 			Purchase_infoVo vo= service.select_pi2(t_num);
 			URL addr;
@@ -122,22 +123,24 @@ public class DealPurchaseController {
 			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			con.setDoOutput(true);
 			String param = "cid=" + vo.getCid() + "&tid=" + vo.getTid() + "&cancel_amount=2200"
-					+ "&cancel_tax_free_amount=0" + "&cancel_vat_amount=200" + "&cancel_available_amount=4000";
+					+ "&cancel_tax_free_amount=0";
 			OutputStream ops = con.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(ops);
 			dos.writeBytes(param);
 			dos.close();
 			int result = con.getResponseCode();
+			System.out.println(result);
 			InputStream ips;
 			if (result == 200) {
 				ips = con.getInputStream();
 			} else {
 				ips = con.getErrorStream();
 			}
+			System.out.println(ips);
 			InputStreamReader isr = new InputStreamReader(ips);
 			BufferedReader bfr = new BufferedReader(isr);
 			String result1 = bfr.readLine();
-
+			System.out.println(result1);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,8 +151,8 @@ public class DealPurchaseController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		service.delete_pr(t_num);
-		return "redirect:deal/deallist";
+		service.update_tps(t_num);
+		return "redirect:/deal/management";
 	}
 }
