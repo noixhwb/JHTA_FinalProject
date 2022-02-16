@@ -10,13 +10,20 @@
 	<bean id="customuserDetailService" class="com.jhta.finalproject.security.CustomMemberDetailService"/>
 	
 	<!-- 요청에 따른 권한 설정 -->
-	<sec:http>
+	<sec:http>  
 		<sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/member/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/member/**" access="permitAll"/>
+		<sec:intercept-url pattern="/community/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/community/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/deal/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/deal/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/circle/**" access="hasRole('ROLE_MEMBER')"/>
+			<sec:intercept-url pattern="/circle/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/job/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/job/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/timetable/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/timetable/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
 		<sec:form-login username-parameter="m_id" password-parameter="m_pwd" 
