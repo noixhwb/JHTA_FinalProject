@@ -222,6 +222,7 @@
                 <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6>  -->
+                        <a class="collapse-item" href="${cp}/community/communityInsertForm">커뮤니티 게시요청</a>
                         <a class="collapse-item" href="${cp}/circle/CircleInsert">동아리 게시요청</a>
                         <a class="collapse-item" href="${cp }/job/insert">채용공고 게시요청</a>
                         <!-- <div class="collapse-divider"></div>  -->
