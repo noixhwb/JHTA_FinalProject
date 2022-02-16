@@ -106,8 +106,15 @@
 	</select>
 	<!-- deal배송상태 업데이트 -->
 	<update id="update_tp" parameterType="hashmap">
-		UPDATE deal SET t_processing=#{t_processing} WHERE	t_num = #{t_num}
+		UPDATE deal SET t_processing=#{t_processing} WHERE t_num = #{t_num}
 	</update>
+	<delete id="delete_pr">
+		delete from purchase_info where t_num=#{t_num}
+	</delete>
+	<update id="update_tps">
+		UPDATE deal SET t_processing='판매중' WHERE t_num = #{t_num}
+	</update>
+	
 </mapper>
  
  

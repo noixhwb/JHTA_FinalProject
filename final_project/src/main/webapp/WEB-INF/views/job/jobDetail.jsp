@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 
 <style>
-	img{width:200px; height: 200px;}
+	.companyimg{width:200px; height: 200px;}
 </style>
 <!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
@@ -29,8 +29,8 @@
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-danger"> 기업명 : ${jv.j_company } //크기줄이고 세로형태로 만들고싶다</h5>
 				</div>
-				<div  style="float: left";>
-					<img src="${cp }/resources/upload/${jv.j_img }">
+				<div  style="float: left">
+					<img src="${cp }/resources/upload/${jv.j_img }" class="companyimg">
 					<ul style="list-style-type:none;">
 						<li>공고제목 조회수는 사진옆에다가 놔두고싶다.</li>
 						<li> 공고제목 : ${jv.j_subject }</li>
@@ -75,7 +75,7 @@
 							
 							<div class="card-body">
 								<div class="poster">
-									<img src="${cp }/resources/upload/${jv.j_infoimg }">
+									<img src="${cp }/resources/upload/${jv.j_infoimg }" id="infoimg">
 								</div>
 							</div>
 						</div>

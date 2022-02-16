@@ -78,12 +78,20 @@
 
 				<c:forEach var="dv" items="${dvo }">
 					<tr class="info">
-						<td class="align-middle">${dv.t_title}</td>
+						<td class="align-middle"><a
+							href="${ pageContext.request.contextPath}/deal/dealdetail?t_num=${dv.t_num}">${dv.t_title}</a></td>
 						<td class="align-middle">${dv.t_processing }</td>
-						<td class="align-middle"><button type="button"
-								class="btn btn-primary btn-sm" data-toggle="modal"
-								data-target="#myModal" data-tnum=${dv.t_num }>배송정보등록</button></td>
-
+						<c:choose>
+							<c:when test="${dv.t_processing eq '결제완료' }">
+								<td class="align-middle"><button type="button"
+										id="appendship" class="btn btn-primary btn-sm"
+										data-toggle="modal" data-target="#myModal"
+										data-tnum=${dv.t_num }>배송정보등록</button></td>
+							</c:when>
+							<c:otherwise>
+								<td class="align-middle"></td>
+							</c:otherwise>
+						</c:choose>
 						<td class="align-middle"></td>
 					</tr>
 				</c:forEach>
@@ -102,11 +110,22 @@
 
 				<c:forEach var="pv" items="${pvo }">
 					<tr class="info">
-						<td class="align-middle">${pv.t_title}</td>
+						<td class="align-middle"><a
+							href="${ pageContext.request.contextPath}/deal/dealdetail?t_num=${pv.t_num}">${pv.t_title}</a></td>
 						<td class="align-middle">${pv.t_processing }</td>
 						<td class="align-middle"><a
-							href="https://tracker.delivery/#/${pv.t_shipping }/${pv.t_invoice}"	target="_blank">배송조회</a></td>
-						<td class="align-middle">환불요청</td>
+							href="https://tracker.delivery/#/${pv.t_shipping }/${pv.t_invoice}"
+							target="_blank">배송조회</a></td>
+						<c:choose>
+							<c:when test="${pv.t_processing eq '결제완료' }">
+								<td class="align-middle"><a
+									href="${pageContext.request.contextPath}/deal/refund?t_num=${pv.t_num}">환불요청</a></td>
+							</c:when>
+							<c:otherwise>
+								<td class="align-middle"></td>
+							</c:otherwise>
+						</c:choose>
+
 					</tr>
 				</c:forEach>
 			</table>

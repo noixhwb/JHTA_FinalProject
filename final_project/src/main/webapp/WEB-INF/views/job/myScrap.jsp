@@ -27,27 +27,6 @@
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h3 mb-0 text-gray-800">스크랩</h1>
-				<form method="post" action="${cp }/job/jobList"
-					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-					<div class="input-group">
-						<input type="text" name="keyword"
-							class="form-control bg-white border-secondary small"
-							placeholder="찾으시는 기업이 있나요?" aria-label="Search"
-							value="${keyword }" aria-describedby="basic-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-primary" type="button">
-								<i class="fas fa-search fa-sm"></i>
-							</button>
-							<a class="" href="{cp}/job/jobList" data-toggle="modal"
-								data-target="#searchfilter"> 
-								<i class="fa-solid fa-bars-staggered"></i>
-								필터 검색
-							</a>
-						</div>
-					</div>
-					<input type="hidden" name="${_csrf.parameterName }"
-						value="${_csrf.token }">
-				</form>
 			</div>
 			
 		</div>
@@ -101,10 +80,19 @@
 																${vo.j_view}
 															</span>
 														</p>
-														<!-- 북마크 하면 이거 -->
-														<a onclick="bookMark(${vo.j_num})"><i style="color:blue;" class="fa-solid fa-bookmark"></i></a>
-														<!-- 평소 -->
-														<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a>
+														<c:set var="a" value="1"/>
+														<c:forEach var="bookMark" items="${list }">
+															<c:choose>
+																<c:when test="${bookMark.j_num eq vo.j_num}" >
+																	<!-- 북마크 -->
+																	<c:set var="a" value="2"/>
+																	<a onclick="bookMark(${vo.j_num})" ><i id="mark" style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
+																</c:when>	
+															</c:choose>
+														</c:forEach>
+														<c:if test="${a==1 }">
+															<a onclick="bookMark(${vo.j_num})" ><i id="mark" class="fa-regular fa-bookmark"></i></a>
+														</c:if>
 												</div>
 											</div>
 										<p class="card-text">

@@ -22,4 +22,5 @@ public class JobVo {
 	private String j_url;		// URL
 	private String j_img;		// 회사로고 이미지
 	private String j_infoimg;	// 공고 이미지
+	private int j_status; 		// 공고 승인상태
 }

@@ -50,14 +50,20 @@ public class MyJob {
 	}
 	
 	@GetMapping(value="/job/scrapDelete",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody String scrapDelete(int j_num, Model model, Principal principal) {
+	public @ResponseBody Model scrapDelete(int j_num, Model model, Principal principal) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		MemberVo uservo = Jservice.selectUser(principal.getName());
 		int userNum = uservo.getM_num();
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("j_num", j_num);
 		map.put("m_num", userNum);
-		MJservice.delete(map);
-		return "job/myScrap";
+		
+		try {
+			MJservice.delete(map);
+			return model.addAttribute("result","true");
+		}catch(Exception e) {
+			e.printStackTrace();
+			return model.addAttribute("result","false");
+		}
 	}
 	
 }

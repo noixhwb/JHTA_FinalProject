@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jhta.finalproject.jobvo.CareerVo;
 import com.jhta.finalproject.jobvo.DutyVo;
 import com.jhta.finalproject.jobvo.JobVo;
 import com.jhta.finalproject.jobvo.MyJobVo;
+import com.jhta.finalproject.jobvo.ZoneVo;
 import com.jhta.finalproject.service.DutyService;
 import com.jhta.finalproject.service.JobService;
 import com.jhta.finalproject.service.MyJobService;
@@ -40,7 +42,7 @@ public class JobList {
 		map.put("keyword", keyword);
 		
 		int totalRowCount = Jservice.getCount(map);
-		PageUtil pu=new PageUtil(pageNum, 5, 5, totalRowCount);
+		PageUtil pu=new PageUtil(pageNum, 6, 5, totalRowCount);
 		int startRow=pu.getStartRow();
 		int endRow=pu.getEndRow(); 
 		map.put("startRow", startRow);
@@ -53,7 +55,6 @@ public class JobList {
 		
 		
 		List<JobVo> list = Jservice.list(map);
-		System.out.println(list);
 		List<DutyVo> dutyList = Dservice.list();
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);
@@ -61,4 +62,19 @@ public class JobList {
 		model.addAttribute("dutyList",dutyList);
 		return "job/jobListt";
 	}
+
+	@PostMapping("/job/detailSearch")
+	public String detailSearch(@RequestParam(value="pageNum",defaultValue = "1") int pageNum, Model model,
+				DutyVo dVo, ZoneVo zVo, CareerVo cVo){
+		DutyVo duty = dVo;
+		ZoneVo zone = zVo;
+		CareerVo career = cVo;
+		System.out.println(duty.getJd_duty());
+		String[] array = duty.getJd_duty().split(","); 
+		for(int i=0;i<array.length;i++) {
+			System.out.println(array[i]);
+			}
+		return "job/jobListt";
+	}
+	
 }

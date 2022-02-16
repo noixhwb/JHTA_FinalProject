@@ -5,56 +5,83 @@
 <!-- 디데이 계산을 위한 import -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
    
-<!-- 회원관리 -->
+<!-- 채용공고리스트 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script>
-	function bookMark(num) {
+	function cancelMark(num) {
 		var j_num=num;
-		let xhr=new XMLHttpRequest();
-		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4 && xhr.status==200){
-				let data=xhr.responseText;
-				let json=JSON.parse(data);
-				if(json.result==true) {
-					alert("성공");
-				}else {
-					alert("실패");
-				}
-			}
-		}
-		xhr.open('get','${cp}/job/scrapInsert?j_num=' + j_num ,true);
-		xhr.send();
-	}
-/*	$(function() {
-		$("#scrap").click(function(num) {
-			console.log(num);
-			$.ajax({
-				url:'${cp}/job/scrapInsert',
-				data:num,
-				method:'GET',
-				dataType:'json',
-				success:function(data){
-					if(data.result==true) {
-						alert("스크랩 성공");
+		var test1 = document.getElementById("mark"+j_num);
+		if(test1.style.color == "#4e73df"){
+			let xhr=new XMLHttpRequest();
+			test1.style.removeProperty("color");
+			test1.className = 'fa-regular fa-bookmark';
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					let data=xhr.responseText;
+					let json=JSON.parse(data);
+					if(json.result==true) {
+						alert("스크랩 취소성공");
 					}else {
-						alert("스크랩 성공");
+						alert("실패");
 					}
 				}
-			})			
-		});
-	};n
-
+			}
+			xhr.open('get','${cp}/job/scrapDelete?j_num=' + j_num ,true);
+			xhr.send();
+		}else{
+			let xhr=new XMLHttpRequest();
+			test1.style.removeProperty("color");
+			test1.style.cssText='color:#4e73df';
+			test1.className = 'fa-solid fa-bookmark';
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					let data=xhr.responseText;
+					let json=JSON.parse(data);
+					if(json.result==true) {
+						alert("스크랩 추가성공");
+					}else {
+						alert("실패");
+					}
+				}
+			}
+			xhr.open('get','${cp}/job/scrapInsert?j_num=' + j_num ,true);
+			xhr.send();
+		}
+	}	
+/*	function bookMark(num) {
+		var j_num=num;
+		var test1 = document.getElementById("mark"+j_num);
+		if(test1.style.color != "#4e73df"){
+			let xhr=new XMLHttpRequest();
+			test1.style.removeProperty("color");
+			test1.style.cssText='color:#4e73df';
+			test1.className = 'fa-solid fa-bookmark';
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					let data=xhr.responseText;
+					let json=JSON.parse(data);
+					if(json.result==true) {
+						alert("스크래 추가성공");
+					}else {
+						alert("실패");
+					}
+				}
+			}
+			xhr.open('get','${cp}/job/scrapInsert?j_num=' + j_num ,true);
+			xhr.send();
+		}
+	}
 /*	$(function(){ 
-	function bookMark() {
-		 if (confirm("로그인 후 스크랩할 수 있습니다.") == true){    //확인
-			 location.href='${cp}/login';
-		 }else{   //취소
-		     return false;
-		 }
-	}*/
+function bookMark() {
+	 if (confirm("로그인 후 스크랩할 수 있습니다.") == true){    //확인
+		 location.href='${cp}/login';
+	 }else{   //취소
+	     return false;
+	 }
+}*/
 </script>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
@@ -96,6 +123,9 @@
 						value="${_csrf.token }">
 				</form>
 			</div>
+			
+			<!-- 필터검색 모달 -->
+		<form action="${ cp }/job/detailSearch" method="post">	
 			<div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		        aria-hidden="true">
 		        <div class="modal-dialog" role="document">
@@ -133,14 +163,16 @@
 							</fieldset>
 		                </div>
 		                <div class="modal-footer">
+		                    <input type="submit" class="btn btn-primary" value="적용하기">
 		                    <button class="btn btn-secondary" type="button" data-dismiss="modal">닫기</button>
-		                    <a class="btn btn-primary" href="jobList?jd_duty=${jd_duty }&jd_zone=${jd_zone}&jd_career=${jd_career}">적용하기</a>
 		                </div>
 		            </div>
 		        </div>
 		    </div>
-
+		    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+		 </form>
 		</div>
+		
 <!-- Content Row -->
 			<div class="row">
 
@@ -193,7 +225,7 @@
 																	<span>마감</span>
 																</c:if>
 																<c:if test="${today lt endTime }">
-																	<span style="color:#4e73df;">D ${endTime - today }</span>
+																	<span style="color:#4e73df;">D -${endTime - today }</span>
 																</c:if>
 															<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>
 																${vo.j_view}
@@ -202,24 +234,21 @@
 														
 														<!-- 비로그인 북마크 클릭 : alert(로그인후 스크랩 할 수 있습니다) -->
 														<!-- 확인 누르면 로그인페이지, 취소누르면 그대로 -->
+														<c:set var="a" value="1"/>
 														<c:forEach var="bookMark" items="${myBookMarkList }">
 															<c:choose>
 																<c:when test="${bookMark.j_num eq vo.j_num}" >
 																	<!-- 북마크 -->
-																	<c:set var="ox" value="o"></c:set>
+																	<c:set var="a" value="2"/>
+																	<a onclick="cancelMark(${vo.j_num})" ><i id="mark${vo.j_num }" style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
 																</c:when>	
-																<c:otherwise>
-																	<c:set var="ox" value="x"></c:set>
-																</c:otherwise>
 															</c:choose>
 														</c:forEach>
-														<c:if test="${ox eq 'o'}">
-															<!-- 북마크 -->
-															<a onclick="bookMark(${vo.j_num})"><i style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
-														</c:if>	
-														<c:if test="${ox eq 'x'}">
-															<a onclick="bookMark(${vo.j_num})"><i class="fa-regular fa-bookmark"></i></a>
-														</c:if >
+														<c:if test="${a==1 }">
+															<a onclick="cancelMark(${vo.j_num})" ><i id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
+														</c:if>
+														
+														
 												</div>
 											</div>
 									</p>	
@@ -230,6 +259,7 @@
 									 class="img-fluid rounded-start" alt="..." style="max-width: 200px;">
 							</div>
 						</div>
+						
 					</div> <!-- body 끝 -->
 					
 				</div> <!-- 끝 -->
@@ -237,10 +267,10 @@
 
 			</div> <!-- 첫번쨰 Content Column 끝 -->
 			</c:forEach>
-
+			<div>
 
 		</div> <!-- Content Row 끝 -->
-
+		
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
 			

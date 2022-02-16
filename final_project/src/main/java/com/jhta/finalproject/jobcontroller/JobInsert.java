@@ -49,14 +49,14 @@ public class JobInsert {
 		String path=sc.getRealPath("/resources/upload");
 		System.out.println(path);
 		String logoImg=file1.getOriginalFilename(); // 전송된 기업로고 파일명
-		String infoImg=file1.getOriginalFilename(); // 전송된 채용공고 파일명
+		String infoImg=file2.getOriginalFilename(); // 전송된 채용공고 파일명
 		System.out.println(duty.getJd_duty());
 		System.out.println(career.getJc_career());
 		System.out.println(zone.getJz_zone());
 		try {
 			// 파일업로드 하기
 			InputStream is1=file1.getInputStream(); 
-			InputStream is2=file1.getInputStream(); 
+			InputStream is2=file2.getInputStream(); 
 			File f1=new File(path + "\\" + logoImg);
 			File f2=new File(path + "\\" + infoImg);
 			FileOutputStream fos1=new FileOutputStream(path + "\\" + logoImg);
@@ -70,7 +70,7 @@ public class JobInsert {
 			
 			//db에 저장하기
 			Jservice.insert(new JobVo(0, vo.getJ_company(), vo.getJ_subject(), vo.getJ_startdate(),
-							vo.getJ_enddate(), 0, vo.getJ_url(), logoImg, infoImg));
+							vo.getJ_enddate(), 0, vo.getJ_url(), logoImg, infoImg, 0));
 			Zservice.insert(new ZoneVo(0, 0, zone.getJz_zone()));
 			Dservice.insert(new DutyVo(0, 0, duty.getJd_duty()));
 			Cservice.insert(new CareerVo(0, 0, career.getJc_career()));

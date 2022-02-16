@@ -242,32 +242,22 @@
                     var divEmail = $('#divEmail');
                     var divPhoneNumber = $('#divPhoneNumber');
                     
-                    //개인정보취급방침
-                    if($('#memberInfoYn:checked').val()=="N"){
-                        modalContents.text("개인정보취급방침에 동의하여 주시기 바랍니다.");
+                    //상품판매제목 검사
+                    if($('#t_title').val()==""){
+                        modalContents.text("제목을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
-                        
-                        memberInfo.removeClass("has-success");
-                        memberInfo.addClass("has-error");
-                        $('#memberInfoYn').focus();
+                        $('#t_title').focus();
                         return false;
-                    }else{
-                        memberInfo.removeClass("has-error");
-                        memberInfo.addClass("has-success");
                     }
+                    
+
                     
                     //상품명 검사
                     if($('#t_name').val()==""){
                         modalContents.text("상품명을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
-                        
-                        divId.removeClass("has-success");
-                        divId.addClass("has-error");
                         $('#t_name').focus();
                         return false;
-                    }else{
-                        divId.removeClass("has-error");
-                        divId.addClass("has-success");
                     }
                     
                     
@@ -275,68 +265,49 @@
                     if($('#t_price').val()==""){
                         modalContents.text("가격을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
-                        
-                        divPrice.removeClass("has-success");
-                        divPrice.addClass("has-error");
                         $('#t_price').focus();
                         return false;
-                    }else{
-                    	divPrice.removeClass("has-error");
-                    	divPrice.addClass("has-success");
                     }
                     
                     //상품설명
                     if($('#t_explanation').val()==""){
                         modalContents.text("상품설명을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
-                        
-                        divExplanation.removeClass("has-success");
-                        divExplanation.addClass("has-error");
                         $('#t_explanation').focus();
                         return false;
-                    }else{
-                    	divExplanation.removeClass("has-error");
-                    	divExplanation.addClass("has-success");
                     }
                     
                     //이메일
                     if($('#email').val()==""){
                         modalContents.text("이메일을 입력하여 주시기 바랍니다.");
                         modal.modal('show');
-                        
-                        divEmail.removeClass("has-success");
-                        divEmail.addClass("has-error");
                         $('#email').focus();
                         return false;
-                    }else{
-                        divEmail.removeClass("has-error");
-                        divEmail.addClass("has-success");
                     }
                     
                     //휴대폰 번호
                     if($('#rphone').val()==""){
                         modalContents.text("휴대폰 번호를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
-                        
-                        divPhoneNumber.removeClass("has-success");
-                        divPhoneNumber.addClass("has-error");
                         $('#rphone').focus();
                         return false;
-                    }else{
-                        divPhoneNumber.removeClass("has-error");
-                        divPhoneNumber.addClass("has-success");
                     }
                     
                     if($('#code1').val()==code){
-                        divPhoneNumber.removeClass("has-error");
-                        divPhoneNumber.addClass("has-success");
+
                     }else{
                         modalContents.text("인증번호를 확인하여 주시기 바랍니다.");
                         modal.modal('show');
-                        
-                        divPhoneNumber.removeClass("has-success");
-                        divPhoneNumber.addClass("has-error");
                         $('#code1').focus();
+                        return false;
+                    }
+                    
+                    
+                    //개인정보취급방침
+                    if($('#memberInfoYn:checked').val()=="N"){
+                        modalContents.text("개인정보취급방침에 동의하여 주시기 바랍니다.");
+                        modal.modal('show');
+                        $('#memberInfoYn').focus();
                         return false;
                     }
                     

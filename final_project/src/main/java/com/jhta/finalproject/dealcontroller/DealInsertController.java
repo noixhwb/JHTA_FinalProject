@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,8 @@ public class DealInsertController {
         service.insert(vo);
         int lastnum = service.lastnum();
         for (MultipartFile mf : fileList) {
-            String fileName=mf.getOriginalFilename();
+        	UUID uuid = UUID.randomUUID();
+            String fileName=uuid+mf.getOriginalFilename();
         	HashMap<String, Object> map = new HashMap<String, Object>();
         	map.put("lastnum", lastnum);
         	map.put("filename", fileName);
