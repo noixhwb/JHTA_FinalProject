@@ -50,6 +50,8 @@ public class MemberService {
 			 if(vo.getM_id().equals("admin")) {
 				 auth.setAuthority("ROLE_ADMIN");
 				 mapper.addAuth(auth);
+				 auth.setAuthority("ROLE_MEMBER");
+				 mapper.addAuth(auth);
 				 
 			 }else {
 				 auth.setAuthority("ROLE_MEMBER");
