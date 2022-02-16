@@ -18,10 +18,8 @@
 		
 		<sec:intercept-url pattern="/community/**" access="hasRole('ROLE_MEMBER')"/>
 	
-		
-		
 		<sec:intercept-url pattern="/deal/**" access="hasRole('ROLE_MEMBER')"/>
-	
+
 		<sec:intercept-url pattern="/circle/**" access="hasRole('ROLE_MEMBER')"/>
 		
 		<sec:intercept-url pattern="/job/**" access="hasRole('ROLE_MEMBER')"/>
