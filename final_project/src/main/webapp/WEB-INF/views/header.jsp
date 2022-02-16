@@ -74,14 +74,10 @@
 			 &nbsp;&nbsp;&nbsp;<sec:authentication property="principal.username"/>님 반갑습니다 </li>
 		 --%>
 		<li class="nav-item active">
-			 <a class="nav-link" href="#" onclick="document.getElementById('logout').submit();">
+			 <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
 			
 			   <i class="fa-solid fa-right-from-bracket"></i>
-				<span>로그아웃</span></a>
-				<form id="logout" action="${cp }/logout">
-				
-				<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
-				</form></li>
+				<span style="cursor: pointer;">로그아웃</span></a></li>
 		
 		<li class="nav-item active">
 			 <a class="nav-link" href="${cp }/member/mymember">
@@ -111,8 +107,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         
-                        <a class="collapse-item" href="buttons.html">커뮤니티</a>
-                        <a class="collapse-item" href="cards.html">MY 커뮤니티</a>
+                       <a class="collapse-item" href="${cp}/community/communityList">커뮤니티</a>
+                        <a class="collapse-item" href="${cp}/community/communityMy">MY 커뮤니티</a>
                     </div>
                 </div>
             </li>
@@ -265,5 +261,30 @@
         </ul>
         <!-- End of Sidebar -->
         
+       
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+       <div id="content-wrapper" class="d-flex flex-column">
+        
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">로그아웃하시려면 '로그아웃' 버튼을 눌러주세요.</div>
+					
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<a class="btn btn-primary" href="${cp }/logout">로그아웃</a>
+				</div>
+			</div>
+		</div>
+	</div>

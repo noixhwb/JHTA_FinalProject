@@ -79,8 +79,8 @@
                    <a class="a1" href="${cp }/member/mymemberdept"> 학과 변경</a> &nbsp&nbsp
                    <a class="a1" href="${cp }/member/updateaddress"> 주소 변경</a> &nbsp&nbsp
                    <a class="a1" href="${cp }/member/mymemberpwd"> 비밀번호 변경</a> &nbsp&nbsp
-                    <a class="a1" href="${cp }/member/mymemberprofile"> 프로필 사진 변경</a> 
-                  
+                   <%--  <a class="a1" href="${cp }/member/mymemberprofile"> 프로필 사진 변경</a> 
+                   --%>
                 </div>
               </div>
             </div>
