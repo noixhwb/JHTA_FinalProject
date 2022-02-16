@@ -12,7 +12,7 @@
   font-style: normal;}
 .findid1 {background: white;
 text-align: center;
-   
+     
   padding: 4rem;
   border-radius: 1rem;}
    a { text-decoration: none; text-shadow: 0 0 24px; color: #4e73df; font-size: 15px;}
