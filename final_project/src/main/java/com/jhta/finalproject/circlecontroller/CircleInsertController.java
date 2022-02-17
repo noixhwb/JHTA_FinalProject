@@ -49,13 +49,27 @@ public class CircleInsertController {
 	public String circleinsertok(CircleVo vo, MultipartFile file1, MultipartFile file2, Model model, Principal principal) {
 		String path = sc.getRealPath("/resources/upload");
 		System.out.println(path);
-		String ci_logofile = file1.getOriginalFilename(); 
-		String ci_imgfile = file2.getOriginalFilename(); 
+		String ci_logofile="";
+		String ci_imgfile="";
+		if (!file1.isEmpty()) {
+			ci_logofile = file1.getOriginalFilename();
+		} else {
+			ci_logofile = "club.png";
+		}
+		if (!file2.isEmpty()) {
+			ci_imgfile = file2.getOriginalFilename();
+		} else {
+			ci_imgfile = "poster.png";
+		}
+		 
+		
 		try {
 			InputStream is1 = file1.getInputStream(); 
 			InputStream is2 = file2.getInputStream(); 
 			File f1=new File(path + "\\" + ci_logofile);
 			File f2=new File(path + "\\" + ci_imgfile);
+			System.out.println("file1:"+file1);
+			System.out.println("ci_logofile:"+ci_logofile);
 			System.out.println("동아리로고이미지:"+f1);
 			System.out.println("동아리게시글이미지:"+f2);
 			FileOutputStream fos1=new FileOutputStream(path + "\\" + ci_logofile);

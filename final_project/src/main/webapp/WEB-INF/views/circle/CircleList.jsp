@@ -24,15 +24,54 @@
 		<div class="container-fluid">
 
 <!-- Page Heading -->
-<%--
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800"> 전체 동아리 목록 </h1>
-				<!-- 동아리 검색 -->	
-				<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<h1 class="h3 mb-0 text-gray-800"> 동아리 목록 </h1>
+			</div>
+			
+			
+<!-- ---------------------------------------------------------------------------------- -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light color-white">
+	<div class="container-fluid">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+    	</button>
+    	
+    	<!-- (1) Navbar 왼쪽 -->
+    	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    		<ul class="navbar-nav">
+        		<li class="nav-item">
+        			<a class="nav-link active" aria-current="page" href="${ cp }/circle/CircleList">전체</a>
+        		</li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href="${ cp }/circle/CircleList?category=ci_category&keyword=학술&name=ci_name&keywords=">학술</a>
+		        </li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href="${ cp }/circle/CircleList?category=ci_category&keyword=취업&name=ci_name&keywords=">취업</a>
+		        </li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href="${ cp }/circle/CircleList?category=ci_category&keyword=봉사&name=ci_name&keywords=">봉사</a>
+		        </li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href="${ cp }/circle/CircleList?category=ci_category&keyword=기타&name=ci_name&keywords=">기타</a>
+		      	</li>
+     		</ul>
+    	</div> <!-- (1) Navbar 왼쪽 끝 -->
+    
+    	<!-- (2) Navbar 오른쪽 -->
+    	<ul class="nav navbar-nav justify-content-end">
+    		<!-- 동아리 검색 -->
+    		<li>
+				<form action="${ cp }/circle/CircleList"  
+					  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
+						<input type="hidden" name="category" value="ci_category">
+						<input type="hidden" name="keyword" value="${ keyword }">
+						<input type="hidden" name="name" value="ci_name">
 						<input type="text" class="form-control bg-white border-secondary small"
 							   placeholder="동아리 검색" aria-label="Search"
-						       aria-describedby="basic-addon2">
+							   aria-describedby="basic-addon2"
+							   name="keywords">
 						<div class="input-group-append">
 							<button class="btn btn-secondary" type="submit">
 								<i class="fas fa-search fa-sm"></i>
@@ -40,104 +79,46 @@
 						</div>
 					</div>
 				</form> <!-- 동아리 검색 끝 -->
-			</div>
- --%>
-<!-- ---------------------------------------------------------------------------------- -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light color-white">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#" >동아리 목록</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="${ cp }/circle/CircleList">전체</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${ cp }/circle/CircleList?category=학술"><span id="circle_category_study">학술</span></a>
-        	<input type="hidden" value="학술" id="circle_category_study">
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${ cp }/circle/CircleList?category=취업" id="circle_category_career">취업</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${ cp }/circle/CircleList?category=봉사" id="circle_category_serve">봉사</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${ cp }/circle/CircleList?category=기타" id="circle_category_etc">기타</a>
-        </li>
-        <li class="nav-item dropdown ml-auto">
-            <!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow">
-				<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span> 
-					인기순
-				</a> 
-			<!-- Dropdown - User Information -->
-				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					 aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">
-						인기순
+        	</li>
+        	
+        	<!-- 정렬 -->
+        	<li class="nav-item dropdown ml-auto">
+	            <!-- Nav Item - User Information -->
+				<li class="nav-item dropdown no-arrow">
+					<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
+					   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span> 
+						▼ 정렬
 					</a> 
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#"> 
-						조회수순
-					</a>
-				</div>
-			</li>
-        </li>
-        <li>
-        	<!-- 동아리 검색 -->	
-			<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-				<div class="input-group">
-					<input type="text" class="form-control bg-white border-secondary small"
-						   placeholder="동아리 검색" aria-label="Search"
-						   aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-secondary" type="submit">
-							<i class="fas fa-search fa-sm"></i>
-						</button>
+				<!-- Dropdown - User Information -->
+					<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						 aria-labelledby="userDropdown">
+						<a class="dropdown-item" 
+						   href="${ cp }/circle/CircleList?category=ci_category&keyword=${keyword }&name=ci_name&keywords=${keywords }&order=1"> 
+							조회수순 
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" 
+						   href="${ cp }/circle/CircleList?category=ci_category&keyword=${keyword }&name=ci_name&keywords=${keywords }&order=2">
+							좋아요순
+						</a>
 					</div>
-				</div>
-			</form> <!-- 동아리 검색 끝 -->
-        </li>
-      </ul>
+				</li>
+       		</li> <!-- 정렬 끝 -->
+      </ul> <!-- (2) Navbar 오른쪽 끝 -->
       
       
-    </div>
-  </div>
-  
-  
+	</div>
 </nav>
-<%--
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="collapse navbar-collapse" id="navbarNav">
-	<ul class="nav nav-pills nav-fill" >
-	  <li class="nav-item">
-	    <a class="nav-link active" aria-current="page" href="#">학술</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">취업</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">Link</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link disabled">Disabled</a>
-	  </li>
-	  </ul>
-	 </div>
-</nav>
- --%>
+
+
 <!-- ---------------------------------------------------------------------------------- -->
 
 <!-- Content Row -->
 			<div class="row">
 
 <!-- Content Column -->
-			<c:forEach var="vo" items="${ list }">
+			<c:forEach var="vo" items="${ catlist }">
 			<!-- 첫번째 Content Column -->
 			<div class="col-lg-6 mb-4">
 
@@ -153,12 +134,12 @@
 								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.ci_name }</h6>
 							</div>
 							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
-								${ vo.ci_category }, ${ vo.ci_person }
+								<span class="badge badge-pill badge-secondary">${ vo.ci_category }</span>
+								<span class="badge badge-pill badge-secondary">${ vo.ci_person }</span>
 							</div>
 							<input type="hidden" value="${ vo.ci_category }" id="catvalue">
 						</div>
 					</div>
-					
 					<div class="card-body"> <!-- n번 동아리 body -->
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드본문 왼쪽 (정보) -->
@@ -194,13 +175,13 @@
 														<fmt:parseNumber var="endTime" value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true"/>
 														<c:choose>
 															<c:when test="${ (endTime-today) == 0 }">
-																D-DAY
+																<span style="color: red;">D-DAY</span>
 															</c:when>
 															<c:when test="${ (endTime-today) < 0 }">
-																모집기간종료
+																<span style="color: dimgrey;">모집기간종료</span>
 															</c:when>
 															<c:otherwise>
-																D-${endTime - today} 
+																<span style="color: steelblue;">D-${endTime - today}</span>
 															</c:otherwise>
 														</c:choose>
 													</li>
@@ -222,15 +203,18 @@
 											</div>
 											<div class="col-md-6">
 												<ul id="dot">
-													<li>조회수 : ${ vo.ci_view }</li> <!-- 3번 -->
-													<li>좋아요수 : ${ vo.ci_recommend }</li> <!-- 4번 -->
+													<li>
+														<i class="fa-solid fa-eye" style="color: cornflowerblue;"></i>
+														${ vo.ci_view }
+													</li> <!-- 3번 -->
+													<li>
+														<i class="fa-solid fa-heart" style="color: palevioletred;"></i>
+														${ vo.ci_recommend }
+													</li> <!-- 4번 -->
 												</ul>
 											</div>
 										</div>
 											
-									</p>
-									<p class="card-text">
-										<small class="text-muted">....</small>
 									</p>
 								</div>
 							</div>
@@ -248,11 +232,40 @@
 			</c:forEach>
 
 
+<!-- 검색 -->
+<!-- 
+	<div>
+		<form action="${ cp }/circle/CircleList">
+			<select name="category">
+				<option value="ci_category" <c:if test="${ category=='ci_category' }">selected</c:if>>학술</option>
+			</select>
+			<input type="text" name="keyword" value="${ keyword }">
+			<input type="submit" value="검색!!">
+		</form>
+	</div>
+ -->	
+	
+	
 		</div> <!-- Content Row 끝 -->
 
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
-			
+
+<!-- 글목록번호 -->
+	<div>
+		<c:forEach var="i" begin="${ pu.startPageNum }" end="${ pu.endPageNum }">
+			<c:choose>
+				<c:when test="${ i == param.pageNum }">
+					<a href="${ cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}"><span style="color:blue">${ i }</span></a>
+				</c:when>
+				<c:otherwise>
+					<a href="${ cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}"><span style="color:gray">${ i }</span></a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</div>
+	
+	
 		</div> <!-- Main Content 끝 -->
 <!-- End of Main Content -->
 			
@@ -312,6 +325,7 @@
 	    $(".dropdown-toggle").dropdown();
 	});
 	
+	<%--
 	$(function(){
 		let here = $("#here").prev().val();
 		var categ = $("#circle_category_study").val();
@@ -321,7 +335,7 @@
 			alert(here);			
 		});
 	});
-	<%--
+	
 	$(function () { 
 		// actvie 활성화 
 		$(".nav-item > .active").css("color", "red"); 

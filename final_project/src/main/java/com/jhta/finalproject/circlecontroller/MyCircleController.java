@@ -65,7 +65,7 @@ public class MyCircleController {
 		return "circle/MyCircleList";
 	}
 	
-	//좋아요한 동아리 목록 페이지로 이동 //수정필요
+	//좋아요한 동아리 목록 페이지로 이동 
 	@GetMapping("/circle/MyCircleLike")
 	public String mycirclelike(Model model, Principal principal) {
 		MemberVo uservo = cservice.selectM(principal.getName());
@@ -87,9 +87,45 @@ public class MyCircleController {
 		
 		List<CircleVo> mylist = cservice.selectMyCircle(userMnum);//내가만든동아리
 		model.addAttribute("mylist", mylist);
+		/* 파일을 삭제하고 수정해야하는데.. 이부분은...ㅠ
+		try {
+			if (!file1.isEmpty()) {
+				String path = sc.getRealPath("/resources/upload");
+				System.out.println(path);
+				String ci_logofile = file1.getOriginalFilename(); 
+				InputStream is1 = file1.getInputStream(); 
+				File f1=new File(path + "\\" + ci_logofile);
+				System.out.println("동아리로고이미지:"+f1);
+				FileOutputStream fos1=new FileOutputStream(path + "\\" + ci_logofile);
+				FileCopyUtils.copy(is1, fos1);
+				is1.close();
+				fos1.close();
+				
+				//기존파일 삭제
+				
+				
+				//DB에 새로운 정보로 수정
+				HashMap<String, Object> map=new HashMap<String, Object>();
+				map.put("ci_name", vo.getCi_name());
+				map.put("ci_category", vo.getCi_category());
+				map.put("ci_person", vo.getCi_person());
+				map.put("ci_logofile", ci_logofile);
+				map.put("m_num", userMnum);
+				cservice.updateC(map);
+				
+				model.addAttribute("result","success");
+				System.out.println("동아리 정보 수정 완료!");
+			}
+		}
+		*/
 		String path = sc.getRealPath("/resources/upload");
 		System.out.println(path);
-		String ci_logofile = file1.getOriginalFilename(); 
+		String ci_logofile="";
+		if (!file1.isEmpty()) {
+			ci_logofile = file1.getOriginalFilename();
+		} else {
+			ci_logofile = "club.png";
+		}
 		try {
 			InputStream is1 = file1.getInputStream(); 
 			File f1=new File(path + "\\" + ci_logofile);
@@ -130,7 +166,12 @@ public class MyCircleController {
 		model.addAttribute("mylist", mylist);
 		String path = sc.getRealPath("/resources/upload");
 		System.out.println(path);
-		String ci_imgfile = file2.getOriginalFilename(); 
+		String ci_imgfile="";
+		if (!file2.isEmpty()) {
+			ci_imgfile = file2.getOriginalFilename();
+		} else {
+			ci_imgfile = "poster.png";
+		}
 		try {
 			InputStream is2 = file2.getInputStream(); 
 			File f2=new File(path + "\\" + ci_imgfile);

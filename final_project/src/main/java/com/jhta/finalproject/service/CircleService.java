@@ -31,8 +31,16 @@ public class CircleService {
 		return mapper.selectAll();
 	}
 	
-	public List<CircleVo> selectCat(String ci_category) {
-		return mapper.selectCat(ci_category);
+	public List<CircleVo> selectCat(HashMap<String, Object> map) {
+		return mapper.selectCat(map);
+	}
+	
+	public List<CircleVo> selectCatView(HashMap<String, Object> map) {
+		return mapper.selectCatView(map);
+	} 
+	
+	public List<CircleVo> selectCatRec(HashMap<String, Object> map) {
+		return mapper.selectCatRec(map);
 	}
 	
 	public CircleVo select(int ci_num) {
@@ -55,8 +63,20 @@ public class CircleService {
 		return mapper.selectMeRegister(map);
 	}
 	
+	public int count(HashMap<String, Object> map) {
+		return mapper.count(map);
+	}
+	
 	public int addHit(int ci_num) {
 		return mapper.addHit(ci_num);
+	}
+	
+	public int addLike(int ci_num) {
+		return mapper.addLike(ci_num);
+	}
+	
+	public int minusLike(int ci_num) {
+		return mapper.minusLike(ci_num);
 	}
 	
 	public MemberVo selectM(String m_id) {

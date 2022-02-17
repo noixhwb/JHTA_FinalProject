@@ -76,6 +76,7 @@ public class CircleDetailController {
 			try {
 				lservice.insert(new LikeCircleVo(0, ci_num, userMnum));
 				map.put("result", "success");
+				service.addLike(ci_num);
 				System.out.println("좋아요 등록 완료!");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -95,7 +96,7 @@ public class CircleDetailController {
 			map.put("ci_num", ci_num);
 			map.put("m_num", userMnum);
 			lservice.delete(map);
-			
+			service.minusLike(ci_num);
 			return map;
 		}
 }

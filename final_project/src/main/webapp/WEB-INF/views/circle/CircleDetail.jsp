@@ -61,34 +61,56 @@
 														<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ sel.ci_name }</h6>
 													</li>
 													<li>카테고리 : ${ sel.ci_category }</li>
-													<li>모집인원 : ${ selectedPerson } / ${ sel.ci_person }</li> <!-- 2번 -->
+													<li>
+														<i class="fa-solid fa-user"></i>
+														${ selectedPerson } / ${ sel.ci_person }
+													</li> <!-- 2번 -->
 												</ul>
 											</div>
 											<div class="col-md-6">
 												<ul id="dot">
-													<li>모집기간 : ${ sel.ci_startdate } 에서 ${ sel.ci_enddate } 까지</li>
-													<li>조회수 : ${ sel.ci_view+viewnumber }</li> <!-- 3번 -->
-													<li>좋아요수 : <input type="input" value="${ likePerson }" id="likepersoncount"></li> <!-- 4번 -->
+													<li>
+														<i class="fa-solid fa-calendar-days"></i>
+														${ sel.ci_startdate } ~ ${ sel.ci_enddate }
+													</li>
+													<li>
+														<i class="fa-solid fa-eye" style="color: cornflowerblue;"></i>
+														${ sel.ci_view+viewnumber }
+													</li> 
+													<li>
+														<i class="fa-solid fa-heart" style="color: palevioletred;"></i>
+														<input type="text" value="${ likePerson }"
+															   id="likepersoncount"
+															   style="border:0 solid black;"
+															   readonly="readonly">
+													</li> 
+
 													<input type="hidden" value="${ nmaplike }" id="count">
-													
+													<li>
 													<c:choose>
-													<c:when test="${ nmaplike eq 0 }">
-														<li>
+														<c:when test="${ nmaplike eq 0 }">
+														
 															<!-- 좋아요 버튼 -->
-															<input type="button" value="좋아요등록" id="btnLike">
-														</li>
-													</c:when>
-													<c:otherwise>
-														<li>
+															<button type="button" value="좋아요등록 " id="btnLike" style="border:0; background-color: white">
+																<i class="fa-solid fa-heart" id="heartt" style="color: gainsboro;"></i>
+															</button>
+															<input type="text" value="${ likePerson }"
+																   id="likepersoncount"
+															   	   style="border:0 solid black;"
+														 	 	   readonly="readonly">
+														</c:when>
+														<c:otherwise>
 															<!-- 좋아요 취소 버튼 -->
-															<input type="button" value="좋아요취소" id="btnLike">
-<<<<<<< HEAD
-=======
-															<span id="likehere">♥</span>
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject
-														</li>
-													</c:otherwise>
+															<button type="button" value="좋아요취소" id="btnLike" style="border:0; background-color: white">
+																<i class="fa-solid fa-heart" id="heartt" style="color: palevioletred;"></i>
+															</button>
+															<input type="text" value="${ likePerson }"
+														   		   id="likepersoncount"
+														      	   style="border:0 solid black;"
+														   	 	   readonly="readonly">
+														</c:otherwise>
 													</c:choose>
+													</li>
 													<li><span id="heart"></span></li>
 
 
@@ -257,7 +279,8 @@ $(function(){
 					if(data.result == 'success'){
 						count++;
 						likepersoncount++;
-						$('input[id=btnLike]').attr('value','좋아요취소');
+						$('button[id=btnLike]').attr('value','좋아요취소');
+						$('i[id=heartt]').attr('style','color: palevioletred');
 						$('input[id=likepersoncount]').attr('value', likepersoncount);
 						alert('등록 성공!');
 					}else{
@@ -273,7 +296,8 @@ $(function(){
 				success:function(data){
 					count++;
 					likepersoncount--;
-					$('input[id=btnLike]').attr('value','좋아요등록');
+					$('button[id=btnLike]').attr('value','좋아요등록');
+					$('i[id=heartt]').attr('style','color: gainsboro');
 					$('input[id=likepersoncount]').attr('value', likepersoncount);
 					alert('삭제 성공!');
 				}

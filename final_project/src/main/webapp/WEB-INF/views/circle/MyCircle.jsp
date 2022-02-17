@@ -44,11 +44,11 @@
 			<div class="row">
 				<div class="col-8 offset-2 mt-4 mb-5">
 			<c:if test="${ not empty mylist }">
+			<c:forEach var="myvo" items="${ mylist }">
 			<div class="card shadow mb-3">
 				<div class="col-md-12">
 					<div class="card-body">
 						
-						<c:forEach var="myvo" items="${ mylist }">
 						<!-- 동아리정보 -->
 						<img src="${ cp }/resources/images/circle/${ myvo.ci_logofile }" 
 							 style="width:80px; height:80px;">
@@ -200,10 +200,11 @@
 						<input type="button" value="학생목록" id="btnList">
 						<div id="here1"></div>
 
-						</c:forEach>	
+							
 					</div> <!-- 0. MY  동아리 카드 body 끝 -->
 				</div>
-			</div><!-- 0. MY 동아리 카드 끝 -->
+			</div>
+			</c:forEach><!-- 0. MY 동아리 카드 끝 -->
 			</c:if>
 				</div>
 			</div>

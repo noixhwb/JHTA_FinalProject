@@ -124,9 +124,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item" href="${cp}/circle/CircleList">전체 동아리</a>
-                        <a class="collapse-item" href="${cp}/circle/CircleRank">동아리 랭킹</a>
-                        <a class="collapse-item" href="${cp}/circle/MyCircle">MY 동아리</a>
+                        <a class="collapse-item" href="${cp}/circle/CircleList">동아리</a>
+                        <a class="collapse-item" href="${cp}/circle/MyCircleList">MY 동아리</a>
                     </div>
                 </div>
             </li>
@@ -203,9 +202,7 @@
                 <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="${cp }/admin/memberList">회원관리</a>
-                        <a class="collapse-item" href="${cp }/admin/appliedCommuList">커뮤니티 승인요청 페이지</a>
-                        <a class="collapse-item" href="${cp }/admin/appliedCircleList">동아리 승인요청 페이지</a>
-                        <a class="collapse-item" href="${cp }/admin/appliedJobList">채용공고 승인요청 페이지</a>
+                        <a class="collapse-item" href="${cp }/admin/appliedCommuList">승인요청 페이지</a>
 						<!-- <div class="collapse-divider"></div>  -->                       
                         <!-- <h6 class="collapse-header">Other Pages:</h6>-->   
                     </div>
