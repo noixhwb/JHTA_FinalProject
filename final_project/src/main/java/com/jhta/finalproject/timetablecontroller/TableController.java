@@ -42,8 +42,8 @@ public class TableController {
 		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
 		int startRow = pu.getStartRow();
 		int endRow = pu.getEndRow();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
+		map.put("startRow", 100);
+		map.put("endRow", 100);
 		List<SubjectVo> list = service.subjectList(map);
 		model.addAttribute("list", list);
 		model.addAttribute("pu", pu);
@@ -60,15 +60,31 @@ public class TableController {
 	}
 	
 	//과목 리스트랑 시간표 이름 받아와서 insert하기
-	@GetMapping(value="/timetable/tableInsert", produces={MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value="/timetable/tableInsert1", produces={MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String, Object> insert(String tt_name, String numList, Principal principal) {
 		String m_id= principal.getName();
 		int m_num=m_service.isMember(m_id).getM_num();
 		String[] numArray = numList.split("&");
 		int n=0;
 		for(int i=0;i<numArray.length;i++) {
-			n=t_service.insert(new TimetableVo(0, m_num, Integer.parseInt(numArray[i]), tt_name));
+			SubjectVo vo = service.selectOne(Integer.parseInt(numArray[i]));
+			n=t_service.insert(new TimetableVo(0, m_num, vo.getS_name(), vo.getS_score(), 0, tt_name));
 		}
+		HashMap<String,Object> map=new HashMap<String, Object>();
+		if(n!=0) {
+			map.put("result", true);
+		}else {
+			map.put("result", false);
+		}
+		return map;
+	}
+	
+	//과목명,학점,성적,시간표 이름 받아와서 insert하기
+	@GetMapping(value="/timetable/tableInsert2", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String, Object> insert(String tt_name, String s_name, int s_score, int m_score, Principal principal) {
+		String m_id= principal.getName();
+		int m_num=m_service.isMember(m_id).getM_num();
+		int n=t_service.insert(new TimetableVo(0, m_num, s_name, s_score, m_score, tt_name));
 		HashMap<String,Object> map=new HashMap<String, Object>();
 		if(n!=0) {
 			map.put("result", true);

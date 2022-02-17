@@ -15,7 +15,7 @@
 	
 	<insert id="insert" parameterType="com.jhta.finalproject.timetablevo.TimetableVo">
 		insert into TIMETABLE 
-		values(TIMETABLE_seq.NEXTVAL,#{m_num},#{s_num},#{tt_name})
+		values(TIMETABLE_seq.NEXTVAL,#{m_num},#{s_name},#{s_score},#{m_score},#{tt_name})
 	</insert>
 	
 	<!-- 수정? 삭제하고 새로 insert?
