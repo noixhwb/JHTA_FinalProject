@@ -32,16 +32,17 @@
 <!-- ---------------------------------------------------------------------------------- -->
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light color-white">
-	<div class="container-fluid">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
-    	</button>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+	</button>
     	
     	<!-- (1) Navbar 왼쪽 -->
     	<div class="collapse navbar-collapse" id="navbarNavDropdown">
     		<ul class="navbar-nav">
         		<li class="nav-item">
-        			<a class="nav-link active" aria-current="page" href="${ cp }/circle/CircleList">전체</a>
+        			<a class="nav-link active" href="${ cp }/circle/CircleList">전체</a>
         		</li>
 		        <li class="nav-item">
 		        	<a class="nav-link" href="${ cp }/circle/CircleList?category=ci_category&keyword=학술&name=ci_name&keywords=">학술</a>
@@ -84,22 +85,24 @@
         	<!-- 정렬 -->
         	<li class="nav-item dropdown ml-auto">
 	            <!-- Nav Item - User Information -->
-				<li class="nav-item dropdown no-arrow">
+				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 					   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="mr-2 d-none d-lg-inline text-gray-600 small"></span> 
-						▼ 정렬
+						<span class="mr-2 d-none d-sm-inline text-gray-600 small"></span> 
+						정렬
 					</a> 
 				<!-- Dropdown - User Information -->
 					<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 						 aria-labelledby="userDropdown">
 						<a class="dropdown-item" 
 						   href="${ cp }/circle/CircleList?category=ci_category&keyword=${keyword }&name=ci_name&keywords=${keywords }&order=1"> 
+							<i class="fa-solid fa-eye fas fa-sm fa-fw mr-2"></i>
 							조회수순 
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" 
 						   href="${ cp }/circle/CircleList?category=ci_category&keyword=${keyword }&name=ci_name&keywords=${keywords }&order=2">
+							<i class="fa-solid fa-heart fas fa-sm fa-fw mr-2"></i>
 							좋아요순
 						</a>
 					</div>
@@ -107,8 +110,6 @@
        		</li> <!-- 정렬 끝 -->
       </ul> <!-- (2) Navbar 오른쪽 끝 -->
       
-      
-	</div>
 </nav>
 
 
@@ -324,30 +325,6 @@
 	$(document).ready(function() {
 	    $(".dropdown-toggle").dropdown();
 	});
-	
-	<%--
-	$(function(){
-		let here = $("#here").prev().val();
-		var categ = $("#circle_category_study").val();
-		$("#circle_category_study").click(function(){
-			alert("확인!");
-			alert(categ);
-			alert(here);			
-		});
-	});
-	
-	$(function () { 
-		// actvie 활성화 
-		$(".nav-item > .active").css("color", "red"); 
-		$('.nav-link').click(function () { 
-			// .nav-link 클릭시 이전의 active 값 해제 후, 
-			$(".nav-item > .active").css("color", "#007bff"); 
-			$('.nav-link').removeClass('active'); 
-			// 클릭한 위치 active 적용 $(this).addClass('active'); 
-			$(".nav-item > .active").css("color", "red"); 
-		}); 
-	});
-	--%>
 </script>     
 
 
