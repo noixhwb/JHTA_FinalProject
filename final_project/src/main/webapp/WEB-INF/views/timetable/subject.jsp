@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
@@ -28,67 +29,6 @@
 <!-- Main Content 이건 지우지 마세요-->
 <div id="content">
 
-	<!-- ///////상단바부분 시작 필요없으면 지워도됨/////// -->
-	<nav
-		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-		<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-			class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-		<!-- ///////상단바에서 검색부분/////// -->
-		<form action="${cp}/timetable/subjectList" method="get"
-			class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-			<div class="input-group">
-				<input type="text" name="keyword"
-					class="form-control bg-light border-0 small"
-					placeholder="과목명 혹은 교수명으로 검색하세요" aria-label="Search"
-					aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="submit">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</div>
-		</form>
-
-		<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-			<!-- ///////상단바에서 프로필부분-승한님 수정부분/////// -->
-			<li class="nav-item dropdown no-arrow"><a
-				class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <span
-					class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span> <img
-					class="img-profile rounded-circle"
-					src="${cp}/resources/img/undraw_profile.svg">
-			</a> <!-- Dropdown - User Information -->
-				<div
-					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-					</a> <a class="dropdown-item" href="#"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
-					</a> <a class="dropdown-item" href="#"> <i
-						class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-						data-target="#logoutModal"> <i
-						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-						로그아웃
-					</a>
-				</div></li>
-
-		</ul>
-
-	</nav>
-	<!-- ///////상단바부분 끝 필요없으면 여기까지 지우면됨/////// -->
 
 	<!-- Begin Page Content 이건 지우지마세요 -->
 	<div class="container-fluid">
@@ -97,6 +37,22 @@
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">강의평가</h1>
+			<form action="${cp}/timetable/subjectList" method="get"
+				class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<input type="hidden" name="${_csrf.parameterName }"
+					value="${_csrf.token }">
+				<div class="input-group">
+					<input type="text" name="keyword"
+						class="form-control bg-white border-secondary small"
+						placeholder="과목명, 교수명으로 검색" aria-label="Search"
+						aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-secondary" type="submit">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+				</div>
+			</form>
 			<a href="${cp}/timetable/mysubjectrate?m_num=1"
 				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
 				내가 쓴 강의평가</a>
@@ -145,8 +101,10 @@
 														<td>${vo.s_prof }</td>
 														<td>${vo.s_category }</td>
 														<td>${vo.s_score }</td>
-														<td><button class="btn btn-primary" onclick="rateList(${vo.s_num});">강의평가보기</button></td>
-														<td><button class="btn btn-primary" onclick="myrateForm(${vo.s_num});">강의평가하기</button></td>
+														<td><button class="btn btn-primary"
+																onclick="rateList(${vo.s_num});">강의평가보기</button></td>
+														<td><button class="btn btn-primary"
+																onclick="myrateForm(${vo.s_num});">강의평가하기</button></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -171,26 +129,26 @@
 										<div class="form-group" id="myrateBox">
 											<label class="col-lg-2 control-label">별점</label>
 											<div class="starRev">
-												<span class="starR on" id="1">★</span> 
-												<span class="starR" id="2">★</span> 
-												<span class="starR" id="3">★</span> 
-												<span class="starR" id="4">★</span>
-												<span class="starR" id="5">★</span>
+												<span class="starR on" id="1">★</span> <span class="starR"
+													id="2">★</span> <span class="starR" id="3">★</span> <span
+													class="starR" id="4">★</span> <span class="starR" id="5">★</span>
 											</div>
 											<form action="${cp}/timetable/myrateInsert" method="post"
 												id="myrateForm">
-												<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-												<input type="hidden" name="s_num" id="myrateS_num">
-												<input type="hidden" name="m_num" id="myrateM_num">
-												<input type="hidden" name="sr_recommend" id="myrateRecommend">
-												<label class="col-lg-2 control-label">강의평</label>
+												<input type="hidden" name="${_csrf.parameterName }"
+													value="${_csrf.token }"> <input type="hidden"
+													name="s_num" id="myrateS_num"> <input type="hidden"
+													name="m_num" id="myrateM_num"> <input type="hidden"
+													name="sr_recommend" id="myrateRecommend"> <label
+													class="col-lg-2 control-label">강의평</label>
 												<div class="col-lg-8">
-													<textarea class="form-control" rows="5"
-														name="sr_content" style="resize: none"></textarea>
+													<textarea class="form-control" rows="5" name="sr_content"
+														style="resize: none"></textarea>
 												</div>
 												<div class="col-lg-offset-2 col-lg-10">
 													<button type="submit" class="btn btn-primary">등록</button>
-													<button type="reset" class="btn btn-primary" id="myrateCancle">취소</button>
+													<button type="reset" class="btn btn-primary"
+														id="myrateCancle">취소</button>
 												</div>
 											</form>
 										</div>
@@ -239,7 +197,7 @@
 		<!-- ////작업공간끝//// -->
 
 
-<script type="text/javascript">
+		<script type="text/javascript">
 
 	/* 강의평가보기 버튼클릭시 강의평가리스트 출력 */
 	function rateList(s_num,pageNum) {
