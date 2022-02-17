@@ -38,8 +38,8 @@ html, body {
 }
 #chip{
 	position:absolute;
-	margin-top:17px;
-	margin-left:150px;
+	margin-top:30px;
+	margin-left:250px;
 	z-index: 999;
 }
 </style>
@@ -51,42 +51,10 @@ html, body {
 
 	<!-- Main Content -->
 	<div id="content">
+		
 
-
-		<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-			class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-		<!-- Topbar Search -->
-		<!-- 
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group">
-				<input type="text" class="form-control bg-light border-0 small"
-					   placeholder="Search for..." aria-label="Search"
-				       aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</div>
-		</form>
-	 -->
-
-		<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-			<div class="topbar-divider d-none d-sm-block"></div>
-
-			<!-- Nav Item - User Information -->
-
-
-		</ul>
-
-		</nav>
-		<!-- End of Topbar -->
+		<div class="row">
+				<div class="col-8 offset-2">
 
 		<!-- ---------------------------------------------------------------------------------------------------------------------- -->
 		<!-- Begin Page Content -->
@@ -106,8 +74,14 @@ html, body {
 			<!-- Approach -->
 
 			<!-- calendar 태그 -->
-			<div id='calendar' style="width: 75%;"></div>
-			
+			<div class="card mb-3" style="width: 100%;
+ 	text-align: center;">
+				<div class="col-md-12">
+					<div class="card-body">
+						<div id='calendar' style="width: 85%; display: inline-block;"></div>
+					</div>	
+				</div>		
+			</div>
 			<!-- 이벤트 클릭 시 나오는 모달 창 -->
 			<div id="calendarModal" class="modal fade">
 				<div class="modal-dialog">

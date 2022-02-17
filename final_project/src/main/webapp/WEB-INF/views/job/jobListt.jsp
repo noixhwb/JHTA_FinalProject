@@ -180,7 +180,7 @@ function bookMark() {
 			<div class="col-lg-6 mb-4">
 
 <!-- Approach -->
-				<!-- 채용공고 -->
+				<!-- 채용공고 (최신순으로) -->
 			<!-- 	style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';"  -->
 				<div class="card shadow mb-4"  >
 					<div class="card-header py-3">

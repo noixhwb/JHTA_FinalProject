@@ -44,5 +44,7 @@ public class JobService {
 	public MemberVo selectUser(String m_id) {
 		return mapper.selectUser(m_id);
 	}
-	
+	public List<JobVo> getPopular(){
+		return mapper.getPopular();
+	}
 }

@@ -10,7 +10,7 @@
 		</if>
     </sql>
  	
- 	<!-- 전체조회 -->
+ 	<!-- 전체조회 최신순으로 뽑음-->
  	<select id="list" parameterType="hashmap" resultType="com.jhta.finalproject.jobvo.JobVo">
 		select * from
 		(
@@ -72,6 +72,18 @@
 		        select * from jobinfo order by j_num desc
 		    )a
 		)where rnum=1;
+	</select>
+	
+	<!-- 인기 공고조회 (조회수 3등까지)-->
+	<select id="getPopular" resultType="com.jhta.finalproject.jobvo.JobVo">
+		select * from
+		(
+		    select a.*,rownum rnum from
+		    (
+		        select * from jobinfo order by j_view desc
+		    )a
+		)
+		<![CDATA[ where rnum>=1 and rnum<=3 ]]>
 	</select>
 	
 	<!-- 조회수 올리기 -->

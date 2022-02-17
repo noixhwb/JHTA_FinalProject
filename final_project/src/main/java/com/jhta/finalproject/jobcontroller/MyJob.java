@@ -9,12 +9,14 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.jobvo.MyJobVo;
 import com.jhta.finalproject.service.JobService;
 import com.jhta.finalproject.service.MyJobService;
 import com.jhta.finalproject.vo.MemberVo;
+import com.util.PageUtil;
 
 @Controller
 public class MyJob {
@@ -22,11 +24,23 @@ public class MyJob {
 	@Autowired JobService Jservice;
 	
 	@GetMapping("/job/myScrap")
-	public String scrapList(Model model,Principal principal ) {
+	public String scrapList(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
+				Model model,Principal principal ) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", "");
+		// 페이징
+		int totalRowCount = Jservice.getCount(map);
+		PageUtil pu=new PageUtil(pageNum, 6, 5, totalRowCount);
+		int startRow=pu.getStartRow();
+		int endRow=pu.getEndRow(); 
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		
 		MemberVo uservo = Jservice.selectUser(principal.getName());
 		int userNum = uservo.getM_num();
 		List<MyJobVo> list = MJservice.myScrap(userNum);
 		model.addAttribute("list",list);
+		
 		return "job/myScrap";
 	}
 	

@@ -57,10 +57,12 @@ public class JobList {
 		
 		
 		List<JobVo> list = Jservice.list(map);
+		List<JobVo> getPopular = Jservice.getPopular();
 		List<DutyVo> dutyList = Dservice.list();
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);
 		model.addAttribute("list",list);
+		model.addAttribute("popularList",getPopular);
 		model.addAttribute("dutyList",dutyList);
 		return "job/jobListtt";
 	}

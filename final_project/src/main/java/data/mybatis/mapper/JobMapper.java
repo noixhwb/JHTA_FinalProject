@@ -18,4 +18,5 @@ public interface JobMapper {
 	int getCount(HashMap<String, Object> map);
 	int addHit(int j_num);
 	MemberVo selectUser(String m_id);
+	List<JobVo> getPopular();
 }

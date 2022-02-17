@@ -11,7 +11,7 @@
 <!-- End of Header -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script>
-	function cancelMark(num) {
+	function bookMark(num) {
 		var j_num=num;
 		var test1 = document.getElementById("mark"+j_num);
 		if(test1.style.color == ''){
@@ -83,6 +83,28 @@ function bookMark() {
 	 }
 }*/
 </script>
+<style>
+	#showDuty{ display: inline-block;
+		margin-right: 4px;
+		padding: 0 8px;
+		line-height: 20px;
+		border-radius: 10px;
+		color: #737373;
+		font-size: 12px;
+		background-color: #f2f2f2;
+    }
+    #showPopular{
+    	float: left;
+	    margin-right: 4px;
+	    padding: 0 8px;
+	    line-height: 20px;
+	    border-radius: 10px;
+	    color: #fff;
+	    font-size: 12px;
+	    font-weight: bold;
+	    background-color: #1dcdff;
+    }
+</style>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
@@ -121,53 +143,7 @@ function bookMark() {
 						value="${_csrf.token }">
 				</form>
 			</div>
-				<!-- 필터검색 모달 -->
-		<form action="${ cp }/job/detailSearch" method="post">	
-			<div class="modal fade" id="searchfilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-		        aria-hidden="true">
-		        <div class="modal-dialog" role="document">
-		            <div class="modal-content">
-		                <div class="modal-header">
-		                    <h5 class="modal-title" id="exampleModalLabel">필터 검색</h5>
-		                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-		                        <span aria-hidden="true">×</span>
-		                    </button>
-		                </div>
-		                <div class="modal-body">
-		                	<h6>직무</h6>
-		                	<fieldset style="width:400px">
-								<c:forEach items="${fn:split('영업·영업관리|전략·기획|마케팅·광고·홍보|회계·재무|인사·노무|유통·물류|IT·SW|연구개발·설계|생산·생산관리|건축·인테리어|토목·환경|의료·보건|교육|미디어|디자인|기타','|') }"
-											var="duty">
-									<label><input type="checkbox" name="jd_duty" value="${duty }" >${duty }</label>
-								</c:forEach><br>
-							</fieldset>
-		                </div>
-		                <div class="modal-body">
-		                	<h6>지역</h6>
-		                	<fieldset style="width:400px">
-								<c:forEach items="${fn:split('서울|경기|광주|대구|대전|부산|세종|울산|인천|강원|경남|경북|전남|전북|충남|충북|제주|해외|기타','|') }"
-											var="zone">
-									<label><input type="checkbox" name="jd_zone" value="${zone }" >${zone }</label>
-								</c:forEach><br>
-							</fieldset>
-		                </div>
-		                <div class="modal-body">
-		                	<h6>경력</h6>
-		                	<fieldset style="width:400px">
-								<c:forEach items="${fn:split('신입|경력','|') }" var="career">
-									<label><input type="checkbox" name="jd_duty" value="${career }" >${career }</label>
-								</c:forEach><br>
-							</fieldset>
-		                </div>
-		                <div class="modal-footer">
-		                    <input type="submit" class="btn btn-primary" value="적용하기">
-		                    <button class="btn btn-secondary" type="button" data-dismiss="modal">닫기</button>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-		 </form>
+			
 			
 <!-- Content Row -->
 			<div class="row">
@@ -178,13 +154,37 @@ function bookMark() {
 			<div class="col-lg-6 mb-4">
 
 <!-- Approach -->
-				<!-- 동아리 -->
+				<!-- 채용공고 -->
 				
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
-								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.j_company }</h6>
+								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;">
+								<!-- 인기공고 -->
+								<c:set var="v" value="1"/>
+								<c:forEach var="PL" items="${popularList }">
+									<c:choose>
+										<c:when test="${PL.j_num eq vo.j_num }">
+											<c:set var="v" value="2"/>
+											<c:forEach var="dutyList" items="${dutyList }">
+													<c:if test="${dutyList.j_num eq vo.j_num}" >
+														<span id="showPopular">인기</span>
+														<span id="showDuty">${dutyList.jd_duty }</span>
+													</c:if>	
+											</c:forEach>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+								<!-- NOT 인기공고 -->
+								<c:if test="${v==1 }">
+									<c:forEach var="dutyList" items="${dutyList }">
+										<c:if test="${dutyList.j_num eq vo.j_num}" >
+											<span id="showDuty">${dutyList.jd_duty }</span>
+										</c:if>	
+									</c:forEach>
+								</c:if>		
+								</h6>
 							</div>
 							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
 							</div>
@@ -202,8 +202,8 @@ function bookMark() {
 										
 											<div class="row g-0" >
 												<div class="col-md-8" style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
-														<h5 style="font-weight: bold">${vo.j_company }</h5>
-														<p>${vo.j_subject}</p> 
+														<p style="font-weight: bold; font-size: 16px; color:black; " >${vo.j_company }</p>
+														<p style="font-size: 16px;">${vo.j_subject}</p> 
 												</div>
 												<div class="col-md-8">
 														<!-- 현재날짜 -->
@@ -246,12 +246,12 @@ function bookMark() {
 																<c:when test="${bookMark.j_num eq vo.j_num}" >
 																	<!-- 북마크 -->
 																	<c:set var="a" value="2"/>
-																	<a onclick="cancelMark(${vo.j_num})" ><i id="mark${vo.j_num }" style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
+																	<a onclick="bookMark(${vo.j_num})" ><i id="mark${vo.j_num }" style="color:#4e73df;" class="fa-solid fa-bookmark"></i></a>
 																</c:when>	
 															</c:choose>
 														</c:forEach>
 														<c:if test="${a==1 }">
-															<a onclick="cancelMark(${vo.j_num})" ><i id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
+															<a onclick="bookMark(${vo.j_num})" ><i id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
 														</c:if>
 												</div>
 											</div>
@@ -260,7 +260,9 @@ function bookMark() {
 							</div>
 							<div class="col-md-4" style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';"> 
 								<img src="${cp }/resources/upload/${vo.j_img }" 
-									 class="img-fluid rounded-start" alt="..." style="max-width: 200px;">
+									 class="img-fluid rounded-start" alt="..." style="margin: 0 auto;
+	    max-width: 100%;
+	    height: auto;">
 							</div>
 						</div>
 					</div> <!-- body 끝 -->
