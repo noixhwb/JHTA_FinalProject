@@ -86,7 +86,7 @@
 			<!-- Content Column -->
 			<div class="col-lg-6 mb-4">
 				<!-- Approach -->
-				<%-- <div class="card shadow mb-4">
+				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">거래장터 최신 물품</h6>
 					</div>
@@ -115,7 +115,7 @@
 							</div>
 						</c:forEach>
 					</div>
-				</div> --%>
+				</div>
 			</div>
 			<!-- Content Column -->
 			<div class="col-lg-6 mb-4">
