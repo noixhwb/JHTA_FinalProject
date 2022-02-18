@@ -51,16 +51,6 @@
 			xhr.send();
 		}
 	}	
-/*	function bookMark(num) {
-		var j_num=num;
-		var test1 = document.getElementById("mark"+j_num);
-		if(test1.style.color != "#4e73df"){
-			let xhr=new XMLHttpRequest();
-			test1.style.removeProperty("color");
-			test1.style.cssText='color:#4e73df';
-			test1.className = 'fa-solid fa-bookmark';
-	
-}*/
 </script>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 

@@ -19,7 +19,8 @@ public interface MemberMapper {
 	
 	int addUser(MemberVo vo);
 	int addAuth(AuthoritiesVo auth);
-
+	List<MemberVo> getList(HashMap<String, Object> map);
+	int getCount(HashMap<String, Object> map);
 	
 
 	

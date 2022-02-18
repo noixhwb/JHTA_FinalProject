@@ -84,6 +84,11 @@ function bookMark() {
 }*/
 </script>
 <style>
+	#companylogo{
+	    display: block;
+	    background-position: center center;
+    	background-size: cover;
+	}
 	#showDuty{ display: inline-block;
 		margin-right: 4px;
 		padding: 0 8px;
@@ -112,7 +117,8 @@ function bookMark() {
 
 <!-- Main Content -->
 		<div id="content">
-
+		<div class="row">
+				<div class="col-9 offset-1">
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Begin Page Content -->
@@ -124,19 +130,20 @@ function bookMark() {
 				<form method="post" action="${cp }/job/jobList"
 					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
-						<input type="text" name="keyword"
+						<input type="text" name="keyword" value="${keyword }"
 							class="form-control bg-white border-secondary small"
 							placeholder="찾으시는 기업이 있나요?" aria-label="Search"
-							value="${keyword }" aria-describedby="basic-addon2">
+							aria-describedby="basic-addon2">
 						<div class="input-group-append">
 							<button class="btn btn-primary" type="button">
 									<i class="fas fa-search fa-sm"></i>
 							</button>
+							<!-- 필터 검색 
 							<a class="" href="{cp}/job/jobList" data-toggle="modal"
 								data-target="#searchfilter"> 
 								<i class="fa-solid fa-bars-staggered"></i>
 								필터 검색
-							</a>
+							</a> -->
 						</div>
 					</div>
 					<input type="hidden" name="${_csrf.parameterName }"
@@ -260,9 +267,7 @@ function bookMark() {
 							</div>
 							<div class="col-md-4" style=" cursor: pointer;" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';"> 
 								<img src="${cp }/resources/upload/${vo.j_img }" 
-									 class="img-fluid rounded-start" alt="..." style="margin: 0 auto;
-	    max-width: 100%;
-	    height: auto;">
+									 class="img-fluid rounded-start" alt="..." id="companylogo">
 							</div>
 						</div>
 					</div> <!-- body 끝 -->

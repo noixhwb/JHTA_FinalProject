@@ -94,7 +94,33 @@
 		update member set m_profile=#{m_profile} where m_id=#{m_id} 
 	</update>
 	
-	
+	<!-- 전체 회원 -->
+	<select id="getCount" resultType="int"  parameterType="hashmap">
+     	select NVL(count(*),0) cnt from member
+     	<include refid="search"/> 	
+    </select>
+    
+    <sql id="search">
+	    <if test="keyword!=null and keyword!=''">
+		   where m_num like '%'||#{keyword}||'%' or m_id like '%'||#{keyword}||'%' 
+		   or m_name like '%'||#{keyword}||'%' or m_phone like '%'||#{keyword}||'%' 
+		   or m_email like '%'||#{keyword}||'%' or m_address like '%'||#{keyword}||'%' 
+		</if>
+    </sql>
+    
+    <!-- 전체조회 최신순으로 뽑음-->
+ 	<select id="getList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from
+		(
+		   select b.*,rownum rnum
+		   from (
+		      select * from member     
+		      <include refid="search"/>
+		      order by m_num desc
+		    )b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+	</select>
  </mapper>
  
  

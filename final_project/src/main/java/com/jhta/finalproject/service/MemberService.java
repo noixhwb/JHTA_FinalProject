@@ -140,7 +140,12 @@ public class MemberService {
 	}
 
 	
-	
+	public List<MemberVo> getList(HashMap<String, Object> map){
+		return mapper.getList(map);
+	}
+	public int getCount (HashMap<String, Object> map) {
+		return mapper.getCount(map);
+	}
 
 	
 	
