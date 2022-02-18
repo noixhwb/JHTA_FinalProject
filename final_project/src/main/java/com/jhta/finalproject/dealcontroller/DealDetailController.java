@@ -18,12 +18,11 @@ public class DealDetailController {
 	@Autowired private DealService service;
 	
 	@GetMapping("/deal/dealdetail")
-	public String detail(int t_num, Model model,Principal principal) {
+	public String detail(int t_num, Model model) {
 		//t_num//deal//dealimg//
 		DealVo dealvo = service.selectOne(t_num);
 		List<Goods_ImageVo> imglist = service.selectImg(t_num);
-		String m_id = principal.getName();
-		MemberVo membervo= service.selectMember(m_id);
+		MemberVo membervo= service.selectMember(dealvo.getM_id());
 		model.addAttribute("imglist",imglist);
 		model.addAttribute("dealvo",dealvo);
 		model.addAttribute("membervo",membervo);

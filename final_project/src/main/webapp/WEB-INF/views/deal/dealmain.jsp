@@ -29,11 +29,6 @@
 					</div>
 				</form>
 			</div>
-
-
-
-
-
 			<div class="row">
 				<!-- 상품 -->
 				<c:forEach var="vo" items="${list}" varStatus="status">

@@ -31,7 +31,7 @@ public class DealInsertController {
         String path= mt.getRealPath("/resources/goodsimg");
         String m_id = principal.getName();
         
-        DealVo vo = new DealVo(0,t_name ,t_explanation ,service.selectMember(m_id).getM_num(), t_price , null, null,t_title,m_id,null,null);
+        DealVo vo = new DealVo(0,t_name ,t_explanation ,service.selectMember(m_id).getM_num(), t_price , null, null,t_title,m_id,null,null,null);
         
         service.insert(vo);
         int lastnum = service.lastnum();

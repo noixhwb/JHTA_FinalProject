@@ -22,7 +22,7 @@
 				<td class="align-middle">
 					<div class="media">
 						<img class="align-self-center mr-3"
-							src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(0).GI_FILENAME}"
+							src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(0).gi_filename}"
 							width="125px" width="125px">
 					</div>
 				</td>

@@ -9,52 +9,86 @@
 <div id="content">
 	<div class="container-fluid">
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800">${dealvo.t_title}</h1>
+			<h1 class="h3 mb-0 text-gray-800">상품세부</h1>
 		</div>
 
 
 
-		<div class="row">
-			<div class="col-lg-6">
-				<div id="carouselExampleControls" class="carousel slide"
-					data-ride="carousel">
-					<div class="carousel-inner">
-						<c:forEach var="img" items="imglist" varStatus="status">
-							<c:choose>
-								<c:when test="${status.index eq 0}">
-									<div class="carousel-item active">
-										<img class="d-block w-100" src="${pageContext.request.contextPath }/resources/goodsimg/${img.gi_filename}">
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="carousel-item">
-										<img class="d-block w-100" src="${pageContext.request.contextPath }/resources/goodsimg/${img.gi_filename}">
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+
+		<div>
+			<div class="card shadow" style="">
+				<div class="card-header py-3">
+						<span>${dealvo.t_title }</span>
+				</div>
+
+				<div class="card-body">
+					<div class="row">
+						<div id="carouselExampleControls" class="carousel slide"
+							style="width: 400px; height: 500px; margin-right: 50px;"
+							data-ride="carousel">
+							<div class="carousel-inner">
+								<c:forEach var="img" items="${imglist}" varStatus="status">
+									<c:choose>
+										<c:when test="${status.index eq 0}">
+											<div class="carousel-item active">
+												<img class="d-block w-100"
+													src="${pageContext.request.contextPath }/resources/goodsimg/${img.gi_filename}"
+													style="height: 500px;">
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="carousel-item">
+												<img class="d-block w-100"
+													src="${pageContext.request.contextPath }/resources/goodsimg/${img.gi_filename}"
+													style="height: 500px;">
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</div>
+							<a class="carousel-control-prev" href="#carouselExampleControls"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+								class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#carouselExampleControls"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span> <span
+								class="sr-only">Next</span>
+							</a>
+						</div>
+						<!-- 폼폼폼포모폼포모포 -->
+						<div>
+							<form action="${pageContext.request.contextPath }/deal/dealpurchase">
+								<div class="form-group">
+									<label for="exampleFormControlInput1">상품명</label> <input
+										type="text" class="form-control" id="title" value="${dealvo.t_name }" readonly="readonly">
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlInput1">상품가격</label> <input
+										type="text" class="form-control" id="price" value="${dealvo.t_price }원" readonly="readonly">
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlTextarea1">상품설명</label>
+									<textarea class="form-control" id="exampleFormControlTextarea1" readonly="readonly"
+										rows="3">${dealvo.t_explanation }</textarea>
+								</div>
+								<input type="hidden" name="t_num" value="${dealvo.t_num}">
+								<span>판매자 ${membervo.m_email } ${membervo.m_phone }</span><br>
+								<span>본인인증완료</span><br><br><br><br>
+								<input type="submit" value="결제하기" id="sub">
+							</form>
+						</div>
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleControls"
-						role="button" data-slide="prev"> <span
-						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-						class="sr-only">Previous</span>
-					</a> <a class="carousel-control-next" href="#carouselExampleControls"
-						role="button" data-slide="next"> <span
-						class="carousel-control-next-icon" aria-hidden="true"></span> <span
-						class="sr-only">Next</span>
-					</a>
 				</div>
 			</div>
-			<div class="col-lg-6">
-				<span>${dealvo.t_name}</span><br> <span>${dealvo.t_price}</span><br>
-				<span>${membervo.m_phone}</span><br> <span>${dealvo.t_explanation}</span><br>
-				<a
-					href="${pageContext.request.contextPath }/deal/dealpurchase?t_num=${dealvo.t_num}&m_id=${dealvo.m_id}"
-					id="check_processing">구매하기</a>
-			</div>
 		</div>
+
+
+
 	</div>
 </div>
+
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 <script type="text/javascript">
 	$(function() {
@@ -75,8 +109,8 @@
 	// 조건에 따라서 a태그 값을 변환을 주고 비활성화
 	if ("${dealvo.t_processing}" != "판매중") {
 
-		$("#check_processing").text("상품준비중");
-		$("#check_processing").click(function() {
+		$("#sub").val("상품준비중");
+		$("#sub").click(function() {
 			return false;
 		})
 	}

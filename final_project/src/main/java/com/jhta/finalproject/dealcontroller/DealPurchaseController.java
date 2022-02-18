@@ -32,7 +32,7 @@ public class DealPurchaseController {
 	DealService service;
 
 	@GetMapping("/deal/dealpurchase")
-	public String purchaseform(int t_num, String m_id, Model model, Principal principal, HttpServletRequest request) {
+	public String purchaseform(int t_num, Model model, Principal principal, HttpServletRequest request) {
 		// 구매자 정보 로그인한 아이디 기반으로 찾음
 		model.addAttribute("pvo", service.selectMember(principal.getName()));
 		// 판매자 정보 m_id 기반으로 찾음
