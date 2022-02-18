@@ -1,15 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 
 <div id="content">
 	<div class="container-fluid">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">${dealvo.t_title}</h1>
+		</div>
+
+
+
 		<div class="row">
 			<div class="col-lg-6">
-			<!-- 이미지 자리 -->
+				<div id="carouselExampleControls" class="carousel slide"
+					data-ride="carousel">
+					<div class="carousel-inner">
+						<c:forEach var="img" items="imglist" varStatus="status">
+							<c:choose>
+								<c:when test="${status.index eq 0}">
+									<div class="carousel-item active">
+										<img class="d-block w-100" src="${pageContext.request.contextPath }/resources/goodsimg/${img.gi_filename}">
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="carousel-item">
+										<img class="d-block w-100" src="${pageContext.request.contextPath }/resources/goodsimg/${img.gi_filename}">
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleControls"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
 			</div>
 			<div class="col-lg-6">
 				<span>${dealvo.t_name}</span><br> <span>${dealvo.t_price}</span><br>

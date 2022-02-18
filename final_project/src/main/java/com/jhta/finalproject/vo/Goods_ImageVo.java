@@ -12,6 +12,6 @@ import lombok.ToString;
 @ToString
 public class Goods_ImageVo {
 	private int gi_num;
-	private String GI_FILENAME;
+	private String gi_filename;
 	private int t_num;
 }

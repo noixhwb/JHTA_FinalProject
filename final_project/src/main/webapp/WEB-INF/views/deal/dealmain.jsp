@@ -49,7 +49,7 @@
 								<a
 									href="${pageContext.request.contextPath }/deal/dealdetail?t_num=${vo.t_num}">
 									<img
-									src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(status.index).GI_FILENAME}"
+									src="${pageContext.request.contextPath }/resources/goodsimg/${imglist.get(status.index).gi_filename}"
 									class="img-rounded" width="100%" height="450px">
 								</a>
 							</div>

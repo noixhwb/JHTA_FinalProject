@@ -51,7 +51,7 @@ public class SmsController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
 		try {
-			String code=Integer.toString((int)(Math.random()*10000));
+			String code="인증번호: "+Integer.toString((int)(Math.random()*10000));
 			String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; //필수
 			String user_id = base64Encode("lamgul"); //필수
 			String secure = base64Encode("6f15e3a9a71b3a4af0b5214088b8401d"); //필수
@@ -64,7 +64,7 @@ public class SmsController {
 			String rtime = base64Encode("");
 			String mode = base64Encode("1");
 			String subject = base64Encode("");
-			String testflag = base64Encode("Y");  //테스트 요청시 Y
+			String testflag = base64Encode("");  //테스트 요청시 Y
 			String destination = base64Encode("");
 			String repeatFlag = base64Encode("");
 			String repeatNum = base64Encode("");
