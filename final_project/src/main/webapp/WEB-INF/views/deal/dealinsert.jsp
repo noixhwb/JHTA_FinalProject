@@ -5,152 +5,150 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <%@ include file="/WEB-INF/views/top.jsp"%>
-	<div class="container-fluid">
-		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800">상품등록</h1>
+<div class="container-fluid">
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">상품등록</h1>
+	</div>
+	<div class="modal fade" id="defaultModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title">알림</h4>
+				</div>
+				<div class="modal-body">
+					<p class="modal-contents"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
 		</div>
-		<div class="modal fade" id="defaultModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-						<h4 class="modal-title">알림</h4>
-					</div>
-					<div class="modal-body">
-						<p class="modal-contents"></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!--// 모달창 -->
+	<hr />
+
+	<form class="form-horizontal" role="form" method="post"
+		action="${pageContext.request.contextPath }/deal/dealinsert?${_csrf.parameterName }=${_csrf.token }"
+		enctype="multipart/form-data">
+
+		<div class="form-group" id="divTitle">
+			<label class="col-lg-2 control-label">제목</label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control" id="t_title" name="t_title"
+					data-rule-required="true" placeholder="제목을 등록해주세요." maxlength="30">
 			</div>
-			<!-- /.modal-dialog -->
 		</div>
-		<!-- /.modal -->
-		<!--// 모달창 -->
-		<hr />
 
-		<form class="form-horizontal" role="form" method="post"
-			action="${pageContext.request.contextPath }/deal/dealinsert?${_csrf.parameterName }=${_csrf.token }"
-			enctype="multipart/form-data">
+		<div class="form-group" id="divId">
+			<label class="col-lg-2 control-label">제품명</label>
+			<div class="col-lg-8">
+				<input type="text" class="form-control" id="t_name" name="t_name"
+					data-rule-required="true" placeholder="제품명을 등록해주세요." maxlength="30">
+			</div>
+		</div>
+		<div class="form-group" id="divPrice">
+			<label class="col-lg-2 control-label">가격</label>
+			<div class="col-lg-8">
+				<input type="number" class="form-control" id="t_price"
+					name="t_price" data-rule-required="true" placeholder="1000원 단위로 입력"
+					maxlength="30">
+			</div>
+		</div>
+		<div class="form-group" id="divExplanation">
+			<label class="col-lg-2 control-label">상품설명</label>
+			<div class="col-lg-8" id="memberInfo">
+				<textarea class="form-control" rows="11" name="t_explanation"
+					id="t_explanation" style="resize: none"></textarea>
+			</div>
+		</div>
+		<div class="form-group" id="divFile">
+			<label class="col-lg-2 control-label">이미지등록</label>
+			<div class="col-lg-8">
+				<input multiple="multiple" type="file" name="file" />
+			</div>
+		</div>
+		<div class="form-group" id="divEmail">
+			<label class="col-lg-2 control-label">이메일</label>
+			<div class="col-lg-8">
+				<input type="email" class="form-control" id="email" name="email"
+					data-rule-required="true" placeholder="이메일" maxlength="40">
+			</div>
+		</div>
 
-			<div class="form-group" id="divTitle">
-				<label class="col-lg-2 control-label">제목</label>
-				<div class="col-lg-8">
-					<input type="text" class="form-control" id="t_title" name="t_title"
-						data-rule-required="true" placeholder="제목을 등록해주세요." maxlength="30">
-				</div>
-			</div>
-
-			<div class="form-group" id="divId">
-				<label class="col-lg-2 control-label">제품명</label>
-				<div class="col-lg-8">
-					<input type="text" class="form-control" id="t_name" name="t_name"
-						data-rule-required="true" placeholder="제품명을 등록해주세요."
-						maxlength="30">
-				</div>
-			</div>
-			<div class="form-group" id="divPrice">
-				<label class="col-lg-2 control-label">가격</label>
-				<div class="col-lg-8">
-					<input type="number" class="form-control" id="t_price"
-						name="t_price" data-rule-required="true"
-						placeholder="1000원 단위로 입력" maxlength="30">
-				</div>
-			</div>
-			<div class="form-group" id="divExplanation">
-				<label class="col-lg-2 control-label">상품설명</label>
-				<div class="col-lg-8" id="memberInfo">
-					<textarea class="form-control" rows="11" name="t_explanation"
-						id="t_explanation" style="resize: none"></textarea>
-				</div>
-			</div>
-			<div class="form-group" id="divFile">
-				<label class="col-lg-2 control-label">이미지등록</label>
-				<div class="col-lg-8">
-					<input multiple="multiple" type="file" name="file" />
-				</div>
-			</div>
-			<div class="form-group" id="divEmail">
-				<label class="col-lg-2 control-label">이메일</label>
-				<div class="col-lg-8">
-					<input type="email" class="form-control" id="email" name="email"
-						data-rule-required="true" placeholder="이메일" maxlength="40">
-				</div>
-			</div>
-
-			<div class="form-group" id="divRphone">
-				<label class="col-lg-2 control-label">휴대폰 번호</label>
-				<div class="col-lg-8">
-					<input type="tel" class="form-control" name="rphone" id="rphone"
-						data-rule-required="true" placeholder="010-0000-0000"
-						maxlength="13">
-				</div>
-
-
-			</div>
-			<div class="form-group" id="check">
-				<button type="button" class="btn btn-default" id="phoneVerification">인증번호발송</button>
-				<div class="col-lg-8 has-error has-feedback">
-					<input type="number" class="form-control" name="code1" id="code1"
-						aria-describedby="inputError2Status">
-				</div>
+		<div class="form-group" id="divRphone">
+			<label class="col-lg-2 control-label">휴대폰 번호</label>
+			<div class="col-lg-8">
+				<input type="tel" class="form-control" name="rphone" id="rphone"
+					data-rule-required="true" placeholder="010-0000-0000"
+					maxlength="13">
 			</div>
 
 
-			<div class="form-group">
-				<label class="col-lg-2 control-label">이메일 수신여부</label>
-				<div class="col-lg-8">
-					<label class="radio-inline"> <input type="radio"
-						id="emailReceiveYn" name="emailReceiveYn" value="Y" checked>
-						동의합니다.
-					</label> <label class="radio-inline"> <input type="radio"
-						id="emailReceiveYn" name="emailReceiveYn" value="N"> 동의하지
-						않습니다.
-					</label>
-				</div>
+		</div>
+		<div class="form-group" id="check">
+			<button type="button" class="btn btn-default" id="phoneVerification">인증번호발송</button>
+			<div class="col-lg-8 has-error has-feedback">
+				<input type="number" class="form-control" name="code1" id="code1"
+					aria-describedby="inputError2Status">
 			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">SMS 수신여부</label>
-				<div class="col-lg-8">
-					<label class="radio-inline"> <input type="radio"
-						id="smsReceiveYn" name="smsReceiveYn" value="Y" checked>
-						동의합니다.
-					</label> <label class="radio-inline"> <input type="radio"
-						id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지
-						않습니다.
-					</label>
-				</div>
+		</div>
+
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">이메일 수신여부</label>
+			<div class="col-lg-8">
+				<label class="radio-inline"> <input type="radio"
+					id="emailReceiveYn" name="emailReceiveYn" value="Y" checked>
+					동의합니다.
+				</label> <label class="radio-inline"> <input type="radio"
+					id="emailReceiveYn" name="emailReceiveYn" value="N"> 동의하지
+					않습니다.
+				</label>
 			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">개인정보취급방침</label>
-				<div class="col-lg-8" id="memberInfo">
-					<textarea class="form-control" rows="4" style="resize: none"
-						readonly="readonly">개인정보의 항목 및 수집방법
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">SMS 수신여부</label>
+			<div class="col-lg-8">
+				<label class="radio-inline"> <input type="radio"
+					id="smsReceiveYn" name="smsReceiveYn" value="Y" checked>
+					동의합니다.
+				</label> <label class="radio-inline"> <input type="radio"
+					id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지 않습니다.
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">개인정보취급방침</label>
+			<div class="col-lg-8" id="memberInfo">
+				<textarea class="form-control" rows="4" style="resize: none"
+					readonly="readonly">개인정보의 항목 및 수집방법
                         
                         </textarea>
-					<div class="radio">
-						<label> <input type="radio" id="memberInfoYn"
-							name="memberInfoYn" value="Y" checked> 동의합니다.
-						</label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" id="memberInfoYn"
-							name="memberInfoYn" value="N"> 동의하지 않습니다.
-						</label>
-					</div>
+				<div class="radio">
+					<label> <input type="radio" id="memberInfoYn"
+						name="memberInfoYn" value="Y" checked> 동의합니다.
+					</label>
+				</div>
+				<div class="radio">
+					<label> <input type="radio" id="memberInfoYn"
+						name="memberInfoYn" value="N"> 동의하지 않습니다.
+					</label>
 				</div>
 			</div>
+		</div>
 
-			<div class="form-group">
-				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-primary">등록</button>
-				</div>
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-10">
+				<button type="submit" class="btn btn-primary">등록</button>
 			</div>
-		</form>
-	</div>
+		</div>
+	</form>
+</div>
 
 <script>
 	var code="1234";
@@ -180,7 +178,29 @@
                 		}
                 	})
                 	}
-                });                
+                });
+                
+                //이메일 휴대폰번호 본인인증 확인
+                 $("#rphone").change(function(e){
+                	var phone= $("#rphone").val().replaceAll("-","");
+                	if(phone != "${mvo.m_phone}"){
+                		$("#rphone").addClass("alert-danger");
+                	}else{
+                		$("#rphone").removeClass("alert-danger");
+                	}
+                });
+               
+                
+                $("#email").on("blur",function(){
+                	
+                	if($("#email").val() != "${mvo.m_email}"){
+                		$("#email").addClass("alert-danger");
+                	}else{
+                		
+                		$("#email").removeClass("alert-danger");
+                	}
+                });
+                
                 //------- validation 검사
                 $( "form" ).submit(function( event ) {
                     
@@ -262,6 +282,7 @@
                         $('#memberInfoYn').focus();
                         return false;
                     }
+
                     
                 
                 });

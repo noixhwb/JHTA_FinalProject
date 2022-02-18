@@ -1,6 +1,5 @@
 package com.jhta.finalproject.dealcontroller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

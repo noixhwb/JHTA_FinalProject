@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,12 +17,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.jhta.finalproject.service.DealService;
 import com.jhta.finalproject.vo.DealVo;
+import com.jhta.finalproject.vo.MemberVo;
 
 @Controller
 public class DealInsertController {
 	@Autowired private DealService service;
 	@GetMapping("/deal/dealinsert")
-	public String insertForm() {
+	public String insertForm(Model model,Principal principal) {
+		MemberVo mvo = service.selectMember(principal.getName());
+		
+		model.addAttribute("mvo",mvo);
+		
 		return "deal/dealinsert";
 	}
 	
