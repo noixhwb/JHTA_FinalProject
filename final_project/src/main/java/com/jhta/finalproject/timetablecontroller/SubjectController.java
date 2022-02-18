@@ -1,5 +1,6 @@
 package com.jhta.finalproject.timetablecontroller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jhta.finalproject.service.MemberService;
 import com.jhta.finalproject.service.SubjectRateService;
 import com.jhta.finalproject.service.SubjectService;
 import com.jhta.finalproject.timetablevo.SubjectRateVo;
@@ -23,12 +25,15 @@ import com.util.PageUtil;
 public class SubjectController {
 	@Autowired private ServletContext sc;
 	@Autowired private SubjectService service;
+	@Autowired private MemberService m_service;
 	@Autowired private SubjectRateService rateservice;
 
 	//강의평가 페이지로 이동
 	@GetMapping("/timetable/subject")
-	public String tableSubject() {
+	public String tableSubject(Principal principal) {
 		sc.setAttribute("cp", sc.getContextPath());
+		String m_id= principal.getName();
+		int m_num=m_service.isMember(m_id).getM_num();
 		return "timetable/subject";
 	}
 
