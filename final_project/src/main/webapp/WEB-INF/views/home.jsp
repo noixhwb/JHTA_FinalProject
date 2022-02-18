@@ -102,7 +102,7 @@
 								<div class="row g-0">
 									<div class="col-md-4">
 										<img
-											src="${cp}/resources/goodsimg/${dealimglist.get(status.index).GI_FILENAME}"
+											src="${cp}/resources/goodsimg/${dealimglist.get(status.index).gi_filename}"
 											class="img-rounded" style="max-width: 200px;">
 									</div>
 									<div class="col-md-8">
