@@ -2,11 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <%@ include file="/WEB-INF/views/header.jsp" %>
+<%@ include file="/WEB-INF/views/top.jsp"%>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	
 </script>
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+
 <!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 
@@ -14,75 +18,11 @@
 		<div id="content">
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-<!-- Topbar -->
-		<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-		<h4>3조대학교 캠퍼스픽</h4>
-
-
-<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-				class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-<!-- Topbar Search -->
-	<!-- 
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group">
-				<input type="text" class="form-control bg-light border-0 small"
-					   placeholder="Search for..." aria-label="Search"
-				       aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</div>
-		</form>
-	 -->
-	 
-<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-		<div class="topbar-divider d-none d-sm-block"></div>
-
-<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow">
-				<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				   role="button" data-toggle="dropdown" aria-haspopup="true"
-				   aria-expanded="false">
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님</span>
-					<img class="img-profile rounded-circle"
-						 src="${ cp }/resources/img/undraw_profile.svg">
-				</a>
-
-<!-- Dropdown - User Information -->
-				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					 aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-					</a>
-					<a class="dropdown-item" href="#">
-						<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 수정
-					</a>
-					<a class="dropdown-item" href="#"> 
-						<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 활동기록
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-					   data-target="#logoutModal">
-						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> 로그아웃
-					</a>
-				</div>
-			</li>
-		</ul>
-
-		</nav>
-<!-- End of Topbar -->
 <!-- Begin Page Content -->
 <form method="post" action="${cp}/job/insert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
 		<div class="container-fluid">
 
+<%-- 
 <!-- Page Heading -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h3 mb-0 text-gray-800"> 채용 공고 게시요청 </h1>
@@ -102,10 +42,13 @@
 						<li> 게시글 중복 방지를 위해 계정당 한 공고만 등록할 수 있습니다 </li>
 					</ul>	
 				</div>
-			</div> <!-- 1. 채용공고 게시요청 주의사항 카드 끝 -->
+			</div> <!-- 1. 채용공고 게시요청 주의사항 카드 끝 --> 
+			--%>
 <!-- Approach -->
 			
 			<!-- 2. 채용공고 만들기 카드 -->
+			<div class="row">
+				<div class="col-8 offset-2">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h5 class="m-0 font-weight-bold text-dark"> 채용공고 정보 작성</h5>
@@ -225,7 +168,9 @@
 					<input type="submit" value="신청하기">
 				</div> <!-- 채용카드의 body 끝 -->
 			</div> <!-- 2. 채용카드 끝 -->
-		</div>			
+		</div>
+		</div>
+	</div>
 </form>
        
 <%@ include file="/WEB-INF/views/footer.jsp" %>

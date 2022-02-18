@@ -64,7 +64,7 @@ public class JobList {
 		model.addAttribute("list",list);
 		model.addAttribute("popularList",getPopular);
 		model.addAttribute("dutyList",dutyList);
-		return "job/jobListtt";
+		return "job/jobList";
 	}
 
 	@PostMapping("/job/detailSearch")
@@ -92,7 +92,7 @@ public class JobList {
 			System.out.println(vo.getJd_duty());
 		}
 		
-		return "job/jobListtt";
+		return "job/jobList";
 	}
 	
 }

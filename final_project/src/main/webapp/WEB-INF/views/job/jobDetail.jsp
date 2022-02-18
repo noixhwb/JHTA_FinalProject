@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <style>
-	.companyimg{width:200px; height: 200px;}
+	.companyimg{width:200px; height: 200px; display:inline-block; }
 	#infoimg{
 		margin: 0 auto;
 	    max-width: 100%;

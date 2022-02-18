@@ -75,7 +75,8 @@
 														<a href="${ cp }/member/mymember?ci_num=${ vo.ci_num }">
 														회원정보보기</a>
 														<p><button class="btn btn-primary" onclick="approve(${vo.ci_num})">approve</button>
-														<button class="btn btn-primary" onclick="reject(${vo.ci_num})" style="background-color: #FF5E00">reject</button></p>
+														<button class="btn btn-primary" onclick="reject(${vo.ci_num})" style="background-color: #FF5E00">reject</button>
+														</p>
 													</ul>
 												</div>
 												<div class="col-md-6">
@@ -150,7 +151,7 @@
 			}
 		});
 	};
-	function reject(j_num) {
+	function reject(ci_num) {
 		$.ajax({
 			url:'${cp}/admin/rejectCircle?ci_num=' + ci_num, 
 			dataType:'json', 
