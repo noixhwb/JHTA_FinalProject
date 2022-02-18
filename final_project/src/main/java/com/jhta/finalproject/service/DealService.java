@@ -77,4 +77,7 @@ public class DealService {
 	public int update_tps(int t_num) {
 		return mapper.update_tps(t_num);
 	}
+	public int update_tpr(int t_num) {
+		return mapper.update_tpr(t_num);
+	}
 }

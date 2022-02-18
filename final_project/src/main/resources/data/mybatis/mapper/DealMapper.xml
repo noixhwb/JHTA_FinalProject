@@ -115,6 +115,10 @@
 		UPDATE deal SET t_processing='판매중' WHERE t_num = #{t_num}
 	</update>
 	
+	<update id="update_tpr">
+		UPDATE deal SET t_processing='환불요청' WHERE t_num = #{t_num}
+	</update>
+	
 </mapper>
  
  
