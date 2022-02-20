@@ -9,6 +9,9 @@
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <style>
 	.companyimg{width:200px; height: 200px; display:inline-block; }
+	#companyTopInfo {
+		margin-top: 50px;
+	}
 	#infoimg{
 		margin: 0 auto;
 	    max-width: 100%;
@@ -85,15 +88,28 @@
 				<h1 class="h3 mb-0 text-gray-800"> 채용 공고 게시요청 </h1>
 					
 			</div> -->
-
 			<!-- 1. 카드 -->
+			<div class="card shadow mb-4">
+				<div class="row g-0">
+				<div class="col-md-4">
+					<img src="${cp }/resources/upload/${jv.j_img }" class="companyimg">
+				</div>
+				<div class="col-md-8" id="companyTopInfo">
+					<p style="font-size: 18px; font-weight: bold; color:#292929;">${jv.j_company }</p>
+					<h6 style="color:#4c4c4c;">${jv.j_subject }</h6>
+					<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i> ${jv.j_view} 
+					</span>	
+				</div>
+				</div>	
+			</div> <!-- 1.  카드 끝 -->
+		<%-- 	<!-- 1. 카드 -->
 			<div class="card shadow mb-4">
 					<img src="${cp }/resources/upload/${jv.j_img }" class="companyimg">
 					<p style="font-size: 18px; font-weight: bold; color:#292929;">${jv.j_company }</p>
 					<h6 style="color:#4c4c4c;">${jv.j_subject }</h6>
 					<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>${jv.j_view}
 					</span>		
-			</div> <!-- 1.  카드 끝 -->
+			</div> <!-- 1.  카드 끝 --> --%>
 
 <!-- Approach -->
 

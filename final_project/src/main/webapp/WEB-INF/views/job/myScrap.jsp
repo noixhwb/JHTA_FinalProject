@@ -52,6 +52,13 @@
 		}
 	}	
 </script>
+<style>
+	#companylogo{
+		cursor: pointer;
+	    background-position: center center;
+    	background-size: cover;
+	}
+</style>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
@@ -174,3 +181,92 @@
 
 <!-- Footer -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>
+
+<div class="card-body">
+							<!-- body -->
+							<div class="row g-0">
+								<div class="col-lg-12">
+									<!-- 카드본문 왼쪽 (정보) -->
+									<div class="card-body">
+										<h6 class="card-title">
+											<!--  -->
+										</h6>
+
+										<div>
+											<div class="row g-0">
+												<div class="col-md-8" style="cursor: pointer;"
+													onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
+													<p style="font-weight: bold; font-size: 16px; color: black;">${vo.j_company }</p>
+													<p style="font-size: 16px;">${vo.j_subject}</p>
+												</div>	
+													<div class="col-md-8">
+														<!-- 현재날짜 -->
+														<c:set var="today" value="<%=new java.util.Date()%>" />
+														<c:set var="end" value="${vo.j_enddate}" />
+														<!-- Date format 'yyyy/MM/dd' -->
+														<c:set var="date">
+															<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" />
+														</c:set>
+														<c:set var="enddate">
+															<fmt:formatDate value="${end}" pattern="yyyy-MM-dd" />
+														</c:set>
+
+														<!-- String >> Date 형 변환 -->
+														<fmt:parseDate var="endPlanDate" value="${enddate }"
+															pattern="yyyy-MM-dd" />
+
+														<!-- 숫자로 변환 -->
+														<fmt:parseNumber var="today"
+															value="${today.time / (1000*60*60*24)}"
+															integerOnly="true" />
+														<fmt:parseNumber var="endTime"
+															value="${endPlanDate.time / (1000*60*60*24)}"
+															integerOnly="true" />
+														<p style="cursor: pointer;"
+															onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
+															<c:if test="${endTime eq today }">
+																<span style="color: #4e73df;">D -DAY</span>
+															</c:if>
+															<c:if test="${today gt endTime }">
+																<span>마감</span>
+															</c:if>
+															<c:if test="${today lt endTime }">
+																<span style="color: #4e73df;">D -${endTime - today }</span>
+															</c:if>
+															<span id="viewCount"><i
+																class="fa-solid fa-eye text-gray-400"></i>
+																${vo.j_view} </span>
+														</p>
+
+														<!-- 비로그인 북마크 클릭 : alert(로그인후 스크랩 할 수 있습니다) -->
+														<!-- 확인 누르면 로그인페이지, 취소누르면 그대로 -->
+														<c:set var="a" value="1" />
+														<c:forEach var="bookMark" items="${myBookMarkList }">
+															<c:choose>
+																<c:when test="${bookMark.j_num eq vo.j_num}">
+																	<!-- 북마크 -->
+																	<c:set var="a" value="2" />
+																	<a onclick="bookMark(${vo.j_num})"><i
+																		id="mark${vo.j_num }" style="color: #4e73df;"
+																		class="fa-solid fa-bookmark"></i></a>
+																</c:when>
+															</c:choose>
+														</c:forEach>
+														<c:if test="${a==1 }">
+															<a onclick="bookMark(${vo.j_num})"><i
+																id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
+														</c:if>
+												</div>
+
+												<div class="col-md-4" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';"> 
+													<img src="${cp }/resources/upload/${vo.j_img }" 
+														 class="img-fluid rounded-start" alt="..." 
+														 id="companylogo">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- body 끝 -->

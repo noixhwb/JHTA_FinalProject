@@ -7,7 +7,8 @@
 <!-- Page level custom scripts -->
 <script src="${ pageContext.request.contextPath }/resources/js/demo/datatables-demo.js"></script>
 <!-- Custom styles for this page -->
-<link href="${ pageContext.request.contextPath }/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">   
+<link href="${ pageContext.request.contextPath }/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 <!-- 회원관리 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
@@ -64,7 +65,7 @@
                                             <th>이름</th>
                                             <th>연락처</th>
                                             <th>이메일</th>
-                                            <th>상세보기</th>
+                                            <th>회원정보</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -74,7 +75,7 @@
                                             <th>이름</th>
                                             <th>연락처</th>
                                             <th>이메일</th>
-                                            <th>상세보기</th>
+                                            <th>회원정보</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -85,7 +86,7 @@
 	                                            <td>${vo.m_name }</td>
 	                                            <td>${vo.m_phone }</td>
 	                                            <td>${vo.m_email }</td>
-	                                            <td><a href="${cp }/member/mymember">상세보기</a></td>
+	                                            <td><a href="${cp }/member/mymember">회원정보</a></td>
 	                                        </tr>
 	                                    </c:forEach>
                                     </tbody>
@@ -113,7 +114,7 @@
                     </div>
 
 <!-- Content Row -->
-		 	<div class="row">
+<%-- 	 	<div class="row">
 
 <!-- Content Column -->
 			<c:forEach var="vo" items="${ mList }">
@@ -181,7 +182,7 @@
 <!-- /.container-fluid -->
 			
 		</div> <!-- Main Content 끝 -->
-<!-- End of Main Content -->
+<!-- End of Main Content --> --%>	
 			
 	</div> <!-- ContentWrapper 끝 -->
 <!-- End of Content Wrapper -->	
