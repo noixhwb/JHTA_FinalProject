@@ -25,15 +25,13 @@ public class MySubjectRateController {
 	@Autowired private SubjectRateService rateservice;
 
 	@PostMapping(value="/timetable/myrateInsert", produces={MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody HashMap<String, Object> myrateInsert(SubjectRateVo vo) {
+	public @ResponseBody HashMap<String, Object> myrateInsert(String m_num) {
+		System.out.println("m_num: "+m_num);
 		HashMap<String,Object> map=new HashMap<String, Object>();
-		rateservice.insert(vo);
-		try {
-			map.put("result", true);
-		}catch (Exception e) {
-			e.printStackTrace();
-			map.put("result", false);
-		}
+		/*
+		 * rateservice.insert(vo); try { map.put("result", true); }catch (Exception e) {
+		 * e.printStackTrace(); map.put("result", false); }
+		 */
 		return map;
 	}
 	

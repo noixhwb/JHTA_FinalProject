@@ -32,21 +32,10 @@ public class TableController {
 
 	//시간표 페이지로 이동 + 과목목록출력
 	@GetMapping("/timetable/table")
-	public String subjectList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
-			Model model) {
+	public String subjectList(Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", "");
-		
-		int totalRowCount = service.count(map);
-		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
-		int startRow = pu.getStartRow();
-		int endRow = pu.getEndRow();
-		map.put("startRow", 100);
-		map.put("endRow", 100);
-		List<SubjectVo> list = service.subjectList(map);
+		List<SubjectVo> list = service.subjectListAll();
 		model.addAttribute("list", list);
-		model.addAttribute("pu", pu);
 		return "timetable/table";
 	}
 	
