@@ -19,7 +19,7 @@
 				<div class="card-body">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-6">
 								<div id="carouselExampleControls" class="carousel slide"
 									style="width: 400px; height: 500px; margin-right: 50px;"
 									data-ride="carousel">
@@ -57,42 +57,36 @@
 										<span class="sr-only">Next</span>
 									</a>
 								</div>
-								
-								<!-- 폼폼폼포모폼포모포 -->
-							</div>	
-								<div class="col-md-4">
-									<form
-										action="${pageContext.request.contextPath }/deal/dealpurchase">
-										<div class="form-group">
-											<label for="exampleFormControlInput1">상품명</label> <input
-												type="text" class="form-control" id="title"
-												value="${dealvo.t_name }" readonly="readonly">
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1">상품가격</label> <input
-												type="text" class="form-control" id="price"
-												value="${dealvo.t_price }원" readonly="readonly">
-										</div>
-
-										<div class="form-group">
-											<label for="exampleFormControlTextarea1">상품설명</label>
-											<textarea class="form-control"
-												id="exampleFormControlTextarea1" readonly="readonly"
-												rows="3">${dealvo.t_explanation }</textarea>
-										</div>
-										<input type="hidden" name="t_num" value="${dealvo.t_num}">
-										<span>판매자 ${membervo.m_email } ${membervo.m_phone }</span><br>
-										<span>본인인증완료</span><br> <br> <br> <br> <input
-											type="submit" value="결제하기" id="sub">
-									</form>
-								</div>
+							</div>
+							<div class="col-md-6">
+								<form
+									action="${pageContext.request.contextPath }/deal/dealpurchase">
+									<div class="form-group">
+										<label for="exampleFormControlInput1">상품명</label> <input
+											type="text" class="form-control" id="title"
+											value="${dealvo.t_name }" readonly="readonly">
+									</div>
+									<div class="form-group">
+										<label for="exampleFormControlInput1">상품가격</label> <input
+											type="text" class="form-control" id="price"
+											value="${dealvo.t_price }원" readonly="readonly">
+									</div>
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">상품설명</label>
+										<textarea class="form-control"
+											id="exampleFormControlTextarea1" readonly="readonly" rows="3">${dealvo.t_explanation }</textarea>
+									</div>
+									<input type="hidden" name="t_num" value="${dealvo.t_num}">
+									<span>판매자 ${membervo.m_email } ${membervo.m_phone }</span><br>
+									<span>본인인증완료</span><br> <br> <br> <br> <input
+										type="submit" value="결제하기" id="sub">
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </div>
 
