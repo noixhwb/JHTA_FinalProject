@@ -25,16 +25,13 @@
     <link href="${cp}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<!-- 폰트어썸 CDN -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<<<<<<< HEAD
-	
 
-=======
 	<!-- 파비콘 -->
 	<link rel="apple-touch-icon" sizes="180x180" href="${cp}/resources/img/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="${cp}/resources/img/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="${cp}/resources/img/favicon-16x16.png">
 	<link rel="manifest" href="${cp}/resources/img/site.webmanifest">
->>>>>>> branch 'master' of https://github.com/SongeunB/hta_finalproject.git
+
 <style type="text/css">
 #jhta_logo{
 	width: 50px;
