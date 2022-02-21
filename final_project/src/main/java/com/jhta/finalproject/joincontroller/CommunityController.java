@@ -53,7 +53,7 @@ import com.util.PageUtil;
 	public String insertForm(Principal principal,Model model) {
 		MemberVo vo=service.selectUser(principal.getName());
 		
-		model.addAttribute("vo",vo);
+		model.addAttribute("vo",vo);  
 		System.out.println(vo);
 		System.out.println("커뮤니티 게시요청 페이지");
 		return "community/communityInsertForm";
