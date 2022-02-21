@@ -50,7 +50,26 @@
 			xhr.open('get','${cp}/job/scrapDelete?j_num=' + j_num ,true);
 			xhr.send();
 		}
-	}	
+	}
+	function remove(j_num) {
+		if (confirm("삭제하시겠습니까?") == true){    //확인
+			$.ajax({
+				url:'${cp}/job/remove?j_num=' + j_num,
+				dataType:'json', 
+				success:function(data){ 
+					if(data.result==true) {
+						alert("삭제 완료");
+						location.reload();
+					}else {
+						alert("에러지롱");
+						location.reload();
+					}
+				}
+			});
+		 }else{   //취소
+		     return false;
+		 }
+	};
 /*	function bookMark(num) {
 		var j_num=num;
 		var test1 = document.getElementById("mark"+j_num);
@@ -85,9 +104,8 @@ function bookMark() {
 </script>
 <style>
 	#companylogo{
-	    display: block;
 	    background-position: center center;
-    	background-size: cover;
+		background-size: cover;
 	}
 	#showDuty{ display: inline-block;
 		margin-right: 4px;
@@ -108,6 +126,9 @@ function bookMark() {
 	    font-size: 12px;
 	    font-weight: bold;
 	    background-color: #1dcdff;
+    }
+    #delete{
+    	background-color: #F15F5F; font-size: 12px;
     }
 </style>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
@@ -166,7 +187,7 @@ function bookMark() {
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<div class="row g-0">
-							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
+							<div class="col-md-10"> <!-- 카드제목 왼쪽 -->
 								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;">
 								<!-- 인기공고 -->
 								<c:set var="v" value="1"/>
@@ -193,9 +214,13 @@ function bookMark() {
 								</c:if>		
 								</h6>
 							</div>
-							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
+							<div class="col-md-2"> <!-- 카드제목 오른쪽 -->
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<button class="btn btn-primary" onclick="remove(${vo.j_num})" id="delete">삭제</button>
+								</sec:authorize>
 							</div>
 						</div>
+						
 					</div>
 					
 					<div class="card-body"> <!-- body -->

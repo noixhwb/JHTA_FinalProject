@@ -78,6 +78,7 @@
 													<th>교수명</th>
 													<th>구분</th>
 													<th>학점</th>
+													<th>강의평점</th>
 													<th>강의평가보기</th>
 													<th>강의평가하기</th>
 												</tr>
@@ -89,6 +90,7 @@
 													<th>교수명</th>
 													<th>구분</th>
 													<th>학점</th>
+													<th>강의평점</th>
 													<th>강의평가보기</th>
 													<th>강의평가하기</th>
 												</tr>
@@ -101,6 +103,7 @@
 														<td>${vo.s_prof }</td>
 														<td>${vo.s_category }</td>
 														<td>${vo.s_score }</td>
+														<td>${vo.sr_recommend }</td>
 														<td><button class="btn btn-primary"
 																onclick="rateList(${vo.s_num});">강의평가보기</button></td>
 														<td><button class="btn btn-primary"
@@ -138,7 +141,7 @@
 												<input type="hidden" name="${_csrf.parameterName }"
 													value="${_csrf.token }"> <input type="hidden"
 													name="s_num" id="myrateS_num"> <input type="hidden"
-													name="m_num" id="myrateM_num"> <input type="hidden"
+													name="m_num" value="${m_num}" id="myrateM_num"> <input type="hidden"
 													name="sr_recommend" id="myrateRecommend"> <label
 													class="col-lg-2 control-label">강의평</label>
 												<div class="col-lg-8">
@@ -265,14 +268,12 @@
 	function myrateForm(s_num) {
 		$("#myrateBox").css("display","block");
 		$("#myrateS_num").val(s_num);
-		$("#myrateM_num").val(1); /*******m_num받아오기 수정해야함!!!!!!!!!******/
 	}
 
 	/* 별 클릭시 별css변하고 점수값 value에 등록 */
 	$('.starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
 		$(this).addClass('on').prevAll('span').addClass('on');
-		/* return false; */
 		$("#myrateRecommend").val(parseInt($(this).prop("id")));
 	});
 

@@ -28,5 +28,6 @@ public interface DealMapper {
 	List<DealVo> select_all();
 	int update_tp(HashMap<String, Object> map);
 	int update_tps(int t_num);
+	int update_tpr(int t_num);
 	
 }

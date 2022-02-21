@@ -155,4 +155,10 @@ public class DealPurchaseController {
 		service.update_tps(t_num);
 		return "redirect:/deal/management";
 	}
+	
+	@GetMapping("/deal/refundrequest")
+	public String refundrequest(int t_num) {
+		service.update_tpr(t_num);
+		return "redirect:/deal/management";
+	}
 }

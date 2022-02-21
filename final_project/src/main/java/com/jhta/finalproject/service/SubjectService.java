@@ -18,6 +18,10 @@ public class SubjectService {
 		return mapper.subjectList(map);
 	}
 	
+	public List<SubjectVo> subjectListAll(){
+		return mapper.subjectListAll();
+	}
+	
 	public int count(HashMap<String, Object> map) {
 		return mapper.count(map);
 	}

@@ -70,29 +70,6 @@
 		     return false;
 		 }
 	};
-/*	function bookMark(num) {
-		var j_num=num;
-		var test1 = document.getElementById("mark"+j_num);
-		if(test1.style.color != "#4e73df"){
-			let xhr=new XMLHttpRequest();
-			test1.style.removeProperty("color");
-			test1.style.cssText='color:#4e73df';
-			test1.className = 'fa-solid fa-bookmark';
-			xhr.onreadystatechange=function(){
-				if(xhr.readyState==4 && xhr.status==200){
-					let data=xhr.responseText;
-					let json=JSON.parse(data);
-					if(json.result==true) {
-						alert("스크래 추가성공");
-					}else {
-						alert("실패");
-					}
-				}
-			}
-			xhr.open('get','${cp}/job/scrapInsert?j_num=' + j_num ,true);
-			xhr.send();
-		}
-	}
 /*	$(function(){ 
 function bookMark() {
 	 if (confirm("로그인 후 스크랩할 수 있습니다.") == true){    //확인
@@ -346,9 +323,3 @@ function bookMark() {
 	<!-- </div>  -->
 <!-- End of Page Wrapper -->
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-<style>
-#dot{
-   list-style:none;
-   padding-left:5px;
-   }
-</style>       

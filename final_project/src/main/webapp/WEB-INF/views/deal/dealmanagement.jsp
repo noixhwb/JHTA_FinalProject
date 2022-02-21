@@ -6,9 +6,9 @@
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <div class="container-fluid">
-			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800"> 장터관리 </h1>
-			</div>
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">장터관리</h1>
+	</div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light color-white">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
@@ -54,7 +54,16 @@
 							<td class="align-middle"></td>
 						</c:otherwise>
 					</c:choose>
-					<td class="align-middle"></td>
+					<c:choose>
+						<c:when test="${dv.t_processing eq '환불요청' }">
+							<td class="align-middle"><a
+								href="${pageContext.request.contextPath}/deal/refund?t_num=${pv.t_num}">환불처리</a></td>
+						</c:when>
+						<c:otherwise>
+							<td class="align-middle"></td>
+						</c:otherwise>
+					</c:choose>
+
 				</tr>
 			</c:forEach>
 		</table>
@@ -81,7 +90,7 @@
 					<c:choose>
 						<c:when test="${pv.t_processing eq '결제완료' }">
 							<td class="align-middle"><a
-								href="${pageContext.request.contextPath}/deal/refund?t_num=${pv.t_num}">환불요청</a></td>
+								href="${pageContext.request.contextPath}/deal/refundrequest?t_num=${pv.t_num}">환불요청</a></td>
 						</c:when>
 						<c:otherwise>
 							<td class="align-middle"></td>

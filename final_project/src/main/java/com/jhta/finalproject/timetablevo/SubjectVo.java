@@ -19,4 +19,5 @@ public class SubjectVo {
 	private int s_starttime;
 	private int s_endtime;
 	private int s_score;
+	private double sr_recommend;
 }

@@ -11,7 +11,7 @@
 	<insert id="insert"
 		parameterType="com.jhta.finalproject.vo.DealVo">
 		insert into deal
-		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate,#{t_title},#{m_id},#{t_invoice, jdbcType=VARCHAR},#{t_shipping, jdbcType=VARCHAR},sysdate)
+		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate,#{t_title},#{m_id},#{t_invoice, jdbcType=VARCHAR},#{t_shipping, jdbcType=VARCHAR})
 	</insert>
 	<select id="selectAll"
 		resultType="com.jhta.finalproject.vo.DealVo" parameterType="hashmap">
@@ -113,6 +113,10 @@
 	</delete>
 	<update id="update_tps">
 		UPDATE deal SET t_processing='판매중' WHERE t_num = #{t_num}
+	</update>
+	
+	<update id="update_tpr">
+		UPDATE deal SET t_processing='환불요청' WHERE t_num = #{t_num}
 	</update>
 	
 </mapper>

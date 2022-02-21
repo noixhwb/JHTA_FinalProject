@@ -75,7 +75,7 @@
 					<th>학점</th>
 					<th>요일/시간</th>
 					<th>강의실</th>
-					<th>강의평</th>
+					<th>강의평점</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -88,7 +88,7 @@
 						<td>${vo.s_score }점</td>
 						<td>${vo.s_day }/${vo.s_starttime }~${vo.s_endtime }시</td>
 						<td>${vo.s_class }</td>
-						<td>${vo.s_score }</td>
+						<td>${vo.sr_recommend }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
