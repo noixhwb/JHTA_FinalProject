@@ -67,7 +67,7 @@
 									<input type="text" name="j_subject" placeholder="" maxlength="30" autocomplete="off" class="text"><br>
 								</p>
 								
-								<h6 class="card-title font-weight-bold text-dark">기업명</h6> // 기업리스트 API로 검사?
+								<h6 class="card-title font-weight-bold text-dark">기업명</h6>
 								<p class="card-text">
 									<input type="text" name="j_company" maxlength="30" autocomplete="off" class="text"><br>
 									<!-- 기업리스트 API 써야할듯! -->
