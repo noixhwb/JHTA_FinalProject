@@ -126,4 +126,28 @@ public class CommunityService {
 	public CommunityVo selectcc(int m_num){
 		return mapper.selectcc(m_num);
 	}
+	
+	public int removeComments(int co_num) {
+		return mapper.removeComments(co_num);
+	}
+	
+	public int removeComments2(int b_num) {
+		return mapper.removeComments2(b_num);
+	}
+	
+	public int removeBoardimg(int b_num) {
+		return mapper.removeBoardimg(b_num);
+	}
+	public int removeBoard(int b_num) {
+		return mapper.removeBoard(b_num);
+	}
+	
+	public List<BoardVo> selectBoard2(int cu_num){
+		return mapper.selectBoard2(cu_num);
+	}
+	
+	public int removeCommunity(int cu_num) {
+		return mapper.removeCommunity(cu_num);
+	}
+	
 }

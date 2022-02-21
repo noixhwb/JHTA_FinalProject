@@ -161,6 +161,30 @@
 		resultType="com.jhta.finalproject.vo.CommunityVo">
 		SELECT * FROM COMMUNITY WHERE m_num;
 	</select>
+
+	<select id="selectBoard2" resultType="com.jhta.finalproject.vo.BoardVo">
+		select * from board where cu_num=#{cu_num}
+	</select>
+
+	<delete id="removeComments">
+		delete from Comments where co_num=#{co_num}
+	</delete>
+	
+	<delete id="removeComments2">
+		delete from Comments where b_num=#{b_num}
+	</delete>
+	
+	<delete id="removeBoardimg">
+		delete from Boardimg where b_num=#{b_num}
+	</delete>
+	
+	<delete id="removeBoard">
+		delete from Board where b_num=#{b_num}
+	</delete>
+	
+	<delete id="removeCommunity">
+		delete from Community where cu_num=#{cu_num}
+	</delete>
 </mapper>
 
 	

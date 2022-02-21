@@ -68,4 +68,16 @@ public interface CommunityMapper {
 	CommunityVo selectcc(int m_num);
 	
 	int updatecc(CommunityVo vo);
+	
+	int removeComments(int co_num);
+	
+	int removeComments2(int b_num);
+	
+	int removeBoardimg(int b_num);
+	
+	int removeBoard(int b_num);
+	
+	List<BoardVo> selectBoard2(int cu_num);
+	
+	int removeCommunity(int cu_num);
 }

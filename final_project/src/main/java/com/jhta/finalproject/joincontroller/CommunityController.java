@@ -231,6 +231,41 @@ import com.util.PageUtil;
 		return "redirect:/community/mycommunity";
 	} 
 	
+	@GetMapping("community/removeCommunity")
+	public String removeCommunity(int cu_num) {
+		//cu_num으로 board b_num전부 검색
+		List<BoardVo> vo= service.selectBoard2(cu_num);
+		
+		for(BoardVo list:vo) {
+			// b_num 리스트로 comments 반복 삭제
+			service.removeComments2(list.getB_num());
+			// b_num 리스트로 board이미지 반복삭제
+			service.removeBoardimg(list.getB_num());
+			// b_num 리스트로 board 반복삭제
+			service.removeBoard(list.getB_num());
+		}
+		
+		//cu_num으로 Community삭제
+		service.removeCommunity(cu_num);
+		return "";
+	}
+	@GetMapping("community/removeBoard")
+	public String removeBoard(int b_num) {
+		//b_num 으로 comments 삭제
+		service.removeComments2(b_num);
+		//b_num으로 board이미지 삭제
+		service.removeBoardimg(b_num);
+		//b_num으로 board 삭제
+		service.removeBoard(b_num);
+		return "";
+	}
+	@GetMapping("community/removeComments")
+	public String removeComments(int co_num) {
+		//co_num으로 댓글만 삭제
+		service.removeComments(co_num);
+		return "";
+	}
+	
 	
 //	  
 //	    @RequestMapping(value="/board/addComment.do")
