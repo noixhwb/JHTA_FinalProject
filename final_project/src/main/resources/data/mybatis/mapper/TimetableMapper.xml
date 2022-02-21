@@ -3,14 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mybatis.mapper.TimetableMapper">
-	<!-- 학생번호로 시간표 목록 검색 -->
+	<!-- 학생번호로 시간표 목록 검색(중복허용) -->
 	<select id="tableList" parameterType="int" resultType="com.jhta.finalproject.timetablevo.TimetableVo">
 		select * from TIMETABLE where m_num=#{m_num}
 	</select>
 	
+	<!-- 학생번호로 시간표 목록 검색(중복제거) -->
+	<select id="tableListName" parameterType="int" resultType="com.jhta.finalproject.timetablevo.Timetable2Vo">
+		select DISTINCT tt_name from TIMETABLE where m_num=#{m_num}
+	</select>
+	
 	<!-- 학생번호,시간표이름으로 신청과목검색 -->
-	<select id="tableDetail" parameterType="hashmap" resultType="com.jhta.finalproject.timetablevo.TimetableVo">
-		select * from TIMETABLE where m_num=#{m_num} and tt_name=#{tt_name}
+	<select id="tableDetail" parameterType="hashmap" resultType="com.jhta.finalproject.timetablevo.Timetable2Vo">
+		select s.s_num,t.*
+		from SUBJECT s, (select * from TIMETABLE where m_num=#{m_num} and tt_name=#{tt_name} ) t
+		where s.s_name=t.s_name
 	</select>
 	
 	<insert id="insert" parameterType="com.jhta.finalproject.timetablevo.TimetableVo">

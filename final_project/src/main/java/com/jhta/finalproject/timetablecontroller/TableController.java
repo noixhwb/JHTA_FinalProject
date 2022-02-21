@@ -1,6 +1,7 @@
 package com.jhta.finalproject.timetablecontroller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,17 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.service.MemberService;
 import com.jhta.finalproject.service.SubjectService;
 import com.jhta.finalproject.service.TimetableService;
-import com.jhta.finalproject.timetablevo.SubjectRateVo;
 import com.jhta.finalproject.timetablevo.SubjectVo;
+import com.jhta.finalproject.timetablevo.Timetable2Vo;
 import com.jhta.finalproject.timetablevo.TimetableVo;
-import com.util.PageUtil;
 
 @Controller
 public class TableController {
@@ -32,10 +30,16 @@ public class TableController {
 
 	//시간표 페이지로 이동 + 과목목록출력
 	@GetMapping("/timetable/table")
-	public String subjectList(Model model) {
+	public String subjectList(Principal principal,Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
+		String m_id = principal.getName();
+		int m_num = m_service.isMember(m_id).getM_num();
+		model.addAttribute("m_num", m_num);
+		
 		List<SubjectVo> list = service.subjectListAll();
 		model.addAttribute("list", list);
+		List<TimetableVo> tablelist=t_service.tableListName(m_num);
+		model.addAttribute("tablelist", tablelist);
 		return "timetable/table";
 	}
 	
@@ -79,6 +83,29 @@ public class TableController {
 			map.put("result", true);
 		}else {
 			map.put("result", false);
+		}
+		return map;
+	}
+	
+	@GetMapping(value="/timetable/tableDetailLoad", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody HashMap<String, Object> tableDetailLoad(String tt_name, Principal principal) {
+		String m_id= principal.getName();
+		int m_num=m_service.isMember(m_id).getM_num();
+		
+		HashMap<String,Object> map=new HashMap<String, Object>();
+		map.put("m_num", m_num);
+		map.put("tt_name", tt_name);
+		List<Timetable2Vo> tablelist=t_service.tableDetail(map);
+		if(tablelist==null) {
+			map.put("result", false);
+		}else {
+			List<SubjectVo> list= new ArrayList<SubjectVo>();
+			for(Timetable2Vo tvo:tablelist) {
+				SubjectVo vo = service.selectOne(tvo.getS_num());
+				list.add(vo);
+			}
+			map.put("result", true);
+			map.put("list", list);
 		}
 		return map;
 	}

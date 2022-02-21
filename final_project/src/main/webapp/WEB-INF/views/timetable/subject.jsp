@@ -3,11 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/header.jsp"%>
 <%@ include file="/WEB-INF/views/top.jsp"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
 #myrateBox {
 	display: none;
+	position: fixed;
+	z-index: 999;
+	left: 500px;
+	bottom: 100px;
+	background-color: white;
 }
 
 .starR {
@@ -53,7 +57,7 @@
 					</div>
 				</div>
 			</form>
-			<a href="${cp}/timetable/mysubjectrate?m_num=1"
+			<a href="${cp}/timetable/mysubjectrate?m_num=${m_num}"
 				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
 				내가 쓴 강의평가</a>
 		</div>
@@ -103,7 +107,14 @@
 														<td>${vo.s_prof }</td>
 														<td>${vo.s_category }</td>
 														<td>${vo.s_score }</td>
-														<td>${vo.sr_recommend }</td>
+														<c:choose>
+															<c:when test="${vo.sr_recommend==0 }">
+																<td>강의평가 없음</td>
+															</c:when>
+															<c:otherwise>
+																<td>${vo.sr_recommend }</td>
+															</c:otherwise>
+														</c:choose>
 														<td><button class="btn btn-primary"
 																onclick="rateList(${vo.s_num});">강의평가보기</button></td>
 														<td><button class="btn btn-primary"
@@ -129,31 +140,37 @@
 												</c:choose>
 											</c:forEach>
 										</div>
-										<div class="form-group" id="myrateBox">
-											<label class="col-lg-2 control-label">별점</label>
-											<div class="starRev">
-												<span class="starR on" id="1">★</span> <span class="starR"
-													id="2">★</span> <span class="starR" id="3">★</span> <span
-													class="starR" id="4">★</span> <span class="starR" id="5">★</span>
+										<div class="card col-md-4 shadow mb-4" id="myrateBox">
+											<div class="card-header">
+												<h6 class="m-0 font-weight-bold text-primary">강의평 작성하기</h6>
 											</div>
-											<form action="${cp}/timetable/myrateInsert" method="post"
-												id="myrateForm">
-												<input type="hidden" name="${_csrf.parameterName }"
-													value="${_csrf.token }"> <input type="hidden"
-													name="s_num" id="myrateS_num"> <input type="hidden"
-													name="m_num" value="${m_num}" id="myrateM_num"> <input type="hidden"
-													name="sr_recommend" id="myrateRecommend"> <label
-													class="col-lg-2 control-label">강의평</label>
-												<div class="col-lg-8">
-													<textarea class="form-control" rows="5" name="sr_content"
-														style="resize: none"></textarea>
+											<div class="card-body">
+												<label class="col-lg-2 control-label">별점</label>
+												<div class="starRev">
+													<span class="starR on" id="1">★</span> <span class="starR"
+														id="2">★</span> <span class="starR" id="3">★</span> <span
+														class="starR" id="4">★</span> <span class="starR" id="5">★</span>
 												</div>
-												<div class="col-lg-offset-2 col-lg-10">
-													<button type="submit" class="btn btn-primary">등록</button>
-													<button type="reset" class="btn btn-primary"
-														id="myrateCancle">취소</button>
-												</div>
-											</form>
+												<form action="${cp}/timetable/myrateInsert" method="post"
+													id="myrateForm">
+													<input type="hidden" name="${_csrf.parameterName }"
+														value="${_csrf.token }"> <input type="hidden"
+														name="s_num" id="myrateS_num"> <input
+														type="hidden" name="m_num" value="${m_num}"
+														id="myrateM_num"> <input type="hidden"
+														name="sr_recommend" id="myrateRecommend"> <label
+														class="col-lg-2 control-label">강의평</label>
+													<div class="col-lg-8">
+														<textarea class="form-control" rows="3" name="sr_content"
+															style="resize: none"></textarea>
+													</div>
+													<div class="col-lg-offset-2 col-lg-10">
+														<button type="submit" class="btn btn-primary">등록</button>
+														<button type="reset" class="btn btn-primary"
+															id="myrateCancle">취소</button>
+													</div>
+												</form>
+											</div>
 										</div>
 										<span id="myrateresult"></span>
 										<div>
@@ -169,7 +186,7 @@
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">"${keyword}"에
-										대한 검색결과 없습니다.</h6>
+										대한 검색결과가 없습니다.</h6>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -210,56 +227,62 @@
        		type: 'GET',
 			dataType:'json',
 			success:function(data) {
-				let html="<table class='table table-bordered' id='dataTable2' width='100%' cellspacing='0'>";
-				html += "<thead><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></thead>";
-				html += "<tfoot><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></tfoot>";
-				html += "<tbody>";
-				$(data.list).each(function(i,vo) {
-					let m_num=vo.m_num;
-					let sr_content=vo.sr_content;
-					let sr_regdate=vo.sr_regdate;
-					let sr_recommend=vo.sr_recommend;
-					switch (sr_recommend) {
-					case 1:
-						html += "<tr><td><span class='starRate'>★</span></td>";
-						break;
-					case 2:
-						html += "<tr><td><span class='starRate'>★★</span></td>";
-						break;
-					case 3:
-						html += "<tr><td><span class='starRate'>★★★</span></td>";
-						break;
-					case 4:
-						html += "<tr><td><span class='starRate'>★★★★</span></td>";
-						break;
-					case 5:
-						html += "<tr><td><span class='starRate'>★★★★★</span></td>";
-						break;
+				let html="";
+				if(data.list!=false) {
+					html +="<table class='table table-bordered' id='dataTable2' width='100%' cellspacing='0'>";
+					html += "<thead><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></thead>";
+					html += "<tfoot><tr><th>별점</th><th>강의평</th><th>작성일</th></tr></tfoot>";
+					html += "<tbody>";
+					$(data.list).each(function(i,vo) {
+						let m_num=vo.m_num;
+						let sr_content=vo.sr_content;
+						let sr_regdate=vo.sr_regdate;
+						let sr_recommend=vo.sr_recommend;
+						switch (sr_recommend) {
+						case 1:
+							html += "<tr><td><span class='starRate'>★</span></td>";
+							break;
+						case 2:
+							html += "<tr><td><span class='starRate'>★★</span></td>";
+							break;
+						case 3:
+							html += "<tr><td><span class='starRate'>★★★</span></td>";
+							break;
+						case 4:
+							html += "<tr><td><span class='starRate'>★★★★</span></td>";
+							break;
+						case 5:
+							html += "<tr><td><span class='starRate'>★★★★★</span></td>";
+							break;
+						}
+						html += "<td>" + sr_content +"</td>";
+						html += "<td>" + sr_regdate +"</td></tr>";
+					});
+					html += "</tbody></table>";
+					$("#rateListBox").html(html);
+					
+					let startPage=data.pu.startPageNum;
+					let endPage=data.pu.endPageNum;
+					let pageCount=data.pu.pageCount;
+					let pageHTML="";
+					if(startPage>5) {
+						pageHTML +="<a href='javascript:rateList("+ s_num +","+ (startPage-1) + ")'>이전</a>";
 					}
-					html += "<td>" + sr_content +"</td>";
-					html += "<td>" + sr_regdate +"</td></tr>";
-				});
-				html += "</tbody></table>";
-				$("#rateListBox").html(html);
-				
-				let startPage=data.startPageNum;
-				let endPage=data.endPageNum;
-				let pageCount=data.pageCount;
-				let pageHTML="";
-				if(startPage>5) {
-					pageHTML +="<a href='javascript:rateList("+ s_num +","+ (startPage-1) + ")'>이전</a>";
-				}
-				for(let i=startPage;i<=endPage;i++){
-					if(i==pageNum){
-						pageHTML +="<a href='javascript:rateList("+ s_num +","+ i + ")'><span style='color:blue'>"+ i +"</span></a>";
-					}else{
-						pageHTML +="<a href='javascript:rateList("+ s_num +","+ i + ")'><span style='color:gray'>"+ i +"</span></a>";
+					for(let j=startPage; j<=endPage; j++){
+						if(j==pageNum){
+							pageHTML +="<a href='javascript:rateList("+ s_num +","+ j + ")'><span style='color:blue'>"+ j +" </span></a>";
+						}else{
+							pageHTML +="<a href='javascript:rateList("+ s_num +","+ j + ")'><span style='color:gray'>"+ j +" </span></a>";
+						}
 					}
+					if(endPage<pageCount) {
+						pageHTML +="<a href='javascript:rateList("+ s_num +","+  (endPage+1) + ")'>다음</a>";
+					}
+					$("#rateListPageBox").html(pageHTML);
+				}else {
+					html +="작성된 강의평이 없습니다. 강의평을 작성해주세요.";
+					$("#rateListBox").html(html);
 				}
-				if(endPage<pageCount) {
-					pageHTML +="<a href='javascript:rateList("+ s_num +","+  (endPage+1) + ")'>다음</a>";
-				}
-				$("#rateListPageBox").html(pageHTML);
 			}
 		});
 	}
@@ -268,6 +291,7 @@
 	function myrateForm(s_num) {
 		$("#myrateBox").css("display","block");
 		$("#myrateS_num").val(s_num);
+		$("#myrateRecommend").val(1);
 	}
 
 	/* 별 클릭시 별css변하고 점수값 value에 등록 */
@@ -303,49 +327,6 @@
 			}
 		});
 	});
-					
-						
-		/* 페이징처리 예시
-		function list(pageNum) {
-			$("#commList").empty();
-			$.ajax({
-				url:'/spring13/list',
-				data:{"pageNum":pageNum,"mnum":${vo.mnum }},
-				dataType:'json',
-				success:function(data) {
-					$(data.list).each(function(i,d) {
-						let id=d.id;
-						let comments=d.comments;
-						let num=d.num;
-						let html="<div class='comm1' id='commBox"+i+"'>" ;
-						html += "아이디:" + id +"<br>" ;
-						html += "영화평:" + comments +"<br>";
-						html +="<input type='button' value='수정' onclick='updateForm("+i+","+num+","+d.id+","+comments+")'>";
-						html +="<input type='button' value='삭제' onclick='removeComm("+num+")'></div>";
-						$("#commList").append(html);
-					});
-					let startPage=data.startPageNum;
-					let endPage=data.endPageNum;
-					let pageCount=data.pageCount;
-					let pageHTML="";
-					if(startPage>5) {
-						pageHTML +="<a href='javascript:list("+ (startPage-1) + ")'>[이전]</a>";
-					}
-					for(let i=startPage;i<=endPage;i++){
-						if(i==pageNum){
-							pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:blue'>["+ i +"]</span></a>";
-						}else{
-							pageHTML +="<a href='javascript:list("+ i + ")'><span style='color:gray'>["+ i +"]</span></a>";
-						}
-					}
-					if(endPage<pageCount) {
-						pageHTML +="<a href='javascript:list("+ (endPage+1) + ")'>[다음]</a>";
-					}
-					$("#page").html(pageHTML);
-				}
-			}); 
-		}
-		*/
 
 		
 </script>

@@ -8,6 +8,11 @@
 <style>
 #myrateBox {
 	display: none;
+	position: fixed;
+	z-index: 999;
+	left:500px;
+	bottom: 100px;
+	background-color: white;
 }
 
 .starR {
@@ -72,15 +77,27 @@
 													<tr>
 														<td>${vo.s_name }</td>
 														<td>${vo.s_prof }</td>
-														<c:if test="${vo.sr_recommend==1 }"><td><span class="starRate">★</span></td></c:if>
-														<c:if test="${vo.sr_recommend==2 }"><td><span class="starRate">★★</span></td></c:if>
-														<c:if test="${vo.sr_recommend==3 }"><td><span class="starRate">★★★</span></td></c:if>
-														<c:if test="${vo.sr_recommend==4 }"><td><span class="starRate">★★★★</span></td></c:if>
-														<c:if test="${vo.sr_recommend==5 }"><td><span class="starRate">★★★★★</span></td></c:if>
+														<c:if test="${vo.sr_recommend==1 }">
+															<td><span class="starRate">★</span></td>
+														</c:if>
+														<c:if test="${vo.sr_recommend==2 }">
+															<td><span class="starRate">★★</span></td>
+														</c:if>
+														<c:if test="${vo.sr_recommend==3 }">
+															<td><span class="starRate">★★★</span></td>
+														</c:if>
+														<c:if test="${vo.sr_recommend==4 }">
+															<td><span class="starRate">★★★★</span></td>
+														</c:if>
+														<c:if test="${vo.sr_recommend==5 }">
+															<td><span class="starRate">★★★★★</span></td>
+														</c:if>
 														<td>${vo.sr_content }</td>
 														<td>${vo.sr_regdate }</td>
-														<td><a onclick="myrateUpdateForm(${vo.sr_num });">수정</a></td>
-														<td><a onclick="myrateDelete(${vo.sr_num });">삭제</a></td>
+														<td><button type="button" class="btn btn-primary"
+																onclick="myrateUpdateForm(${vo.sr_num });">수정</button></td>
+														<td><button type="button" class="btn btn-primary"
+																onclick="myrateDelete(${vo.sr_num });">삭제</button></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -101,46 +118,49 @@
 											</c:choose>
 										</c:forEach>
 									</div>
-									<div class="form-group" id="myrateBox">
+									<div class="card col-md-4 shadow mb-4" id="myrateBox">
+										<div class="card-header">
+											<h6 class="m-0 font-weight-bold text-primary">수정하기</h6>
+										</div>
+										<div class="card-body">
 											<label class="col-lg-2 control-label">별점</label>
 											<div class="starRev">
-												<span class="starR on" id="1">★</span> 
-												<span class="starR" id="2">★</span> 
-												<span class="starR" id="3">★</span> 
-												<span class="starR" id="4">★</span>
-												<span class="starR" id="5">★</span>
+												<span class="starR on" id="1">★</span> <span class="starR"
+													id="2">★</span> <span class="starR" id="3">★</span> <span
+													class="starR" id="4">★</span> <span class="starR" id="5">★</span>
 											</div>
 											<form action="${cp}/timetable/myrateUpdate" method="post"
 												id="myrateForm">
-												<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-												<input type="hidden" name="sr_num" id="myrateSr_num">
-												<input type="hidden" name="sr_recommend" id="myrateRecommend">
+												<input type="hidden" name="${_csrf.parameterName }"
+													value="${_csrf.token }"> <input type="hidden"
+													name="sr_num" id="myrateSr_num"> <input
+													type="hidden" name="sr_recommend" id="myrateRecommend">
 												<label class="col-lg-2 control-label">강의평</label>
 												<div class="col-lg-8">
-													<textarea class="form-control" rows="5"
-														name="sr_content" style="resize: none"></textarea>
+													<textarea class="form-control" rows="5" name="sr_content"
+														style="resize: none"></textarea>
 												</div>
 												<div class="col-lg-offset-2 col-lg-10">
 													<button type="submit" class="btn btn-primary">수정</button>
-													<button type="reset" class="btn btn-primary" id="myrateCancle">취소</button>
+													<button type="reset" class="btn btn-primary"
+														id="myrateCancle">취소</button>
 												</div>
 											</form>
 										</div>
-										<span id="myrateresult"></span>
+									</div>
 								</div>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">작성하신 강의평이 없습니다.</h6>
+									<h6 class="m-0 font-weight-bold text-primary">작성하신 강의평이
+										없습니다.</h6>
 								</div>
 							</div>
 						</c:otherwise>
 					</c:choose>
-
 				</div>
-				<div id="rateListBox"></div>
 			</div>
 		</div>
 		<!-- ////작업공간끝//// -->
@@ -148,7 +168,7 @@
 
 		<script type="text/javascript">
 	
-		/* 수정하기 버튼클릭시 강의평가폼 보이기 */
+		/* 수정하기 버튼클릭시 강의평가폼 보이기*/ 
 		function myrateUpdateForm(sr_num) {
 			$("#myrateBox").css("display","block");
 			$("#myrateSr_num").val(sr_num);
@@ -158,7 +178,6 @@
 		$('.starRev span').click(function(){
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
-			/* return false; */
 			$("#myrateRecommend").val(parseInt($(this).prop("id")));
 		});
 
@@ -170,7 +189,6 @@
 		/* 수정 버튼클릭시 등록후 폼 안보이기 및 강의평가리스트 새로고침 */
 		$("#myrateForm").submit(function(e) {
 			e.preventDefault();
-			let msg="";
 			$.ajax({
 				url:'${cp}/timetable/myrateUpdate',
 				data:$("#myrateForm").serialize(),
@@ -179,16 +197,15 @@
 				success:function(data) {
 					if(data.result==true) {
 						$("#myrateBox").css("display","none");
-						msg="강의평이 수정되었습니다.";
 						location.reload();
 					}else {
-						msg="강의평 수정에 실패하였습니다.";
+						alert("수정실패");
 					}
-					$("#myrateresult").html(msg);
 				}
 			});
 		});
-	
+		
+		/*삭제 버튼 클릭시 강의평 삭제후 페이지 새로고침*/
 		function myrateDelete(sr_num) {
 			$.ajax({
 				url:'${cp}/timetable/myrateDelete',
