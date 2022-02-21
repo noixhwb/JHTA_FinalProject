@@ -116,11 +116,6 @@
 		UPDATE board SET b_recommend = b_recommend+1 where b_num=#{b_num}
 	</update>
 	
-	
- </mapper>
-
-	</sql>
-
 	<select id="selectmc" resultType="com.jhta.finalproject.vo.CommunityVo">
 		SELECT community.* FROM MYCOMMUNITY, COMMUNITY WHERE 
 		mycommunity.CU_NUM =community.CU_NUM 
@@ -134,9 +129,12 @@
 	</select>
 	
 	<select id="selectbi" resultType="string">
-		SELECT i_filename FROM BOARDIMG WHERE b_num=#{b_num} LIMIT 1;
+		SELECT i_filename FROM (SELECT i_filename FROM BOARDIMG WHERE b_num=#{b_num} ORDER BY i_NUM) WHERE ROWNUM= 1
 	</select>
-</mapper>
+ </mapper>
+
+	
+
 
  
  
