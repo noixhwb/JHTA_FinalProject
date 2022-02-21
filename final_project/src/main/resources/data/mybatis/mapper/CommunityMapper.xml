@@ -6,7 +6,7 @@
  	<insert id="insertcm" parameterType="com.jhta.finalproject.vo.CommunityVo">
 		insert into community
     	(
-   		 cu_num, cu_name , cu_intro , cu_category , cu_coverimg , m_num
+   	  	 cu_num, cu_name , cu_intro , cu_category , cu_coverimg , m_num
    		 )
     	values
     
