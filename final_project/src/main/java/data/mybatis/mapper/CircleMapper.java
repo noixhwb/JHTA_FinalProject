@@ -3,6 +3,7 @@ package data.mybatis.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import com.jhta.finalproject.circlevo.CircleListJoinVo;
 import com.jhta.finalproject.circlevo.CircleVo;
 import com.jhta.finalproject.vo.MemberVo;
 
@@ -16,8 +17,9 @@ public interface CircleMapper {
 	List<CircleVo> selectCatView(HashMap<String, Object> map);
 	List<CircleVo> selectCatRec(HashMap<String, Object> map);
 	CircleVo select(int ci_num);
-	List<CircleVo> selectMyCircle(int m_num);
-	//Date selectToday();
+	List<CircleVo> selectMyCircle(HashMap<String, Object> map);
+	
+	List<CircleListJoinVo> selectList(int ci_num);
 	int selectPerson(int ci_num);
 	
 	int selectMyCircleCount(HashMap<String, Integer> map);

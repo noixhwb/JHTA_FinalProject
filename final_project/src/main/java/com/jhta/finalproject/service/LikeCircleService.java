@@ -23,8 +23,8 @@ public class LikeCircleService {
 		return mapper.delete(map);
 	}
 	
-	public List<LikeCircleJoinVo> selectMyLikeList(int m_num) {
-		return mapper.selectMyLikeList(m_num);
+	public List<LikeCircleJoinVo> selectMyLikeList(HashMap<String, Object> map) {
+		return mapper.selectMyLikeList(map);
 	}
 	
 	public int selectLikeCircle(int ci_num) {

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.circlevo.CircleListJoinVo;
 import com.jhta.finalproject.circlevo.CircleVo;
 import com.jhta.finalproject.vo.MemberVo;
 
@@ -47,8 +48,12 @@ public class CircleService {
 		return mapper.select(ci_num);
 	}
 
-	public List<CircleVo> selectMyCircle(int m_num) {
-		return mapper.selectMyCircle(m_num);
+	public List<CircleVo> selectMyCircle(HashMap<String, Object> map) {
+		return mapper.selectMyCircle(map);
+	}
+	
+	public List<CircleListJoinVo> selectList(int ci_num) {
+		return mapper.selectList(ci_num);
 	}
 	
 	public int selectPerson(int ci_num) {

@@ -10,6 +10,6 @@ import com.jhta.finalproject.circlevo.MyCircleVo;
 public interface MyCircleMapper {
 	int insert(MyCircleVo vo);
 	int delete(HashMap<String, Integer> map);
-	List<MyCircleJoinVo> selectAllMyJoin(int m_num);
+	List<MyCircleJoinVo> selectAllMyJoin(HashMap<String, Object> map);
 	List<MyCircleListVo> selectMyList(int ci_num);
 }

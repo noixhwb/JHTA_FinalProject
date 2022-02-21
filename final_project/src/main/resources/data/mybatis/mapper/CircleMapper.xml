@@ -75,9 +75,37 @@
 		SELECT * FROM CIRCLE WHERE CI_NUM=#{ci_num}
 	</select>
 	
+	
+	<!-- select로 검색 -->
+	<sql id="mysearch">
+		<if test="name != null and name != ''">
+			WHERE ${name} LIKE '%'||#{keyword}||'%' AND CI_OK=1
+		</if>
+	</sql>
+	<!-- select로 검색 -->
+	<sql id="mysearchh">
+		<if test="name != null and name != ''">
+			AND ${name} LIKE '%'||#{keyword}||'%' AND CI_OK=1
+		</if>
+	</sql>
 	<!-- 내가 만든 동아리 -->
-	<select id="selectMyCircle" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleVo">
-		SELECT * FROM CIRCLE WHERE M_NUM=#{m_num} AND CI_OK=1
+	<select id="selectMyCircle" parameterType="hashmap" resultType="com.jhta.finalproject.circlevo.CircleVo">
+		SELECT * FROM 
+		( SELECT * FROM CIRCLE 
+			<include refid="mysearch"></include>
+		) MYC 
+		WHERE M_NUM=#{m_num} AND CI_OK=1
+	</select>
+	
+	<!-- 동아리 신청 목록 -->
+	<select id="selectList" parameterType="int" resultType="com.jhta.finalproject.circlevo.CircleListJoinVo">
+		SELECT * FROM 
+		( SELECT C.*, M.M_NUM, M.M_ID, M.M_NAME, M.M_NICKNAME, M.M_PHONE, M.M_EMAIL, M.M_DEPT 
+		FROM CIRCLE C, MYCIRCLE MC, MEMBER M 
+		WHERE C.CI_NUM = MC.CI_NUM AND MC.M_NUM=M.M_NUM 
+			<include refid="mysearchh"></include>
+		) MM 
+		WHERE CI_NUM=#{ci_num} AND CI_OK=1
 	</select>
 	
 	<!-- 동아리 신청 인원 구하기 -->

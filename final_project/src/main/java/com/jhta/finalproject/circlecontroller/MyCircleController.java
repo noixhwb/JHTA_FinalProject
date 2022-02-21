@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jhta.finalproject.circlevo.CircleListJoinVo;
 import com.jhta.finalproject.circlevo.CircleVo;
 import com.jhta.finalproject.circlevo.LikeCircleJoinVo;
 import com.jhta.finalproject.circlevo.LikeCircleVo;
@@ -41,24 +42,30 @@ public class MyCircleController {
 	
 	//동아리 관리 페이지로 이동
 	@GetMapping("/circle/MyCircle")
-	public String mycircle(Model model, Principal principal,HttpServletRequest request) {
+	public String mycircle(String name, String keyword, Model model, Principal principal,HttpServletRequest request) {
 		MemberVo uservo = cservice.selectM(principal.getName());
 		int userMnum = uservo.getM_num();
-		List<CircleVo> mylist = cservice.selectMyCircle(userMnum);//내가만든동아리
-		MyCircleListVo vvo = new MyCircleListVo();
-		vvo.getCi_num();
-		model.addAttribute("mylist", mylist);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("keyword", keyword);
+		map.put("m_num", userMnum);
+		List<CircleVo> mylist = cservice.selectMyCircle(map);//내가만든동아리
 		
+		model.addAttribute("mylist", mylist);
 		System.out.println("내 동아리 관리 페이지로 이동");
 		return "circle/MyCircle";
 	}
 	
 	//신청한 동아리 목록 페이지로 이동
 	@GetMapping("/circle/MyCircleList")
-	public String mycirclelist(Model model, Principal principal) {
+	public String mycirclelist(String name, String keyword, Model model, Principal principal) {
 		MemberVo uservo = cservice.selectM(principal.getName());
 		int userMnum = uservo.getM_num();
-		List<MyCircleJoinVo> list = mservice.selectAllMyJoin(userMnum); //신청한동아리
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("keyword", keyword);
+		map.put("m_num", userMnum);
+		List<MyCircleJoinVo> list = mservice.selectAllMyJoin(map); //신청한동아리
 		model.addAttribute("list", list);
 		
 		System.out.println("신청한 동아리 페이지로 이동");
@@ -67,11 +74,14 @@ public class MyCircleController {
 	
 	//좋아요한 동아리 목록 페이지로 이동 
 	@GetMapping("/circle/MyCircleLike")
-	public String mycirclelike(Model model, Principal principal) {
+	public String mycirclelike(String name, String keyword, Model model, Principal principal) {
 		MemberVo uservo = cservice.selectM(principal.getName());
 		int userMnum = uservo.getM_num();
-		
-		List<LikeCircleJoinVo> mylikelist = lservice.selectMyLikeList(userMnum);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("keyword", keyword);
+		map.put("m_num", userMnum);
+		List<LikeCircleJoinVo> mylikelist = lservice.selectMyLikeList(map);
 		model.addAttribute("mylikelist", mylikelist);
 		
 		return "circle/MyCircleLike";
@@ -79,13 +89,19 @@ public class MyCircleController {
 	
 	//동아리 관리 페이지 - 동아리 정보 수정
 	@PostMapping("/circle/MyCircleUpdate1")
-	public String mycircleupdate1(CircleVo vo, Model model, Principal principal, MultipartFile file1) {
+	public String mycircleupdate1(String name, String keyword, CircleVo vo, Model model, Principal principal, MultipartFile file1) {
 		MemberVo uservo = cservice.selectM(principal.getName());
 		int userMnum = uservo.getM_num();
+		
+		
 		model.addAttribute("uservo", uservo);
 		model.addAttribute("userMnum", userMnum);
 		
-		List<CircleVo> mylist = cservice.selectMyCircle(userMnum);//내가만든동아리
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("keyword", keyword);
+		map.put("m_num", userMnum);
+		List<CircleVo> mylist = cservice.selectMyCircle(map);
 		model.addAttribute("mylist", mylist);
 		/* 파일을 삭제하고 수정해야하는데.. 이부분은...ㅠ
 		try {
@@ -135,13 +151,13 @@ public class MyCircleController {
 			is1.close();
 			fos1.close();
 			
-			HashMap<String, Object> map=new HashMap<String, Object>();
-			map.put("ci_name", vo.getCi_name());
-			map.put("ci_category", vo.getCi_category());
-			map.put("ci_person", vo.getCi_person());
-			map.put("ci_logofile", ci_logofile);
-			map.put("m_num", userMnum);
-			cservice.updateC(map);
+			HashMap<String, Object> map1=new HashMap<String, Object>();
+			map1.put("ci_name", vo.getCi_name());
+			map1.put("ci_category", vo.getCi_category());
+			map1.put("ci_person", vo.getCi_person());
+			map1.put("ci_logofile", ci_logofile);
+			map1.put("m_num", userMnum);
+			cservice.updateC(map1);
 			
 			model.addAttribute("result","success");
 			System.out.println("동아리 정보 수정 완료!");
@@ -156,13 +172,17 @@ public class MyCircleController {
 	
 	//동아리 관리 페이지 - 게시글 수정
 	@PostMapping("/circle/MyCircleUpdate2")
-	public String mycircleupdate2(CircleVo vo, Model model, Principal principal, MultipartFile file2) {
+	public String mycircleupdate2(String name, String keyword, CircleVo vo, Model model, Principal principal, MultipartFile file2) {
 		MemberVo uservo = cservice.selectM(principal.getName());
 		int userMnum = uservo.getM_num();
 		model.addAttribute("uservo", uservo);
 		model.addAttribute("userMnum", userMnum);
 		
-		List<CircleVo> mylist = cservice.selectMyCircle(userMnum);//내가만든동아리
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("keyword", keyword);
+		map.put("m_num", userMnum);
+		List<CircleVo> mylist = cservice.selectMyCircle(map);
 		model.addAttribute("mylist", mylist);
 		String path = sc.getRealPath("/resources/upload");
 		System.out.println(path);
@@ -181,15 +201,15 @@ public class MyCircleController {
 			is2.close();
 			fos2.close();
 
-			HashMap<String, Object> map=new HashMap<String, Object>();
-			map.put("ci_title", vo.getCi_title());
-			map.put("ci_content", vo.getCi_content());
+			HashMap<String, Object> map2=new HashMap<String, Object>();
+			map2.put("ci_title", vo.getCi_title());
+			map2.put("ci_content", vo.getCi_content());
 			System.out.println(vo.getCi_content());
-			map.put("ci_imgfile", ci_imgfile);
-			map.put("ci_startdate", vo.getCi_startdate());
-			map.put("ci_enddate", vo.getCi_enddate());
-			map.put("m_num", userMnum);
-			cservice.updateB(map);
+			map2.put("ci_imgfile", ci_imgfile);
+			map2.put("ci_startdate", vo.getCi_startdate());
+			map2.put("ci_enddate", vo.getCi_enddate());
+			map2.put("m_num", userMnum);
+			cservice.updateB(map2);
 			
 			model.addAttribute("result","success");
 			System.out.println("게시글 수정 완료!");
@@ -209,6 +229,5 @@ public class MyCircleController {
 		
 		System.out.println("동아리 신청한 학생 목록 불러오기 완료!");
 		return studentlist;
-		
 	}
 }
