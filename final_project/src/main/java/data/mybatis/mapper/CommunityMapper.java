@@ -18,8 +18,8 @@ public interface CommunityMapper {
 
 	int insertcm(CommunityVo vo);
 
-	List<CommunityVo> selectAll();
-
+	
+	List<CommunityVo> selectAll(HashMap<String, Object> map);
 	CommunityVo select(int cu_num);
 
 	CommunityVo select1(int name);
@@ -30,8 +30,7 @@ public interface CommunityMapper {
 
 	int insertBoardImg(BoardimgVo bivo);
 
-	List<BoardVo> selectAllboard(int cu_num);
-
+	
 	List<BoardimgVo> selectimg(int b_num);
 
 	BoardVo detail(Object object);
@@ -43,6 +42,13 @@ public interface CommunityMapper {
 	List<CommentsVo> selectcommentall(int b_num);
 
 	int getCount(HashMap<String, Object> map);
+
+	int getCount1(HashMap<String, Object> map);
+
+	List<BoardVo> selectAllboard(int cu_num);
+
+	
+	
 	
 	
 }

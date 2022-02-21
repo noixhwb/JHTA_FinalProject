@@ -99,25 +99,26 @@ import com.util.PageUtil;
 
 	@GetMapping("/community/communityList")
 	public String communitylist(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
-			String keyword,Model model) {
+			String keyword,
+			String field,
+			Model model) {
 		System.out.println("커뮤니티 페이지");
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("field",field);
 		map.put("keyword", keyword);
-		
-		
-		List<CommunityVo> list = service.selectAll();
+			
 		
 		int totalRowCount = service.getCount(map);
-		PageUtil pu=new PageUtil(pageNum, 10, 5, totalRowCount);
+		PageUtil pu=new PageUtil(pageNum, 5, 10, totalRowCount);
 		int startRow=pu.getStartRow();
 		int endRow=pu.getEndRow(); 
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-		
+		List<CommunityVo> list = service.selectAll(map);
+		model.addAttribute("field",field);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);
-		
 		model.addAttribute("list", list);
 		return "community/communityList";
 	}
@@ -125,7 +126,10 @@ import com.util.PageUtil;
 	@GetMapping("/community/communitydetail")
 	public String communitydetail(int cu_num,Model model,Principal principal ) {
 		MemberVo vo=service.selectUser(principal.getName());
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<BoardVo> list1 = service.selectAllboard(cu_num);
+		
+		
 		
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
@@ -155,16 +159,6 @@ import com.util.PageUtil;
 	}
 	
 	
-	
-	@GetMapping("/community/communityMy")
-	public String memberForm(Principal principal,Model model) {
-		
-		System.out.println("my커뮤니티 페이지");
-		
-		
-		return "community/communityMy";
-				
-	}
 	
 
 	

@@ -18,14 +18,25 @@
      	select * from member where m_id=#{m_id}
      </select>
      
-     <select id="selectAll" resultType="com.jhta.finalproject.vo.CommunityVo">
-		select * from community where cu_status='1'
+     <select id="selectAll" parameterType="hashmap" resultType="com.jhta.finalproject.vo.CommunityVo">
+			select * from
+		(
+		   select b.*,rownum rnum
+		   from (
+		      select * from community      
+		      <include refid="search"/>
+		      order by cu_num desc
+		    )b
+		) 
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} and cu_status='1']]>
 	
 	</select>
+	 
 	
 	 <select id="selectAllboard" parameterType="int" resultType="com.jhta.finalproject.vo.BoardVo">
 		
-		select * from board where cu_num=#{cu_num}
+	 	select * from board where cu_num=#{cu_num} 
+		
 	</select>
 	
 	<select id="select" parameterType="int" resultType="com.jhta.finalproject.vo.CommunityVo">

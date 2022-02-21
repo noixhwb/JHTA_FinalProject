@@ -36,8 +36,8 @@ public class CommunityService {
 		
 	}
 
-	public List<CommunityVo> selectAll() {
-		return mapper.selectAll();
+	public List<CommunityVo> selectAll(HashMap<String, Object> map) {
+		return mapper.selectAll(map);
 	}
 
 	public CommunityVo select(int cu_num) {
@@ -47,7 +47,7 @@ public class CommunityService {
 	
 
 	public CommunityVo select1(CommunityVo vo1) {
-		// TODO Auto-generated method stub
+	
 		return mapper.select1(vo1);
 	}
 
@@ -64,6 +64,7 @@ public class CommunityService {
 
 	public List<BoardVo> selectAllboard(int cu_num) {
 		return mapper.selectAllboard(cu_num);
+		
 	}
 
 	public List<BoardimgVo> selectimg(int b_num) {
@@ -92,6 +93,16 @@ public class CommunityService {
 	public int getCount (HashMap<String, Object> map) {
 		return mapper.getCount(map);
 	}
+
+	public int getCount1(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return mapper.getCount1(map);
+	}
+
+	
+	
+
+
 
 	
 	}
