@@ -47,6 +47,8 @@ public interface CommunityMapper {
 
 	List<BoardVo> selectAllboard(int cu_num);
 
+	int addHit(int b_num);
+
 	
 	
 	

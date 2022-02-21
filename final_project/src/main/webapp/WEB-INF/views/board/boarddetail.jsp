@@ -42,7 +42,8 @@
 					    <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					    <li class="breadcrumb-item active" aria-current="page">${vo.b_regdate }</li>
 					  </ol>
-					
+					<i class="fa-solid fa-eye" style="color: cornflowerblue;"></i>
+														${vo.b_recommend}
 					
 					<!-- 1. 동아리 정보 -->
 					<div class="card mb-3">
@@ -58,7 +59,9 @@
 										<div class="row g-0">
 											
 											${vo.b_content }
-									
+										
+														
+													
 										</div>
 												
 								

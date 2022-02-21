@@ -94,6 +94,13 @@
 		   or cu_category like '%'||#{keyword}||'%' 
 		</if>
     </sql>
+    
+    
+    <update id="addHit" parameterType="int">
+		UPDATE board SET b_recommend = b_recommend+1 where b_num=#{b_num}
+	</update>
+	
+	
  </mapper>
  
  

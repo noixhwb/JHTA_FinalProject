@@ -148,8 +148,11 @@ import com.util.PageUtil;
 		BoardimgVo bivo =(BoardimgVo) service.selectAllboardimg(b_num);
 		List<CommentsVo> list1 = service.selectcommentall(b_num);
 		
+		
+		int viewnumber =service.addHit(b_num);
 		String content = bvo.getB_content().replaceAll("\n", "<br>");
 		bvo.setB_content(content);
+		model.addAttribute("viewnumber", viewnumber);
 		model.addAttribute("vo", bvo);
 		model.addAttribute("vo1", bivo);
 		model.addAttribute("list1", list1);

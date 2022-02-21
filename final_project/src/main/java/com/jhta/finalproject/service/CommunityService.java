@@ -99,6 +99,12 @@ public class CommunityService {
 		return mapper.getCount1(map);
 	}
 
+	public int addHit(int b_num) {
+		return mapper.addHit(b_num);
+	}
+
+	
+
 	
 	
 
