@@ -6,34 +6,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jhta.finalproject.circlevo.CircleVo;
 import com.jhta.finalproject.vo.BoardVo;
 import com.jhta.finalproject.vo.BoardimgVo;
 import com.jhta.finalproject.vo.CommentsVo;
 import com.jhta.finalproject.vo.CommunityVo;
-import com.jhta.finalproject.vo.Goods_ImageVo;
 import com.jhta.finalproject.vo.MemberVo;
 
 import data.mybatis.mapper.CommunityMapper;
 
-
-
-
 @Service
 public class CommunityService {
 
-	@Autowired private CommunityMapper mapper;
-	
-	
+	@Autowired
+	private CommunityMapper mapper;
 
 	public MemberVo selectUser(String m_id) {
-		
+
 		return mapper.selectUser(m_id);
 	}
 
 	public int insertcm(CommunityVo vo) {
 		return mapper.insertcm(vo);
-		
+
 	}
 
 	public List<CommunityVo> selectAll(HashMap<String, Object> map) {
@@ -44,27 +38,23 @@ public class CommunityService {
 		return mapper.select(cu_num);
 	}
 
-	
-
 	public CommunityVo select1(CommunityVo vo1) {
-	
+
 		return mapper.select1(vo1);
 	}
 
-	
-
 	public int insertBoard(BoardVo bvo) {
-		
-		return  mapper.insertBoard(bvo);
+
+		return mapper.insertBoard(bvo);
 	}
 
 	public int insertBoardImg(BoardimgVo bivo) {
-		return  mapper.insertBoardImg(bivo);
+		return mapper.insertBoardImg(bivo);
 	}
 
 	public List<BoardVo> selectAllboard(int cu_num) {
 		return mapper.selectAllboard(cu_num);
-		
+
 	}
 
 	public List<BoardimgVo> selectimg(int b_num) {
@@ -82,15 +72,14 @@ public class CommunityService {
 
 	public int insertcomments(CommentsVo cvo) {
 		return mapper.insertcomments(cvo);
-		
-	}
 
-	
+	}
 
 	public List<CommentsVo> selectcommentall(int b_num) {
 		return mapper.selectcommentall(b_num);
 	}
-	public int getCount (HashMap<String, Object> map) {
+
+	public int getCount(HashMap<String, Object> map) {
 		return mapper.getCount(map);
 	}
 
@@ -98,25 +87,20 @@ public class CommunityService {
 		// TODO Auto-generated method stub
 		return mapper.getCount1(map);
 	}
-
 	
-	
-
-
-
-	
+	public List<BoardVo> selectboard(int m_id){
+		return mapper.selectboard(m_id);
 	}
-
 	
-
+	public List<CommunityVo> selectmc(int m_id){
+		return mapper.selectmc(m_id);
+	}
 	
-
+	public CommunityVo selectcm(int cu_num) {
+		return mapper.selectcm(cu_num);
+	}
 	
-	
-
-	
-	
-	
-
-	
-
+	public String selectbi(int b_num) {
+		return mapper.selectbi(b_num);
+	}
+}

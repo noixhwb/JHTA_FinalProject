@@ -47,8 +47,11 @@ public interface CommunityMapper {
 
 	List<BoardVo> selectAllboard(int cu_num);
 
+	List<BoardVo> selectboard(int m_id);
 	
+	List<CommunityVo> selectmc(int m_id);
 	
+	CommunityVo selectcm(int cu_num);
 	
-	
+	String selectbi(int b_num);
 }
