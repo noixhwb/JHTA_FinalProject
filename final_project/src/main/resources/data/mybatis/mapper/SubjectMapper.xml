@@ -9,11 +9,12 @@
 		(
 			select b.*,rownum rnum from 
 		    ( 
-				select s.*,sr.SR_RECOMMEND
+				select s.*,NVL(sr.SR_RECOMMEND,0) SR_RECOMMEND
 				from SUBJECT s,(select s_num, ROUND(avg(SR_RECOMMEND),1) SR_RECOMMEND from SUBJECTRATE group by s_num) sr 
-				where s.s_num=sr.s_num and s.s_name like '%'||#{keyword}||'%' or s.s_prof like '%'||#{keyword}||'%'
-		        order by s.s_num desc
+				<![CDATA[ where s.s_num=sr.s_num(+) ]]>
+				order by s.s_num desc
 		    ) b
+		    where b.s_name like '%'||#{keyword}||'%' or b.s_prof like '%'||#{keyword}||'%'
 		) 
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
@@ -21,7 +22,7 @@
 	<select id="subjectListAll" resultType="com.jhta.finalproject.timetablevo.SubjectVo">
 		select s.*,sr.* 
 		from SUBJECT s,(select s_num, ROUND(avg(SR_RECOMMEND),1) SR_RECOMMEND from SUBJECTRATE group by s_num) sr 
-		where s.s_num=sr.s_num 
+		<![CDATA[ where s.s_num=sr.s_num(+) ]]>
 		order by s.s_num desc
 	</select>
 	<!-- 전체 글의 갯수 -->

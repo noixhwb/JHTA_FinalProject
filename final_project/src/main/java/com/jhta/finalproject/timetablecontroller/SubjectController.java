@@ -32,21 +32,15 @@ public class SubjectController {
 	@Autowired
 	private SubjectRateService rateservice;
 
-	// 강의평가 페이지로 이동
-	@GetMapping("/timetable/subject")
-	public String tableSubject(Principal principal,Model model) {
+	// 강의평가 페이지에서 키워드로 검색후 리스트 출력
+	@GetMapping("/timetable/subjectList")
+	public String subjectList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			Principal principal,Model model) {
 		sc.setAttribute("cp", sc.getContextPath());
 		String m_id = principal.getName();
 		int m_num = m_service.isMember(m_id).getM_num();
-		System.out.println("m_num"+m_num);
 		model.addAttribute("m_num", m_num);
-		return "timetable/subject";
-	}
-
-	// 강의평가 페이지에서 키워드로 검색후 리스트 출력
-	@GetMapping("/timetable/subjectList")
-	public String subjectList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String keyword,
-			Model model) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 
@@ -78,7 +72,11 @@ public class SubjectController {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		List<SubjectRateVo> list = rateservice.rateList(map);
-		map.put("list", list);
+		if(list==null) {
+			map.put("list", false);
+		}else {
+			map.put("list", list);
+		}
 		map.put("pu", pu);
 		return map;
 	}

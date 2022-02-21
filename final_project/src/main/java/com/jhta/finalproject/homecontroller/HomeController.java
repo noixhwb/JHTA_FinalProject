@@ -22,9 +22,9 @@ import com.jhta.finalproject.vo.Goods_ImageVo;
 @Controller
 public class HomeController {
 	@Autowired
-	ServletContext sc;
+	private ServletContext sc;
 	@Autowired
-	HomeService service;
+	private HomeService service;
 	@Autowired
 	private DealService d_service;
 
@@ -41,8 +41,6 @@ public class HomeController {
 			List<Goods_ImageVo> img = d_service.selectImg(li.getT_num());
 			dealimglist.add(img.get(0));
 		}
-		System.out.println(dealimglist);
-		System.out.println(deallist);
 		model.addAttribute("deallist", deallist);
 		model.addAttribute("dealimglist", dealimglist);
 

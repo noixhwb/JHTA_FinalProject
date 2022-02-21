@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.timetablevo.Timetable2Vo;
 import com.jhta.finalproject.timetablevo.TimetableVo;
 
 import data.mybatis.mapper.TimetableMapper;
@@ -18,7 +19,11 @@ public class TimetableService {
 		return mapper.tableList(m_num);
 	}
 	
-	public List<TimetableVo> tableDetail(HashMap<String, Object> map){
+	public List<TimetableVo> tableListName(int m_num){
+		return mapper.tableListName(m_num);
+	}
+	
+	public List<Timetable2Vo> tableDetail(HashMap<String, Object> map){
 		return mapper.tableDetail(map);
 	}
 	
