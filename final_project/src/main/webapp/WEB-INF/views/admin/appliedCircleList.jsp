@@ -28,9 +28,6 @@
 		 
 			<ul class="nav nav-tabs justify-content-center  mb-10">
 				<li class="nav-item">
-					<a class="nav-link" href="${ cp }/admin/appliedJobList">채용공고 게시요청</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="${ cp }/admin/appliedCircleList">동아리 게시요청</a>
 				</li>
 				<li class="nav-item">
