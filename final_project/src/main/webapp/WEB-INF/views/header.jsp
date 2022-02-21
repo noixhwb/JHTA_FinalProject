@@ -112,7 +112,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                        <a class="collapse-item" href="${cp}/community/communityList">커뮤니티</a>
-                        <a class="collapse-item" href="${cp}/community/communityMy">MY 커뮤니티</a>
+                        <a class="collapse-item" href="${cp}/community/mycommunity">MY 커뮤니티</a>
                     </div>
                 </div>
             </li>

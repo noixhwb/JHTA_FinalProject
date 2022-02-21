@@ -2,97 +2,113 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="data.mybatis.mapper.CommunityMapper">
- 	<insert id="insertcm" parameterType="com.jhta.finalproject.vo.CommunityVo">
+<mapper namespace="data.mybatis.mapper.CommunityMapper">
+	<insert id="insertcm"
+		parameterType="com.jhta.finalproject.vo.CommunityVo">
 		insert into community
-    	(
-   	  	 cu_num, cu_name , cu_intro , cu_category , cu_coverimg , m_num
-   		 )
-    	values
-    
-   		 (
-   		 community_seq.nextval,#{cu_name},#{cu_intro},#{cu_category},#{cu_coverimg},#{m_num}
-  		)
-	</insert>
-	<select id="selectUser" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">
-     	select * from member where m_id=#{m_id}
-     </select>
-     
-     <select id="selectAll" parameterType="hashmap" resultType="com.jhta.finalproject.vo.CommunityVo">
-			select * from
 		(
-		   select b.*,rownum rnum
-		   from (
-		      select * from community      
-		      <include refid="search"/>
-		      order by cu_num desc
-		    )b
+		cu_num, cu_name , cu_intro , cu_category , cu_coverimg , m_num
+		)
+		values
+
+		(
+		community_seq.nextval,#{cu_name},#{cu_intro},#{cu_category},#{cu_coverimg},#{m_num}
+		)
+	</insert>
+	<select id="selectUser" parameterType="String"
+		resultType="com.jhta.finalproject.vo.MemberVo">
+		select * from member where m_id=#{m_id}
+	</select>
+
+	<select id="selectAll" parameterType="hashmap"
+		resultType="com.jhta.finalproject.vo.CommunityVo">
+		select * from
+		(
+		select b.*,rownum rnum
+		from (
+		select * from community
+		<include refid="search" />
+		order by cu_num desc
+		)b
 		) 
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} and cu_status='1']]>
-	
+
 	</select>
-	 
-	
-	 <select id="selectAllboard" parameterType="int" resultType="com.jhta.finalproject.vo.BoardVo">
-		
-	 	select * from board where cu_num=#{cu_num} 
-		
+
+
+	<select id="selectAllboard" parameterType="int"
+		resultType="com.jhta.finalproject.vo.BoardVo">
+
+		select * from board where cu_num=#{cu_num}
+
 	</select>
-	
-	<select id="select" parameterType="int" resultType="com.jhta.finalproject.vo.CommunityVo">
+
+	<select id="select" parameterType="int"
+		resultType="com.jhta.finalproject.vo.CommunityVo">
 		select * from community where cu_num=#{cu_num}
 	</select>
-	
-	<insert id="insertBoard" parameterType="com.jhta.finalproject.vo.BoardVo">
-		insert into board 
+
+	<insert id="insertBoard"
+		parameterType="com.jhta.finalproject.vo.BoardVo">
+		insert into board
 		(
-		b_num , m_num,b_title, b_content,b_regdate,cu_num	
+		b_num , m_num,b_title, b_content,b_regdate,cu_num
 		)
 		values
 		(
 		board_seq.nextval,#{m_num},#{b_title},#{b_content},sysdate,#{cu_num}
 		)
-		
+
 	</insert>
-	<insert id="insertBoardImg" parameterType="com.jhta.finalproject.vo.BoardimgVo">
-    	insert into boardimg values(boardimg_seq.nextval,#{i_filename},(select Max(b_num) from board))
-    </insert>
-	<select id="selectimg" parameterType="int" 	resultType="com.jhta.finalproject.vo.BoardimgVo">
+	<insert id="insertBoardImg"
+		parameterType="com.jhta.finalproject.vo.BoardimgVo">
+		insert into boardimg values(boardimg_seq.nextval,#{i_filename},(select
+		Max(b_num) from board))
+	</insert>
+	<select id="selectimg" parameterType="int"
+		resultType="com.jhta.finalproject.vo.BoardimgVo">
 		select * from boardimg where b_num=#{b_num}
 	</select>
-	
-	
-	<select id="detail" parameterType="int" resultType="com.jhta.finalproject.vo.BoardVo">
+
+
+	<select id="detail" parameterType="int"
+		resultType="com.jhta.finalproject.vo.BoardVo">
 		select * from board where b_num=#{b_num}
 	</select>
-	
-	
-	<select id="selectAllboardimg" parameterType="int" resultType="com.jhta.finalproject.vo.BoardimgVo">
-		
+
+
+	<select id="selectAllboardimg" parameterType="int"
+		resultType="com.jhta.finalproject.vo.BoardimgVo">
+
 		select * from boardimg where b_num=#{b_num}
 	</select>
-	
-	
-	<insert id="insertcomments" parameterType="com.jhta.finalproject.vo.CommentsVo" >
-		
-	insert into comments values(comments_seq.nextval,#{m_num},#{co_content},sysdate,#{b_num})
+
+
+	<insert id="insertcomments"
+		parameterType="com.jhta.finalproject.vo.CommentsVo">
+
+		insert into comments
+		values(comments_seq.nextval,#{m_num},#{co_content},sysdate,#{b_num})
 	</insert>
-	
-	<select id="selectcommentall" parameterType="int" resultType="com.jhta.finalproject.vo.CommentsVo">
+
+	<select id="selectcommentall" parameterType="int"
+		resultType="com.jhta.finalproject.vo.CommentsVo">
 		select * from comments where b_num=#{b_num}
 	</select>
-	
-	
-	<select id="getCount" resultType="int"  parameterType="hashmap">
-     	select NVL(count(*),0) cnt from community
-     	<include refid="search"/> 	
-    </select>
-    
-    <sql id="search">
-	    <if test="keyword!=null and keyword!=''">
-		   where cu_name like '%'||#{keyword}||'%' or cu_intro like '%'||#{keyword}||'%' 
-		   or cu_category like '%'||#{keyword}||'%' 
+
+
+	<select id="getCount" resultType="int" parameterType="hashmap">
+		select NVL(count(*),0) cnt from community
+		<include refid="search" />
+	</select>
+
+	<sql id="search">
+		<if test="keyword!=null and keyword!=''">
+			where cu_name like '%'||#{keyword}||'%' or cu_intro like
+			'%'||#{keyword}||'%'
+			or cu_category like '%'||#{keyword}||'%'
 		</if>
+
     </sql>
     
     
@@ -102,7 +118,26 @@
 	
 	
  </mapper>
- 
+
+	</sql>
+
+	<select id="selectmc" resultType="com.jhta.finalproject.vo.CommunityVo">
+		SELECT community.* FROM MYCOMMUNITY, COMMUNITY WHERE 
+		mycommunity.CU_NUM =community.CU_NUM 
+		AND mycommunity.M_NUM = #{m_num}
+	</select>
+	<select id="selectboard" resultType="com.jhta.finalproject.vo.BoardVo">
+		select * from board where m_id=#{m_id}
+	</select>
+	<select id="selectcm" resultType="com.jhta.finalproject.vo.CommunityVo">
+		select * from community where cu_num=#{cu_num}
+	</select>
+	
+	<select id="selectbi" resultType="string">
+		SELECT i_filename FROM BOARDIMG WHERE b_num=#{b_num} LIMIT 1;
+	</select>
+</mapper>
+
  
  
 

@@ -7,7 +7,7 @@ import com.jhta.finalproject.vo.BoardVo;
 import com.jhta.finalproject.vo.BoardimgVo;
 import com.jhta.finalproject.vo.CommentsVo;
 import com.jhta.finalproject.vo.CommunityVo;
-import com.jhta.finalproject.vo.Goods_ImageVo;
+
 import com.jhta.finalproject.vo.MemberVo;
 
 public interface CommunityMapper {
@@ -47,10 +47,16 @@ public interface CommunityMapper {
 
 	List<BoardVo> selectAllboard(int cu_num);
 
+
 	int addHit(int b_num);
 
+
+	List<BoardVo> selectboard(int m_id);
+
 	
+	List<CommunityVo> selectmc(int m_id);
 	
+	CommunityVo selectcm(int cu_num);
 	
-	
+	String selectbi(int b_num);
 }
