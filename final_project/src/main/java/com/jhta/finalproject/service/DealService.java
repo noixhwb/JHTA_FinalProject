@@ -80,4 +80,12 @@ public class DealService {
 	public int update_tpr(int t_num) {
 		return mapper.update_tpr(t_num);
 	}
+	
+	public int delete_dl(int t_num) {
+		return mapper.delete_dl(t_num);
+	}
+	
+	public int delete_gi(int t_num) {
+		return mapper.delete_gi(t_num);
+	}
 }

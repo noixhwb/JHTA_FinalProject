@@ -32,10 +32,11 @@
 		<table class="table table-hover" id="dealtb">
 			<!-- On rows -->
 			<tr class="active">
-				<th style="width: 55%">제목</th>
+				<th style="width: 40%">제목</th>
 				<th style="width: 15%">거래단계</th>
 				<th style="width: 15%">배송등록</th>
 				<th style="width: 15%">환불승인</th>
+				<th style="width: 15%">삭제</th>
 			</tr>
 
 			<c:forEach var="dv" items="${dvo }">
@@ -57,7 +58,16 @@
 					<c:choose>
 						<c:when test="${dv.t_processing eq '환불요청' }">
 							<td class="align-middle"><a
-								href="${pageContext.request.contextPath}/deal/refund?t_num=${pv.t_num}">환불처리</a></td>
+								href="${pageContext.request.contextPath}/deal/refund?t_num=${dv.t_num}">환불처리</a></td>
+						</c:when>
+						<c:otherwise>
+							<td class="align-middle"></td>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${dv.t_processing eq '판매중' }">
+							<td class="align-middle"><a
+								href="${pageContext.request.contextPath}/deal/remove?t_num=${dv.t_num}">삭제</a></td>
 						</c:when>
 						<c:otherwise>
 							<td class="align-middle"></td>
@@ -73,10 +83,10 @@
 		<table class="table table-hover d-none" id="purchasetb">
 			<!-- On rows -->
 			<tr class="active">
-				<th style="width: 55%">제목</th>
-				<th style="width: 15%">거래단계</th>
-				<th style="width: 15%">배송조회</th>
-				<th style="width: 15%">환불요청</th>
+				<th style="width: 40%">제목</th>
+				<th style="width: 20%">거래단계</th>
+				<th style="width: 20%">배송조회</th>
+				<th style="width: 20%">환불요청</th>
 			</tr>
 
 			<c:forEach var="pv" items="${pvo }">
