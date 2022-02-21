@@ -5,6 +5,7 @@
 
 <!-- 전체 동아리 목록 -->
 <!-- Header -->
+
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
@@ -12,7 +13,7 @@
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
+	<div id="content-wrapper" class="d-flex flex-column" style="height: 800px;">
 
 <!-- Main Content -->
 		<div id="content">
@@ -22,6 +23,25 @@
 
 <!-- Begin Page Content -->
 		<div class="container-fluid">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 class="h3 mb-0 text-gray-800"> 커뮤니티 </h1>
+				
+				<form action="${ cp }/community/communityList"  
+					  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+					<div class="input-group" style="position: relative; left: 1260px;">
+						<input type="text" class="form-control bg-white border-secondary small"
+								   placeholder="검색" aria-label="Search"
+								   aria-describedby="basic-addon2"
+								   name="keyword" value="${keyword}">
+							<div class="input-group-append">
+								<button class="btn btn-secondary" type="submit">
+									<i class="fas fa-search fa-sm"></i>
+								</button>
+						</div>
+					</div>
+				</form> <!-- 동아리 검색 끝 -->
+        	
+			</div>
 
 <!-- Page Heading -->
 <%--
@@ -43,108 +63,78 @@
 			</div>
  --%>
 <!-- ---------------------------------------------------------------------------------- -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light color-white">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#" >커뮤니티</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-  
-  
-</nav>
-<%--
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="collapse navbar-collapse" id="navbarNav">
-	<ul class="nav nav-pills nav-fill" >
-	  <li class="nav-item">
-	    <a class="nav-link active" aria-current="page" href="#">학술</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">취업</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">Link</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link disabled">Disabled</a>
-	  </li>
-	  </ul>
-	 </div>
-</nav>
- --%>
 <!-- ---------------------------------------------------------------------------------- -->
 
 <!-- Content Row -->
-			<div class="row">
+		<div class="row">
 
 <!-- Content Column -->
 		<c:forEach var="vo" items="${ list }">
 			<!-- 첫번째 Content Column -->
-			<div class="col-lg-6 mb-4">
+			<div class="container" style="width: 890px;">
 
 <!-- Approach -->
-				<!-- n번 동아리 -->
-				<div class="card shadow mb-3" >
+				<div class="table table-hover" style=" cursor: pointer;" onclick="location.href='${ cp }/community/communitydetail?cu_num=${ vo.cu_num }' ;">
+				 <div class="card shadow mb-3" >
 				
-					<div class="card-header py-2">
-						<div class="row g-0">
-							<div class="col-md-8" >
+					 <div class="card-header py-2">
+						 <div class="row g-0"> 
 							
-								<img src="${ cp }/resources/comm/${ vo.cu_coverimg }" 
-									 style="width:70px; height:70px;">
-							<a href="#">
-								<h6 class="m-5 font-weight-bold text-dark" style="display:inline;"> ${ vo.cu_name }</h6>
-								</a><br>
-							</div>
-							
-							
-						</div>
-					</div>
+							<img class="rounded-circle" src="${ cp }/resources/comm/${ vo.cu_coverimg }" style="width:70px; height:70px;">
+							<div>${ vo.cu_name }  <br>  ❤${ vo.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px;"> ${ vo.cu_category }	</span>	<br> <span> ${ vo.cu_intro }</span> <br>  	</div> 
+						 
+				</div>  
 					
-					<div class="card-body"> 
-						<div class="row g-0">
-							<div class="col-md-4"> 
-								<div class="card-body">
-									<h6 class="card-title"> 
-									<a href="#">
-										<span> ${ vo.cu_intro }</span> 
-										</a>
-										
-									</h6>
-									<p class="card-text">
-										
-										분류:	 ${ vo.cu_category }										
-														
-									 </p>
-									 <p class="card-text">
-										
-										좋아요 :	 ${ vo.cu_recommend }										
-														
-									 </p>
-								
-								</div>
-							</div>
+					
+						  
 						
-						</div>
-					</div> <!-- n번 동아리 body 끝 -->
+						
+						
+						<div>
+								
+								</div> 
+								
+								
+					</div> 
 					
-				</div> <!-- n번 동아리 끝 -->
+					
+				</div> <!-- n번 동아리 끝 --> 
 				
 
 			</div> <!-- 첫번쨰 Content Column 끝 -->
+			</div>
 			</c:forEach>
 
 
 		</div> <!-- Content Row 끝 -->
-
+ </div>
+                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                       		<ul class="pagination">
+                        		<li class="paginate_button page-item previous disabled" id="dataTable_previous">
+                        			<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+										<c:choose>
+											<c:when test="${i==param.pageNum }">
+												<a href="${cp }/community/communityList?pageNum=${i}&keyword=${keyword}"><span
+													style="color: blue">${i }</span></a>
+											</c:when>
+											<c:otherwise>
+												<a href="${cp }/community/communityList?pageNum=${i}&keyword=${keyword}"><span
+													style="color: gray">${i }</span></a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+                        		</li>
+                        	</ul>
+                        </div>
+                    </div>
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
 			
-		</div> <!-- Main Content 끝 -->
+		 <!-- Main Content 끝 -->
 <!-- End of Main Content -->
 			
-	</div> <!-- ContentWrapper 끝 -->
+	 <!-- ContentWrapper 끝 -->
 <!-- End of Content Wrapper -->	
 
 
@@ -152,37 +142,3 @@
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 
 	
-<style>
-	#dot{
-	   list-style:none;
-	   padding-left:5px;
-	  }
-</style>  
-<script>
-	$(document).ready(function() {
-	    $(".dropdown-toggle").dropdown();
-	});
-	
-	$(function(){
-		let here = $("#here").prev().val();
-		var categ = $("#circle_category_study").val();
-		$("#circle_category_study").click(function(){
-			alert("확인!");
-			alert(categ);
-			alert(here);			
-		});
-	});
-	<%--
-	$(function () { 
-		// actvie 활성화 
-		$(".nav-item > .active").css("color", "red"); 
-		$('.nav-link').click(function () { 
-			// .nav-link 클릭시 이전의 active 값 해제 후, 
-			$(".nav-item > .active").css("color", "#007bff"); 
-			$('.nav-link').removeClass('active'); 
-			// 클릭한 위치 active 적용 $(this).addClass('active'); 
-			$(".nav-item > .active").css("color", "red"); 
-		}); 
-	});
-	--%>
-</script>     
