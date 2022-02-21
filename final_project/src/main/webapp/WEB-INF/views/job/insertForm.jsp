@@ -67,7 +67,7 @@
 									<input type="text" name="j_subject" placeholder="" maxlength="30" autocomplete="off" class="text"><br>
 								</p>
 								
-								<h6 class="card-title font-weight-bold text-dark">기업명</h6> // 기업리스트 API로 검사?
+								<h6 class="card-title font-weight-bold text-dark">기업명</h6>
 								<p class="card-text">
 									<input type="text" name="j_company" maxlength="30" autocomplete="off" class="text"><br>
 									<!-- 기업리스트 API 써야할듯! -->
@@ -121,7 +121,7 @@
 						<div class="col-md-8">
 							
 							<div class="card-body">
-								<h6 class="card-title font-weight-bold text-dark">근무 지역</h6>
+								<h6 class="card-title font-weight-bold text-dark">근무 지역입니다</h6>
 								<p class="card-text">
 									<fieldset style="width:300px">
 										<c:forEach items="${fn:split('서울|경기|광주|대구|대전|부산|세종|울산|인천|강원|경남|경북|전남|전북|충남|충북|제주|해외|기타','|') }"
