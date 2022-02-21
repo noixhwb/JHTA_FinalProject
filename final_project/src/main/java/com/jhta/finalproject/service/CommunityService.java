@@ -96,12 +96,12 @@ public class CommunityService {
 
 
 	
-	public List<BoardVo> selectboard(int m_id){
-		return mapper.selectboard(m_id);
+	public List<BoardVo> selectboard(int m_num){
+		return mapper.selectboard(m_num);
 	}
 	
-	public List<CommunityVo> selectmc(int m_id){
-		return mapper.selectmc(m_id);
+	public List<CommunityVo> selectmc(int m_num){
+		return mapper.selectmc(m_num);
 	}
 	
 	public CommunityVo selectcm(int cu_num) {

@@ -34,25 +34,25 @@
 			<span class="navbar-toggler-icon"></span>
 	</button>
     	<!-- (1) Navbar 왼쪽 -->
-    	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-    		<ul class="nav nav-tabs navbar-nav">
-		        <li class="nav-item">
-		        	<a class="nav-link" href="${ cp }/community/communityMyList">내가쓴글 / 내가쓴댓글 </a>
-		        </li>
-		        <li class="nav-item">
-		        	<a class="nav-link" href="${ cp }/community/communityMyLike">좋아요한 커뮤니티</a>
-		        </li>
-		        <li class="nav-item">
-		        	<a class="nav-link active" href="${ cp }/community/communityMy">커뮤니티 관리</a>
-		        </li>
-     		</ul>
-    	</div> <!-- (1) Navbar 왼쪽 끝 -->
     
     	<!-- (2) Navbar 오른쪽 -->
     	
 </nav> 
 <div>내가좋아요한 커뮤니티</div>
-
+	<c:forEach var="vo" items="${ blist }">
+				
+				
+				
+				
+				${vo.b_num}
+				${vo.m_num}
+				
+				
+				
+				
+				
+				
+			</c:forEach>
 <!-- Approach -->
 		
 

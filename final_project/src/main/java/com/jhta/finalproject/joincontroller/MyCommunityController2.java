@@ -34,7 +34,8 @@ public class MyCommunityController2 {
 		}
 		model.addAttribute("blist",mb);
 		model.addAttribute("clist",mc);
-		
+		System.out.println(mb);
+		System.out.println(mc);
 		return "/community/communityMyLike";
 	}
 }

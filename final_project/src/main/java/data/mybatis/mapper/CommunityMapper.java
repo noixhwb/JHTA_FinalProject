@@ -51,10 +51,10 @@ public interface CommunityMapper {
 	int addHit(int b_num);
 
 
-	List<BoardVo> selectboard(int m_id);
+	List<BoardVo> selectboard(int m_num);
 
 	
-	List<CommunityVo> selectmc(int m_id);
+	List<CommunityVo> selectmc(int m_num);
 	
 	CommunityVo selectcm(int cu_num);
 	
