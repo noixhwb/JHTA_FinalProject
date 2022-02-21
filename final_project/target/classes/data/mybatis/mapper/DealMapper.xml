@@ -11,7 +11,8 @@
 	<insert id="insert"
 		parameterType="com.jhta.finalproject.vo.DealVo">
 		insert into deal
-		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate,#{t_title},#{m_id},#{t_invoice, jdbcType=VARCHAR},#{t_shipping, jdbcType=VARCHAR})
+		values(deal_seq.nextval,#{t_name},#{t_explanation},#{m_num},#{t_price},'판매중',sysdate,#{t_title},#{m_id},#{t_invoice,
+		jdbcType=VARCHAR},#{t_shipping, jdbcType=VARCHAR})
 	</insert>
 	<select id="selectAll"
 		resultType="com.jhta.finalproject.vo.DealVo" parameterType="hashmap">
@@ -87,45 +88,58 @@
 		select * from purchase_info where t_num = #{t_num}
 	</select>
 	<update id="update_deal" parameterType="int">
-		UPDATE deal SET t_processing = '결제완료' WHERE t_num = #{t_num}
+		UPDATE deal SET
+		t_processing = '결제완료' WHERE t_num = #{t_num}
 	</update>
 	<update id="update_ship" parameterType="hashmap">
-		UPDATE deal SET t_processing=#{t_processing}, t_shipping = #{t_shipping}, t_invoice=#{t_invoice} WHERE
+		UPDATE deal SET
+		t_processing=#{t_processing}, t_shipping = #{t_shipping},
+		t_invoice=#{t_invoice} WHERE
 		t_num = #{t_num}
 	</update>
 	<select id="select_dp"
 		resultType="com.jhta.finalproject.vo.DealVo" parameterType="int">
-		SELECT deal.* FROM deal,PURCHASE_INFO
+		SELECT
+		deal.* FROM deal,PURCHASE_INFO
 		WHERE deal.T_NUM = PURCHASE_INFO.T_NUM
 		and PURCHASE_INFO.M_NUM = #{m_num}
 	</select>
-	
+
 	<!-- deal전체 조회 -->
-	<select id="select_all" resultType="com.jhta.finalproject.vo.DealVo">
+	<select id="select_all"
+		resultType="com.jhta.finalproject.vo.DealVo">
 		select * from deal
 	</select>
 	<!-- deal배송상태 업데이트 -->
 	<update id="update_tp" parameterType="hashmap">
-		UPDATE deal SET t_processing=#{t_processing} WHERE t_num = #{t_num}
+		UPDATE deal SET
+		t_processing=#{t_processing} WHERE t_num = #{t_num}
 	</update>
 	<delete id="delete_pr">
 		delete from purchase_info where t_num=#{t_num}
 	</delete>
 	<update id="update_tps">
-		UPDATE deal SET t_processing='판매중' WHERE t_num = #{t_num}
+		UPDATE deal SET t_processing='판매중' WHERE t_num =
+		#{t_num}
 	</update>
-	
+
 	<update id="update_tpr">
-		UPDATE deal SET t_processing='환불요청' WHERE t_num = #{t_num}
+		UPDATE deal SET t_processing='환불요청' WHERE t_num =
+		#{t_num}
 	</update>
-	
+
 	<delete id="delete_dl">
-	delete from deal where t_num=#{t_num} 
+		delete from deal where t_num=#{t_num}
 	</delete>
 	<delete id="delete_gi">
-	delete from goods_image where t_num=#{t_num}
+		delete from goods_image where t_num=#{t_num}
 	</delete>
-	
+	<update id="updatecc"
+		parameterType="com.jhta.finalproject.vo.CommunityVo">
+		update Community set
+		cu_intro=#{cu_intro},cu_notice=#{cu_notice},cu_status=#{cu_notice}
+		WHERE cu_num=#{cu_num}
+	</update>
 </mapper>
  
  

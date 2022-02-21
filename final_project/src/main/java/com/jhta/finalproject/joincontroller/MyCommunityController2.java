@@ -32,6 +32,7 @@ public class MyCommunityController2 {
 			String i_filename = service.selectbi(vo.getB_num());
 			MycommBoVo bb = new MycommBoVo(vo.getB_num(), vo.getM_num(),vo.getB_content(),vo.getB_regdate(),vo.getB_recommend(),vo.getCu_num(),vo.getB_title(),i_filename,aa.getCu_name());
 		}
+		model.addAttribute("mlist",service.selectcc(m_num));
 		model.addAttribute("blist",mb);
 		model.addAttribute("clist",mc);
 		System.out.println(mb);

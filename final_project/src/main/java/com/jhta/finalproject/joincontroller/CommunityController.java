@@ -39,6 +39,7 @@ import com.jhta.finalproject.vo.BoardimgVo;
 import com.jhta.finalproject.vo.CommentsVo;
 import com.jhta.finalproject.vo.CommunityVo;
 import com.jhta.finalproject.vo.MemberVo;
+import com.jhta.finalproject.vo.MyCommunityVo;
 import com.util.PageUtil;
 
 
@@ -83,6 +84,7 @@ import com.util.PageUtil;
 			model.addAttribute("mvo", vo1);
 			model.addAttribute("mnum", mnum);
 			service.insertcm(new CommunityVo(0, vo.getCu_name(), vo.getCu_intro(),vo.getCu_category(), vo.getCu_notice(), vo.getCu_recommend(), cu_coverimg, mnum, vo.getCu_status()));
+			service.insertmyc(new MyCommunityVo(0,service.lastnum(), mnum));
 			model.addAttribute("result","success");
 			System.out.println("성공");
 		}catch(Exception e) {
@@ -93,9 +95,7 @@ import com.util.PageUtil;
 		return "/home";
 	}
 	
-	
-	
-	
+
 
 	@GetMapping("/community/communityList")
 	public String communitylist(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
@@ -225,7 +225,13 @@ import com.util.PageUtil;
 	}
 
 	
-	 
+	@PostMapping("community/update")
+	public String update(CommunityVo vo) {
+		service.updatecc(vo);
+		return "redirect:/community/mycommunity";
+	} 
+	
+	
 //	  
 //	    @RequestMapping(value="/board/addComment.do")
 //	    @ResponseBody

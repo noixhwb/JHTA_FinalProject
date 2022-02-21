@@ -7,7 +7,8 @@
 		parameterType="com.jhta.finalproject.vo.CommunityVo">
 		insert into community
 		(
-		cu_num, cu_name , cu_intro , cu_category , cu_coverimg , m_num
+		cu_num, cu_name , cu_intro ,
+		cu_category , cu_coverimg , m_num
 		)
 		values
 
@@ -52,7 +53,8 @@
 		parameterType="com.jhta.finalproject.vo.BoardVo">
 		insert into board
 		(
-		b_num , m_num,b_title, b_content,b_regdate,cu_num
+		b_num , m_num,b_title,
+		b_content,b_regdate,cu_num
 		)
 		values
 		(
@@ -62,8 +64,10 @@
 	</insert>
 	<insert id="insertBoardImg"
 		parameterType="com.jhta.finalproject.vo.BoardimgVo">
-		insert into boardimg values(boardimg_seq.nextval,#{i_filename},(select
-		Max(b_num) from board))
+		insert into boardimg
+		values(boardimg_seq.nextval,#{i_filename},(select
+		Max(b_num) from
+		board))
 	</insert>
 	<select id="selectimg" parameterType="int"
 		resultType="com.jhta.finalproject.vo.BoardimgVo">
@@ -109,30 +113,55 @@
 			or cu_category like '%'||#{keyword}||'%'
 		</if>
 
-    </sql>
-    
-    
-    <update id="addHit" parameterType="int">
-		UPDATE board SET b_recommend = b_recommend+1 where b_num=#{b_num}
-	</update>
-	
+	</sql>
 
-	<select id="selectmc" resultType="com.jhta.finalproject.vo.CommunityVo">
-		SELECT community.* FROM MYCOMMUNITY, COMMUNITY WHERE 
-		mycommunity.CU_NUM =community.CU_NUM 
+
+	<update id="addHit" parameterType="int">
+		UPDATE board SET b_recommend =
+		b_recommend+1 where b_num=#{b_num}
+	</update>
+
+
+	<select id="selectmc"
+		resultType="com.jhta.finalproject.vo.CommunityVo">
+		SELECT community.* FROM MYCOMMUNITY, COMMUNITY WHERE
+		mycommunity.CU_NUM =community.CU_NUM
 		AND mycommunity.M_NUM = #{m_num}
 	</select>
-	<select id="selectboard" resultType="com.jhta.finalproject.vo.BoardVo">
+	<select id="selectboard"
+		resultType="com.jhta.finalproject.vo.BoardVo">
 		select * from board where m_num=#{m_num}
 	</select>
-	<select id="selectcm" resultType="com.jhta.finalproject.vo.CommunityVo">
+	<select id="selectcm"
+		resultType="com.jhta.finalproject.vo.CommunityVo">
 		select * from community where cu_num=#{cu_num}
 	</select>
-	
+
 	<select id="selectbi" resultType="string">
-		SELECT i_filename FROM (SELECT i_filename FROM BOARDIMG WHERE b_num=#{b_num} ORDER BY i_NUM) WHERE ROWNUM= 1
+		SELECT i_filename FROM (SELECT
+		i_filename FROM BOARDIMG WHERE b_num=#{b_num} ORDER BY i_NUM) WHERE
+		ROWNUM= 1
 	</select>
- </mapper>
+
+	<insert id="insertmyc"
+		parameterType="com.jhta.finalproject.vo.MyCommunityVo">
+		insert into Mycommunity values(Mycommunity_seq.nextval,#{cu_num},#{m_num})
+	</insert>
+
+	<select id="lastnum" resultType="int">
+		SELECT cu_num FROM( SELECT cu_num
+		FROM
+		Community
+		ORDER BY ROWNUM DESC)
+		WHERE
+		ROWNUM = 1
+	</select>
+
+	<select id="selectcc"
+		resultType="com.jhta.finalproject.vo.CommunityVo">
+		SELECT * FROM COMMUNITY WHERE m_num;
+	</select>
+</mapper>
 
 	
 

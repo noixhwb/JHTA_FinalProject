@@ -9,6 +9,7 @@ import com.jhta.finalproject.vo.CommentsVo;
 import com.jhta.finalproject.vo.CommunityVo;
 
 import com.jhta.finalproject.vo.MemberVo;
+import com.jhta.finalproject.vo.MyCommunityVo;
 
 public interface CommunityMapper {
 
@@ -59,4 +60,12 @@ public interface CommunityMapper {
 	CommunityVo selectcm(int cu_num);
 	
 	String selectbi(int b_num);
+	
+	int insertmyc(MyCommunityVo vo);
+	
+	int lastnum();
+	
+	CommunityVo selectcc(int m_num);
+	
+	int updatecc(CommunityVo vo);
 }

@@ -11,6 +11,7 @@ import com.jhta.finalproject.vo.BoardimgVo;
 import com.jhta.finalproject.vo.CommentsVo;
 import com.jhta.finalproject.vo.CommunityVo;
 import com.jhta.finalproject.vo.MemberVo;
+import com.jhta.finalproject.vo.MyCommunityVo;
 
 import data.mybatis.mapper.CommunityMapper;
 
@@ -93,6 +94,9 @@ public class CommunityService {
 	}
 
 	
+	public int updatecc(CommunityVo vo){
+		return mapper.updatecc(vo);
+	}
 
 
 	
@@ -110,5 +114,16 @@ public class CommunityService {
 	
 	public String selectbi(int b_num) {
 		return mapper.selectbi(b_num);
+	}
+	
+	public int insertmyc(MyCommunityVo vo) {
+		return mapper.insertmyc(vo);
+	}
+	
+	public int lastnum() {
+		return mapper.lastnum();
+	}
+	public CommunityVo selectcc(int m_num){
+		return mapper.selectcc(m_num);
 	}
 }
