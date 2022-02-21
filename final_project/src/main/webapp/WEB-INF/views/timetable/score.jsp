@@ -13,7 +13,7 @@
 
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800">학점 계산기</h1>
+			<h1 class="h3 mb-0 text-gray-800">학점계산기</h1>
 			<div class="dropdown">
 				<button type="button" class="btn btn-primary dropdown-toggle"
 					 type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
