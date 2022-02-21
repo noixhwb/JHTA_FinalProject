@@ -116,6 +116,7 @@
 		UPDATE board SET b_recommend = b_recommend+1 where b_num=#{b_num}
 	</update>
 	
+
 	<select id="selectmc" resultType="com.jhta.finalproject.vo.CommunityVo">
 		SELECT community.* FROM MYCOMMUNITY, COMMUNITY WHERE 
 		mycommunity.CU_NUM =community.CU_NUM 
