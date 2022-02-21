@@ -58,7 +58,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <sec:authorize access="isAnonymous()">
+          <%--   <sec:authorize access="isAnonymous()">
             <li class="nav-item active">
                 <a class="nav-link" href="${cp}/login">
                     <i class="fa-solid fa-right-to-bracket"></i>
@@ -72,11 +72,11 @@
             </li>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-			<%-- 
+			
 			<li class="nav-item active">
 			
 			 &nbsp;&nbsp;&nbsp;<sec:authentication property="principal.username"/>님 반갑습니다 </li>
-		 --%>
+		
 		<li class="nav-item active">
 			 <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
 			
@@ -90,7 +90,7 @@
 				<span>내정보</span></a></li>
 		
 		
-	</sec:authorize>
+	</sec:authorize> --%>
 		
 
             <!-- Divider -->

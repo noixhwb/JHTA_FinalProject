@@ -1,9 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    
+    
 <style>
 
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
+.h1{
+
+	font-family: 'SBAggroB';
+}
 
 </style>
 
@@ -11,7 +23,7 @@
 	<nav
 		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-		<h4 class="h1" style=": ">3조대학교 캠퍼스픽</h4>
+		<h4 class="h1" style=" ">3조대학교 캠퍼스픽</h4>
  
 		<!-- Topbar Navbar -->
 		<ul class="navbar-nav ml-auto">
@@ -19,12 +31,18 @@
 
 			<div class="topbar-divider d-none d-sm-block"></div>
  			<sec:authorize access="isAnonymous()">
-            <li class="nav-item active">
+             <li class="nav-item active">
                 <a class="nav-link" href="${cp}/login">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa-solid fa-right-to-bracket"></i>
                     <span>로그인</span></a>
             </li>
-          
+            <li>
+            <li class="nav-item active">
+                <a class="nav-link" href="${cp}/join">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>회원가입</span></a>
+            </li>
+            </li>
 			</sec:authorize>
 		
 <sec:authorize access="isAuthenticated()">
