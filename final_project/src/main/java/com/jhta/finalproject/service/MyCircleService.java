@@ -24,8 +24,8 @@ public class MyCircleService {
 		return mapper.delete(map);
 	}
 	
-	public List<MyCircleJoinVo> selectAllMyJoin(int m_num) {
-		return mapper.selectAllMyJoin(m_num);
+	public List<MyCircleJoinVo> selectAllMyJoin(HashMap<String, Object> map) {
+		return mapper.selectAllMyJoin(map);
 	}
 	
 	public List<MyCircleListVo> selectMyList(int ci_num) {

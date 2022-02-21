@@ -21,8 +21,8 @@ public class ConfirmCircleList {
 	@Autowired AdminService Aservice;
 	
 	// 동아리 개시요청 리스트 가져오기
-	@GetMapping("/admin/appliedCircleList")
-	public String appliedCircleList (@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
+	@GetMapping("/admin/appliedCircleListt")
+	public String appliedCircleListt (@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
 			String keyword, Model model ) {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -36,13 +36,14 @@ public class ConfirmCircleList {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		
-		List<CircleVo> circleList = Aservice.appliedCircleList(map);
+		List<CircleVo> appliedcirclelist = Aservice.appliedCircleList(map);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);
-		model.addAttribute("circleList",circleList);
+		model.addAttribute("appliedcirclelist",appliedcirclelist);
 		return "admin/appliedCircleList";
 	}
 	
+	/*
 	// 승인 메소드
 	@GetMapping(value="/admin/comfirmCircle",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody Model comfirmCircle(int ci_num, Model model){
@@ -67,4 +68,5 @@ public class ConfirmCircleList {
 			return model.addAttribute("result","false");
 		}
 	}
+	*/
 }

@@ -119,6 +119,13 @@
 		UPDATE deal SET t_processing='환불요청' WHERE t_num = #{t_num}
 	</update>
 	
+	<delete id="delete_dl">
+	delete from deal where t_num=#{t_num} 
+	</delete>
+	<delete id="delete_gi">
+	delete from goods_image where t_num=#{t_num}
+	</delete>
+	
 </mapper>
  
  

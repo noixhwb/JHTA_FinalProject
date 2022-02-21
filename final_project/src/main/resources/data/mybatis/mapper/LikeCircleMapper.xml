@@ -9,12 +9,23 @@
 	<delete id="delete" parameterType="hashmap">
 		DELETE FROM LIKECIRCLE WHERE CI_NUM=#{ci_num} AND M_NUM=#{m_num}
 	</delete>
+	
+	<!-- select로 검색 -->
+	<sql id="mysearch">
+		<if test="name != null and name != ''">
+			WHERE ${name} LIKE '%'||#{keyword}||'%'
+		</if>
+	</sql>
 	<!-- 내가 찜한 동아리 목록 -->
-	<select id="selectMyLikeList" parameterType="int" resultType="com.jhta.finalproject.circlevo.LikeCircleJoinVo">
-		SELECT C.CI_NUM, C.CI_NAME, C.CI_LOGOFILE, L.M_NUM, C.CI_TITLE, C.CI_IMGFILE 
+	<select id="selectMyLikeList" parameterType="hashmap" resultType="com.jhta.finalproject.circlevo.LikeCircleJoinVo">
+		SELECT * FROM 
+		(SELECT C.CI_NUM, C.CI_NAME, C.CI_LOGOFILE, L.M_NUM, C.CI_TITLE, C.CI_IMGFILE 
 		FROM CIRCLE C, LIKECIRCLE L 
-		WHERE C.CI_NUM=L.CI_NUM AND L.M_NUM=#{m_num}
+		WHERE C.CI_NUM=L.CI_NUM AND L.M_NUM=#{m_num} AND C.CI_OK=1
+		) MYCLK
+			<include refid="mysearch"></include>
 	</select>
+	
 	<!-- 동아리 찜한 사람 명수 -->
 	<select id="selectLikeCircle" parameterType="int" resultType="int">
 		SELECT NVL(COUNT(*),0)   

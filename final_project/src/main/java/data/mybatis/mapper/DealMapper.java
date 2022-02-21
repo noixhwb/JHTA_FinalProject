@@ -29,5 +29,7 @@ public interface DealMapper {
 	int update_tp(HashMap<String, Object> map);
 	int update_tps(int t_num);
 	int update_tpr(int t_num);
+	int delete_dl(int t_num);
+	int delete_gi(int t_num);
 	
 }
