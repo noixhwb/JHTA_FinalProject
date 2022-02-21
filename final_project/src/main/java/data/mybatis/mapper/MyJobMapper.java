@@ -8,5 +8,6 @@ import com.jhta.finalproject.jobvo.MyJobVo;
 public interface MyJobMapper {
 	int insert(MyJobVo vo);
 	List<MyJobVo> myScrap(int m_num);
-	int delete(HashMap<String, Integer> map);
+	int Userdelete(HashMap<String, Integer> map);
+	int AdminDelete(int j_num);
 }

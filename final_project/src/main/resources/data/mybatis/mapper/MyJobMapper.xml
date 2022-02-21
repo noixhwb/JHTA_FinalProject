@@ -6,7 +6,7 @@
 	<insert id="insert" parameterType="com.jhta.finalproject.jobvo.MyJobVo">
 		INSERT INTO MYJOBINFO VALUES(myjobinfo_SEQ.NEXTVAL,#{j_num},#{m_num})
 	</insert>
-	<delete id="delete" parameterType="hashmap">
+	<delete id="Userdelete" parameterType="hashmap">
 		DELETE FROM MYJOBINFO WHERE J_NUM=#{j_num} AND M_NUM=#{m_num}
 	</delete>
 	
@@ -16,4 +16,8 @@
 				FROM JOBINFO J, MYJOBINFO M 
 				WHERE J.J_NUM=M.J_NUM AND M.M_NUM=#{m_num}
 	</select>
+	
+	<delete id="AdminDelete" parameterType="int">
+		DELETE FROM MYJOBINFO WHERE J_NUM=#{J_NUM}
+	</delete>
 </mapper>

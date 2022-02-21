@@ -74,7 +74,7 @@ public class MyJob {
 		
 		
 		try {
-			MJservice.delete(map);
+			MJservice.Userdelete(map);
 			map1.put("result", true);
 		}catch(Exception e) {
 			e.printStackTrace();

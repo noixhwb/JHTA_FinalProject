@@ -48,8 +48,10 @@ public class JobInsert {
 						Model model) {
 		String path=sc.getRealPath("/resources/upload");
 		System.out.println(path);
-		String logoImg=file1.getOriginalFilename(); // 전송된 기업로고 파일명
-		String infoImg=file2.getOriginalFilename(); // 전송된 채용공고 파일명
+		String logoImg=UUID.randomUUID() + "_"+ file1.getOriginalFilename(); //중복되지 않는 저장될 파일명 만들기
+		String infoImg=UUID.randomUUID() + "_"+ file2.getOriginalFilename(); //중복되지 않는 저장될 파일명 만들기
+//		String logoImg=file1.getOriginalFilename(); // 전송된 기업로고 파일명
+//		String infoImg=file2.getOriginalFilename(); // 전송된 채용공고 파일명
 		System.out.println(duty.getJd_duty());
 		System.out.println(career.getJc_career());
 		System.out.println(zone.getJz_zone());

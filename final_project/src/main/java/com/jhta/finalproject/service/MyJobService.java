@@ -18,11 +18,15 @@ public class MyJobService {
 		return mapper.insert(vo);
 	}
 	
-	public int delete(HashMap<String, Integer> map) {
-		return mapper.delete(map);
+	public int Userdelete(HashMap<String, Integer> map) {
+		return mapper.Userdelete(map);
 	}
 	
 	public List<MyJobVo> myScrap(int m_num){
 		return mapper.myScrap(m_num);
+	}
+	
+	public int AdminDelete(int j_num) {
+		return mapper.AdminDelete(j_num);
 	}
 }

@@ -53,17 +53,14 @@ public class JobDelete {
 		}
 		return "job/jobList";
 	}
-	// 거절 메소드
+	// 관리자 공고 삭제 메소드
 	@GetMapping(value="/job/remove", produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Model rejectJob(int j_num, Model model, Principal principal){
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		MemberVo uservo = Jservice.selectUser(principal.getName());
-		int userNum = uservo.getM_num();
-		map.put("j_num", j_num);
-		map.put("m_num", userNum);
-		MJservice.delete(map);
+	public @ResponseBody HashMap<String, Object> remove(int j_num){
+		HashMap<String, Object> map1 = new HashMap<String, Object>();
+		MJservice.AdminDelete(j_num);	// 스크랩 지우기
 		
 		try{
+			// 공고 자식레코드 삭제
 			Zservice.delete(j_num);
 			Dservice.delete(j_num);
 			Cservice.delete(j_num);
@@ -73,15 +70,16 @@ public class JobDelete {
 			File f1=new File(path + "\\" + vo.getJ_img());
 			File f2=new File(path + "\\" + vo.getJ_infoimg());
 			
-			Jservice.delete(j_num);
+			Jservice.delete(j_num);	//공고 지우기
 			if(f1.exists()) f1.delete();
 			if(f2.exists()) f2.delete();
 			
-			return model.addAttribute("result","success");
+			map1.put("result", true);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return model.addAttribute("result","fail");
+			map1.put("result", false);
 		}
-		
+		return map1;
 	}
+	
 }

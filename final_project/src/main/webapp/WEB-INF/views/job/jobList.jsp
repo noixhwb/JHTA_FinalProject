@@ -70,14 +70,6 @@
 		     return false;
 		 }
 	};
-/*	$(function(){ 
-function bookMark() {
-	 if (confirm("로그인 후 스크랩할 수 있습니다.") == true){    //확인
-		 location.href='${cp}/login';
-	 }else{   //취소
-	     return false;
-	 }
-}*/
 </script>
 <style>
 	#companylogo{
@@ -192,7 +184,7 @@ function bookMark() {
 								</c:if>		
 								</h6>
 							</div>
-							<div class="col-md-2"> <!-- 카드제목 오른쪽 -->
+							<div class="col-md-2"> <!--Admin 로그인상태시 삭제버튼--> <!-- 카드제목 오른쪽 -->
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<button class="btn btn-primary" onclick="remove(${vo.j_num})" id="delete">삭제</button>
 								</sec:authorize>
@@ -210,10 +202,13 @@ function bookMark() {
 									</h6>
 									
 										<div class="row g-0">
-											<div class="col-sm-8" style="cursor: pointer;"onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
+											<div class="col-sm-8">
+												<div style="cursor: pointer;"
+													onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
 												<p style="font-weight: bold; font-size: 16px; color: black;">${vo.j_company }</p>
 												<p style="font-size: 16px;">${vo.j_subject}</p>
-											<div class="col-xs">
+												</div>
+											<div class="col-xs" >
 												<!-- 현재날짜 -->
 												<c:set var="today" value="<%=new java.util.Date()%>" />
 												<c:set var="end" value="${vo.j_enddate}" />
@@ -250,7 +245,7 @@ function bookMark() {
 													<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>
 														${vo.j_view} </span>
 												</p>
-	
+											</div>
 												<!-- 비로그인 북마크 클릭 : alert(로그인후 스크랩 할 수 있습니다) -->
 												<!-- 확인 누르면 로그인페이지, 취소누르면 그대로 -->
 												<c:set var="a" value="1" />
@@ -269,7 +264,6 @@ function bookMark() {
 													<a onclick="bookMark(${vo.j_num})"><i
 														id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
 												</c:if>
-											</div>
 											</div>
 	
 											<div class="col-md-4" onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
@@ -300,7 +294,7 @@ function bookMark() {
 	</div> <!-- ContentWrapper 끝 -->
 <!-- End of Content Wrapper -->	
 <!-- @@@@@@ 페이징처리 @@@@@@-->
-<div>
+<div class='page'>
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 		<c:choose>
 			<c:when test="${i==param.pageNum }">
@@ -314,7 +308,11 @@ function bookMark() {
 		</c:choose>
 	</c:forEach>
 </div>	
-
+<style>
+	.page{
+		text-align: center;
+	}
+</style>
 <!-- Footer -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 <!-- End of Footer -->

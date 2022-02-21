@@ -60,12 +60,6 @@
 					<div class="card mb-3">
 						<div class="col-md-8">
 							<div class="card-body">
-							
-								<h6 class="card-title font-weight-bold text-dark">공고 제목</h6>
-								<p class="card-text">
-									<!-- 공고제목 입력 -->
-									<input type="text" name="j_subject" placeholder="" maxlength="30" autocomplete="off" class="text"><br>
-								</p>
 								
 								<h6 class="card-title font-weight-bold text-dark">기업명</h6>
 								<p class="card-text">
@@ -74,13 +68,16 @@
 									<div>
 									</div>
 								</p>
-								
+								<h6 class="card-title font-weight-bold text-dark">공고 제목</h6>
+								<p class="card-text">
+									<!-- 공고제목 입력 -->
+									<input type="text" name="j_subject" placeholder="" maxlength="30" autocomplete="off" class="text"><br>
+								</p>
 								<h6 class="card-title font-weight-bold text-dark">채용 기간</h6>
 								<p class="card-text">
 									<input type="date" name="j_startdate" autocomplete="off" class="text"> ~
 									<input type="date" name="j_enddate" autocomplete="off" class="text">
 								</p>
-								
 								<h6 class="card-title font-weight-bold text-dark">채용 형태</h6>
 								<p class="card-text">
 									<fieldset style="width:300px">
@@ -89,7 +86,6 @@
 								    	</c:forEach>
 							    	</fieldset>
 								</p>
-								
 							</div>
 						</div>
 					</div> <!-- (1) 공고제목, 기업명, 채용기간, 채용형태 끝 -->

@@ -27,6 +27,9 @@
 	    font-size: 12px;
 	    font-weight: bold;
 	    background-color: #1dcdff;
+	}
+	#delete{
+    	background-color: #F15F5F; font-size: 12px;
     }
 </style>
 <script>
@@ -69,7 +72,26 @@
 			xhr.open('get','${cp}/job/scrapDelete?j_num=' + j_num ,true);
 			xhr.send();
 		}
-	}	
+	}
+	function remove(j_num) {
+		if (confirm("삭제하시겠습니까?") == true){    //확인
+			$.ajax({
+				url:'${cp}/job/remove?j_num=' + j_num,
+				dataType:'json', 
+				success:function(data){ 
+					if(data.result==true) {
+						alert("삭제 완료");
+						location.href="${cp}/job/jobList";
+					}else {
+						alert("에러지롱");
+						location.reload();
+					}
+				}
+			});
+		 }else{   //취소
+		     return false;
+		 }
+	};
 </script>
 <!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
@@ -255,6 +277,10 @@
 										<span>스크랩</span>
 										</a>
 									</c:if>
+									
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<button class="btn btn-primary" onclick="remove(${jv.j_num})" id="delete">삭제</button>
+									</sec:authorize>
 								</div>
 							</div>
 						</div>
