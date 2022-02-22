@@ -108,10 +108,10 @@
                     		
                     		<c:choose>
                     			<c:when test="${pageNum==1 }">
-                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}" class="first"><span>1</span></a>		
+                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}" class="first"><span>1ㅂㅈ</span></a>		
                     			</c:when>
                     			<c:otherwise>
-                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}"><span>1</span></a>
+                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}"><span>1ㅂㅈ</span></a>
                     			</c:otherwise>
                     		</c:choose>
                     		
