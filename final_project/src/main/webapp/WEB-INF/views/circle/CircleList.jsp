@@ -139,10 +139,10 @@
 								<span class="badge badge-pill badge-secondary">${ vo.ci_person }</span>
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div id="row1" style="display:inline; float:center;">
-							<button class="btn btn-danger" data-target="#removeCircleModal" data-toggle="modal">동아리 삭제</button>
+							<button class="btn btn-danger" data-target="#removeCircleModal${ vo.ci_num }" data-toggle="modal">동아리 삭제</button>
 <!-- Modal -->
 <form action="${ cp }/circle/removeCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
-	<div class="modal fade" id="removeCircleModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="removeCircleModal${ vo.ci_num }" tabindex="-1" role="dialog"
 		 aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
@@ -176,10 +176,10 @@
 <%--
 									<button class="btn btn-danger" onclick="remove(${vo.ci_num})" id="delete">삭제</button>
  --%>
-									<button class="btn btn-warning" data-target="#removeBoardModal" data-toggle="modal">게시글 삭제</button>
+									<button class="btn btn-warning" data-target="#removeBoardModal${ vo.ci_num }" data-toggle="modal">게시글 삭제</button>
 <!-- Modal -->
 <form action="${ cp }/circle/removeBoard?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
-	<div class="modal fade" id="removeBoardModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="removeBoardModal${ vo.ci_num }" tabindex="-1" role="dialog"
 		 aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">

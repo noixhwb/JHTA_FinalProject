@@ -44,7 +44,7 @@
 		        	<a class="nav-link active" href="${ cp }/circle/MyCircleLike">좋아요한 동아리</a>
 		        </li>
 		        <li class="nav-item">
-		        	<a class="nav-link" href="${ cp }/circle/MyCircle">동아리 관리</a>
+		        	<a class="nav-link" href="${ cp }/circle/MyCircle?name=ci_ok&keyword=1">동아리 관리</a>
 		        </li>
      		</ul>
     	</div> <!-- (1) Navbar 왼쪽 끝 -->

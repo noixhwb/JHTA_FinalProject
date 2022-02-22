@@ -88,6 +88,10 @@ public class CircleService {
 		return mapper.remove(ci_num);
 	}
 	
+	public int removem(int ci_num) {
+		return mapper.removem(ci_num);
+	}
+	
 	public int removeb(int ci_num) {
 		return mapper.removeb(ci_num);
 	}

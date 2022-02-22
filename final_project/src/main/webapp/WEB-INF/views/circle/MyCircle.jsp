@@ -43,7 +43,7 @@
 		        	<a class="nav-link" href="${ cp }/circle/MyCircleLike">좋아요한 동아리</a>
 		        </li>
 		        <li class="nav-item">
-		        	<a class="nav-link active" href="${ cp }/circle/MyCircle">동아리 관리</a>
+		        	<a class="nav-link active" href="${ cp }/circle/MyCircle?name=ci_ok&keyword=1">동아리 관리</a>
 		        </li>
      		</ul>
     	</div> <!-- (1) Navbar 왼쪽 끝 -->
@@ -72,14 +72,47 @@
 </nav> 
 
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light color-white">
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+	</button>
+    	
+    	<!-- (1) Navbar 왼쪽 -->
+    	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    		<ul class="navbar-nav">
+        		<li class="nav-item">
+        			<a class="nav-link active" href="${ cp }/circle/MyCircle?name=ci_ok&keyword=1">게시한 동아리</a>
+        		</li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href="${ cp }/circle/MyCircle?name=ci_ok&keyword=0">게시요청한 동아리</a>
+		        </li>
+     		</ul>
+    	</div> <!-- (1) Navbar 왼쪽 끝 -->
+</nav>
+
 <!-- Approach -->
 			<!-- 0. MY 동아리 카드 -->
 			<div class="row">
 				<div class="col-8 offset-2 mt-4 mb-5">
 			<c:if test="${ not empty mylist }">
 			<c:forEach var="myvo" items="${ mylist }">
+				
 			<div class="card shadow mb-3">
-				<div class="col-md-12">
+					<c:choose>
+					<c:when test="${ myvo.ci_ok eq 0 }">
+						<div class="card-header py-3" style="background-color: firebrick;">
+							<h6 class="m-0 font-weight-bold text-white" style="display:inline;">게시요청 중</h6>
+						</div>				
+					</c:when>
+					<c:when test="${ myvo.ci_ok eq 2 }">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-danger" style="display:inline;">승인 거절</h6>
+						</div>
+					</c:when>
+					</c:choose>
 					<div class="card-body">
 						
 						<!-- 동아리정보 -->
@@ -227,36 +260,25 @@
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>            	
 
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
-<!-- ----------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------- -->
 <!-- 신청한 학생 목록 보이기 -->
 						<%--
 						<a href="${ cp }/circle/CircleStudentList?ci_num=${myvo.ci_num}" id="btnList" data-target="#btnList" data-toggle="modal">신청한 학생 목록</a>
 						<button class="btn btn-secondary" data-target="#btnList" data-toggle="modal">신청한 학생 목록</button>
 						<c:set var="fname" value="fname${status.index}" />
 						 --%>
+						<c:if test="${ myvo.ci_ok eq 1 }">
 						<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
 						<input type="button" value="학생목록" id="btnList">
 						<div id="here"></div>
-
+						</c:if>
 							
 					</div> <!-- 0. MY  동아리 카드 body 끝 -->
-				</div>
 			</div>
 			</c:forEach><!-- 0. MY 동아리 카드 끝 -->
 			</c:if>
 				</div>
 			</div>
 					
-					
-
-
 
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝-->
 <!-- /.container-fluid -->

@@ -42,7 +42,8 @@ public class MyCircleController {
 	
 	//동아리 관리 페이지로 이동
 	@GetMapping("/circle/MyCircle")
-	public String mycircle(String name, String keyword, Model model, Principal principal,HttpServletRequest request) {
+	public String mycircle(String name, String keyword, 
+						   Model model, Principal principal,HttpServletRequest request) {
 		MemberVo uservo = cservice.selectM(principal.getName());
 		int userMnum = uservo.getM_num();
 		HashMap<String, Object> map=new HashMap<String, Object>();
@@ -51,8 +52,9 @@ public class MyCircleController {
 		map.put("m_num", userMnum);
 		List<CircleVo> mylist = cservice.selectMyCircle(map);//내가만든동아리
 		
+		mylist = cservice.selectMyCircle(map);//내가만든동아리
 		model.addAttribute("mylist", mylist);
-		System.out.println("내 동아리 관리 페이지로 이동");
+		System.out.println("내 동아리 관리 페이지로 이동"+mylist);
 		return "circle/MyCircle";
 	}
 	

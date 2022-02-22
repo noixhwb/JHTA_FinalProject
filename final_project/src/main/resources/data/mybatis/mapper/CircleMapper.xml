@@ -79,7 +79,7 @@
 	<!-- select로 검색 -->
 	<sql id="mysearch">
 		<if test="name != null and name != ''">
-			WHERE ${name} LIKE '%'||#{keyword}||'%' AND CI_OK=1
+			WHERE ${name} LIKE '%'||#{keyword}||'%'
 		</if>
 	</sql>
 	<!-- select로 검색 -->
@@ -94,7 +94,7 @@
 		( SELECT * FROM CIRCLE 
 			<include refid="mysearch"></include>
 		) MYC 
-		WHERE M_NUM=#{m_num} AND CI_OK=1
+		WHERE M_NUM=#{m_num}
 	</select>
 	
 	<!-- 동아리 신청 목록 -->
@@ -167,6 +167,9 @@
 	<!-- 게시글 삭제 -->
 	<delete id="remove" parameterType="int">
 		DELETE CIRCLE WHERE CI_NUM=#{ci_num}
+	</delete>
+	<delete id="removem" parameterType="int">
+		DELETE MYCIRCLE WHERE CI_NUM=#{ci_num}
 	</delete>
 	<update id="removeb" parameterType="int">
 		UPDATE CIRCLE SET cib_num='', ci_title='', ci_content='', 

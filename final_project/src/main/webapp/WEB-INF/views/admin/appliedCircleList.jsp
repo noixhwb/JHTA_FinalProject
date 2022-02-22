@@ -28,10 +28,10 @@
 		 
 			<ul class="nav nav-tabs justify-content-center  mb-10">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="${ cp }/admin/appliedCircleList">동아리 게시요청</a>
+					<a class="nav-link" href="${ cp }/admin/appliedCommuList">커뮤니티 게시요청</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="${ cp }/admin/appliedCommuList">커뮤니티 게시요청</a>
+					<a class="nav-link active" aria-current="page" href="${ cp }/admin/appliedCircleList">동아리 게시요청</a>
 				</li>
 			</ul>
 <!-- ------------------------------------------------------------ -->	
@@ -43,46 +43,6 @@
 			<div class="card shadow mb-4 mt-4">
 
 				<div class="card-body">
-
-				<nav class="navbar navbar-expand-sm navbar-white bg-white">
- 
-				<ul class="nav navbar-nav justify-content-end">
-					<!-- 정렬 -->
-		        	<li class="nav-item dropdown ml-auto">
-			            <!-- Nav Item - User Information -->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-sm-inline text-gray-600 small"></span> 
-								전체
-							</a> 
-						<!-- Dropdown - User Information -->
-							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								 aria-labelledby="userDropdown">
-								<a class="dropdown-item" 
-								   href="${ cp }/admin/appliedCircleList?category=ci_category&keyword=학술"> 
-									학술
-								</a>
-								<a class="dropdown-item" 
-								   href="${ cp }/circle/appliedCircleList?category=ci_category&keyword=취업">
-									취업
-								</a>
-								<a class="dropdown-item" 
-								   href="${ cp }/circle/appliedCircleList?category=ci_category&keyword=봉사">
-									봉사
-								</a>
-								<a class="dropdown-item" 
-								   href="${ cp }/circle/appliedCircleList?category=ci_category&keyword=기타">
-									기타
-								</a>
-							</div>
-						</li>
-		       		</li> <!-- 정렬 끝 -->
-				</ul>
-				</nav>
-				
-				
-				
 				<table class="table table-hover" style="text-align: center;">
 					<thead>
 					<tr>
@@ -91,19 +51,18 @@
 				    	
 				    	</th>
 				    	<th scope="col">요청자</th>
-				    	<th scope="col">게시요청일</th> <!-- 하고싶은데... 안되겠죠? -->
 				    	<th scope="col">승인여부</th> <!-- approve, reject -->
 				    </tr>
 					</thead>
 					<c:forEach var="vo" items="${ appliedcirclelist }">
 					<tr>
-						<th scope="row">${ vo.ci_num }</th>
-						<td>
+						<th scope="row" class="align-middle">${ vo.ci_num }</th>
+						<td class="align-middle">
 							<button class="btn btn-white" data-target="#circleInfoModal${vo.ci_num }" data-toggle="modal">${ vo.ci_name }</button>
 <!-- Modal -->
 <div class="modal fade" id="circleInfoModal${ vo.ci_num }" tabindex="-1" role="dialog"
 	 aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">동아리 정보</h5>
@@ -135,6 +94,7 @@
 						<h6 class="card-title font-weight-bold text-dark">동아리 규모</h6>
 						${ vo.ci_person }
 					</li>
+					<hr>
 					<!-- 게시글 정보 -->
 					<li>
 						<h6 class="card-title font-weight-bold text-dark">글 제목</h6>
@@ -158,11 +118,119 @@
 </div>
 <!-- End Modal -->
 						</td>
-						<td>${ vo.m_id }</td>
-						<td>요청일어케?</td>
-						<td>
-							<button class="btn btn-primary" onclick="approve(${vo.ci_num})">approve</button>
-							<button class="btn btn-primary" onclick="reject(${vo.ci_num})" style="background-color: #FF5E00">reject</button>
+						<td class="align-middle">
+						<button class="btn btn-white" data-target="#userInfoModal${vo.ci_num }" data-toggle="modal">${ vo.m_id }</button>
+<!-- Modal -->
+<div class="modal fade" id="userInfoModal${ vo.ci_num }" tabindex="-1" role="dialog"
+	 aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">회원 정보</h5>
+				<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			
+			<div class="modal-body">
+				<ul id="dot">
+					<li>
+						<!-- ${ myvo.ci_category } -->
+						<h6 class="card-title font-weight-bold text-dark">이름</h6>
+						${ vo.m_name }
+					</li>
+					<li>
+						<h6 class="card-title font-weight-bold text-dark">닉네임</h6>
+						${ vo.m_nickname }
+					</li>
+					<li>
+						<h6 class="card-title font-weight-bold text-dark">학과</h6>
+						${ vo.m_dept }
+					</li>
+					<li>
+						<h6 class="card-title font-weight-bold text-dark">핸드폰번호</h6>
+						${ vo.m_phone }
+					</li>
+					<li>
+						<h6 class="card-title font-weight-bold text-dark">이메일 주소</h6>
+						${ vo.m_email }
+					</li>
+				</ul>
+			</div>
+				
+		</div>
+	</div>
+</div>
+						</td>
+						<td class="align-middle">
+<div id="row1" style="display:inline; float:center;">
+							<button class="btn btn-primary" data-target="#approveModal" data-toggle="modal">approve</button>
+<!-- Modal -->
+<form action="${ cp }/admin/confirmCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
+	<div class="modal fade" id="approveModal" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="exampleModalLabel">게시요청 확인</h6>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
+					<h5>해당 동아리를 승인하시겠습니까? </h5>
+				</div>
+					
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<input type="submit" class="btn btn-primary" value="승인하기">
+				</div>
+			</div>
+		</div>
+	</div>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
+</div>
+
+<div id="row2" style="display:inline; float:center;">
+							<button class="btn btn-danger" data-target="#rejectModal" data-toggle="modal">reject</button>
+<!-- Modal -->
+<form action="${ cp }/admin/rejectCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
+	<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="exampleModalLabel">게시요청 확인</h6>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
+					<h5>해당 동아리를 거절하시겠습니까? </h5>
+				</div>
+					
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<input type="submit" class="btn btn-primary" value="거절하기">
+				</div>
+			</div>
+		</div>
+	</div>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
+</div>
 						</td>
 					</tr>
 					</c:forEach>
@@ -170,9 +238,8 @@
 				</div>
 				
 				
-				
 <div>
-	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+	<c:forEach var="i" begin="${pu.startPageNum +1 }" end="${pu.endPageNum }">
 		<c:choose>
 			<c:when test="${i==param.pageNum }">
 				<a href="${cp }/admin/appliedCircleList?pageNum=${i}&keyword=${keyword}"><span
@@ -282,19 +349,26 @@
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 <script>
-	function approve(ci_num) {
-		$.ajax({
-			url:'${cp}/admin/confirmCircle?ci_num=' + ci_num, 
-			dataType:'json', 
-			success:function(data){ 
-				if(data.result==true) {
-					alert("승인완료!");
-				}else {
-					alert("에러지롱");
+$(function() {
+		$("#approve").click(function() {
+			var ci_num = $("#ci_num").val();
+			alert("동번호"+ci_num);
+			$.ajax({
+				url:'${cp}/admin/confirmCircle/'+ci_num,
+				data:{"ci_num":ci_num},
+				dataType:'json', 
+				success:function(data){ 
+					if(data.result==true) {
+						alert(ci_num);
+						alert("승인완료!");
+					}else {
+						alert("에러지롱");
+					}
 				}
-			}
+			});
 		});
-	};
+	});
+	
 	function reject(j_num) {
 		$.ajax({
 			url:'${cp}/admin/rejectCircle?ci_num=' + ci_num, 

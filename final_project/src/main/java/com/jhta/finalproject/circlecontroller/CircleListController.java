@@ -78,22 +78,19 @@ public class CircleListController {
 	
 	@PostMapping("/circle/removeBoard")
 	public String removeboard(int ci_num, Model model) {
-		int n = service.removelike(ci_num);
-		int nn = service.removeb(ci_num);
-		System.out.println("@"+ci_num);
-		System.out.println("@@"+n);
-		System.out.println("@@@"+nn);
+		service.removelike(ci_num);
+		service.removeb(ci_num);
+		
 		System.out.println("게시글 삭제 완료!"+ci_num);
 		return "redirect:/circle/CircleList";
 	}
 	
 	@PostMapping("/circle/removeCircle")
 	public String removecircle(int ci_num, Model model) {
-		int n = service.removelike(ci_num);
-		int nn = service.remove(ci_num);
-		System.out.println("@"+ci_num);
-		System.out.println("@@"+n);
-		System.out.println("@@@"+nn);
+		service.removelike(ci_num);
+		service.removem(ci_num);
+		service.remove(ci_num);
+
 		System.out.println("동아리 삭제 완료!"+ci_num);
 		return "redirect:/circle/CircleList";
 	}
