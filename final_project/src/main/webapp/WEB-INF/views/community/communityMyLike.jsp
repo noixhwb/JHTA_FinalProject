@@ -50,7 +50,7 @@
 							<div style="font-size: 20px; font-weight: 700;">${ mlist.cu_name }  <br> <span style="font-size: 15px; font-weight: 200;"> ${ mlist.cu_intro }</span><br> ❤${ mlist.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px; font-weight: 200;"> ${ mlist.cu_category }	</span><br> <span style="font-size: 25px; font-weight: 200;">  ${ mlist.cu_notice }	</span> 	</div> 
 						
 				</div>  
-																					<button class="btn btn-secondary" data-target="#circleInfoModal" data-toggle="modal">커뮤니티 정보수정</button>
+						  <a class="a1" href="${cp }/community/updateform?cu_num=${mlist.cu_num}"> 커뮤니티 정보변경</a> &nbsp&nbsp
 																				<!-- 	<button class="btn btn-secondary">커뮤니티 삭제</button>		 -->									
 						<div>							
 								</div> 												

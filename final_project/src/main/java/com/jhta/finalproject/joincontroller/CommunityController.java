@@ -223,8 +223,17 @@ import com.util.PageUtil;
 		model.addAttribute("b_num", b_num);
 		return "redirect:/board/boarddetail?"+b_num;
 	}
-
+	@GetMapping("/community/updateform")
+	public String commupform(int cu_num,Model model) {
 	
+		CommunityVo vo1=service.select(cu_num);
+		
+		System.out.println(vo1);
+		
+		model.addAttribute("vo1", cu_num);
+		
+		return "community/communityupdateform";
+	}
 	@PostMapping("community/update")
 	public String update(CommunityVo vo,Model model) {
 		
