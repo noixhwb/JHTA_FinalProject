@@ -94,22 +94,47 @@
                                 </table>
                             </div>
                         </div>
-																
-                        <div class="pagination">
-							<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+						
+						<!-- 페이징 -->										
+                    	<div class="pagination">
+                    		<c:choose>
+                    			<c:when test="${pageNum==1 }">
+                    				<a href="#" onclick="return false;">&laquo;</a>		
+                    			</c:when>
+                    			<c:otherwise>
+                    				<a href="${cp }/admin/memberList?pageNum=${pageNum-1}&keyword=${keyword}">&laquo;</a>
+                    			</c:otherwise>
+                    		</c:choose>
+                    		
+                    		<c:choose>
+                    			<c:when test="${pageNum==1 }">
+                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}" class="first"><span>1</span></a>		
+                    			</c:when>
+                    			<c:otherwise>
+                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}"><span>1</span></a>
+                    			</c:otherwise>
+                    		</c:choose>
+                    		
+							<c:forEach var="i" begin="${pu.startPageNum+1 }" end="${pu.endPageNum }">
 								<c:choose>
 									<c:when test="${i==param.pageNum }">
-										<a href="${cp }/admin/memberList?pageNum=${i}&keyword=${keyword}" 
-										class="active"><span>${i }</span></a>
+										<a href="${cp }/admin/memberList?pageNum=${i}&keyword=${keyword}" class="active"><span>${i }</span></a>
 									</c:when>
 									<c:otherwise>
-										<a href="${cp }/admin/memberList?pageNum=${i}&keyword=${keyword}">
-										<span>${i }</span></a>
+										<a href="${cp }/admin/memberList?pageNum=${i}&keyword=${keyword}"><span>${i }</span></a>
 									</c:otherwise>
-								</c:choose>
+									</c:choose>
 							</c:forEach>
+							
+							<c:choose>
+                    			<c:when test="${pageNum==endPageNum }">
+                    				<a href="#" onclick="return false;">&laquo;</a>		
+                    			</c:when>
+                    			<c:otherwise>
+                    				<a href="${cp }/admin/memberList?pageNum=${pageNum+1}&keyword=${keyword}">&raquo;</a>
+                    			</c:otherwise>
+                    		</c:choose>
 						</div>	
-                    </div>
 			
 	</div> <!-- ContentWrapper 끝 -->
 <!-- End of Content Wrapper -->	
@@ -124,12 +149,13 @@
 <!-- End of Page Wrapper -->
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 <style>
-#dot{
+	#dot{
    list-style:none;
    padding-left:5px;
    }
    .pagination{
 		display: inline-block;
+		margin:0 auto;
    }
    .pagination a {
 	  color: black;
@@ -137,11 +163,11 @@
 	  padding: 8px 16px;
 	  text-decoration: none;
 	}
-	.pagination a.active {
-		  background-color: #4CAF50;
+	.pagination a.first, a.active {
+		  background-color: #4e73df;
 		  color: white;
 	}
-	.pagination a:hover:not(.active) {background-color: #ddd;}
+	.pagination a:hover:not(.active, .first) {background-color: #ddd;}
 	.pagination a {
 	  border-radius: 25px;
 	}
