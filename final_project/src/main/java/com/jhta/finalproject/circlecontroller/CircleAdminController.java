@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -49,27 +51,20 @@ public class CircleAdminController {
 	}
 	
 	// 승인 메소드
-	@GetMapping(value="/admin/comfirmCircle",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Model comfirmCircle(int ci_num, Model model){
-		try {
-			service.confirmCircle(ci_num);
-			return model.addAttribute("result","true");
-		}catch(Exception e) {
-			e.printStackTrace();
-			return model.addAttribute("result","false");
-		}
-			
-	}
+	@PostMapping("/admin/confirmCircle")
+	public String confirmCircle(int ci_num, Model model){
+		service.confirmCircle(ci_num);
 		
+		System.out.println("승인 완료!"+ci_num);
+		return "redirect:/admin/appliedCircleList";
+	}
+	
 	// 거절 메소드
-	@GetMapping(value="/admin/rejectCircle",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Model rejectCircle(int ci_num, Model model){
-		try {
-			service.rejectCircle(ci_num);
-			return model.addAttribute("result","true");
-		}catch(Exception e) {
-			e.printStackTrace();
-			return model.addAttribute("result","false");
-		}
+	@PostMapping("/admin/rejectCircle")
+	public String rejectCircle(int ci_num, Model model){
+		service.rejectCircle(ci_num);
+		
+		System.out.println("거절 완료!"+ci_num);
+		return "redirect:/admin/appliedCircleList";
 	}
 }

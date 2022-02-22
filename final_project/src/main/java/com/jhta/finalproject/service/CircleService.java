@@ -84,6 +84,18 @@ public class CircleService {
 		return mapper.minusLike(ci_num);
 	}
 	
+	public int remove(int ci_num) {
+		return mapper.remove(ci_num);
+	}
+	
+	public int removeb(int ci_num) {
+		return mapper.removeb(ci_num);
+	}
+	
+	public int removelike(int ci_num) {
+		return mapper.removelike(ci_num);
+	}
+	
 	public MemberVo selectM(String m_id) {
 		return mapper.selectM(m_id);
 	}

@@ -1,16 +1,23 @@
 package com.jhta.finalproject.circlecontroller;
 
+import java.io.File;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.circlevo.CircleVo;
+import com.jhta.finalproject.jobvo.JobVo;
 import com.jhta.finalproject.service.CircleService;
+import com.jhta.finalproject.vo.MemberVo;
 import com.util.PageUtil;
 
 @Controller
@@ -68,4 +75,11 @@ public class CircleListController {
 		return "circle/CircleList";
 	}
 	
+	@GetMapping(value="/circle/remove", produces= {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Model removecircle(int ci_num, Model model, Principal principal) {
+		service.remove(ci_num);
+		service.removeb(ci_num);
+		service.removelike(ci_num);
+		return model.addAttribute("result", "success");
+	}
 }

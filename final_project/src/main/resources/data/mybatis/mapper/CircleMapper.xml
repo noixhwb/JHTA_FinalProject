@@ -164,6 +164,20 @@
 	</select>
 	-->
 	
+	<!-- 게시글 삭제 -->
+	<delete id="remove" parameterType="int">
+		DELETE CIRCLE WHERE CI_NUM=#{ci_num}
+	</delete>
+	<update id="removeb" parameterType="int">
+		UPDATE CIRCLE SET cib_num='', ci_title='', ci_content='', 
+						  ci_imgfile='', ci_startdate='', ci_enddate='', 
+						  ci_view=0, ci_recommend=0 
+		WHERE CI_NUM=#{ci_num}
+	</update>
+	<delete id="removelike" parameterType="int">
+		DELETE LIKECIRCLE WHERE CI_NUM=#{ci_num}
+	</delete>
+	
 	<!-- 해당페이지 user의 값들 가져오기 FROM MemberVo -->
 	<select id="selectM" parameterType="String" resultType="com.jhta.finalproject.vo.MemberVo">
 		SELECT * FROM MEMBER WHERE M_ID=#{m_id}

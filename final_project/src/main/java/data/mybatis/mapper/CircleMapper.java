@@ -29,5 +29,8 @@ public interface CircleMapper {
 	int addHit(int ci_num);
 	int addLike(int ci_num);
 	int minusLike(int ci_num);
+	int remove(int ci_num);
+	int removeb(int ci_num);
+	int removelike(int ci_num);
 	MemberVo selectM(String m_id); //해당페이지의 user 정보들 가져오기
 }
