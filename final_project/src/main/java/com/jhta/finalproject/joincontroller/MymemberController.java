@@ -36,7 +36,7 @@ public class MymemberController {
 	public String memberForm(Principal principal,Model model) {
 		MemberVo vo=service.selectUser(principal.getName());
 		model.addAttribute("vo",vo);
-		
+		  
 		 
 		return "member/mymember";
 	}
