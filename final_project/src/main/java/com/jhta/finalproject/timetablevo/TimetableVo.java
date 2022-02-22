@@ -12,8 +12,8 @@ import lombok.ToString;
 public class TimetableVo {
 	private int tt_num;
 	private int m_num;
+	private int s_num;
 	private String s_name;
 	private int s_score;
-	private int m_score;
 	private String tt_name;
 }

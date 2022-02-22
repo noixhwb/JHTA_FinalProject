@@ -371,7 +371,7 @@
 		let tt_name = $("#table-name").val();
 		let numListParam = numList.join('&');
 		$.ajax({
-			url : '${cp}/timetable/tableInsert1',
+			url : '${cp}/timetable/tableInsert',
 			data : {
 				"tt_name" : tt_name,
 				"numList" : numListParam

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mybatis.mapper.RegisterMapper">
+	<!-- 학생번호로 학기 목록 검색(중복허용) -->
+	<select id="termList" parameterType="int" resultType="com.jhta.finalproject.timetablevo.RegisterVo">
+		select * from REGISTER where m_num=#{m_num}
+	</select>
+	
+	<!-- 학생번호로 학기 목록 검색(중복제거) -->
+	<select id="termListName" parameterType="int" resultType="com.jhta.finalproject.timetablevo.RegisterVo">
+		select DISTINCT r_name from REGISTER where m_num=#{m_num}
+	</select>
+	
+	<!-- 학생번호, 학기이름으로 검색 -->
+	<select id="termDetail" parameterType="hashmap" resultType="com.jhta.finalproject.timetablevo.RegisterVo">
+		select * from REGISTER where m_num=#{m_num} and r_name=#{r_name}
+	</select>
+	
+	<insert id="insert" parameterType="com.jhta.finalproject.timetablevo.RegisterVo">
+		insert into REGISTER 
+		values(REGISTER_seq.NEXTVAL,#{m_num},#{s_name},#{s_score},#{m_score},#{r_name})
+	</insert>
+	
+	<!-- 학생번호, 학기이름으로 삭제 -->
+	<delete id="delete" parameterType="hashmap" >
+		delete from REGISTER where m_num=#{m_num} and r_name=#{r_name}
+	</delete>
+</mapper>

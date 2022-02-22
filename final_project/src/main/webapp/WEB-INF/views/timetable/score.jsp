@@ -19,7 +19,7 @@
 					 type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					 시간표불러오기</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-					<c:forEach var="vo" items="${list }">
+					<c:forEach var="vo" items="${tablelist }">
 				    <li><a class="dropdown-item" onclick="tableLoad(${vo.tt_name });">${vo.tt_name }</a></li>
 				    </c:forEach>
 				  </ul>
@@ -80,14 +80,14 @@
 					class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary" id="DropdownTitle">수강정보 입력</h6>
 					<select class="form-control col-sm-3" id="selTerm">
-						<option value="1학년 1학기">1학년 1학기</option>
-						<option value="1학년 2학기">1학년 2학기</option>
-						<option value="2학년 1학기">2학년 1학기</option>
-						<option value="2학년 2학기">2학년 2학기</option>
-						<option value="3학년 1학기">3학년 1학기</option>
-						<option value="3학년 2학기">3학년 2학기</option>
-						<option value="4학년 1학기">4학년 1학기</option>
-						<option value="5학년 2학기">4학년 2학기</option>
+						<option value="1학년1학기">1학년 1학기</option>
+						<option value="1학년2학기">1학년 2학기</option>
+						<option value="2학년1학기">2학년 1학기</option>
+						<option value="2학년2학기">2학년 2학기</option>
+						<option value="3학년1학기">3학년 1학기</option>
+						<option value="3학년2학기">3학년 2학기</option>
+						<option value="4학년1학기">4학년 1학기</option>
+						<option value="5학년2학기">4학년 2학기</option>
 					</select>
 				</div>
 				<!-- Card Body -->
@@ -277,7 +277,6 @@
 <!-- 이건 지우지마세요 -->
 
 <script type="text/javascript">
-$('.dropdown-toggle').dropdown();
 	var totalScore = "";
 	var avgScore = "";
 	var termName = $("#selTerm").val();
@@ -327,9 +326,9 @@ $('.dropdown-toggle').dropdown();
 									&& $("input[name='scoreNum']").eq(i).val() != null
 									&& $("select[name='scoreABC']").eq(i).val() != null) {
 								$.ajax({
-									url : '${cp}/timetable/tableInsert2',
+									url : '${cp}/timetable/registerInsert',
 									data : {
-										"tt_name" : termName,
+										"r_name" : termName,
 										"s_name" : $("input[name='subName']")
 												.eq(i).val(),
 										"s_score" : parseInt($(
@@ -340,19 +339,82 @@ $('.dropdown-toggle').dropdown();
 												.eq(i).val())
 									},
 									method : 'GET',
-									dataType : 'json'
+									dataType : 'json',
+									success : function(data) {
+										if (data.result == true) {
+											console.log("저장성공");
+										} else {
+											console.log("저장실패");
+										}
+									}
 								});
 							}
 						}
 					});
 	
-	/* function tableLoad(tt_name) {
+	function tableLoad(tt_name) {
 		$.ajax({
 			url : '${cp}/timetable/tableDetailLoad',
 			data : {"tt_name" : tt_name},
 			method : 'GET',
-			dataType : 'json'
+			dataType : 'json',
+			success : function(data) {
+				if (data.result == false) {
+					alert("불러올 정보가 없습니다.");
+				} else {
+					var lengthS = $("input[name='subName']").length;
+					let j=0;
+					$(data.list).each(function(i,vo) {
+						$("input[name='subName']").eq(i).val(vo.s_name);
+						$("input[name='scoreNum']").eq(i).val(vo.s_score);
+						j=i;
+					});
+					if(j<lengthS) {
+						for(j=j+1;j<=lengthS;j++) {
+							$("input[name='subName']").eq(j).val("");
+							$("input[name='scoreNum']").eq(j).val(0);
+						}
+					}
+				}
+			}
 		});
-	} */
+	}
+	
+	$("#selTerm").on("change", function() {
+		termName = $("#selTerm").val();
+		$.ajax({
+			url : '${cp}/timetable/termDetailLoad',
+			data : {"r_name" : termName},
+			method : 'GET',
+			dataType : 'json',
+			success : function(data) {
+				if (data.result) {
+					var lengthS = $("input[name='subName']").length;
+					let j=0;
+					$(data.termlist).each(function(i,vo) {
+						$("input[name='subName']").eq(i).val(vo.s_name);
+						$("input[name='scoreNum']").eq(i).val(vo.s_score);
+						$("select[name='scoreABC']").eq(i).val(vo.m_score);
+						j=i;
+					});
+					if(j<lengthS) {
+						for(j=j+1;j<=lengthS;j++) {
+							$("input[name='subName']").eq(j).val("");
+							$("input[name='scoreNum']").eq(j).val(0);
+							$("select[name='scoreABC']").eq(j).val(0);
+						}
+					}
+				}else {
+					alert("불러오기실패!");
+					var lengthS = $("input[name='subName']").length;
+					for(let j=j0;j<=lengthS;j++) {
+						$("input[name='subName']").eq(j).val(" ");
+						$("input[name='scoreNum']").eq(j).val(0);
+						$("select[name='scoreABC']").eq(j).val(0);
+					}
+				}
+			}
+		});
+	});
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp"%>

@@ -9,12 +9,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Data
-public class Timetable2Vo {
-	private int tt_num;
+public class RegisterVo {
+	private int r_num;
 	private int m_num;
-	private int s_num;
 	private String s_name;
 	private int s_score;
-	private int m_score;
-	private String tt_name;
+	private Double m_score;
+	private String r_name;
 }

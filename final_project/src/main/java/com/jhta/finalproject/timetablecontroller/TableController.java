@@ -18,7 +18,6 @@ import com.jhta.finalproject.service.MemberService;
 import com.jhta.finalproject.service.SubjectService;
 import com.jhta.finalproject.service.TimetableService;
 import com.jhta.finalproject.timetablevo.SubjectVo;
-import com.jhta.finalproject.timetablevo.Timetable2Vo;
 import com.jhta.finalproject.timetablevo.TimetableVo;
 
 @Controller
@@ -53,7 +52,7 @@ public class TableController {
 	}
 	
 	//과목 리스트랑 시간표 이름 받아와서 insert하기
-	@GetMapping(value="/timetable/tableInsert1", produces={MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value="/timetable/tableInsert", produces={MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String, Object> insert(String tt_name, String numList, Principal principal) {
 		String m_id= principal.getName();
 		int m_num=m_service.isMember(m_id).getM_num();
@@ -61,7 +60,7 @@ public class TableController {
 		int n=0;
 		for(int i=0;i<numArray.length;i++) {
 			SubjectVo vo = service.selectOne(Integer.parseInt(numArray[i]));
-			n=t_service.insert(new TimetableVo(0, m_num, vo.getS_name(), vo.getS_score(), 0, tt_name));
+			n=t_service.insert(new TimetableVo(0, m_num, vo.getS_num(), vo.getS_name(), vo.getS_score(), tt_name));
 		}
 		HashMap<String,Object> map=new HashMap<String, Object>();
 		if(n!=0) {
@@ -72,21 +71,7 @@ public class TableController {
 		return map;
 	}
 	
-	//과목명,학점,성적,시간표 이름 받아와서 insert하기
-	@GetMapping(value="/timetable/tableInsert2", produces={MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody HashMap<String, Object> insert(String tt_name, String s_name, int s_score, int m_score, Principal principal) {
-		String m_id= principal.getName();
-		int m_num=m_service.isMember(m_id).getM_num();
-		int n=t_service.insert(new TimetableVo(0, m_num, s_name, s_score, m_score, tt_name));
-		HashMap<String,Object> map=new HashMap<String, Object>();
-		if(n!=0) {
-			map.put("result", true);
-		}else {
-			map.put("result", false);
-		}
-		return map;
-	}
-	
+	//시간표 불러와서 강의정보 리턴하기
 	@GetMapping(value="/timetable/tableDetailLoad", produces={MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String, Object> tableDetailLoad(String tt_name, Principal principal) {
 		String m_id= principal.getName();
@@ -95,12 +80,12 @@ public class TableController {
 		HashMap<String,Object> map=new HashMap<String, Object>();
 		map.put("m_num", m_num);
 		map.put("tt_name", tt_name);
-		List<Timetable2Vo> tablelist=t_service.tableDetail(map);
+		List<TimetableVo> tablelist=t_service.tableDetail(map);
 		if(tablelist==null) {
 			map.put("result", false);
 		}else {
 			List<SubjectVo> list= new ArrayList<SubjectVo>();
-			for(Timetable2Vo tvo:tablelist) {
+			for(TimetableVo tvo:tablelist) {
 				SubjectVo vo = service.selectOne(tvo.getS_num());
 				list.add(vo);
 			}
