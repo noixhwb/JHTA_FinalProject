@@ -137,6 +137,78 @@
 							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
 								<span class="badge badge-pill badge-secondary">${ vo.ci_category }</span>
 								<span class="badge badge-pill badge-secondary">${ vo.ci_person }</span>
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+<div id="row1" style="display:inline; float:center;">
+							<button class="btn btn-danger" data-target="#removeCircleModal" data-toggle="modal">동아리 삭제</button>
+<!-- Modal -->
+<form action="${ cp }/circle/removeCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
+	<div class="modal fade" id="removeCircleModal" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="exampleModalLabel"></h6>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
+					<h5>해당 동아리를 삭제하시겠습니까? </h5>
+				</div>
+					
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<input type="submit" class="btn btn-primary" value="삭제하기">
+				</div>
+			</div>
+		</div>
+	</div>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
+</div>
+
+<div id="row2" style="display:inline; float:center;">
+<%--
+									<button class="btn btn-danger" onclick="remove(${vo.ci_num})" id="delete">삭제</button>
+ --%>
+									<button class="btn btn-warning" data-target="#removeBoardModal" data-toggle="modal">게시글 삭제</button>
+<!-- Modal -->
+<form action="${ cp }/circle/removeBoard?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
+	<div class="modal fade" id="removeBoardModal" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="exampleModalLabel"></h6>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
+					<h5>해당 게시글을 삭제하시겠습니까? </h5>
+				</div>
+					
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<input type="submit" class="btn btn-primary" value="삭제하기">
+				</div>
+			</div>
+		</div>
+	</div>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
+</div>
+								</sec:authorize>
 							</div>
 							<input type="hidden" value="${ vo.ci_category }" id="catvalue">
 						</div>

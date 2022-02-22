@@ -27,9 +27,12 @@ public class MemberList {
 		PageUtil pu=new PageUtil(pageNum, 10, 5, totalRowCount);
 		int startRow=pu.getStartRow();
 		int endRow=pu.getEndRow(); 
+		int endPageNum = pu.getEndPageNum();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("endPageNum",endPageNum);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);
 		model.addAttribute("mList",service.getList(map));

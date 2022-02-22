@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,11 +76,25 @@ public class CircleListController {
 		return "circle/CircleList";
 	}
 	
-	@GetMapping(value="/circle/remove", produces= {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Model removecircle(int ci_num, Model model, Principal principal) {
-		service.remove(ci_num);
-		service.removeb(ci_num);
-		service.removelike(ci_num);
-		return model.addAttribute("result", "success");
+	@PostMapping("/circle/removeBoard")
+	public String removeboard(int ci_num, Model model) {
+		int n = service.removelike(ci_num);
+		int nn = service.removeb(ci_num);
+		System.out.println("@"+ci_num);
+		System.out.println("@@"+n);
+		System.out.println("@@@"+nn);
+		System.out.println("게시글 삭제 완료!"+ci_num);
+		return "redirect:/circle/CircleList";
+	}
+	
+	@PostMapping("/circle/removeCircle")
+	public String removecircle(int ci_num, Model model) {
+		int n = service.removelike(ci_num);
+		int nn = service.remove(ci_num);
+		System.out.println("@"+ci_num);
+		System.out.println("@@"+n);
+		System.out.println("@@@"+nn);
+		System.out.println("동아리 삭제 완료!"+ci_num);
+		return "redirect:/circle/CircleList";
 	}
 }
