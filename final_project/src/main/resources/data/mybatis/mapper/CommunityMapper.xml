@@ -159,7 +159,7 @@
 
 	<select id="selectcc"
 		resultType="com.jhta.finalproject.vo.CommunityVo">
-		SELECT * FROM COMMUNITY WHERE m_num;
+		SELECT * FROM COMMUNITY WHERE m_num=#{m_num}
 	</select>
 
 	<select id="selectBoard2" resultType="com.jhta.finalproject.vo.BoardVo">
@@ -185,6 +185,10 @@
 	<delete id="removeCommunity">
 		delete from Community where cu_num=#{cu_num}
 	</delete>
+	
+	<update id="updatecc">
+		update community set cu_intro =#{cu_intro} , cu_notice=#{cu_notice} where cu_num=#{cu_num}
+	</update>
 </mapper>
 
 	

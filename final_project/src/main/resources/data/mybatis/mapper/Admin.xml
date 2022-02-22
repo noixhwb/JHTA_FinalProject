@@ -71,7 +71,7 @@
 	
 	<!-- @@@@@@@@@@@@@@@@   커뮤니티   @@@@@@@@@@@@@@@@@@@@-->
 	<!-- 커뮤니티 개시요청 리스트 -->
-	<select id="appliedCommuList" parameterType="hashmap" resultType="com.jhta.finalproject.circlevo.CircleVo">
+	<select id="appliedCommuList" parameterType="hashmap" resultType="com.jhta.finalproject.vo.CommunityVo">
 		select * from
 		(
 		   select b.*,rownum rnum

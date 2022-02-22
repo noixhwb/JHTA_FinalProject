@@ -85,7 +85,7 @@
 											<h6 class="card-title font-weight-bold text-dark">커뮤니티
 												소개글 작성</h6>
 											<p class="card-text">
-												<input type="text" name="cu_intro" placeholder="커뮤니티 이름"
+												<input type="text" name="cu_intro" placeholder="커뮤니티 소개글 작성"
 													maxlength="30" autocomplete="off" class="text">
 										</div>
 

@@ -86,8 +86,8 @@
 								</div>
 							</div>
 							<div class="col-md-4"> <!-- 카드본문 오른쪽 (포스터) -->
-								<img src="${ cp }/resources/images/circle/${ vo.cu_num }" 
-									 class="img-fluid rounded-start" alt="..." style="max-width: 150px;">
+							<%-- 	<img src="${ cp }/resources/images/circle/${ vo.cu_num }" 
+									 class="img-fluid rounded-start" alt="..." style="max-width: 150px;"> --%>
 							</div>
 						</div>
 					</div> <!-- body 끝 -->

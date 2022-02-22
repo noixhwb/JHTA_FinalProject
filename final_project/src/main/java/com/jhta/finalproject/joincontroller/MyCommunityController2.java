@@ -27,14 +27,19 @@ public class MyCommunityController2 {
 		List<CommunityVo> mc= service.selectmc(m_num);
 		List<MycommBoVo> mb= new ArrayList<MycommBoVo>();
 		List<BoardVo> bd = service.selectboard(m_num);
+		CommunityVo ma=service.selectcc(m_num);
 		for(BoardVo vo:bd) {
+		
 			CommunityVo aa = service.selectcm(vo.getCu_num());
 			String i_filename = service.selectbi(vo.getB_num());
 			MycommBoVo bb = new MycommBoVo(vo.getB_num(), vo.getM_num(),vo.getB_content(),vo.getB_regdate(),vo.getB_recommend(),vo.getCu_num(),vo.getB_title(),i_filename,aa.getCu_name());
+			mb.add(bb);
 		}
-		model.addAttribute("mlist",service.selectcc(m_num));
+	      
+		model.addAttribute("mlist",ma);
 		model.addAttribute("blist",mb);
 		model.addAttribute("clist",mc);
+		System.out.println(service.selectcc(m_num));
 		System.out.println(mb);
 		System.out.println(mc);
 		return "/community/communityMyLike";

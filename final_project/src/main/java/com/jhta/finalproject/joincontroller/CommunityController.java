@@ -226,7 +226,9 @@ import com.util.PageUtil;
 
 	
 	@PostMapping("community/update")
-	public String update(CommunityVo vo) {
+	public String update(CommunityVo vo,Model model) {
+		
+		
 		service.updatecc(vo);
 		return "redirect:/community/mycommunity";
 	} 
@@ -267,61 +269,7 @@ import com.util.PageUtil;
 	}
 	
 	
-//	  
-//	    @RequestMapping(value="/board/addComment.do")
-//	    @ResponseBody
-//	    public String ajax_addComment(@ModelAttribute("boardVO") CommentsVo Cvo, HttpServletRequest request, Model model,Principal principal) throws Exception{
-//	        
-//	        HttpSession session = request.getSession();
-//	        MemberVo vo=service.selectUser(principal.getName());
-//	        BoardVo vo1=service.detail(0);
-//	        try{
-//	        
-//	            Cvo.setM_num(vo.getM_num());        
-//	            Cvo.setB_num()
-//	            boardServiceImpl.addComment(boardVO);
-//	            
-//	        } catch (Exception e){
-//	            e.printStackTrace();
-//	        }
-//	        
-//	        return "success";
-//	    }
-//	    
-//	    /**
-//	     * 게시물 댓글 불러오기(Ajax)
-//	     * @param boardVO
-//	     * @param request
-//	     * @return
-//	     * @throws Exception
-//	     */
-//	    @RequestMapping(value="/board/commentList.do", produces="application/json; charset=utf8")
-//	    @ResponseBody
-//	    public ResponseEntity ajax_commentList(@ModelAttribute("boardVO") BoardVO boardVO, HttpServletRequest request) throws Exception{
-//	        
-//	        HttpHeaders responseHeaders = new HttpHeaders();
-//	        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
-//	        
-//	        // 해당 게시물 댓글
-//	        List<BoardVO> commentVO = boardServiceImpl.selectBoardCommentByCode(boardVO);
-//	        
-//	        if(commentVO.size() > 0){
-//	            for(int i=0; i<commentVO.size(); i++){
-//	                HashMap hm = new HashMap();
-//	                hm.put("c_code", commentVO.get(i).getC_code());
-//	                hm.put("comment", commentVO.get(i).getComment());
-//	                hm.put("writer", commentVO.get(i).getWriter());
-//	                
-//	                hmlist.add(hm);
-//	            }
-//	            
-//	        }
-//	        
-//	        JSONArray json = new JSONArray(hmlist);        
-//	        return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
-//	        
-//	    }
-	
+
 	
 	
 }
