@@ -37,7 +37,7 @@ public class MymemberController {
 		MemberVo vo=service.selectUser(principal.getName());
 		model.addAttribute("vo",vo);
 		
-		
+		 
 		return "member/mymember";
 	}
 	
