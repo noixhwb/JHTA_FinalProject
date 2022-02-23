@@ -11,6 +11,7 @@
 <!-- End of Header -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
 <script>
+	// 북마크 on/off
 	function bookMark(num) {
 		var j_num=num;
 		var test1 = document.getElementById("mark"+j_num);
@@ -51,6 +52,7 @@
 			xhr.send();
 		}
 	}
+	// 관리자 삭제버튼
 	function remove(j_num) {
 		if (confirm("삭제하시겠습니까?") == true){    //확인
 			$.ajax({
@@ -109,6 +111,7 @@
 <!-- Main Content -->
 		<div id="content">
 		<div class="row">
+				<!-- 카드 비율 설정 col / offset -->
 				<div class="col-9 offset-1">
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
@@ -126,7 +129,7 @@
 							placeholder="찾으시는 기업이 있나요?" aria-label="Search"
 							aria-describedby="basic-addon2">
 						<div class="input-group-append">
-							<button class="btn btn-primary" type="button">
+							<button class="btn btn-primary" type="submit">
 									<i class="fas fa-search fa-sm"></i>
 							</button>
 							<!-- 필터 검색 
@@ -137,8 +140,7 @@
 							</a> -->
 						</div>
 					</div>
-					<input type="hidden" name="${_csrf.parameterName }"
-						value="${_csrf.token }">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</form>
 			</div>
 			

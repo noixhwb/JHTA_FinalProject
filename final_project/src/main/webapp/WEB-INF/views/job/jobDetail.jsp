@@ -12,7 +12,7 @@
 	#companyTopInfo {
 		margin-top: 50px;
 	}
-	#infoimg{
+	#infoimg, #companyimg{
 		margin: 0 auto;
 	    max-width: 100%;
 	    height: auto;
@@ -33,6 +33,7 @@
     }
 </style>
 <script>
+	// 북마크 on/off
 	function bookMark(num) {
 		var j_num=num;
 		var test1 = document.getElementById("mark"+j_num);
@@ -73,6 +74,7 @@
 			xhr.send();
 		}
 	}
+	// 관리자 삭제버튼
 	function remove(j_num) {
 		if (confirm("삭제하시겠습니까?") == true){    //확인
 			$.ajax({
@@ -105,41 +107,30 @@
 <!-- Begin Page Content -->
 		<div class="container-fluid">
 
-<!-- Page Heading -->
-<!--  		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800"> 채용 공고 게시요청 </h1>
-					
-			</div> -->
-			<!-- 1. 카드 -->
+			<!-- 1. 상단부분 -->
 			<div class="card shadow mb-4">
-				<div class="row g-0">
-				<div class="col-md-4">
-					<img src="${cp }/resources/upload/${jv.j_img }" class="companyimg">
+				<div class="card-body">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="${cp }/resources/upload/${jv.j_img }" class="companyimg">
+						</div>
+						<div class="col-md-8" id="companyTopInfo">
+							<p style="font-size: 18px; font-weight: bold; color:#292929;">${jv.j_company }</p>
+							<h6 style="color:#4c4c4c;">${jv.j_subject }</h6>
+							<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i> ${jv.j_view} 
+							</span>	
+						</div>
+					</div>	
 				</div>
-				<div class="col-md-8" id="companyTopInfo">
-					<p style="font-size: 18px; font-weight: bold; color:#292929;">${jv.j_company }</p>
-					<h6 style="color:#4c4c4c;">${jv.j_subject }</h6>
-					<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i> ${jv.j_view} 
-					</span>	
-				</div>
-				</div>	
 			</div> <!-- 1.  카드 끝 -->
-		<%-- 	<!-- 1. 카드 -->
-			<div class="card shadow mb-4">
-					<img src="${cp }/resources/upload/${jv.j_img }" class="companyimg">
-					<p style="font-size: 18px; font-weight: bold; color:#292929;">${jv.j_company }</p>
-					<h6 style="color:#4c4c4c;">${jv.j_subject }</h6>
-					<span id="viewCount"><i class="fa-solid fa-eye text-gray-400"></i>${jv.j_view}
-					</span>		
-			</div> <!-- 1.  카드 끝 --> --%>
-
+		
 <!-- Approach -->
 
 			<div class="card shadow mb-4">
 				
 				<div class="card-body">
 						
-					<!-- (1) 상세정보	 -->
+					<!-- (1) 공고 상세정보	 -->
 					<div class="card mb-3">
 						<div class="col-md-12">
 							<div class="card-body">
@@ -188,12 +179,12 @@
 					</div> <!-- (1) 공고제목, 기업명, 채용기간, 채용형태 끝 -->
 					
 						
-					<!-- (2) 모집 부문 선택  -->
+					<!-- (2) 공고이미지 선택  -->
 					<div class="card mb-3">
-							<div class="card-body" >
-									<img src="${cp }/resources/upload/${jv.j_infoimg }" id="infoimg">
-							</div>
-					</div> <!-- (2) 모집 부문 끝 -->
+						<div class="card-body" >
+							<img src="${cp }/resources/upload/${jv.j_infoimg }" id="infoimg">
+						</div>
+					</div> <!-- (2) 공고이미지 끝 -->
 						
 					<!-- 다른 채용 공고 
 					<div class="card shadow mb-4">
@@ -253,7 +244,7 @@
 					</div>	-->
 					
 						
-					<!-- (3) 근무지역 -->
+					<!-- (3) 기타 기능 -->
 					<div class="card mb-3">
 						<div class="col-md-8">
 							<div class="card-body">
@@ -284,7 +275,7 @@
 								</div>
 							</div>
 						</div>
-					</div> <!-- (3) 근무지역 끝 -->
+					</div> <!-- (3) 기타기능 끝 -->
 						
 				</div> <!-- 채용카드의 body 끝 -->
 			</div> <!-- 2. 채용카드 끝 -->

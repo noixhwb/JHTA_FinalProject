@@ -51,9 +51,7 @@
 			
 			<!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">회원 목록</h6>
-                        </div>
+                        
                         <div class="card-body">
                             <div class="table-responsive">
                             
@@ -108,10 +106,10 @@
                     		
                     		<c:choose>
                     			<c:when test="${pageNum==1 }">
-                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}" class="first"><span>1ㅂㅈ</span></a>		
+                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}" class="first"><span>1</span></a>		
                     			</c:when>
                     			<c:otherwise>
-                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}"><span>1ㅂㅈ</span></a>
+                    				<a href="${cp }/admin/memberList?pageNum=&keyword=${keyword}"><span>1</span></a>
                     			</c:otherwise>
                     		</c:choose>
                     		
