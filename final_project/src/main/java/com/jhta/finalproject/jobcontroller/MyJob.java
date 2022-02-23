@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jhta.finalproject.jobvo.DutyVo;
+import com.jhta.finalproject.jobvo.JobVo;
 import com.jhta.finalproject.jobvo.MyJobVo;
+import com.jhta.finalproject.service.DutyService;
 import com.jhta.finalproject.service.JobService;
 import com.jhta.finalproject.service.MyJobService;
 import com.jhta.finalproject.vo.MemberVo;
@@ -22,12 +25,14 @@ import com.util.PageUtil;
 public class MyJob {
 	@Autowired MyJobService MJservice;
 	@Autowired JobService Jservice;
+	@Autowired private DutyService Dservice;
 	
 	@GetMapping("/job/myScrap")
 	public String scrapList(@RequestParam(value="pageNum",defaultValue = "1") int pageNum,
 				Model model,Principal principal ) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", "");
+		
 		// 페이징
 		int totalRowCount = Jservice.getCount(map);
 		PageUtil pu=new PageUtil(pageNum, 6, 5, totalRowCount);
@@ -39,7 +44,12 @@ public class MyJob {
 		MemberVo uservo = Jservice.selectUser(principal.getName());
 		int userNum = uservo.getM_num();
 		List<MyJobVo> list = MJservice.myScrap(userNum);
+		List<JobVo> getPopular = Jservice.getPopular();
+		List<DutyVo> dutyList = Dservice.list();
+		
 		model.addAttribute("list",list);
+		model.addAttribute("popularList",getPopular);
+		model.addAttribute("dutyList",dutyList);
 		
 		return "job/myScrap";
 	}

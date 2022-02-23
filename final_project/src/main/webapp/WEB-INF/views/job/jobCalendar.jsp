@@ -8,14 +8,10 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- fullcalendar CDN -->
-<link
-	href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css'
-	rel='stylesheet' />
-<script
-	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
-<!-- ful	lcalendar 언어 CDN -->
-<script
-	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+<!-- fullcalendar 언어 CDN -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <style>
 /* body 스타일 */
 html, body {
@@ -81,6 +77,7 @@ html, body {
 							</div>	
 						</div>		
 					</div>
+					
 					<!-- 이벤트 클릭 시 나오는 모달 창 -->
 					<div id="calendarModal" class="modal fade">
 						<div class="modal-dialog">
@@ -99,6 +96,7 @@ html, body {
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>	
 		</div>		
@@ -115,10 +113,11 @@ html, body {
 		// 이벤트 클릭시 기능
 		eventClick:  function(info) {
 			// 모달생성
-	        $('#modalTitle').html(event.title);
+			$('#calendarModal').modal();
+			
+	  /*    $('#modalTitle').html(event.title);
 	        $('#modalBody').html(event.description);
-	        $('#eventUrl').attr('href',event.url);
-	        $('#calendarModal').modal();
+	        $('#eventUrl').attr('href',event.url); */
 	        
 	        var eventObj = info.event; 			// 이벤트 클릭시 해당이벤트 날짜 GET
             var StringJ_num = eventObj.id;		// string형태의 j_num GET
@@ -149,12 +148,10 @@ html, body {
 						
 						$("#modalBody").click(function() {
 							location.href="${cp}/job/detail?j_num=" + json.j_num; })
-
 	    			}
 	    		}
 	    		xhr.open('get','${cp}/job/eventSelect?j_num=' + j_numm ,true);
 	    		xhr.send();
-		
 	        	}
 	    	},
 			selectable : true,

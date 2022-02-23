@@ -5,7 +5,7 @@
 <!-- 디데이 계산을 위한 import -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
    
-<!-- 회원관리 -->
+<!-- 채용공고 리스트 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
@@ -100,7 +100,7 @@
 	    background-color: #1dcdff;
     }
     #delete{
-    	background-color: #F15F5F; font-size: 12px;
+    	background-color: #EAEAEA; font-size: 12px; color:black;
     }
 </style>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
@@ -161,29 +161,29 @@
 						<div class="row g-0">
 							<div class="col-md-10"> <!-- 카드제목 왼쪽 -->
 								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;">
-								<!-- 인기공고 -->
-								<c:set var="v" value="1"/>
-								<c:forEach var="PL" items="${popularList }">
-									<c:choose>
-										<c:when test="${PL.j_num eq vo.j_num }">
-											<c:set var="v" value="2"/>
-											<c:forEach var="dutyList" items="${dutyList }">
-													<c:if test="${dutyList.j_num eq vo.j_num}" >
-														<span id="showPopular">인기</span>
-														<span id="showDuty">${dutyList.jd_duty }</span>
-													</c:if>	
-											</c:forEach>
-										</c:when>
-									</c:choose>
-								</c:forEach>
-								<!-- NOT 인기공고 -->
-								<c:if test="${v==1 }">
-									<c:forEach var="dutyList" items="${dutyList }">
-										<c:if test="${dutyList.j_num eq vo.j_num}" >
-											<span id="showDuty">${dutyList.jd_duty }</span>
-										</c:if>	
+									<!-- 인기공고 -->
+									<c:set var="v" value="1"/>
+									<c:forEach var="PL" items="${popularList }">
+										<c:choose>
+											<c:when test="${PL.j_num eq vo.j_num }">
+												<c:set var="v" value="2"/>
+												<c:forEach var="dutyList" items="${dutyList }">
+														<c:if test="${dutyList.j_num eq vo.j_num}" >
+															<span id="showPopular">인기</span>
+															<span id="showDuty">${dutyList.jd_duty }</span>
+														</c:if>	
+												</c:forEach>
+											</c:when>
+										</c:choose>
 									</c:forEach>
-								</c:if>		
+									<!-- NOT 인기공고 -->
+									<c:if test="${v==1 }">
+										<c:forEach var="dutyList" items="${dutyList }">
+											<c:if test="${dutyList.j_num eq vo.j_num}" >
+												<span id="showDuty">${dutyList.jd_duty }</span>
+											</c:if>	
+										</c:forEach>
+									</c:if>		
 								</h6>
 							</div>
 							<div class="col-md-2"> <!--Admin 로그인상태시 삭제버튼--> <!-- 카드제목 오른쪽 -->
@@ -235,6 +235,7 @@
 													integerOnly="true" />
 												<p style="cursor: pointer;"
 													onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
+													
 													<c:if test="${endTime eq today }">
 														<span style="color: #4e73df;">D -DAY</span>
 													</c:if>
@@ -248,23 +249,22 @@
 														${vo.j_view} </span>
 												</p>
 											</div>
-												<!-- 비로그인 북마크 클릭 : alert(로그인후 스크랩 할 수 있습니다) -->
-												<!-- 확인 누르면 로그인페이지, 취소누르면 그대로 -->
 												<c:set var="a" value="1" />
+												<!-- 북마크 O -->
 												<c:forEach var="bookMark" items="${myBookMarkList }">
 													<c:choose>
 														<c:when test="${bookMark.j_num eq vo.j_num}">
-															<!-- 북마크 -->
 															<c:set var="a" value="2" />
-															<a onclick="bookMark(${vo.j_num})"><i
-																id="mark${vo.j_num }" style="color: #4e73df;"
+															<a onclick="bookMark(${vo.j_num})">
+															<i id="mark${vo.j_num }" style="color: #4e73df;"
 																class="fa-solid fa-bookmark"></i></a>
 														</c:when>
 													</c:choose>
 												</c:forEach>
+												<!-- 북마크 X -->
 												<c:if test="${a==1 }">
-													<a onclick="bookMark(${vo.j_num})"><i
-														id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
+													<a onclick="bookMark(${vo.j_num})">
+													<i id="mark${vo.j_num}" class="fa-regular fa-bookmark"></i></a>
 												</c:if>
 											</div>
 	
@@ -283,10 +283,49 @@
 
 			</div> <!-- 첫번쨰 Content Column 끝 -->
 			</c:forEach>
-
+			<!-- 페이징 -->										
+           	<div class="pagination">
+           		<c:choose>
+           			<c:when test="${pageNum==1 }">
+           				<a href="#" onclick="return false;">&laquo;</a>		
+           			</c:when>
+           			<c:otherwise>
+           				<a href="${cp }/job/jobList?pageNum=${pageNum-1}&keyword=${keyword}">&laquo;</a>
+           			</c:otherwise>
+           		</c:choose>
+           		
+           		<c:choose>
+           			<c:when test="${pageNum==1 }">
+           				<a href="${cp }/job/jobList?pageNum=&keyword=${keyword}" class="first"><span>1</span></a>		
+           			</c:when>
+           			<c:otherwise>
+           				<a href="${cp }/job/jobList?pageNum=&keyword=${keyword}"><span>1</span></a>
+           			</c:otherwise>
+           		</c:choose>
+                		
+				<c:forEach var="i" begin="${pu.startPageNum+1 }" end="${pu.endPageNum }">
+					<c:choose>
+						<c:when test="${i==param.pageNum }">
+							<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}" class="active"><span>${i }</span></a>
+						</c:when>
+						<c:otherwise>
+							<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}"><span>${i }</span></a>
+						</c:otherwise>
+						</c:choose>
+				</c:forEach>
+			
+				<c:choose>
+           			<c:when test="${pageNum==endPageNum }">
+           				<a href="#" onclick="return false;">&laquo;</a>		
+           			</c:when>
+           			<c:otherwise>
+           				<a href="${cp }/job/jobList?pageNum=${pageNum+1}&keyword=${keyword}">&raquo;</a>
+           			</c:otherwise>
+           		</c:choose>
+			</div>		
 
 		</div> <!-- Content Row 끝 -->
-
+		
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
 			
@@ -295,26 +334,30 @@
 			
 	</div> <!-- ContentWrapper 끝 -->
 <!-- End of Content Wrapper -->	
-<!-- @@@@@@ 페이징처리 @@@@@@-->
-<div class='page'>
-	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
-		<c:choose>
-			<c:when test="${i==param.pageNum }">
-				<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}"><span
-					style="color: blue">${i }</span></a>
-			</c:when>
-			<c:otherwise>
-				<a href="${cp }/job/jobList?pageNum=${i}&keyword=${keyword}"><span
-					style="color: gray">${i }</span></a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</div>	
 <style>
-	.page{
-		text-align: center;
+	.pagination{
+		display: inline-block;
+		margin:0 auto;
+   }
+   .pagination a {
+	  color: black;
+	  float: left;
+	  padding: 8px 16px;
+	  text-decoration: none;
 	}
-</style>
+	.pagination a.first, a.active {
+		  background-color: #4e73df;
+		  color: white;
+	}
+	.pagination a:hover:not(.active, .first) {background-color: #ddd;}
+	.pagination a {
+	  border-radius: 25px;
+	}
+
+	.pagination a.active {
+	  border-radius: 25px;
+	}
+</style>	
 <!-- Footer -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 <!-- End of Footer -->

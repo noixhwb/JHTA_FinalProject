@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Page level plugins -->
-<script src="${ pageContext.request.contextPath }/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="${ pageContext.request.contextPath }/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<!-- Page level custom scripts -->
-<script src="${ pageContext.request.contextPath }/resources/js/demo/datatables-demo.js"></script>
-<!-- Custom styles for this page -->
-<link href="${ pageContext.request.contextPath }/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 <!-- 회원관리 -->
 <!-- Header -->
 <%@ include file="/WEB-INF/views/header.jsp" %>

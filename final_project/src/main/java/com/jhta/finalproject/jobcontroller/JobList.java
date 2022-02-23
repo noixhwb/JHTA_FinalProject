@@ -47,6 +47,7 @@ public class JobList {
 		PageUtil pu=new PageUtil(pageNum, 6, 5, totalRowCount);
 		int startRow=pu.getStartRow();
 		int endRow=pu.getEndRow(); 
+		int endPageNum = pu.getEndPageNum(); // 추가
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		
@@ -59,6 +60,9 @@ public class JobList {
 		List<JobVo> list = Jservice.list(map);
 		List<JobVo> getPopular = Jservice.getPopular();
 		List<DutyVo> dutyList = Dservice.list();
+		
+		model.addAttribute("pageNum", pageNum);			// 추가
+		model.addAttribute("endPageNum",endPageNum);	// 추가
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pu", pu);
 		model.addAttribute("list",list);
@@ -67,7 +71,7 @@ public class JobList {
 		return "job/jobList";
 	}
 
-	@PostMapping("/job/detailSearch")
+/*	@PostMapping("/job/detailSearch")
 	public String detailSearch(@RequestParam(value="pageNum",defaultValue = "1") int pageNum, Model model,
 				DutyVo dVo, ZoneVo zVo, CareerVo cVo){
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -93,6 +97,6 @@ public class JobList {
 		}
 		
 		return "job/jobList";
-	}
+	} */
 	
 }

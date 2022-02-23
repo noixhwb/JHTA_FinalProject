@@ -29,7 +29,7 @@
 	    background-color: #1dcdff;
 	}
 	#delete{
-    	background-color: #F15F5F; font-size: 12px;
+    	background-color: #EAEAEA; font-size: 12px; color:black;
     }
 </style>
 <script>
