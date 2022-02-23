@@ -42,7 +42,7 @@ public class JoinController {
 	@PostMapping("/join")
 	public String join(MemberVo vo) {     
 		service.addUser(vo);
-		return "member/success";
+		return "redirect:/home";
 		
 	}
 	

@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 <style type="text/css">
  .div1 {
- height: 800px;
- position: relative; left: 380px; top: 65px;"
+  height: 800px;
+  
+ text-align: center;"
   
 } 
 </style>
@@ -21,9 +22,11 @@
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <%@ include file="/WEB-INF/views/top.jsp" %>
 <body>
+<div></div>
+<br><br><br><br>
 <div class="div1">
 <form onsubmit="return joinSubmit();" method="post" action="${pageContext.request.contextPath }/member/nickchange">
-<h2>닉네임변경</h2>
+<h2>닉네임변경</h2><br>
 <input type="hidden" name="m_num" value="${vo.m_num}">
 
 <input type="text" name="m_nickname" id="mnick"value="${vo.m_nickname}"  
@@ -31,7 +34,7 @@
 				value="중복확인" onclick="nickcheck()" style="width: 65pt; height:24pt; background-color: white;color: #4e73df; border: 1px solid #4e73df;
 		border-radius: 4px; font-size: 14px; position: absolute;  cursor: pointer; font-weight: 900;"> <br>
 			<span id="nickcheck"   style="text-align: center; font-size: 3px; display: inline;"></span>	<input type="hidden" id="nickChkYn" value='N'> <br> 
-		<input type="submit" value="닉네임변경" style="width: 230pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;"> 
+		<input type="submit" value="닉네임변경" style="width: 210pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;"> 
 			 <br><br><a style= "font-size: 16px; font-weight: bold ;" href="${cp}/member/mymember">뒤로가기</a>
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>

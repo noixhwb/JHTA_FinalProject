@@ -111,10 +111,11 @@
 						
 						<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">
              <div class="commentInfo'+value.cno+'">
+             <input type="hidden" name ="b_num" value="${vo.b_num}"> <input type="hidden"  name ="co_num" value="${vo.co_num}">
             <span style="font-weight: 900;">익명</span> <br><span>${vo.co_content}    </span>             <div style="position: relative; left: 1000px;">${vo.co_regdate}</div>
               <div class="commentContent'+value.cno+'"> 
-              <div><button class="btn btn-secondary" data-target="#commentdel" data-toggle="modal">삭제</button></div>
               
+               <div><a href="${cp }/board/removeComments?co_num=${vo.co_num}&b_num=${vo.b_num}" >삭제</a></div>
    </div></div>
 						
 						
@@ -130,29 +131,7 @@
 				
 	
 						</div>
-						
-	<form action="${ cp }/community/removeComments?${_csrf.parameterName }=${_csrf.token }" method="get">
-	<div class="modal fade" id="commentdel" tabindex="-1" role="dialog"
-		 aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-		
-							<div class="modal-body">삭제하시겠습니까?</div>
-							<br>
-								<h6 class="card-title font-weight-bold text-dark">&nbsp;&nbsp;&nbsp;&nbsp;삭제하시려면 '삭제' 버튼을 눌러주세요.</h6><br>
-					
-				<div class="modal-footer">
-			
-					<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">취소
-					</button>
-					<input type="submit" class="btn btn-primary" value="삭제">
-				</div>
-			</div>
-		</div>
-	</div>	
-<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-</form>            	
+
 						
 			<div class="container">
 			
@@ -176,7 +155,14 @@
 
 
 
+<script type="text/javascript">
+function reload() {
+	
+	Location.reload();
+	
+}
 
+</script>
 	
 	
 

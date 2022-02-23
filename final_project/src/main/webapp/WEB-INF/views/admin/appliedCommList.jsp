@@ -27,10 +27,10 @@
 <!-- Navi -->			 
 			<ul class="nav nav-tabs justify-content-center">
 				<li class="nav-item">
-					<a class="nav-link" href="${ cp }/admin/appliedCircleList">동아리 게시요청</a>
+					<a class="nav-link active" href="${ cp }/admin/appliedCommuList">커뮤니티 게시요청</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="${ cp }/admin/appliedCommuList">커뮤니티 게시요청</a>
+					<a class="nav-link " aria-current="page" href="${ cp }/admin/appliedCircleList">동아리 게시요청</a>
 				</li>
 			</ul>
 <!-- Content Row -->

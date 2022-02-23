@@ -158,8 +158,8 @@
 												value="${vo.m_id}" maxlength="40" autocomplete="off"
 												readonly="readonly"> <br>
 											<h6 class="card-title font-weight-bold text-dark"
-												style="display: inline;">회원번호</h6>
-											&nbsp; <input type="text" name="m_num" value="${vo.m_num}"
+												style="display: inline;"></h6>
+											&nbsp; <input type="hidden" name="m_num" value="${vo.m_num}"
 												maxlength="40" autocomplete="off" readonly="readonly">
 
 										</div>

@@ -30,18 +30,28 @@
 			 
 <!-- Approach -->
 			<!-- 동아리 상세정보 카드 -->
-			<div class="container">
+			<div class="container" style="height: 700px; position: relative;top: 200px;">
 
 <!-- Approach -->
 				
-				 <div class="card shadow mb-3" >
+				 <div class="card shadow mb-3"  style="text-align: center;">
 				
 					 <div class="card-header py-2">
 						 <div class="row g-0"> 
-							
-							<img class="rounded-circle" src="${ cp }/resources/comm/${ vo1.cu_coverimg }" style="width:70px; height:70px;">
-							<div style="font-size: 20px; font-weight: 700;">${ vo1.cu_name }  <br> <span style="font-size: 15px; font-weight: 200;"> ${ vo1.cu_intro }</span><br> ❤${ vo1.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px; font-weight: 200;"> ${ vo1.cu_category }	</span> 	</div> 
-						 
+						 <div style="position: relative; left: 400px;">
+							<form method="post" action="${cp }/community/update" >
+		
+			<input type="hidden" name="cu_num" value="${ vo1.cu_num }" style="width: 200pt; height:22pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df ">
+		
+			<label>커뮤니티소개글</label><br><br><input type="text" name="cu_intro" value="${ vo1.cu_intro }" style="width: 200pt; height:30pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df "><br><br>
+		
+			<label>커뮤니티공지</label><br><br><input type="text" name="cu_notice" value="${ vo1.cu_notice }" style="width: 200pt; height:30pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df "><br><br><br>
+			
+								<input type="submit" value="수정" style="width: 150pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;"> 
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">	
+					
+			</form>
+						 	</div>	
 				</div>  
 					
 					
@@ -62,88 +72,17 @@
 
 			
 			</div>
-			<div class="container">
-
-<!-- Approach -->
-				
-				 <div class="card shadow mb-3" >
-				
-					 <div class="card-header py-2">
-						 <div class="row g-0"> 
-							
-					<span style="font-weight: 900;">공지</span>  ▶  ${ vo1.cu_notice }
-				</div>  
-					
-					
-						  
-						
-						
-						
-						<div>
-								
-								</div> 
-								
-								
-					</div> 
-					
-					
-				</div> <!-- n번 동아리 끝 --> 
-				
-
-			
-			</div>
-			
+	
 		</div>
 		<div><br></div>
-		 <!-- container-fluid (Main Content의 메인부분) 끝-->
-<!-- /.container-fluid -->
-			<div class="container">
-			<table class="table table-hover">
-				<thead>	
-					<tr>
-					
-				<th>글번호</th>
-				<th>제목</th>
-				
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-			</thead>
-			
-						<c:if test="${ list1.isEmpty() == true}">
-						   
-						</c:if>
-						<c:if test="${ list1 != null}">
-						<c:forEach var="vo" items="${ list1 }">
-						<div class="text-center"  style="cursor: pointer;"onclick="location.href='${ cp }/community/communitydetail?cu_num=${ vo.cu_num }';" >
-						<tr>
-						
-						<td>${vo.b_num }</td>
-						<td><a href="${ cp }/board/boarddetail?b_num=${ vo.b_num }">${vo.b_title }</a></td>
-						<td>${vo.b_regdate }</td>
-						<td>${vo.b_recommend }</td>
-						
-						
-						</tr>
-						
-						</div>
-						
-						</c:forEach>
-						
-						</c:if>
-					
-			</table>
-				
+		<div>
 	
-						</div>
-						<br>
-						
-		</div> <!-- Main Content 끝-->
+		</div>
+		 <!-- container-fluid (Main Content의 메인부분) 끝-->
+<!-- /.c
 <!-- End of Main Content -->
 							
-			<div class="container show-grid" style="margin: auto; text-align: center; margin-bottom: 100px; ">
-				<a style="text-align: center;" href="${ cp }/board/boardinsertform?cu_num=${ vo1.cu_num }">게시글작성하기</a>
-			</div>
+			
 			
 	</div> <!-- ContentWrapper 끝 -->
 <!-- End of Content Wrapper -->	

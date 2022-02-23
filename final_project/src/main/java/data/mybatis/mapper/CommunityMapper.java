@@ -3,6 +3,7 @@ package data.mybatis.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import com.jhta.finalproject.circlevo.LikeCircleJoinVo;
 import com.jhta.finalproject.vo.BoardVo;
 import com.jhta.finalproject.vo.BoardimgVo;
 import com.jhta.finalproject.vo.CommentsVo;
@@ -80,4 +81,16 @@ public interface CommunityMapper {
 	List<BoardVo> selectBoard2(int cu_num);
 	
 	int removeCommunity(int cu_num);
+
+	int addLike(int cu_num);
+
+	
+
+	List<MyCommunityVo> selectlikecomm(HashMap<String, Object> map);
+
+	int selectMeLikeCircle(HashMap<String, Integer> map);
+
+	int likedelete(int cu_num);
+
+	int mycommdelete(HashMap<String, Object> map);
 }

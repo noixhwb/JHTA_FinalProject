@@ -186,9 +186,34 @@
 		delete from Community where cu_num=#{cu_num}
 	</delete>
 	
-	<update id="updatecc">
+	<update id="updatecc" parameterType="com.jhta.finalproject.vo.CommunityVo">
 		update community set cu_intro =#{cu_intro} , cu_notice=#{cu_notice} where cu_num=#{cu_num}
 	</update>
+	
+	
+	<update id="addLike" parameterType="int">
+		
+		update community set cu_recommend = cu_recommend+1 where cu_num=#{cu_num}
+	</update>
+	
+	
+	<update id="likedelete" parameterType="int">
+		update community set cu_recommend = cu_recommend-1 where cu_num=#{cu_num}
+	</update>
+	
+	
+	<select id="selectMeLikeCircle" parameterType="hashmap" resultType="int">
+		SELECT NVL(COUNT(*),0)   
+		FROM mycommunity
+		WHERE M_NUM=#{m_num} AND Cu_NUM=#{cu_num}
+	</select>
+	
+	
+	<delete id="mycommdelete" parameterType="hashmap">
+		DELETE FROM mycommunity WHERE Cu_NUM=#{cu_num} AND M_NUM=#{m_num}
+	</delete>
+	
+	
 </mapper>
 
 	

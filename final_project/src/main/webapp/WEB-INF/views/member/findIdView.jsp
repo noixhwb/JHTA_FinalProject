@@ -31,7 +31,7 @@ text-align: center;
 		<br><br>
 			<a style="font-size: 14px;" href="${cp }/home">홈으로</a> &nbsp
 			<a style="font-size: 14px;" href="${cp }/login">로그인</a> &nbsp
-		 <a style="font-size: 14px;" href="${cp }/member/findpwd">비밀번호찾기</a>
+		  <a style="font-size: 14px;" href="${cp }/member/findPwd">비밀번호찾기</a> &nbsp <br><br>
 
 	</div>
 

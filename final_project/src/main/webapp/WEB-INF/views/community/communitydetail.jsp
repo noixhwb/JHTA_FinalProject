@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 동아리 상세 보기 -->
 <!-- Header -->
@@ -40,15 +41,45 @@
 						 <div class="row g-0"> 
 							
 							<img class="rounded-circle" src="${ cp }/resources/comm/${ vo1.cu_coverimg }" style="width:70px; height:70px;">
-							<div style="font-size: 20px; font-weight: 700;">${ vo1.cu_name }  <br> <span style="font-size: 15px; font-weight: 200;"> ${ vo1.cu_intro }</span><br> ❤${ vo1.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px; font-weight: 200;"> ${ vo1.cu_category }	</span> 	</div> 
+							<div style="font-size: 20px; font-weight: 700;">${ vo1.cu_name }  <br> 
+							<span style="font-size: 15px; font-weight: 200;"> ${ vo1.cu_intro }</span> &nbsp;&nbsp;  <span style="font-size: 12px; font-weight: 200;"> ${ vo1.cu_category }	</span> 
+							<br> 	
+							
+							<input type="hidden" value="${ nmaplike }" id="count">
+													
+													<c:choose>
+														<c:when test="${ nmaplike eq 0 }">
+														
+															<!-- 좋아요 버튼 -->
+															<button type="button" value="좋아요등록 " id="btnLike" style="border:0; background-color: transparent;">
+																<i class="fa-solid fa-star" id="heartt" style="color: gainsboro;"></i>
+															</button>
+															<input type="text" value="${ vo1.cu_recommend }	"
+																   id="likepersoncount"
+															   	   style="border:0 solid black; background-color:transparent; "
+														 	 	   readonly="readonly" width="50px; " >
+														</c:when>
+														<c:otherwise>
+															<!-- 좋아요 취소 버튼 -->
+															<button type="button" value="좋아요취소" id="btnLike" style="border:0; background-color: transparent;">
+																<i class="fa-solid fa-star" id="heartt" style="color: palevioletred;"></i>
+															</button>
+															<input type="text" value="${ vo1.cu_recommend }	"
+														   		   id="likepersoncount"
+														      	   style="border:0 solid black; background-color:transparent; "
+														   	 	   readonly="readonly">
+														</c:otherwise>
+													</c:choose>
+													
+													<span id="heart"></span>
+					
+							
+							
+							 </div> 
 						 
 				</div>  
-					
-					
-						  
-						
-						
-						
+											
+			
 						<div>
 								
 								</div> 
@@ -191,37 +222,10 @@
 		</div>
 	</div>
 
-<!-- 신청하기 Modal-->
-    <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel" style="margin:auto; text-align:center;">이 동아리를 신청하시겠습니까?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary" href="${ cp }/circle/MyCircleJoin?ci_num=${ sel.ci_num }">신청하기</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
     
-<!-- 신청 취소하기 Modal-->
-    <div class="modal fade" id="joinCancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel" style="margin:auto; text-align:center;">이 동아리를 신청 취소하시겠습니까?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary" href="${ cp }/circle/MyCircleJoinCancel?ci_num=${ sel.ci_num }">신청취소하기</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+  
     
 <style>
 	#dot{
@@ -231,6 +235,7 @@
 	$breadcrumb-divider: quote(">");
 </style>   
 <script>
+
 //좋아요 누르기
 $(function(){
 	var count = parseInt($("#count").val());
@@ -239,32 +244,34 @@ $(function(){
 	$("#btnLike").click(function(){
 		if ((count+2)%2 == 0) {
 			$.ajax({
-				url:'${cp}/circle/LikeCircleInsert',
-				data:{"ci_num":${ci_num},"m_num":${m_num}},
+				url:'${cp}/community/LikecommInsert',
+				data:{"cu_num":${vo1.cu_num},"m_num":${vo.m_num}},
 				dataType:'json',
 				success:function(data){
 					if(data.result == 'success'){
 						count++;
 						likepersoncount++;
-						$('input[id=btnLike]').attr('value','좋아요취소');
+						$('button[id=btnLike]').attr('value','좋아요취소');
+						$('i[id=heartt]').attr('style','color: palevioletred');
 						$('input[id=likepersoncount]').attr('value', likepersoncount);
-						alert('등록 성공!');
+						alert('즐겨찾기 등록');
 					}else{
-						alert('등록 실패!');
+						alert('실패');
 					}
 				}
 			});
 		} else {
 			$.ajax({
-				url:'${cp}/circle/LikeCircleDelete',
-				data:{"ci_num":${ci_num},"m_num":${m_num}},
+				url:'${cp}/community/LikecommDelete',
+				data:{"cu_num":${vo1.cu_num},"m_num":${vo.m_num}},
 				dataType:'json',
 				success:function(data){
 					count++;
 					likepersoncount--;
-					$('input[id=btnLike]').attr('value','좋아요등록');
+					$('button[id=btnLike]').attr('value','좋아요등록');
+					$('i[id=heartt]').attr('style','color: gainsboro');
 					$('input[id=likepersoncount]').attr('value', likepersoncount);
-					alert('삭제 성공!');
+					alert('즐겨찾기 삭제');
 				}
 			});
 		}

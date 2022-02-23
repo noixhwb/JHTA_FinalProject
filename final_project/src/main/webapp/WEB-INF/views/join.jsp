@@ -379,6 +379,7 @@ function check_pw(){
 			return false;
 		
 		}
+		alert("회원가입 완료!!");
 		return true;
 	}
 

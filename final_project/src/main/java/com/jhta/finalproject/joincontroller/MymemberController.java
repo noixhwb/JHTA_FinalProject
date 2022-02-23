@@ -96,7 +96,7 @@ public class MymemberController {
 	//	System.out.println(vo);
 		
 			service.allupdate(vo);
-		
+		System.out.println(vo);
 		return "redirect:/member/mymember";
 	}
 	

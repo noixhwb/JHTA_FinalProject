@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.circlevo.LikeCircleJoinVo;
 import com.jhta.finalproject.vo.BoardVo;
 import com.jhta.finalproject.vo.BoardimgVo;
 import com.jhta.finalproject.vo.CommentsVo;
@@ -149,5 +150,32 @@ public class CommunityService {
 	public int removeCommunity(int cu_num) {
 		return mapper.removeCommunity(cu_num);
 	}
+
+	public int addLike(int cu_num) {
+		return mapper.addLike(cu_num);
+	}
+
+	public List<MyCommunityVo> selectlikecomm(HashMap<String, Object> map) {
+		return mapper.selectlikecomm(map);
+	}
+
+	public int selectMeLikeCircle(HashMap<String, Integer> map) {
+		return mapper.selectMeLikeCircle(map);
+	}
+
+	
+	
+
+
+	public int mycommdelete(HashMap<String, Object> map) {
+		return mapper.mycommdelete(map);
+		
+	}
+
+	public int likedelete(int cu_num) {
+		return mapper.likedelete(cu_num);
+		
+	}
+
 	
 }

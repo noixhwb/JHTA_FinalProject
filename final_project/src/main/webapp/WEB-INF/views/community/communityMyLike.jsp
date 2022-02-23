@@ -8,10 +8,23 @@
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <!-- End of Header -->
 <%@ include file="/WEB-INF/views/top.jsp"%>
+<style>
+@font-face {
+    font-family: 'GilbeotRainbow';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/GilbeotRainbow.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.h2{
 
+	font-family: 'GilbeotRainbow';
+}
+
+
+</style>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
-<div id="content-wrapper" class="d-flex flex-column">
+<div id="content-wrapper" class="d-flex flex-column" style="height: 700px;">
 
 <!-- Main Content -->
 		<div id="content">
@@ -28,10 +41,10 @@
 			
 <!-- Navbar -->
 
-내가 게시한 커뮤니티 		
+<span class="h2">내가 게시한 커뮤니티 </span>
 <br> <c:if test="${ mlist == null}">
 						 
-					<br> 	<div>게시요청한 동아리 없음</div>
+					<br> 	<div class="container">게시요청한 동아리 없음</div>
 						
 						</c:if>
 						
@@ -47,10 +60,10 @@
 						 <div class="row g-0"> 
 							
 							<img class="rounded-circle" src="${ cp }/resources/comm/${ mlist.cu_coverimg }" style="width:70px; height:70px;">
-							<div style="font-size: 20px; font-weight: 700;">${ mlist.cu_name }  <br> <span style="font-size: 15px; font-weight: 200;"> ${ mlist.cu_intro }</span><br> ❤${ mlist.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px; font-weight: 200;"> ${ mlist.cu_category }	</span><br> <span style="font-size: 25px; font-weight: 200;">  ${ mlist.cu_notice }	</span> 	</div> 
+							<div style="font-size: 20px; font-weight: 700;">${ mlist.cu_name }  <br> <span style="font-size: 15px; font-weight: 200;"> ${ mlist.cu_intro }</span><br> ❤${ mlist.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px; font-weight: 200;"> ${ mlist.cu_category }	</span><br> <span style="font-size: 16px; font-weight: 200;">공지 >  ${ mlist.cu_notice }	</span> 	</div> 
 						
 				</div>  
-						  <a class="a1" href="${cp }/community/updateform?cu_num=${mlist.cu_num}"> 커뮤니티 정보변경</a> &nbsp&nbsp
+						<br>  <a class="a1" href="${cp }/community/updateform?cu_num=${mlist.cu_num}"> 커뮤니티 소개글/공지사항 변경</a> &nbsp&nbsp
 																				<!-- 	<button class="btn btn-secondary">커뮤니티 삭제</button>		 -->									
 						<div>							
 								</div> 												
@@ -123,7 +136,8 @@
 						
 				
 				<!--  blist   게시글      clist   가입한 커뮤니티 리스트    mlist 내가 게시한 커뮤니티인지 아닌지-->				
-			<br>내가쓴 게시글	<div>	
+			<span class="h2">내가쓴 게시글</span>
+			<br>	<div>	
 		
 				
 				</div>
@@ -149,7 +163,7 @@
 						<td><a href="${ cp }/board/boarddetail?b_num=${ vo.b_num }">${vo.b_title }</a></td>
 						<td>${vo.b_regdate }</td>
 						<td>${vo.b_recommend }</td>
-						<td><button class="btn btn-secondary" data-target="#commdel" data-toggle="modal">삭제</button></td>
+						<td><a href="${cp }/community/removeBoard?b_num=${vo.b_num}">삭제</a></td>
 						
 						</tr>
 					
@@ -166,14 +180,14 @@
 				
 				
 				
+			<span class="h2">즐겨찾기한 커뮤니티</span>
 			
-			
-			
+			<br>
 							
 						<c:forEach var="vo" items="${ clist }">
 				
 				<!--  blist   게시글      clist   가입한 커뮤니티 리스트    mlist 내가 게시한 커뮤니티인지 아닌지-->				
-			<br>내가 좋아요한 커뮤니티	
+			
 			<div class="container">
 
 <!-- Approach --><div class="table table-hover" style=" cursor: pointer;" onclick="location.href='${ cp }/community/communitydetail?cu_num=${ vo.cu_num }' ;">
@@ -199,28 +213,7 @@
 				
 				
 			</c:forEach>
-			<form action="${ cp }/community/removeBoard?${_csrf.parameterName }=${_csrf.token }" method="get" >
-	<div class="modal fade" id="commdel" tabindex="-1" role="dialog"
-		 aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				
-							<div class="modal-body">삭제하시겠습니까?</div>
-							<br>
-								<h6 class="card-title font-weight-bold text-dark">&nbsp;&nbsp;&nbsp;&nbsp;삭제하시려면 '삭제' 버튼을 눌러주세요.</h6><br>
-					
-				<div class="modal-footer">
 			
-					<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">취소
-					</button>
-					<input type="submit" class="btn btn-primary" value="삭제">
-				</div>
-			</div>
-		</div>
-	</div>	
-<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-</form>            	
 			
 <!-- Approach -->
 		

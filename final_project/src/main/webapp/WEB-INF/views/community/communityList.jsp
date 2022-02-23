@@ -81,8 +81,8 @@
 					 <div class="card-header py-2">
 						 <div class="row g-0"> 
 							
-							<img class="rounded-circle" src="${ cp }/resources/comm/${ vo.cu_coverimg }" style="width:70px; height:70px;">
-							<div>${ vo.cu_name }  <br>  ❤${ vo.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px;"> ${ vo.cu_category }	</span>	<br> <span> ${ vo.cu_intro }</span> <br>  	</div> 
+							<img class="rounded-circle" src="${ cp }/resources/comm/${ vo.cu_coverimg }" style="width:70px; height:70px;">&nbsp;&nbsp;
+							<div>${ vo.cu_name }  <br>  <i class="fa-solid fa-star" style="color: #FF4848;"></i>&nbsp;${ vo.cu_recommend }	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 12px;"> ${ vo.cu_category }	</span>	<br> <span> ${ vo.cu_intro }</span> <br>  	</div> 
 						 
 				</div>  
 					
@@ -109,7 +109,9 @@
 
 		</div> <!-- Content Row 끝 -->
  </div>
-                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                       
+                    </div>
+                     <div class="pagination" id="dataTable_paginate">
                        		<ul class="pagination">
                         		<li class="paginate_button page-item previous disabled" id="dataTable_previous">
                         			<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
@@ -127,7 +129,6 @@
                         		</li>
                         	</ul>
                         </div>
-                    </div>
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
 			
@@ -141,4 +142,31 @@
 <!-- Footer -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 
-	
+	<style>
+	#dot{
+   list-style:none;
+   padding-left:5px;
+   }
+   .pagination{
+		display: inline-block;
+		margin:0 auto;
+   }
+   .pagination a {
+	  color: black;
+	  float: left;
+	  padding: 8px 16px;
+	  text-decoration: none;
+	}
+	.pagination a.first, a.active {
+		  background-color: #4e73df;
+		  color: white;
+	}
+	.pagination a:hover:not(.active, .first) {background-color: #ddd;}
+	.pagination a {
+	  border-radius: 25px;
+	}
+
+	.pagination a.active {
+	  border-radius: 25px;
+	}
+</style>       

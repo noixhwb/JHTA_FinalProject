@@ -6,7 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+ .div1 {
+  height: 800px;
+  
+ text-align: center;"
+  
+} 
 </style>
 </head>
 <body>
@@ -15,21 +20,29 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
 	<form method="post" action="${cp }/member/updateaddr" >
-<div class="login1"> 
+	<div></div>
+<br><br><br><br>
+<div class="div1"> 
+<h2>주소 변경</h2><br>
  <input type="hidden" id="mnum" name="m_num" value="${vo.m_num}">
 			<input class="address_input_1" id= "add1" name="m_address" readonly="readonly" placeholder="주소찾기" style="width: 200pt; height:22pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df ">
 			<!-- <button class="address_button" onclick="execution_daum_address()">주소찾기</button> -->
 
 			<input type="button" class="address_button"
 				onclick="execution_daum_address()" value="주소찾기"  style="width: 65pt; height:24pt; background-color: white;color: #4e73df; border: 1px solid #4e73df;
-		border-radius: 4px; font-size: 14px; position: absolute;  cursor: pointer; font-weight: 900;"> <br>
-				<input class="address_input_2" name="m_address" readonly="readonly" style="width: 200pt; height:22pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df "><br>
+		border-radius: 4px; font-size: 14px; position: absolute;  cursor: pointer; font-weight: 900;"> <br><br>
+				<input class="address_input_2" name="m_address" readonly="readonly" style="width: 200pt; height:22pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df "><br><br>
 
-			<input class="address_input_3" id= "add3" name="m_address" placeholder="주소상세정보" readonly="readonly" style="width: 200pt; height:22pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df "><br>
-			<input type="hidden" name="m_address"> </div><br>
+			<input class="address_input_3" id= "add3" name="m_address" placeholder="주소상세정보" readonly="readonly" style="width: 200pt; height:22pt; border-left: none; border-right: none; border-top: none;  font-size: 14px; border-color: #4e73df "><br><br>
+			<input type="hidden" name="m_address"> <br>
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-			<input type="submit" value="변경하기"  style="width: 230pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;">
+			
+			
+			<input type="submit" value="변경하기"  style="width: 215pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;">
+			<br><br><a style= "font-size: 16px; font-weight: bold ;" href="${cp}/member/mymember">뒤로가기</a>
+			</div>
 			</form>
 </body>
 <script type="text/javascript">

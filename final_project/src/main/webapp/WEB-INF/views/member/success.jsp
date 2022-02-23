@@ -9,10 +9,16 @@
 <body>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <%@ include file="/WEB-INF/views/top.jsp" %>
-<h1>요청작업 성공!!</h1>
 
 
-<a href="${pageContext.request.contextPath }/">홈</a>
+
+<div >
+<h1>환영합니다!</h1>
+
+<a href="${pageContext.request.contextPath }/login">로그인</a>
+<a href="${pageContext.request.contextPath }/home">홈</a>
+
+</div>
 
 
 

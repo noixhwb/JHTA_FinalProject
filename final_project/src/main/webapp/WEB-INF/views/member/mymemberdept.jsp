@@ -8,12 +8,25 @@
 <title>Insert title here</title>
 <style type="text/css">
 
+  .div1 {
+  height: 800px;
+  
+ text-align: center;"
+  
+} 
+  
+} 
+
 </style>
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <%@ include file="/WEB-INF/views/top.jsp" %>
 <body>
+<div></div>
+<br><br><br><br>
+<div class="div1">
 <form onsubmit="return joinSubmit();" method="post" action="${pageContext.request.contextPath }/member/deptchange">
+<h2>학과 변경</h2><br>
 <input type="hidden" name="m_num" value="${vo.m_num}">
 <select  name="m_dept" id="mdept" 
 				style="width: 200pt; height:24pt; background-color: white;color: #4e73df; border: 3px solid #4e73df;
@@ -31,10 +44,11 @@
 				<option>연극영화과</option>
 				<option>작곡과</option>
 				<option>교육학과</option>
-			</select> <br><br> <input type="submit" value="학과변경" style="width: 230pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;"> 
-			 <br><br><a style= "font-size: 16px; font-weight: bold ;" href="${cp}/home">홈으로</a>
+			</select> <br><br> <input type="submit" value="학과변경" style="width: 200pt; height:30pt; cursor: pointer; background-color: #4e73df; font-size: 17px;border-radius: 1px; border: 1px solid white; border-radius: 0.7rem; color: white;"> 
+			 <br><br><a style= "font-size: 16px; font-weight: bold ;" href="${cp}/member/mymember">뒤로가기</a>
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			</form>
+			</div>
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>

@@ -128,9 +128,15 @@ import com.util.PageUtil;
 		MemberVo vo=service.selectUser(principal.getName());
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<BoardVo> list1 = service.selectAllboard(cu_num);
+		int userMnum = vo.getM_num();
 		
 		
+		HashMap<String, Integer> maplike=new HashMap<String, Integer>();
+		maplike.put("m_num", userMnum);
+		maplike.put("cu_num", cu_num);
+		int nmaplike = service.selectMeLikeCircle(maplike); 
 		
+		model.addAttribute("nmaplike", nmaplike);
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
 		CommunityVo vo1=service.select(cu_num);
@@ -220,8 +226,9 @@ import com.util.PageUtil;
 //	
 //		BoardVo bvo = service.detail(b_num);
 //		model.addAttribute("vo1",bvo);
+		System.out.println(b_num);
 		model.addAttribute("b_num", b_num);
-		return "redirect:/board/boarddetail?"+b_num;
+		return "redirect:/board/boarddetail?";
 	}
 	@GetMapping("/community/updateform")
 	public String commupform(int cu_num,Model model) {
@@ -230,15 +237,19 @@ import com.util.PageUtil;
 		
 		System.out.println(vo1);
 		
-		model.addAttribute("vo1", cu_num);
+		model.addAttribute("vo1", vo1);
 		
 		return "community/communityupdateform";
 	}
-	@PostMapping("community/update")
+	@PostMapping("/community/update")
 	public String update(CommunityVo vo,Model model) {
 		
-		
+	
 		service.updatecc(vo);
+	
+	
+		System.out.println("커뮤업데이트실행");
+		System.out.println("커뮤니티정보"+ vo);
 		return "redirect:/community/mycommunity";
 	} 
 	
@@ -268,13 +279,21 @@ import com.util.PageUtil;
 		service.removeBoardimg(b_num);
 		//b_num으로 board 삭제
 		service.removeBoard(b_num);
-		return "";
+		return "redirect:/community/mycommunity";
 	}
-	@GetMapping("community/removeComments")
-	public String removeComments(int co_num) {
+	@GetMapping("board/removeComments")
+	public String removeComments(Model model,int co_num,CommentsVo vo,int b_num) {
 		//co_num으로 댓글만 삭제
+		
 		service.removeComments(co_num);
-		return "";
+		
+		System.out.println(co_num);
+		
+		System.out.println(vo);
+		
+	
+		return "redirect:/board/boarddetail?b_num="+b_num;
+		
 	}
 	
 	
