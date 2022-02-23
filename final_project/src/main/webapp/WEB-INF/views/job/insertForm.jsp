@@ -22,28 +22,7 @@
 <form method="post" action="${cp}/job/insert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
 		<div class="container-fluid">
 
-<%-- 
-<!-- Page Heading -->
-			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800"> 채용 공고 게시요청 </h1>
-					
-			</div>
 
-			<!-- 1. 채용공고 게시요청 주의사항 카드 -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h5 class="m-0 font-weight-bold text-danger"> 채용공고 게시 안내사항 </h5>
-				</div>
-				
-				<div class="card-body">
-					<ul>
-						<li> 채용 공고 게시는 무료로 진행되며,  
-							 3조대학교 캠퍼스픽 담당자의 검토 및 승인 절차를 거쳐 48시간 이내 게시됩니다 </li>
-						<li> 게시글 중복 방지를 위해 계정당 한 공고만 등록할 수 있습니다 </li>
-					</ul>	
-				</div>
-			</div> <!-- 1. 채용공고 게시요청 주의사항 카드 끝 --> 
-			--%>
 <!-- Approach -->
 			
 			<!-- 2. 채용공고 만들기 카드 -->

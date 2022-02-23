@@ -54,53 +54,54 @@ html, body {
 		
 
 		<div class="row">
-				<div class="col-8 offset-2">
+			<div class="col-8 offset-2">
 
 		<!-- ---------------------------------------------------------------------------------------------------------------------- -->
 		<!-- Begin Page Content -->
-		<div class="container-fluid">
-
-			<!-- Page Heading -->
-			<div
-				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">채용 달력</h1>
-			</div>
-			<div id="chip">
-				<ul style="list-style: none">
-					<li ><div style="background-color: #1cc88a" class="chips"></div>시작</li>
-					<li ><div style="background-color: #e74a3b" class="chips"></div>마감</li>
-				</ul>
-			</div>
-			<!-- Approach -->
-
-			<!-- calendar 태그 -->
-			<div class="card mb-3" style="width: 100%;
- 	text-align: center;">
-				<div class="col-md-12">
-					<div class="card-body">
-						<div id='calendar' style="width: 85%; display: inline-block;"></div>
-					</div>	
-				</div>		
-			</div>
-			<!-- 이벤트 클릭 시 나오는 모달 창 -->
-			<div id="calendarModal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h6 class="modal-title" id="modalTitle"></h6>
-							<button class="close" type="button" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div id="modalBody" class="modal-body" style=" cursor: pointer;" >
-							<ul style="list-style: none; padding-left: 0;">
-							</ul>
+				<div class="container-fluid">
+		
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">채용 달력</h1>
+					</div>
+					<div id="chip">
+						<ul style="list-style: none">
+							<li ><div style="background-color: #1cc88a" class="chips"></div>시작</li>
+							<li ><div style="background-color: #e74a3b" class="chips"></div>마감</li>
+						</ul>
+					</div>
+					<!-- Approach -->
+		
+					<!-- calendar 태그 -->
+					<div class="card mb-3" style="width: 100%; text-align: center;">
+						<div class="col-md-12">
+							<div class="card-body">
+								<div id='calendar' style="width: 85%; display: inline-block;"></div>
+							</div>	
+						</div>		
+					</div>
+					<!-- 이벤트 클릭 시 나오는 모달 창 -->
+					<div id="calendarModal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h6 class="modal-title" id="modalTitle"></h6>
+									<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div id="modalBody" class="modal-body" style=" cursor: pointer;" >
+									<ul style="list-style: none; padding-left: 0;">
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</div>	
+		</div>		
 	</div>
 </div>
 <script>
@@ -158,8 +159,8 @@ html, body {
 	    	},
 			selectable : true,
 			droppable : true,
-			editable : false, // 드래그 수정
-			events : [
+			editable : false,	// 드래그 수정
+			events : [			// DB 채용공고 받아오기
     			<%List<JobVo> calendarList = (List<JobVo>) request.getAttribute("list");%>
             	<%if (calendarList != null) {%>
             	<%for (JobVo vo : calendarList) {%>
