@@ -376,6 +376,8 @@
 					
 				</div> <!-- n번 동아리 끝 -->
 				
+<%-- 여기다 페이징하면 가운데로 가긴하지만 
+페이지에서 목록이 하나만 나올경우 페이징위치가 이상해요! --%>
 
 			</div> <!-- 첫번쨰 Content Column 끝 -->
 			</c:forEach>
@@ -393,55 +395,54 @@
 		</form>
 	</div>
  -->	
-	
-	
+
 		</div> <!-- Content Row 끝 -->
 
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
-<%-- 이부분이에러나요!
 <!-- 글목록번호 -->
 <div class="pagination">
 	<c:choose>
-       <c:when test="${pageNum==1 }">
-       	 <a href="#" onclick="return false;">&laquo;</a>		
-       </c:when>
-       <c:otherwise>
-         <a href="${cp }/circle/CircleList?pageNum=${pageNum-1}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}">&laquo;</a>
-       </c:otherwise>
-    </c:choose>
-    <!--  -->                		
-    <c:choose>
-       <c:when test="${pageNum==1 }">
-          <a href="${cp }/circle/CircleList?pageNum=&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}" class="first"><span>1</span></a>		
-       </c:when>
-       <c:otherwise>
-          <a href="${cp }/circle/CircleList?pageNum=&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span>1</span></a>
-       </c:otherwise>
-    </c:choose>
-<c:forEach var="i" begin="${ pu.startPageNum+1 }" end="${ pu.endPageNum }">
-	<c:choose>
-		<c:when test="${ i==param.pageNum }">
-			<a href="${cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}" class="active"><span>${i }</span></a>
+		<c:when test="${pageNum==1 }">
+			 <a href="#" onclick="return false;">&laquo;</a>		
 		</c:when>
 		<c:otherwise>
-			<a href="${cp }circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span>${i }</span></a>
+			 <a href="${cp}/circle/CircleList?pageNum=${pageNum-1}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}">&laquo;</a>
 		</c:otherwise>
 	</c:choose>
-</c:forEach>
-							
+	<!--  -->       
+	     		
 	<c:choose>
-        <c:when test="${ pageNum==endPageNum }">
-            <a href="#" onclick="return false;">&laquo;</a>		
-        </c:when>
-        <c:otherwise>
-            <a href="${cp }circle/CircleList?pageNum=${pageNum+1}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}">&raquo;</a>
-        </c:otherwise>
-    </c:choose>
+		<c:when test="${pageNum==1 }">
+		  	<a href="${cp}/circle/CircleList?pageNum=&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}" class="first"><span>1</span></a>		
+		</c:when>
+		<c:otherwise>
+		 	 <a href="${cp}/circle/CircleList?pageNum=&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span>1</span></a>
+		</c:otherwise>
+	</c:choose>
+	
+	<c:forEach var="i" begin="${ pu.startPageNum+1 }" end="${ pu.endPageNum }">
+		<c:choose>
+			<c:when test="${ i==param.pageNum }">
+				<a href="${cp}/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}" class="active"><span>${i }</span></a>
+			</c:when>
+			<c:otherwise>
+				<a href="${cp}/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span>${i }</span></a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	
+	<c:choose>
+		<c:when test="${ pageNum==endPageNum }">
+		    <a href="#" onclick="return false;">&laquo;</a>		
+		</c:when>
+		<c:otherwise>
+		    <a href="${cp}/circle/CircleList?pageNum=${pageNum+1}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}">&raquo;</a>
+		</c:otherwise>
+	</c:choose>
 </div>	
- --%>
 
-<!-- 원래했던 페이징 --> 
+<%-- -- 원래했던 페이징 --> 
 		<c:forEach var="i" begin="${ pu.startPageNum }" end="${ pu.endPageNum }">
 			<c:choose>
 				<c:when test="${ i == param.pageNum }">
@@ -451,7 +452,7 @@
 					<a href="${ cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span style="color:gray">${ i }</span></a>
 				</c:otherwise>
 			</c:choose>
-		</c:forEach>
+		</c:forEach> --%>
 
 		</div> <!-- Main Content 끝 -->
 <!-- End of Main Content -->
