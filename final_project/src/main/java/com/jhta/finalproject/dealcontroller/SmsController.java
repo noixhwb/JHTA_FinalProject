@@ -51,7 +51,9 @@ public class SmsController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
 		try {
-			String code="인증번호: "+Integer.toString((int)(Math.random()*10000));
+			int aa = (int)(Math.random()*10000);
+			
+			String code="인증번호: "+Integer.toString(aa);
 			String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; //필수
 			String user_id = base64Encode("lamgul"); //필수
 			String secure = base64Encode("6f15e3a9a71b3a4af0b5214088b8401d"); //필수
@@ -168,7 +170,7 @@ public class SmsController {
 			System.out.println(alert);
 			System.out.println(returnurl);
 			
-			map.put("code",code);
+			map.put("code",aa);
 			
 		} catch (IOException ie) {
 			ie.printStackTrace();
