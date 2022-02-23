@@ -42,7 +42,7 @@ public class PurchaseController {
 			con.setRequestProperty("Authorization", "KakaoAK ab24dd1e4290f735003b002390ea1231");
 			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			con.setDoOutput(true);// 서버에 전해줄게 있는 경우
-			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8081/final/pay.cls&fail_url=http://localhost:8081/fail&cancel_url=http://localhost:8081/cancel";
+			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8081/finalproject/pay.cls&fail_url=http://localhost:8081/fail&cancel_url=http://localhost:8081/cancel";
 			OutputStream ops = con.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(ops);
 			dos.writeBytes(param);
