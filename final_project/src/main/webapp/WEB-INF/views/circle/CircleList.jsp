@@ -12,7 +12,7 @@
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
+	<div id="content-wrapper" class="d-flex flex-column" style="margin-bottom: 200px;">
 
 <!-- Main Content -->
 		<div id="content">
@@ -41,6 +41,7 @@
     	<!-- (1) Navbar 왼쪽 -->
     	<div class="collapse navbar-collapse" id="navbarNavDropdown">
     		<ul class="navbar-nav">
+    			
         		<li class="nav-item">
         			<a class="nav-link active" href="${ cp }/circle/CircleList">전체</a>
         		</li>
@@ -134,9 +135,11 @@
 								&nbsp;&nbsp;&nbsp;
 								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.ci_name }</h6>
 							</div>
-							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
+							<div class="col-md-4" id="gocenter"> <!-- 카드제목 오른쪽 -->
 								<span class="badge badge-pill badge-secondary">${ vo.ci_category }</span>
+								&nbsp;
 								<span class="badge badge-pill badge-secondary">${ vo.ci_person }</span>
+<%--
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div id="row1" style="display:inline; float:center;">
 							<button class="btn btn-danger" data-target="#removeCircleModal${ vo.ci_num }" data-toggle="modal">동아리 삭제</button>
@@ -173,9 +176,6 @@
 </div>
 
 <div id="row2" style="display:inline; float:center;">
-<%--
-									<button class="btn btn-danger" onclick="remove(${vo.ci_num})" id="delete">삭제</button>
- --%>
 									<button class="btn btn-warning" data-target="#removeBoardModal${ vo.ci_num }" data-toggle="modal">게시글 삭제</button>
 <!-- Modal -->
 <form action="${ cp }/circle/removeBoard?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
@@ -209,10 +209,12 @@
 </form>
 </div>
 								</sec:authorize>
+								 --%>
 							</div>
-							<input type="hidden" value="${ vo.ci_category }" id="catvalue">
+							
 						</div>
 					</div>
+					<input type="hidden" value="${ vo.ci_category }" id="catvalue">
 					<div class="card-body"> <!-- n번 동아리 body -->
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드본문 왼쪽 (정보) -->
@@ -298,6 +300,80 @@
 						</div>
 					</div> <!-- n번 동아리 body 끝 -->
 					
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<div class="card-footer">
+<div class="row">
+	<div class="col-md-3 offset-md-2">
+							<button class="btn btn-danger" data-target="#removeCircleModal${ vo.ci_num }" data-toggle="modal">동아리 삭제</button>
+<!-- Modal -->
+<form action="${ cp }/circle/removeCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
+	<div class="modal fade" id="removeCircleModal${ vo.ci_num }" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="exampleModalLabel"></h6>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
+					<h5>해당 동아리를 삭제하시겠습니까? </h5>
+				</div>
+					
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<input type="submit" class="btn btn-primary" value="삭제하기">
+				</div>
+			</div>
+		</div>
+	</div>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
+	</div>
+	<div class="col-md-3 offset-md-2">
+
+									<button class="btn btn-warning" data-target="#removeBoardModal${ vo.ci_num }" data-toggle="modal">게시글 삭제</button>
+<!-- Modal -->
+<form action="${ cp }/circle/removeBoard?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
+	<div class="modal fade" id="removeBoardModal${ vo.ci_num }" tabindex="-1" role="dialog"
+		 aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="exampleModalLabel"></h6>
+					<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
+					<h5>해당 게시글을 삭제하시겠습니까? </h5>
+				</div>
+					
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">취소
+					</button>
+					<input type="submit" class="btn btn-primary" value="삭제하기">
+				</div>
+			</div>
+		</div>
+	</div>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
+	</div>
+</div>
+					</div>
+						</sec:authorize>
+					
 				</div> <!-- n번 동아리 끝 -->
 				
 
@@ -323,22 +399,60 @@
 
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
-
+<%-- 이부분이에러나요!
 <!-- 글목록번호 -->
-	<div>
+<div class="pagination">
+	<c:choose>
+       <c:when test="${pageNum==1 }">
+       	 <a href="#" onclick="return false;">&laquo;</a>		
+       </c:when>
+       <c:otherwise>
+         <a href="${cp }/circle/CircleList?pageNum=${pageNum-1}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}">&laquo;</a>
+       </c:otherwise>
+    </c:choose>
+    <!--  -->                		
+    <c:choose>
+       <c:when test="${pageNum==1 }">
+          <a href="${cp }/circle/CircleList?pageNum=&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}" class="first"><span>1</span></a>		
+       </c:when>
+       <c:otherwise>
+          <a href="${cp }/circle/CircleList?pageNum=&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span>1</span></a>
+       </c:otherwise>
+    </c:choose>
+<c:forEach var="i" begin="${ pu.startPageNum+1 }" end="${ pu.endPageNum }">
+	<c:choose>
+		<c:when test="${ i==param.pageNum }">
+			<a href="${cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}" class="active"><span>${i }</span></a>
+		</c:when>
+		<c:otherwise>
+			<a href="${cp }circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span>${i }</span></a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+							
+	<c:choose>
+        <c:when test="${ pageNum==endPageNum }">
+            <a href="#" onclick="return false;">&laquo;</a>		
+        </c:when>
+        <c:otherwise>
+            <a href="${cp }circle/CircleList?pageNum=${pageNum+1}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}">&raquo;</a>
+        </c:otherwise>
+    </c:choose>
+</div>	
+ --%>
+
+<!-- 원래했던 페이징 --> 
 		<c:forEach var="i" begin="${ pu.startPageNum }" end="${ pu.endPageNum }">
 			<c:choose>
 				<c:when test="${ i == param.pageNum }">
-					<a href="${ cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}"><span style="color:blue">${ i }</span></a>
+					<a href="${ cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span style="color:blue">${ i }</span></a>
 				</c:when>
 				<c:otherwise>
-					<a href="${ cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}"><span style="color:gray">${ i }</span></a>
+					<a href="${ cp }/circle/CircleList?pageNum=${i}&category=${category}&keyword=${keyword}&name=${name}&keywords=${keywords}"><span style="color:gray">${ i }</span></a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-	</div>
-	
-	
+
 		</div> <!-- Main Content 끝 -->
 <!-- End of Main Content -->
 			
@@ -388,10 +502,36 @@
 	</div>
 	
 <style>
-	#dot{
+#dot{
 	   list-style:none;
 	   padding-left:5px;
-	  }
+}
+#gocenter{
+    display: flex;
+    justify-content: center;
+    align-items : center;
+} 
+.pagination{
+		display: inline-block;
+		margin:0 auto;
+   }
+   .pagination a {
+	  color: black;
+	  float: left;
+	  padding: 8px 16px;
+	  text-decoration: none;
+	}
+	.pagination a.first, a.active {
+		  background-color: #4e73df;
+		  color: white;
+	}
+	.pagination a:hover:not(.active, .first) {background-color: #ddd;}
+	.pagination a {
+	  border-radius: 25px;
+	}
+	.pagination a.active {
+	  border-radius: 25px;
+	}
 </style>  
 <script>
 	$(document).ready(function() {

@@ -10,7 +10,7 @@
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
+	<div id="content-wrapper" class="d-flex flex-column" style="margin-bottom: 200px;">
 
 <!-- Main Content -->
 		<div id="content">
@@ -39,7 +39,7 @@
 <!-- Approach -->
 			<!-- 동아리 상세정보 카드 -->
 			<div class="row">
-				<div class="col-8 offset-2">
+				<div class="col-6 offset-3">
 			<div class="card shadow mb-4 mt-4">
 
 				<div class="card-body">
@@ -163,9 +163,10 @@
 	</div>
 </div>
 						</td>
-						<td class="align-middle">
-<div id="row1" style="display:inline; float:center;">
-							<button class="btn btn-primary" data-target="#approveModal" data-toggle="modal">approve</button>
+						<td>
+<div class="row">
+	<div class="col-md-3 offset-md-2">
+							<button class="btn btn-primary" data-target="#approveModal" data-toggle="modal">승인하기</button>
 <!-- Modal -->
 <form action="${ cp }/admin/confirmCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="approveModal" tabindex="-1" role="dialog"
@@ -196,10 +197,9 @@
 	</div>
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
-</div>
-
-<div id="row2" style="display:inline; float:center;">
-							<button class="btn btn-danger" data-target="#rejectModal" data-toggle="modal">reject</button>
+	</div>
+	<div class="col-md-3 offset-md-2">
+							<button class="btn btn-danger" data-target="#rejectModal" data-toggle="modal">거절하기</button>
 <!-- Modal -->
 <form action="${ cp }/admin/rejectCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog"
@@ -217,6 +217,10 @@
 				<div class="modal-body">
 					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
 					<h5>해당 동아리를 거절하시겠습니까? </h5>
+					사유 : <p>
+							<input type="radio" name="ci_ok" value="20">중복된 동아리 계정
+							<input type="radio" name="ci_ok" value="30">부적절한 게시 의도
+						 </p>
 				</div>
 					
 				<div class="modal-footer">
@@ -229,7 +233,9 @@
 		</div>
 	</div>
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+
 </form>
+	</div>
 </div>
 						</td>
 					</tr>
@@ -237,9 +243,9 @@
 				</table>
 				</div>
 				
-				
+<%--				
 <div>
-	<c:forEach var="i" begin="${pu.startPageNum +1 }" end="${pu.endPageNum }">
+	<c:forEach var="i" begin="${pu.startPageNum+1 }" end="${pu.endPageNum }">
 		<c:choose>
 			<c:when test="${i==param.pageNum }">
 				<a href="${cp }/admin/appliedCircleList?pageNum=${i}&keyword=${keyword}"><span
@@ -252,7 +258,7 @@
 		</c:choose>
 	</c:forEach>
 </div>
-
+ --%>
 			</div>
 				</div>
 			</div>

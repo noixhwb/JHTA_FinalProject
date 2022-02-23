@@ -282,7 +282,6 @@ $(function(){
 						$('button[id=btnLike]').attr('value','좋아요취소');
 						$('i[id=heartt]').attr('style','color: palevioletred');
 						$('input[id=likepersoncount]').attr('value', likepersoncount);
-						alert('등록 성공!');
 					}else{
 						alert('등록 실패!');
 					}
@@ -299,7 +298,6 @@ $(function(){
 					$('button[id=btnLike]').attr('value','좋아요등록');
 					$('i[id=heartt]').attr('style','color: gainsboro');
 					$('input[id=likepersoncount]').attr('value', likepersoncount);
-					alert('삭제 성공!');
 				}
 			});
 		}

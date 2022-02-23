@@ -61,10 +61,16 @@ public class CircleAdminController {
 	
 	// 거절 메소드
 	@PostMapping("/admin/rejectCircle")
-	public String rejectCircle(int ci_num, Model model){
-		service.rejectCircle(ci_num);
+	public String rejectCircle(int ci_ok, int ci_num, Model model){
+		System.out.println("@ci_ok@"+ci_ok);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("ci_ok", ci_ok);
+		map.put("ci_num", ci_num);
+		model.addAttribute("ci_ok", ci_ok);
+		model.addAttribute("ci_num", ci_num);
+		service.updateReject(map);
 		
-		System.out.println("거절 완료!"+ci_num);
+		System.out.println("거절 완료!"+ci_ok+ci_num);
 		return "redirect:/admin/appliedCircleList";
 	}
 }

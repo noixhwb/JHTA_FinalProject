@@ -11,4 +11,5 @@ public interface CircleAdminMapper {
 	int confirmCircle(int ci_num);
 	int rejectCircle(int ci_num);
 	int getCircleCount(HashMap<String, Object> map);
+	int updateReject(HashMap<String, Object> map);
 }

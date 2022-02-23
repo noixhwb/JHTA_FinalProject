@@ -11,7 +11,7 @@
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
+	<div id="content-wrapper" class="d-flex flex-column"  style="margin-bottom: 200px;">
 
 <!-- Main Content -->
 		<div id="content">
@@ -123,7 +123,12 @@
 					</c:when>
 					
 					<c:otherwise>
-						<h6 class="m-0 font-weight-bold text-danger" style="text-align:center;">신청한 동아리가 없습니다</h6>
+						<div class="col-8 offset-2 mt-4 mb-5 justify-content-center">
+							<div class="card shadow text-center" style="height: 110px;">
+								<br><br>
+								<h6 class="m-0 font-weight-bold text-danger justify-content-center">신청한 동아리가 없습니다</h6>
+							</div>
+						</div>
 					</c:otherwise>
 					</c:choose>
 					</div>

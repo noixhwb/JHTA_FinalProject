@@ -18,17 +18,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jhta.finalproject.circlevo.CircleVo;
+import com.jhta.finalproject.circlevo.MyCircleVo;
 import com.jhta.finalproject.jobvo.CareerVo;
 import com.jhta.finalproject.jobvo.DutyVo;
 import com.jhta.finalproject.jobvo.JobVo;
 import com.jhta.finalproject.jobvo.ZoneVo;
 import com.jhta.finalproject.service.CircleService;
+import com.jhta.finalproject.service.MyCircleService;
 import com.jhta.finalproject.vo.MemberVo;
 
 @Controller
 public class CircleInsertController {
 	//동아리 + 게시글 등록 페이지로 이동
 	@Autowired private CircleService service;
+	@Autowired private MyCircleService mservice;
 	@Autowired private ServletContext sc;
 	
 	@GetMapping("/circle/CircleInsert")
@@ -47,7 +50,7 @@ public class CircleInsertController {
 	
 	@PostMapping("/circle/CircleInsert")
 	public String circleinsertok(CircleVo vo, MultipartFile file1, MultipartFile file2, Model model, Principal principal) {
-		String path = sc.getRealPath("/resources/upload");
+		String path = sc.getRealPath("/resources/images/circle");
 		System.out.println(path);
 		String ci_logofile="";
 		String ci_imgfile="";
@@ -89,6 +92,7 @@ public class CircleInsertController {
 							vo.getCi_person(), ci_logofile, userMnum, 0, 
 							0, vo.getCi_title(), vo.getCi_content(), ci_imgfile,
 							vo.getCi_startdate(), vo.getCi_enddate(), vo.getCi_view(), vo.getCi_recommend()));
+			//mservice.insert(new MyCircleVo(0, vo.getCi_num(), userMnum));
 			model.addAttribute("result","success");
 			System.out.println("동아리+게시글 등록 완료!");
 		}catch(Exception e) {

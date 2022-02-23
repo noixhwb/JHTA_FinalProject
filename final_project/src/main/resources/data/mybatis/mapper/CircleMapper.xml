@@ -130,6 +130,7 @@
 	<!-- 전체 글의 갯수 -->
 	<select id="count" parameterType="hashmap" resultType="int">
 		SELECT NVL(COUNT(*),0) CNT FROM CIRCLE
+			<include refid="search"></include> 
 	</select>
 	
 	<!-- 조회수 올리기 -->
@@ -173,7 +174,7 @@
 	</delete>
 	<update id="removeb" parameterType="int">
 		UPDATE CIRCLE SET cib_num='', ci_title='', ci_content='', 
-						  ci_imgfile='', ci_startdate='', ci_enddate='', 
+						  ci_imgfile='poster.png', ci_startdate='', ci_enddate='', 
 						  ci_view=0, ci_recommend=0 
 		WHERE CI_NUM=#{ci_num}
 	</update>

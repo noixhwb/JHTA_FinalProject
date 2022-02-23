@@ -30,4 +30,8 @@ public class CircleAdminService {
 	public int getCircleCount(HashMap<String, Object> map) {
 		return mapper.getCircleCount(map);
 	}
+	
+	public int updateReject(HashMap<String, Object> map) {
+		return mapper.updateReject(map);
+	}
 }

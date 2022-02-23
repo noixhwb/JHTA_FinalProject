@@ -38,6 +38,10 @@
 		WHERE CI_OK=0
     </select>
 	
+	<!-- 게시 승인 거절 -->
+	<update id="updateReject" parameterType="hashmap">
+		UPDATE CIRCLE SET CI_OK=#{ci_ok} WHERE CI_NUM=#{ci_num}
+	</update>
  </mapper>
  
  

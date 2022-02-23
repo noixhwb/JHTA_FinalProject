@@ -45,11 +45,16 @@ public class CircleListController {
 		PageUtil pu=new PageUtil(pageNum, 6, 5, totalRowCount);
 		int startRow = pu.getStartRow();
 		int endRow = pu.getEndRow();
+		int endPageNum = pu.getEndPageNum();
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		System.out.println("시작:"+startRow);
 		System.out.println("끝:"+endRow);
 		System.out.println("pageutil:"+pu);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("endPageNum",endPageNum);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("pu", pu);
 		
 		List<CircleVo> catlist = null;
 		if(order==null) {

@@ -242,15 +242,19 @@
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">아이디</h6>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="text" name="title" value="<sec:authentication property="principal.username"/>" maxlength="40" autocomplete="off" readonly="readonly">
+								<input type="text" name="title" style="border:none;" value="<sec:authentication property="principal.username"/>" maxlength="40" autocomplete="off" readonly="readonly">
 								<br>
 								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">이름</h6>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="text" name="title" value="${ userMname }" maxlength="40" autocomplete="off" readonly="readonly">
+								<input type="text" name="title" value="${ userMname }" 
+									   style="border:none;" 
+									   maxlength="40" autocomplete="off" readonly="readonly">
 								<br>
 								<h6 class="card-title font-weight-bold text-dark" style="display:inline;">닉네임</h6>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="text" name="title" value="${ userMnickname }" maxlength="40" autocomplete="off" readonly="readonly">
+								<input type="text" name="title" value="${ userMnickname }" 
+									   style="border:none;"
+									   maxlength="40" autocomplete="off" readonly="readonly">
 							</div>
 							
 						</div>

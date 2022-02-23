@@ -27,6 +27,7 @@ import com.jhta.finalproject.circlevo.LikeCircleJoinVo;
 import com.jhta.finalproject.circlevo.LikeCircleVo;
 import com.jhta.finalproject.circlevo.MyCircleJoinVo;
 import com.jhta.finalproject.circlevo.MyCircleListVo;
+import com.jhta.finalproject.service.CircleAdminService;
 import com.jhta.finalproject.service.CircleService;
 import com.jhta.finalproject.service.LikeCircleService;
 import com.jhta.finalproject.service.MyCircleService;
@@ -39,6 +40,7 @@ public class MyCircleController {
 	@Autowired private CircleService cservice;
 	@Autowired private LikeCircleService lservice;
 	@Autowired private ServletContext sc;
+	@Autowired private CircleAdminService caservice;
 	
 	//동아리 관리 페이지로 이동
 	@GetMapping("/circle/MyCircle")
@@ -136,7 +138,7 @@ public class MyCircleController {
 			}
 		}
 		*/
-		String path = sc.getRealPath("/resources/upload");
+		String path = sc.getRealPath("/resources/images/circle");
 		System.out.println(path);
 		String ci_logofile="";
 		if (!file1.isEmpty()) {
@@ -169,7 +171,7 @@ public class MyCircleController {
 			System.out.println("동아리 정보 수정 실패!");
 		}
 		
-		return "redirect:/circle/MyCircle";
+		return "redirect:/circle/MyCircle?name=ci_ok&keyword=1";
 	}
 	
 	//동아리 관리 페이지 - 게시글 수정
@@ -186,7 +188,7 @@ public class MyCircleController {
 		map.put("m_num", userMnum);
 		List<CircleVo> mylist = cservice.selectMyCircle(map);
 		model.addAttribute("mylist", mylist);
-		String path = sc.getRealPath("/resources/upload");
+		String path = sc.getRealPath("/resources/images/circle");
 		System.out.println(path);
 		String ci_imgfile="";
 		if (!file2.isEmpty()) {
@@ -221,7 +223,7 @@ public class MyCircleController {
 			System.out.println("게시글 수정 실패!");
 		}
 		
-		return "redirect:/circle/MyCircle";
+		return "redirect:/circle/MyCircle?name=ci_ok&keyword=1";
 	}
 	
 	//동아리 관리 페이지 - 신청한 학생 목록 보기
@@ -231,5 +233,14 @@ public class MyCircleController {
 		
 		System.out.println("동아리 신청한 학생 목록 불러오기 완료!");
 		return studentlist;
+	}
+	
+	//동아리 관리 페이지 - 거절된 동아리 확인 & DB삭제
+	@PostMapping("/circle/rejectCircleDB")
+	public String rejectCircleDB(int ci_num, Model model){
+		caservice.rejectCircle(ci_num);
+		
+		System.out.println("거절 완료!"+ci_num);
+		return "redirect:/circle/MyCircle?name=ci_ok&keyword=0";
 	}
 }

@@ -11,7 +11,7 @@
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 <!-- Content Wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
+	<div id="content-wrapper" class="d-flex flex-column" style="margin-bottom: 200px;">
 
 <!-- Main Content -->
 		<div id="content">
@@ -107,22 +107,33 @@
 							<h6 class="m-0 font-weight-bold text-white" style="display:inline;">게시요청 중</h6>
 						</div>				
 					</c:when>
-					<c:when test="${ myvo.ci_ok eq 2 }">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-danger" style="display:inline;">승인 거절</h6>
+					<c:when test="${ myvo.ci_ok eq 20 }">
+						<div class="card-header py-3" style="background-color: firebrick;">
+							<h6 class="m-0 font-weight-bold text-white" style="display:inline;">승인 거절 - 중복된 동아리 계정</h6>
+						</div>
+					</c:when>
+					<c:when test="${ myvo.ci_ok eq 30 }">
+						<div class="card-header py-3" style="background-color: firebrick;">
+							<h6 class="m-0 font-weight-bold text-white" style="display:inline;">승인 거절 - 부적절한 게시 의도</h6>
 						</div>
 					</c:when>
 					</c:choose>
 					<div class="card-body">
+						<div class="row">
+						<div class="col-6">
+							<!-- 동아리정보 -->
+							<img src="${ cp }/resources/images/circle/${ myvo.ci_logofile }" 
+								 style="width:80px; height:80px;">
+							<h5 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ myvo.ci_name } </h5>
+						</div>
+						<div class="col-6">
+							카테고리 : ${ myvo.ci_category }<br>
+							모집인원 : ${ myvo.ci_person }<br>		
+						</div>
+						</div>
 						
-						<!-- 동아리정보 -->
-						<img src="${ cp }/resources/images/circle/${ myvo.ci_logofile }" 
-							 style="width:80px; height:80px;">
-						<h5 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ myvo.ci_name } </h5>
-						카테고리 : ${ myvo.ci_category }<br>
-						모집인원 : ${ myvo.ci_person }<br>		
-						
-						
+						<div class="row">
+						<div class="col-6 offset-4">
 <!-- 동아리 정보 수정하기 모달 -->
 						<button class="btn btn-secondary" data-target="#circleInfoModal" data-toggle="modal">동아리 정보 수정하기</button>
 <!-- Modal -->
@@ -145,7 +156,7 @@
 							<img src="${ cp }/resources/images/circle/${ myvo.ci_logofile }" 
 							 	 style="width:80px; height:80px;">
 							<input type="text" name="ci_name"
-								   style="border:none;" 
+								   style="border:none; width:100px;" 
 								   value="${ myvo.ci_name }">
 						</li>
 						<li>
@@ -187,17 +198,20 @@
 	</div>
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
-						
+						</div>
+						</div>
 						<br> <hr width="100%" color="#C0C0C0" noshade /> <br> <!-- 구분선 -->
 						${ myvo.ci_title } <br>
 						${ myvo.ci_startdate }~${ myvo.ci_enddate } <br>
 						${ myvo.ci_content } <br>
-						${ myvo.ci_num }
+						${ myvo.ci_num } <br>
+						<img src="${ cp }/resources/images/circle/${ myvo.ci_imgfile }" 
+							 style="width:100px; height:200px;">
 						
 						<br>
 
 <!-- 게시글 정보 수정하기 모달 -->
-						<button class="btn btn-secondary" data-target="#circleBoardModal" data-toggle="modal">게시글 수정하기</button>
+						<button class="btn btn-secondary" data-target="#circleBoardModal" data-toggle="modal">게시글 수정하기!</button>
 <!-- Modal -->
 <form action="${ cp }/circle/MyCircleUpdate2?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="circleBoardModal" tabindex="-1" role="dialog"
@@ -226,8 +240,8 @@
 						<li>
 							<h6 class="card-title font-weight-bold text-dark">모집 기간</h6>
 							<p>
-								<input type="date" name="ci_startdate" autocomplete="off" class="date"><span>부터</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="date" name="ci_enddate" autocomplete="off" class="date"><span>까지</span>
+								<input type="date" name="ci_startdate" value="${ myvo.ci_startdate }" autocomplete="off" class="date"><span>부터</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="date" name="ci_enddate" value="${ myvo.ci_enddate }" autocomplete="off" class="date"><span>까지</span>
 							</p>
 						</li>
 						<li>
@@ -266,13 +280,27 @@
 						<button class="btn btn-secondary" data-target="#btnList" data-toggle="modal">신청한 학생 목록</button>
 						<c:set var="fname" value="fname${status.index}" />
 						 --%>
+						
 						<c:if test="${ myvo.ci_ok eq 1 }">
 						<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
 						<input type="button" value="학생목록" id="btnList">
 						<div id="here"></div>
 						</c:if>
-							
+						
 					</div> <!-- 0. MY  동아리 카드 body 끝 -->
+						
+					<c:if test="${ myvo.ci_ok eq 20 || myvo.ci_ok eq 30}">
+						<div class="card-footer py-3">
+<form action="${ cp }/circle/rejectCircleDB?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
+	<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
+	<input type="submit" class="btn btn-primary" value="디비삭제한다~">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+</form>
+						</div>
+
+					</c:if>					
+					
+					
 			</div>
 			</c:forEach><!-- 0. MY 동아리 카드 끝 -->
 			</c:if>
