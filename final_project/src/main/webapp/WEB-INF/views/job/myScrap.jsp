@@ -79,6 +79,9 @@ function bookMark(num) {
 	    font-weight: bold;
 	    background-color: #1dcdff;
     }
+    #delete{
+    	background-color: #EAEAEA; font-size: 12px; color:black;
+    }
 </style>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 

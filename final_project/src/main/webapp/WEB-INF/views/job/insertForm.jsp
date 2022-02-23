@@ -152,13 +152,13 @@
 	function checkNull(){
 		//기업명
 		if($('#j_company').val()==""){
-	        alert("기업명을 입력하여 주시기 바랍니다.");
+	        alert("기업명을 입력해 주시기 바랍니다.");
 	        $('#j_company').focus();
 	        return false;
 	    }
 	    //공고제목 
 	    if($('#j_subject').val()==""){
-	        alert("공고명을 입력하여 주시기 바랍니다.");
+	        alert("공고명을 입력해 주시기 바랍니다.");
 	        $('#j_subject').focus();
 	        return false;
 	    }

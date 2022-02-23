@@ -328,11 +328,13 @@
 		
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
-			
 		</div> <!-- Main Content 끝 -->
 <!-- End of Main Content -->
 			
-	</div> <!-- ContentWrapper 끝 -->
+		</div> <!-- ContentWrapper 끝 -->
+		
+	</div>
+</div>	
 <!-- End of Content Wrapper -->	
 <style>
 	.pagination{
