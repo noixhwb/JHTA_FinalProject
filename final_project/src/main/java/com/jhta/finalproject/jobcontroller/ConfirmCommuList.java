@@ -45,8 +45,8 @@ public class ConfirmCommuList {
 	}
 	
 	// 승인 메소드
-	@GetMapping(value="/admin/comfirmCommu",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Model comfirmCommu(int cu_num, Model model){
+	@GetMapping(value="/admin/confirmCommu",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Model confirmCommu(int cu_num, Model model){
 		try {
 			Aservice.confirmCommu(cu_num);
 			return model.addAttribute("result","true");
