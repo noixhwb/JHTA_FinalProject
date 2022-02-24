@@ -17,7 +17,7 @@
 
 
 	
-		<form
+		<form onsubmit="return joinSubmit();"
 			action="${ cp }/community/communityInsert?${_csrf.parameterName }=${_csrf.token }"
 			method="post" enctype="multipart/form-data">
 			<div class="container-fluid">
@@ -212,7 +212,14 @@
 
 <%@ include file="/WEB-INF/views/footer.jsp"%>
 
+<script type="text/javascript">
+function joinSubmit(){
+	
+	alert("게시 요청완료!");
+	return true;
 
+}
+</script>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 

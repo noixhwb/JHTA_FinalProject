@@ -92,7 +92,7 @@ import com.util.PageUtil;
 			model.addAttribute("result","fail");
 			System.out.println("실패");
 		}
-		return "/home";
+		return "redirect:/home";
 	}
 	
 
