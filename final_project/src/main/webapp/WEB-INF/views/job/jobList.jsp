@@ -236,7 +236,7 @@
 												<p style="cursor: pointer;"
 													onclick="location.href='${cp}/job/detail?j_num=${vo.j_num}';">
 													
-													<c:if test="${endTime eq today }">
+													<c:if test="${today eq endTime }">
 														<span style="color: #4e73df;">D -DAY</span>
 													</c:if>
 													<c:if test="${today gt endTime }">

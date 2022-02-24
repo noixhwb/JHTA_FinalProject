@@ -53,7 +53,6 @@
 														<h1>실패</h1>
 													</c:otherwise>
 												</c:choose>
-												<a href="${pageContext.request.contextPath }/">홈</a>
 											</div>
 											
 										</div>
