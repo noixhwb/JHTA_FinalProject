@@ -96,44 +96,45 @@
 <!-- Approach -->
 			<!-- 0. MY 동아리 카드 -->
 			<div class="row">
-				<div class="col-8 offset-2 mt-4 mb-5">
+				<div class="col-6 offset-3 mt-4 mb-5">
 			<c:if test="${ not empty mylist }">
 			<c:forEach var="myvo" items="${ mylist }">
 				
 			<div class="card shadow mb-3">
 					<c:choose>
 					<c:when test="${ myvo.ci_ok eq 0 }">
-						<div class="card-header py-3" style="background-color: firebrick;">
-							<h6 class="m-0 font-weight-bold text-white" style="display:inline;">게시요청 중</h6>
+						<div class="card-header py-3 bg-light" style=" color:orange;">
+							<h6 class="m-0 font-weight-bold" style="display:inline;">게시요청 중</h6>
 						</div>				
 					</c:when>
 					<c:when test="${ myvo.ci_ok eq 20 }">
-						<div class="card-header py-3" style="background-color: firebrick;">
-							<h6 class="m-0 font-weight-bold text-white" style="display:inline;">승인 거절 - 중복된 동아리 계정</h6>
+						<div class="card-header py-3 bg-light" style="color: red;">
+							<h6 class="m-0 font-weight-bold" style="display:inline;">승인 거절 - 부적절한 게시 의도</h6>
 						</div>
 					</c:when>
 					<c:when test="${ myvo.ci_ok eq 30 }">
-						<div class="card-header py-3" style="background-color: firebrick;">
-							<h6 class="m-0 font-weight-bold text-white" style="display:inline;">승인 거절 - 부적절한 게시 의도</h6>
+						<div class="card-header py-3 bg-light" style="color: red;">
+							<h6 class="m-0 font-weight-bold" style="display:inline;">승인 거절 - 영리 목적의 게시요청</h6>
 						</div>
 					</c:when>
 					</c:choose>
 					<div class="card-body">
 						<div class="row">
-						<div class="col-6">
+						<div class="col-6" style="margin: auto; text-align: center;">
 							<!-- 동아리정보 -->
 							<img src="${ cp }/resources/images/circle/${ myvo.ci_logofile }" 
 								 style="width:80px; height:80px;">
 							<h5 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ myvo.ci_name } </h5>
 						</div>
-						<div class="col-6">
+						<div class="col-6" style="margin: auto; text-align: center;">
 							카테고리 : ${ myvo.ci_category }<br>
 							모집인원 : ${ myvo.ci_person }<br>		
 						</div>
 						</div>
 						
+						<c:if test="${ myvo.ci_ok eq 0 }">
 						<div class="row">
-						<div class="col-6 offset-4">
+						<div class="col-6 offset-4 mt-4">
 <!-- 동아리 정보 수정하기 모달 -->
 						<button class="btn btn-secondary" data-target="#circleInfoModal" data-toggle="modal">동아리 정보 수정하기</button>
 <!-- Modal -->
@@ -178,6 +179,7 @@
 								<input type="radio" name="ci_person" value="30">21명 ~ 30명 이하
 							</p>
 						</li>
+						<br>
 						<li>
 							<h6 class="card-title font-weight-bold text-dark">동아리 이미지 업로드</h6>
 							<p class="card-text">
@@ -200,18 +202,26 @@
 </form>
 						</div>
 						</div>
-						<br> <hr width="100%" color="#C0C0C0" noshade /> <br> <!-- 구분선 -->
-						${ myvo.ci_title } <br>
-						${ myvo.ci_startdate }~${ myvo.ci_enddate } <br>
-						${ myvo.ci_content } <br>
-						${ myvo.ci_num } <br>
-						<img src="${ cp }/resources/images/circle/${ myvo.ci_imgfile }" 
-							 style="width:100px; height:200px;">
+						</c:if>
 						
-						<br>
+						<br> <hr width="100%" color="#C0C0C0" noshade /> <br> <!-- 구분선 -->
+						
+						<div class="row">
+						<div class="col-9" style="margin: auto; text-align: center;">
+							<h5><strong>${ myvo.ci_title }</strong></h5>
+							${ myvo.ci_startdate }~${ myvo.ci_enddate } <br>
+							<img src="${ cp }/resources/images/circle/${ myvo.ci_imgfile }" 
+								 style="width:300px; margin-top:30px; margin-bottom:30px;"> <br>
+							${ myvo.ci_content }
 
+						</div>
+						</div>
+						
+						<c:if test="${ myvo.ci_ok eq 0 }">
+						<div class="row">
+						<div class="col-6 offset-4 mt-5">
 <!-- 게시글 정보 수정하기 모달 -->
-						<button class="btn btn-secondary" data-target="#circleBoardModal" data-toggle="modal">게시글 수정하기!</button>
+						<button class="btn btn-secondary" data-target="#circleBoardModal" data-toggle="modal">게시글 수정하기</button>
 <!-- Modal -->
 <form action="${ cp }/circle/MyCircleUpdate2?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="circleBoardModal" tabindex="-1" role="dialog"
@@ -273,27 +283,28 @@
 	</div>	
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>            	
-
+						</div>
+						</div>
+						</c:if>
 <!-- 신청한 학생 목록 보이기 -->
-						<%--
-						<a href="${ cp }/circle/CircleStudentList?ci_num=${myvo.ci_num}" id="btnList" data-target="#btnList" data-toggle="modal">신청한 학생 목록</a>
-						<button class="btn btn-secondary" data-target="#btnList" data-toggle="modal">신청한 학생 목록</button>
-						<c:set var="fname" value="fname${status.index}" />
-						 --%>
+						</div> <!-- 0. MY  동아리 카드 body 끝 -->
 						
 						<c:if test="${ myvo.ci_ok eq 1 }">
-						<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
-						<input type="button" value="학생목록" id="btnList">
-						<div id="here"></div>
+							<div class="card-footer mt-5" style="text-align: center;">
+								<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
+								<input type="button" value="학생목록" id="btnList">
+								<div id="here"></div>
+							</div>
 						</c:if>
 						
-					</div> <!-- 0. MY  동아리 카드 body 끝 -->
+					
 						
 					<c:if test="${ myvo.ci_ok eq 20 || myvo.ci_ok eq 30}">
-						<div class="card-footer py-3">
+						<div class="card-footer mt-5" style="text-align: center;">
+						
 <form action="${ cp }/circle/rejectCircleDB?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<input type="hidden" value="${ myvo.ci_num }" id="ci_num" name="ci_num">
-	<input type="submit" class="btn btn-primary" value="디비삭제한다~">
+	<input type="submit" class="btn btn-secondary" value="확인">
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 						</div>
@@ -382,19 +393,31 @@ $(function() {
 			dataType:'json',
 			success:function(list) {
 				$(list).each(function(i, d) {
-					let html = "<div class='list'>";
-					html += "<<학생>> <br>";
-					html += "학생 이름 : "+d.m_name+"<br>";
-					html += "학생 아이디 : "+d.m_id+"<br>";
-					html += "닉네임 : "+d.m_nickname+"<br>";
-					html += "학과 : "+d.m_dept+"<br>";
-					html += "핸드폰번호 : "+d.m_phone+"<br>";
-					html += "이메일 : "+d.m_email+"<br>";
-					html += "</div>";
+					let html = "<table class='table table-hover' style='text-align: center;'>";
+					html += "<thead>";
+					html += "<tr>";
+					html += "<th>이름</th>";
+					html += "<th>아이디</th>";
+					html += "<th>닉네임</th>";
+					html += "<th>학과</th>";
+					html += "<th>핸드폰번호</th>";
+					html += "<th>이메일</th>";
+					html += "</tr>";
+					html += "</thead>";
+					html += "<tr>";
+					html += "<td>"+d.m_name+"</td>";
+					html += "<td>"+d.m_id+"</td>";
+					html += "<td>"+d.m_nickname+"</td>";
+					html += "<td>"+d.m_dept+"</td>";
+					html += "<td>"+d.m_phone+"</td>";
+					html += "<td>"+d.m_email+"</td>";
+					html += "</tr>";
+					html += "</table>";
 					$("#here").append(html);
 				});
 			}
 		});
 	});
 });
+
 </script>

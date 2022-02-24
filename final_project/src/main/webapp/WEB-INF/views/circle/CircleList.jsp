@@ -131,7 +131,8 @@
 						<div class="row g-0">
 							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
 								<img src="${ cp }/resources/images/circle/${ vo.ci_logofile }" 
-									 style="width:50px; height:50px;">
+									 style="width:50px; height:50px;"
+									 id="imgsize">
 								&nbsp;&nbsp;&nbsp;
 								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.ci_name }</h6>
 							</div>
@@ -139,77 +140,6 @@
 								<span class="badge badge-pill badge-secondary">${ vo.ci_category }</span>
 								&nbsp;
 								<span class="badge badge-pill badge-secondary">${ vo.ci_person }</span>
-<%--
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-<div id="row1" style="display:inline; float:center;">
-							<button class="btn btn-danger" data-target="#removeCircleModal${ vo.ci_num }" data-toggle="modal">동아리 삭제</button>
-<!-- Modal -->
-<form action="${ cp }/circle/removeCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
-	<div class="modal fade" id="removeCircleModal${ vo.ci_num }" tabindex="-1" role="dialog"
-		 aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h6 class="modal-title" id="exampleModalLabel"></h6>
-					<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				
-				<div class="modal-body">
-					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
-					<h5>해당 동아리를 삭제하시겠습니까? </h5>
-				</div>
-					
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">취소
-					</button>
-					<input type="submit" class="btn btn-primary" value="삭제하기">
-				</div>
-			</div>
-		</div>
-	</div>
-<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-</form>
-</div>
-
-<div id="row2" style="display:inline; float:center;">
-									<button class="btn btn-warning" data-target="#removeBoardModal${ vo.ci_num }" data-toggle="modal">게시글 삭제</button>
-<!-- Modal -->
-<form action="${ cp }/circle/removeBoard?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
-	<div class="modal fade" id="removeBoardModal${ vo.ci_num }" tabindex="-1" role="dialog"
-		 aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h6 class="modal-title" id="exampleModalLabel"></h6>
-					<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				
-				<div class="modal-body">
-					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
-					<h5>해당 게시글을 삭제하시겠습니까? </h5>
-				</div>
-					
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">취소
-					</button>
-					<input type="submit" class="btn btn-primary" value="삭제하기">
-				</div>
-			</div>
-		</div>
-	</div>
-<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-</form>
-</div>
-								</sec:authorize>
-								 --%>
 							</div>
 							
 						</div>
@@ -295,7 +225,8 @@
 							</div>
 							<div class="col-md-4"> <!-- 카드본문 오른쪽 (포스터) -->
 								<img src="${ cp }/resources/images/circle/${ vo.ci_imgfile }" 
-									 class="img-fluid rounded-start" alt="..." style="width:150px;">
+									 class="img-fluid rounded-start" alt="..." style="width:150px;"
+									 id="imgsize">
 							</div>
 						</div>
 					</div> <!-- n번 동아리 body 끝 -->
@@ -336,7 +267,7 @@
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 	</div>
-	<div class="col-md-3 offset-md-2">
+	<div class="col-md-4 offset-md-2">
 
 									<button class="btn btn-warning" data-target="#removeBoardModal${ vo.ci_num }" data-toggle="modal">게시글 삭제</button>
 <!-- Modal -->
@@ -401,6 +332,7 @@
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
 <!-- 글목록번호 -->
+<div class="card col-6 offset-3 bg-light border-light">
 <div class="pagination">
 	<c:choose>
 		<c:when test="${pageNum==1 }">
@@ -441,7 +373,7 @@
 		</c:otherwise>
 	</c:choose>
 </div>	
-
+</div>
 <%-- -- 원래했던 페이징 --> 
 		<c:forEach var="i" begin="${ pu.startPageNum }" end="${ pu.endPageNum }">
 			<c:choose>
@@ -512,6 +444,7 @@
     justify-content: center;
     align-items : center;
 } 
+
 .pagination{
 		display: inline-block;
 		margin:0 auto;
@@ -522,7 +455,7 @@
 	  padding: 8px 16px;
 	  text-decoration: none;
 	}
-	.pagination a.first, a.active {
+	.pagination a.first, .pagination a.active {
 		  background-color: #4e73df;
 		  color: white;
 	}
@@ -533,11 +466,17 @@
 	.pagination a.active {
 	  border-radius: 25px;
 	}
+#imgsize{
+		cursor: pointer;
+	    background-position: center center;
+		background-size: cover;
+	}
 </style>  
 <script>
 	$(document).ready(function() {
 	    $(".dropdown-toggle").dropdown();
 	});
+	
 </script>     
 
 

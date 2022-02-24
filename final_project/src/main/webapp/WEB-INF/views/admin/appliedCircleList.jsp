@@ -47,9 +47,7 @@
 					<thead>
 					<tr>
 						<th scope="col">번호</th>
-				    	<th scope="col">동아리
-				    	
-				    	</th>
+				    	<th scope="col">동아리</th>
 				    	<th scope="col">요청자</th>
 				    	<th scope="col">승인여부</th> <!-- approve, reject -->
 				    </tr>
@@ -65,7 +63,7 @@
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">동아리 정보</h5>
+				<h5 class="modal-title" id="exampleModalLabel">동아리 게시 정보</h5>
 				<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 					<span aria-hidden="true">×</span>
@@ -77,40 +75,62 @@
 					<!-- 동아리 정보 -->
 					<li style="text-align:center;">
 						<img src="${ cp }/resources/images/circle/${ vo.ci_logofile }" 
-						 	 style="width:80px; height:80px;">
+						 	 style="width:80px; height:80px;"
+						 	 id="imgsize">
+						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="text" name="ci_name"
-							   style="border:none;" 
+							   style="border:none; width:50px;" 
 							   value="${ vo.ci_name }"
 							   readonly="readonly">
 					</li>
-					<li>
-						<!-- ${ myvo.ci_category } -->
-						<h6 class="card-title font-weight-bold text-dark">동아리 분야</h6>
-						<p>
-							${ vo.ci_category }
-						</p>
-					</li>
-					<li>
-						<h6 class="card-title font-weight-bold text-dark">동아리 규모</h6>
-						${ vo.ci_person }
-					</li>
-					<hr>
-					<!-- 게시글 정보 -->
-					<li>
-						<h6 class="card-title font-weight-bold text-dark">글 제목</h6>
-							${ vo.ci_title }
-						</li>
-						<li>
-							<h6 class="card-title font-weight-bold text-dark">모집 기간</h6>
-							<p>
-								${ vo.ci_startdate } ~ ${ vo.ci_enddate }
-							</p>
-						</li>
-						<li>
-							<h6 class="card-title font-weight-bold text-dark">상세 내용</h6>
-			                    	${ vo.ci_content }
-						</li>
 				</ul>
+				<div class="row">
+					<div class="col-8 offset-2">
+					<table class="table" style="width:300px;">
+						<tr>
+							<th>동아리 분야</th>
+							<td>${ vo.ci_category }</td>
+						</tr>
+						<tr>
+							<th>동아리 규모</th>
+							<td>${ vo.ci_person }</td>
+						</tr>
+						<tr>
+							<th>동아리 분야</th>
+							<td>${ vo.ci_category }</td>
+						</tr>
+					</table>
+					</div>
+				</div>
+				
+				<hr>
+				
+				<div class="row">
+					<div class="col-8 offset-1">
+					<table style="width:400px;">
+						<tr>
+							<th>글 제목</th>
+							<td>${ vo.ci_title }</td>
+						</tr>
+						<tr>
+							<th>모집 기간</th>
+							<td>${ vo.ci_startdate } ~ ${ vo.ci_enddate }</td>
+						</tr>
+						<tr>
+							<th>상세 내용</th>
+							<td>${ vo.ci_content }</td>
+						</tr>
+						<tr>
+							<th>첨부 이미지</th>
+							<td>
+								<img src="${ cp }/resources/images/circle/${ vo.ci_imgfile }" 
+							 	 style="width:200px;"
+							 	 id="imgsize">
+							</td>
+						</tr>
+					</table>
+					</div>
+				</div>
 			</div>
 				
 		</div>
@@ -134,29 +154,32 @@
 			</div>
 			
 			<div class="modal-body">
-				<ul id="dot">
-					<li>
-						<!-- ${ myvo.ci_category } -->
-						<h6 class="card-title font-weight-bold text-dark">이름</h6>
-						${ vo.m_name }
-					</li>
-					<li>
-						<h6 class="card-title font-weight-bold text-dark">닉네임</h6>
-						${ vo.m_nickname }
-					</li>
-					<li>
-						<h6 class="card-title font-weight-bold text-dark">학과</h6>
-						${ vo.m_dept }
-					</li>
-					<li>
-						<h6 class="card-title font-weight-bold text-dark">핸드폰번호</h6>
-						${ vo.m_phone }
-					</li>
-					<li>
-						<h6 class="card-title font-weight-bold text-dark">이메일 주소</h6>
-						${ vo.m_email }
-					</li>
-				</ul>
+				<div class="row">
+					<div class="col-8 offset-2">
+					<table class="table" style="width:300px;">
+						<tr>
+							<th>이름</th>
+							<td>${ vo.m_name }</td>
+						</tr>
+						<tr>
+							<th>닉네임</th>
+							<td>${ vo.m_nickname }</td>
+						</tr>
+						<tr>
+							<th>학과</th>
+							<td>${ vo.m_dept }</td>
+						</tr>
+						<tr>
+							<th>핸드폰번호</th>
+							<td>${ vo.m_phone}</td>
+						</tr>
+						<tr>
+							<th>이메일주소</th>
+							<td>${ vo.m_email }</td>
+						</tr>
+					</table>
+					</div>
+				</div>
 			</div>
 				
 		</div>
@@ -165,8 +188,8 @@
 						</td>
 						<td>
 <div class="row">
-	<div class="col-md-3 offset-md-2">
-							<button class="btn btn-primary" data-target="#approveModal" data-toggle="modal">승인하기</button>
+	<div class="col-sm-4 offset-sm-1">
+							<button class="btn btn-primary" data-target="#approveModal" data-toggle="modal">승인</button>
 <!-- Modal -->
 <form action="${ cp }/admin/confirmCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="approveModal" tabindex="-1" role="dialog"
@@ -198,8 +221,8 @@
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 	</div>
-	<div class="col-md-3 offset-md-2">
-							<button class="btn btn-danger" data-target="#rejectModal" data-toggle="modal">거절하기</button>
+	<div class="col-sm-4 offset-sm-1">
+							<button class="btn btn-danger" data-target="#rejectModal" data-toggle="modal">거절</button>
 <!-- Modal -->
 <form action="${ cp }/admin/rejectCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
 	<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog"
@@ -217,10 +240,11 @@
 				<div class="modal-body">
 					<input type="hidden" value="${ vo.ci_num }" id="ci_num" name="ci_num">
 					<h5>해당 동아리를 거절하시겠습니까? </h5>
-					사유 : <p>
-							<input type="radio" name="ci_ok" value="20">중복된 동아리 계정
-							<input type="radio" name="ci_ok" value="30">부적절한 게시 의도
-						 </p>
+					<small style="color: red;">사유를 선택해주세요</small> 
+						 <div style="margin-top:15px;">
+							<input type="radio" name="ci_ok" value="20">부적절한 게시 의도
+							<input type="radio" name="ci_ok" value="30">영리 목적의 게시요청
+						 </div>
 				</div>
 					
 				<div class="modal-footer">
@@ -243,96 +267,10 @@
 				</table>
 				</div>
 				
-<%--				
-<div>
-	<c:forEach var="i" begin="${pu.startPageNum+1 }" end="${pu.endPageNum }">
-		<c:choose>
-			<c:when test="${i==param.pageNum }">
-				<a href="${cp }/admin/appliedCircleList?pageNum=${i}&keyword=${keyword}"><span
-					style="color: blue">${i }</span></a>
-			</c:when>
-			<c:otherwise>
-				<a href="${cp }/admin/appliedCircleList?pageNum=${i}&keyword=${keyword}"><span
-					style="color: gray">${i }</span></a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</div>
- --%>
 			</div>
 				</div>
 			</div>
 
-		
-<%--			
-<!-- Content Row -->
-			<div class="row">
-
-<!-- Content Column -->
-			<c:forEach var="vo" items="${ circleList }">
-			<!-- 첫번째 Content Column -->
-			<div class="col-lg-6 mb-4">
-
-<!-- Approach -->
-				<!-- 동아리 -->
-				
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<div class="row g-0">
-							<div class="col-md-8"> <!-- 카드제목 왼쪽 -->
-								<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ vo.ci_num }</h6>
-							</div>
-							<div class="col-md-4"> <!-- 카드제목 오른쪽 -->
-							</div>
-						</div>
-					</div>
-					
-					<div class="card-body"> <!-- body -->
-						<div class="row g-0">
-							<div class="col-md-8"> <!-- 카드본문 왼쪽 (정보) -->
-								<div class="card-body">
-									<h6 class="card-title"> 
-										<!--  --> 
-									</h6>
-									<p class="card-text">
-										
-											<div class="row g-0">
-												<div class="col-md-6">
-													<ul id="dot">
-														<li>회원번호 : ${vo.ci_num }</li> <!-- 1번 -->
-														<li>아이디 : ${vo.ci_num }</li> <!-- 2번 --><br>
-														<a href="${ cp }/member/mymember?ci_num=${ vo.ci_num }">
-														회원정보보기</a>
-														<p><button class="btn btn-primary" onclick="approve(${vo.ci_num})">approve</button>
-														<button class="btn btn-primary" onclick="reject(${vo.ci_num})" style="background-color: #FF5E00">reject</button></p>
-													</ul>
-												</div>
-												<div class="col-md-6">
-													<ul id="dot">
-														<li>연락처 : ${vo.ci_num }</li> <!-- 3번 -->
-														<li>계정권한 : ${vo.ci_num }</li> <!-- 4번 -->
-													</ul>
-												</div>
-											</div>
-									</p>
-								</div>
-							</div>
-							<div class="col-md-4"> <!-- 카드본문 오른쪽 (포스터) -->
-								<img src="${ cp }/resources/images/circle/${ vo.ci_num }" 
-									 class="img-fluid rounded-start" alt="..." style="max-width: 150px;">
-							</div>
-						</div>
-					</div> <!-- body 끝 -->
-					
-				</div> <!-- 끝 -->
-				
-
-			</div> <!-- 첫번쨰 Content Column 끝 -->
-			</c:forEach>
-
-
-		</div> <!-- Content Row 끝 -->
- --%>
 		</div> <!-- container-fluid (Main Content의 메인부분) 끝 -->
 <!-- /.container-fluid -->
 			
@@ -394,49 +332,11 @@ $(function() {
    list-style:none;
    padding-left:5px;
    }
+#imgsize{
+		cursor: pointer;
+	    background-position: center center;
+		background-size: cover;
+	}
 </style>       
 
 
-
-
-
-
-<%--
- <nav class="navbar navbar-light bg-light color-white">
- 
-    	<ul class="navbar-nav">
-<!-- 정렬 -->
-		        	<li class="nav-item dropdown ml-auto">
-			            <!-- Nav Item - User Information -->
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-sm-inline text-gray-600 small"></span> 
-								동아리
-							</a> 
-						<!-- Dropdown - User Information -->
-							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								 aria-labelledby="userDropdown">
-								<a class="dropdown-item" 
-								   href="${ cp }/admin/appliedCircleList?category=ci_category&keyword=${ keyword }&order=1"> 
-									학술
-								</a>
-								<a class="dropdown-item" 
-								   href="${ cp }/circle/appliedCircleList?category=ci_category&keyword=${ keyword }&order=2">
-									취업
-								</a>
-								<a class="dropdown-item" 
-								   href="${ cp }/circle/appliedCircleList?category=ci_category&keyword=${ keyword }&order=2">
-									봉사
-								</a>
-								<a class="dropdown-item" 
-								   href="${ cp }/circle/appliedCircleList?category=ci_category&keyword=${ keyword }&order=2">
-									기타
-								</a>
-							</div>
-						</li>
-		       		</li> 
-		       		<!-- 정렬 끝 -->
-				    		</ul>
-				    		</nav>
-				    		 --%>

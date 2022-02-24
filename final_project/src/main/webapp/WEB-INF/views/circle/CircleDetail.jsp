@@ -57,11 +57,12 @@
 												<ul id="dot">
 													<li>
 														<img src="${ cp }/resources/images/circle/${ sel.ci_logofile }" 
-															 style="max-width: 50px;">
+															 style="max-width: 50px;">&nbsp;&nbsp;
 														<h6 class="m-0 font-weight-bold text-dark" style="display:inline;"> ${ sel.ci_name }</h6>
 													</li>
-													<li>카테고리 : ${ sel.ci_category }</li>
 													<li>
+														<span class="badge badge-pill badge-secondary">${ sel.ci_category }</span>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 														<i class="fa-solid fa-user"></i>
 														${ selectedPerson } / ${ sel.ci_person }
 													</li> <!-- 2번 -->
@@ -70,19 +71,12 @@
 											<div class="col-md-6">
 												<ul id="dot">
 													<li>
-														<i class="fa-solid fa-calendar-days"></i>
+														&nbsp;<i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp;
 														${ sel.ci_startdate } ~ ${ sel.ci_enddate }
 													</li>
 													<li>
-														<i class="fa-solid fa-eye" style="color: cornflowerblue;"></i>
+														&nbsp;<i class="fa-solid fa-eye" style="color: cornflowerblue;"></i>&nbsp;&nbsp;
 														${ sel.ci_view+viewnumber }
-													</li> 
-													<li>
-														<i class="fa-solid fa-heart" style="color: palevioletred;"></i>
-														<input type="text" value="${ likePerson }"
-															   id="likepersoncount"
-															   style="border:0 solid black;"
-															   readonly="readonly">
 													</li> 
 
 													<input type="hidden" value="${ nmaplike }" id="count">
