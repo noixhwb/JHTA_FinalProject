@@ -10,25 +10,26 @@
   <img alt="image_main" src="https://via.placeholder.com/150">
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/Java-007396?&logo=java&logoColor=white&style=flat-square/"> &nbsp;
-  <img src="https://img.shields.io/badge/Spring-6DB33F?&logo=spring&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/Oracle-F80000?&logo=ORACLE&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/Tomcat-F8DC75?&logo=ApacheTomcat&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/Maven-C71A36?&logo=ApacheMaven&logoColor=white&style=flat-square"></br>
-  <img src="https://img.shields.io/badge/HTML-0769AD?&logo=HTML&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/CSS-0769AD?&logo=CSS&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/JavaScript-0769AD?&logo=JavaScript&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/jQuery-0769AD?&logo=jQuery&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Java-#007396?&logo=java&logoColor=white&style=flat-square/"> &nbsp;
+  <img src="https://img.shields.io/badge/Spring-#6DB33F?&logo=spring&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Spring_Security-##6DB33F?&logo=springsecurity&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Oracle-#F80000?&logo=ORACLE&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Tomcat-#F8DC75?&logo=ApacheTomcat&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Maven-#C71A36?&logo=ApacheMaven&logoColor=white&style=flat-square"></br>
+  <img src="https://img.shields.io/badge/HTML-#E34F26?&logo=html5&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/CSS-#1572B6?&logo=css3&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/JavaScript-#F7DF1E?&logo=JavaScript&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/jQuery-#0769AD?&logo=jQuery&logoColor=white&style=flat-square"> &nbsp;
 </p>
 
-<p align="center">
-**오로지, 대학생들만을 위한 커뮤니티** </br> 
-활발한 동아리 활동을 통한 스펙up!</br>
-장터로 중고물품 거래하기 </br>
-익명의 강의평가와 시간표짜기 </br> 
-취업정보도 한눈에
 
-**MYCAMPUS**
+**MYCAMPUS** </br> 
+목적
+- 익명의 강의평가를 제공하고 시간표구성, 학점계산기를 통해 편리한 학사관리를 가능하게 한다.
+- 학생들이 자체적으로 동아리를 모집하고 관리하여 교내 동아리 신청관리 서비스를 간편하게 제공한다.
+- 소통을 원하는 학생들이 가입을 하고 자유롭게 커뮤니티활동을 제공해준다.
+- 사이트를 통해 채용공고를 확인하고 원하는 공고는 스크랩을 하여 취업활동을 지원한다.
+- 인증절차를 통한 안전한 중고거래를 지원한다.
 </br>
 </br>
 </p>
