@@ -48,14 +48,13 @@
 
 | 👯 취업정보 기능 | 💁 시간표 기능 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://via.placeholder.com/150" alt=" " width=80%> | <img src="https://via.placeholder.com/150" alt=" " width=80%> |
+| <img src="https://user-images.githubusercontent.com/72147069/156175131-2669f1fc-73a6-4e2e-a916-277654e5186d.PNG" width=100%> | <img src="https://via.placeholder.com/150" alt=" " width=80%> |
 
 | 🍓 게시요청 기능 | 🔎 관리자 기능 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="https://via.placeholder.com/150" alt=" " width=80%> | <img src="https://via.placeholder.com/150" alt=" " width=80%> |
+| <img src="https://user-images.githubusercontent.com/72147069/156175150-a6843376-c72c-449b-9d90-b71150ffc636.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156175236-915984a9-19e6-4113-b089-f18a36956795.PNG" width=80%> |
 </br>
 </br>
-
 ---
 
 
