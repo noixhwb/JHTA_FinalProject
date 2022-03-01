@@ -10,16 +10,16 @@
   <img alt="image_main" src="https://via.placeholder.com/150">
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/Java-#007396?&logo=java&logoColor=white&style=flat-square/"> &nbsp;
-  <img src="https://img.shields.io/badge/Spring-#6DB33F?&logo=spring&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/Spring_Security-##6DB33F?&logo=springsecurity&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/Oracle-#F80000?&logo=ORACLE&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/Tomcat-#F8DC75?&logo=ApacheTomcat&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/Maven-#C71A36?&logo=ApacheMaven&logoColor=white&style=flat-square"></br>
-  <img src="https://img.shields.io/badge/HTML-#E34F26?&logo=html5&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/CSS-#1572B6?&logo=css3&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/JavaScript-#F7DF1E?&logo=JavaScript&logoColor=white&style=flat-square"> &nbsp;
-  <img src="https://img.shields.io/badge/jQuery-#0769AD?&logo=jQuery&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Java-007396?&logo=java&logoColor=white&style=flat-square/"> &nbsp;
+  <img src="https://img.shields.io/badge/Spring-6DB33F?&logo=spring&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Spring_Security-6DB33F?&logo=springsecurity&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Oracle-F80000?&logo=ORACLE&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Tomcat-F8DC75?&logo=ApacheTomcat&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/Maven-C71A36?&logo=ApacheMaven&logoColor=white&style=flat-square"></br>
+  <img src="https://img.shields.io/badge/HTML-E34F26?&logo=html5&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/CSS-1572B6?&logo=css3&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?&logo=JavaScript&logoColor=white&style=flat-square"> &nbsp;
+  <img src="https://img.shields.io/badge/jQuery-0769AD?&logo=jQuery&logoColor=white&style=flat-square"> &nbsp;
 </p>
 
 
