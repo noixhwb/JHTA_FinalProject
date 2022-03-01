@@ -80,7 +80,7 @@
 								<h6 class="card-title font-weight-bold text-dark">동아리명</h6>
 								<p class="card-text">
 									<!-- 동아리명 입력 -->
-									<input type="text" name="ci_name" placeholder="동아리 이름 *" maxlength="30" autocomplete="off" class="text">
+									<input type="text" name="ci_name" placeholder="동아리 이름 (*필수)" maxlength="30" autocomplete="off" class="text">
 									<!-- 동아리명 사용가능 여부 메세지 -->
 									<div>
 									</div>
@@ -164,7 +164,7 @@
 							<div class="card-body">
 								<h6 class="card-title font-weight-bold text-dark">글 제목</h6>
 								<p class="card-text">
-									<input type="text" name="ci_title" placeholder="제목 *" maxlength="40" autocomplete="off">
+									<input type="text" name="ci_title" placeholder="제목" maxlength="40" autocomplete="off">
 								</p>
 							</div>
 							

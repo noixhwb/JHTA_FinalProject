@@ -23,7 +23,7 @@
 	<nav
 		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-		<h4 class="h1" style=" ">3조대학교 캠퍼스픽</h4>
+		<h4 class="h1" style=" ">MYCAMPUS</h4>
  
 		<!-- Topbar Navbar -->
 		<ul class="navbar-nav ml-auto">

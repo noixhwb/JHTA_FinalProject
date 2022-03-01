@@ -188,7 +188,7 @@
 						</td>
 						<td>
 <div class="row">
-	<div class="col-sm-4 offset-sm-1">
+	<div class="col-sm-5 offset-sm-1">
 							<button class="btn btn-primary" data-target="#approveModal" data-toggle="modal">승인</button>
 <!-- Modal -->
 <form action="${ cp }/admin/confirmCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">
@@ -221,7 +221,7 @@
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 	</div>
-	<div class="col-sm-4 offset-sm-1">
+	<div class="col-sm-5">
 							<button class="btn btn-danger" data-target="#rejectModal" data-toggle="modal">거절</button>
 <!-- Modal -->
 <form action="${ cp }/admin/rejectCircle?${_csrf.parameterName }=${_csrf.token }" method="post" enctype="multipart/form-data">

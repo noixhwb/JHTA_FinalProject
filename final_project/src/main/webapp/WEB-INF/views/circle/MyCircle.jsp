@@ -132,7 +132,7 @@
 						</div>
 						</div>
 						
-						<c:if test="${ myvo.ci_ok eq 0 }">
+						<c:if test="${ myvo.ci_ok eq 1 }">
 						<div class="row">
 						<div class="col-6 offset-4 mt-4">
 <!-- 동아리 정보 수정하기 모달 -->
@@ -209,6 +209,8 @@
 						<div class="row">
 						<div class="col-9" style="margin: auto; text-align: center;">
 							<h5><strong>${ myvo.ci_title }</strong></h5>
+							<i class="fa-solid fa-calendar-days"></i> 
+							&nbsp;&nbsp;
 							${ myvo.ci_startdate }~${ myvo.ci_enddate } <br>
 							<img src="${ cp }/resources/images/circle/${ myvo.ci_imgfile }" 
 								 style="width:300px; margin-top:30px; margin-bottom:30px;"> <br>
@@ -217,7 +219,7 @@
 						</div>
 						</div>
 						
-						<c:if test="${ myvo.ci_ok eq 0 }">
+						<c:if test="${ myvo.ci_ok eq 1 }">
 						<div class="row">
 						<div class="col-6 offset-4 mt-5">
 <!-- 게시글 정보 수정하기 모달 -->
@@ -392,18 +394,19 @@ $(function() {
 			data:{"ci_num":ci_num},
 			dataType:'json',
 			success:function(list) {
+				let html = "<table class='table table-hover' style='text-align: center; margin-top: 25px;'>";
+				html += "<thead>";
+				html += "<tr>";
+				html += "<th>이름</th>";
+				html += "<th>아이디</th>";
+				html += "<th>닉네임</th>";
+				html += "<th>학과</th>";
+				html += "<th>핸드폰번호</th>";
+				html += "<th>이메일</th>";
+				html += "</tr>";
+				html += "</thead>";
 				$(list).each(function(i, d) {
-					let html = "<table class='table table-hover' style='text-align: center;'>";
-					html += "<thead>";
-					html += "<tr>";
-					html += "<th>이름</th>";
-					html += "<th>아이디</th>";
-					html += "<th>닉네임</th>";
-					html += "<th>학과</th>";
-					html += "<th>핸드폰번호</th>";
-					html += "<th>이메일</th>";
-					html += "</tr>";
-					html += "</thead>";
+					
 					html += "<tr>";
 					html += "<td>"+d.m_name+"</td>";
 					html += "<td>"+d.m_id+"</td>";
@@ -412,9 +415,10 @@ $(function() {
 					html += "<td>"+d.m_phone+"</td>";
 					html += "<td>"+d.m_email+"</td>";
 					html += "</tr>";
-					html += "</table>";
-					$("#here").append(html);
+					
 				});
+				html += "</table>";
+				$("#here").append(html);
 			}
 		});
 	});
