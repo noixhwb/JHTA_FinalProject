@@ -42,7 +42,7 @@
 |                         🧐 동아리 기능                         |                  👩‍💻 기능                  |                         🧑‍💻 기능                         |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 
-| <img src="https://user-images.githubusercontent.com/72147069/156168005-fc3157b4-7f53-418e-a60d-db7d7e3b6e9f.gif" alt=" " width=33%> | <img src="https://via.placeholder.com/150" alt=" " width=33%> | <img src="https://via.placeholder.com/150" alt=" " width=33%> |
+| <img src="https://user-images.githubusercontent.com/72147069/156168005-fc3157b4-7f53-418e-a60d-db7d7e3b6e9f.gif" alt=" " width=30%> | <img src="https://via.placeholder.com/150" alt=" " width=30%> | <img src="https://via.placeholder.com/150" alt=" " width=30%> |
 
 |                👯 기능                |                     💁 기능                      |                     💆 기능                     |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
