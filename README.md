@@ -42,7 +42,7 @@
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/72147069/156172268-809b250a-f768-4634-92b9-989a83952e33.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156172238-629f62b0-ac3a-419c-8be0-a048bd0f935b.PNG" width=100%> |
 
-| 🙌 '''동아리 기능''' | 👩‍💻 거래장터 기능 |
+| 🙌 동아리 기능 | 👩‍💻 거래장터 기능 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/72147069/156174757-6abf1223-a04a-44ee-8c0f-e271ba955853.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156174819-1ee7ccce-cf17-4281-8226-a6a5b97d43ce.PNG" width=100%> |
 
