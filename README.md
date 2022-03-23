@@ -55,6 +55,13 @@
 | <img src="https://user-images.githubusercontent.com/72147069/156175150-a6843376-c72c-449b-9d90-b71150ffc636.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156175236-915984a9-19e6-4113-b089-f18a36956795.PNG" width=100%> |
 </br>
 </br>
+
+---
+
+## 🌈 Members
+
+| [백송은](https://github.com/SongeunB) | [백승한]() | [안성진]() | [하지은](https://github.com/noixhwb) | [한상훈]() |
+
 <!--
 ## 🙋 개인 담당 기능
 
@@ -66,8 +73,4 @@
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/72147069/156174757-6abf1223-a04a-44ee-8c0f-e271ba955853.PNG" width=100%> | <img src="https://user-images.githubusercontent.com/72147069/156174819-1ee7ccce-cf17-4281-8226-a6a5b97d43ce.PNG" width=100%> |
 -->
----
 
-## 🌈 Members
-
-| [백송은](https://github.com/SongeunB) | [백승한]() | [안성진]() | [하지은](https://github.com/noixhwb) | [한상훈]() |
